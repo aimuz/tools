@@ -1,13 +1,37 @@
 // wasm-vips Image Converter
-import Vips from 'wasm-vips';
+// Assumes Vips is loaded globally from script tag
 
 let vipsInstance = null;
+let isLoading = false;
+let loadPromise = null;
 
 export async function getVips() {
   if (vipsInstance) return vipsInstance;
+  if (isLoading) return loadPromise;
   
-  vipsInstance = await Vips();
-  return vipsInstance;
+  // Check if Vips global is available
+  if (typeof window === 'undefined' || !window.Vips) {
+    throw new Error('Vips not loaded. Make sure to include vips.js script tag.');
+  }
+  
+  isLoading = true;
+  loadPromise = window.Vips({
+    locateFile: (path) => {
+      if (path.endsWith('.wasm')) {
+        return '/wasm-vips/vips.wasm';
+      }
+      return path;
+    },
+  }).then(instance => {
+    vipsInstance = instance;
+    isLoading = false;
+    return instance;
+  }).catch(err => {
+    isLoading = false;
+    throw err;
+  });
+  
+  return loadPromise;
 }
 
 export class VipsImageConverter {
@@ -25,16 +49,33 @@ export class VipsImageConverter {
       // Configure output options
       const options = {};
       
-      if (outputFormat === 'jpeg' || outputFormat === 'jpg') {
+      // Normalize format
+      const format = outputFormat.toLowerCase();
+      
+      if (format === 'jpeg' || format === 'jpg') {
         options.Q = quality;
-      } else if (outputFormat === 'png') {
+        const outputBuffer = image.writeToBuffer('.jpg', options);
+        return new Uint8Array(outputBuffer);
+      } else if (format === 'png') {
         options.compression = 6;
+        const outputBuffer = image.writeToBuffer('.png', options);
+        return new Uint8Array(outputBuffer);
+      } else if (format === 'webp') {
+        options.Q = quality;
+        const outputBuffer = image.writeToBuffer('.webp', options);
+        return new Uint8Array(outputBuffer);
+      } else if (format === 'gif') {
+        const outputBuffer = image.writeToBuffer('.gif', options);
+        return new Uint8Array(outputBuffer);
+      } else if (format === 'bmp') {
+        const outputBuffer = image.writeToBuffer('.bmp', options);
+        return new Uint8Array(outputBuffer);
+      } else if (format === 'tiff' || format === 'tif') {
+        const outputBuffer = image.writeToBuffer('.tiff', options);
+        return new Uint8Array(outputBuffer);
+      } else {
+        throw new Error('Unsupported output format: ' + format);
       }
-      
-      // Write to buffer
-      const outputBuffer = image.writeToBuffer('.' + outputFormat, options);
-      
-      return new Uint8Array(outputBuffer);
     } finally {
       // Clean up vips image
       image.delete();

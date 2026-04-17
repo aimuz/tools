@@ -26,10 +26,20 @@ export default defineConfig({
     }),
   ],
   output: 'static',
-  server: {
-    headers: {
-      'Cross-Origin-Opener-Policy': 'same-origin',
-      'Cross-Origin-Embedder-Policy': 'require-corp',
+  vite: {
+    optimizeDeps: {
+      exclude: ['wasm-vips'],
+    },
+    server: {
+      headers: {
+        'Cross-Origin-Opener-Policy': 'same-origin',
+        'Cross-Origin-Embedder-Policy': 'require-corp',
+      },
+    },
+    build: {
+      rollupOptions: {
+        external: ['wasm-vips'],
+      },
     },
   },
 });

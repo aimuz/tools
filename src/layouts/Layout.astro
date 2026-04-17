@@ -24,6 +24,7 @@ const { title, description = '安全快速的本地文件格式转换工具' } =
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
     <title>{title}</title>
+    <slot name="head" />
   </head>
   <body class="min-h-screen flex flex-col">
     <slot />

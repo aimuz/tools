@@ -4,6 +4,7 @@
 // and buttons matching `.mode-btn[data-mode="smart|light|strong"]`.
 
 import { getImageConverter } from '../wasm/rust-image-converter.js';
+import { bindCopyButton } from './clipboard';
 
 type Mode = 'smart' | 'light' | 'strong';
 
@@ -107,13 +108,17 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
     });
   }
 
+  let resultsList: any[] = [];
+
   compressBtn?.addEventListener('click', async () => {
     if (!imageConverter) { alert('加载中，请稍后再试'); return; }
     const origText = compressBtn.textContent;
     compressBtn.textContent = '处理中...';
     compressBtn.disabled = true;
 
-    const resultsList: any[] = [];
+    // Release object URLs from the previous batch so they don't leak across re-runs.
+    resultsList.forEach(r => r.url && URL.revokeObjectURL(r.url));
+    resultsList = [];
     for (const { file } of files) {
       try {
         const buf = new Uint8Array(await file.arrayBuffer());
@@ -134,6 +139,8 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
         resultsList.push({
           name: file.name,
           url: URL.createObjectURL(blob),
+          blob,
+          mime: file.type,
           originalSize: r.originalSize,
           compressedSize: r.compressedSize,
           ratio: r.compressionRatio,
@@ -145,7 +152,7 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
     }
 
     if (results) {
-      results.innerHTML = resultsList.map(item => item.error ? `
+      results.innerHTML = resultsList.map((item, idx) => item.error ? `
         <div class="flex items-center gap-3 p-3 bg-red-50 border border-red-100 rounded-lg">
           <span class="text-red-500 text-sm">处理失败：${item.name}</span>
         </div>
@@ -160,10 +167,16 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
             <p class="text-sm text-[#171717] truncate">${item.name}</p>
             <p class="text-xs text-gray-400">${formatSize(item.originalSize)} → ${formatSize(item.compressedSize)} · ${item.ratio > 0 ? '节省了 ' + item.ratio + '%' : '已优化'}</p>
           </div>
+          <button data-copy-idx="${idx}" class="px-3 py-1.5 border border-gray-200 text-gray-600 text-sm rounded hover:border-[#171717] hover:text-[#171717]">复制</button>
           <a href="${item.url}" download="compressed_${item.name}" class="px-3 py-1.5 bg-[#171717] text-white text-sm rounded hover:bg-gray-800">下载</a>
         </div>
       `).join('');
       results.classList.remove('hidden');
+
+      results.querySelectorAll<HTMLButtonElement>('[data-copy-idx]').forEach(btn => {
+        const item = resultsList[Number(btn.dataset.copyIdx)];
+        if (item && !item.error) bindCopyButton(btn, () => ({ blob: item.blob, mime: item.mime }));
+      });
     }
 
     compressBtn.textContent = origText ?? '开始压缩';

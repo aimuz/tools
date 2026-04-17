@@ -9,6 +9,20 @@ import Container from '../components/layout/Container.astro';
   title="关于 WizGo - 本地处理的免费在线工具箱 | 隐私与技术栈"
   description="了解 WizGo 的技术实现与隐私政策。所有工具都在浏览器本地运行，文件不上传。基于 Astro + Rust WASM + WebCrypto 构建。"
 >
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: '关于 WizGo',
+    url: 'https://wizgo.xyz/about',
+    description: 'WizGo 的技术栈与隐私政策：所有工具在浏览器本地运行，文件不上传。',
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'WizGo',
+      url: 'https://wizgo.xyz',
+      logo: 'https://wizgo.xyz/favicon.svg',
+      description: '免费在线工具箱，图片压缩、格式转换、JWT、时间戳等，纯浏览器本地处理不上传。',
+    },
+  })} slot="head" />
   <Header />
 
   <main class="flex-1 py-16">

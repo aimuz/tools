@@ -6,6 +6,7 @@
 // `#quality-option` wrapper, and `#detected-format` span for showing the detected input format.
 
 import { getImageConverter } from '../wasm/rust-image-converter.js';
+import { bindCopyButton } from './clipboard';
 
 export interface ConvertPageOptions {
   /** Target format is fixed for this page (used by /{from}-to-{to}). */
@@ -155,20 +156,24 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
     });
   }
 
+  let resultsList: any[] = [];
+
   convertBtn?.addEventListener('click', async () => {
     if (!imageConverter) { alert('加载中，请稍后再试'); return; }
     const origText = convertBtn.textContent;
     convertBtn.textContent = '处理中...';
     convertBtn.disabled = true;
 
-    const resultsList: any[] = [];
+    resultsList.forEach(r => r.url && URL.revokeObjectURL(r.url));
+    resultsList = [];
     for (const { file } of files) {
       try {
         const buf = new Uint8Array(await file.arrayBuffer());
         const out = await imageConverter.convertImage(buf, targetFormat, quality);
-        const blob = new Blob([out], { type: MIME[targetFormat] || 'image/png' });
+        const mime = MIME[targetFormat] || 'image/png';
+        const blob = new Blob([out], { type: mime });
         const newName = file.name.replace(/\.[^/.]+$/, '') + '.' + targetFormat;
-        resultsList.push({ newName, url: URL.createObjectURL(blob), size: blob.size });
+        resultsList.push({ newName, url: URL.createObjectURL(blob), blob, mime, size: blob.size });
       } catch (err) {
         console.error(err);
         resultsList.push({ originalName: file.name, error: true });
@@ -176,7 +181,7 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
     }
 
     if (results) {
-      results.innerHTML = resultsList.map(item => item.error ? `
+      results.innerHTML = resultsList.map((item, idx) => item.error ? `
         <div class="flex items-center gap-3 p-3 bg-red-50 border border-red-100 rounded-lg">
           <span class="text-red-500 text-sm">转换失败：${item.originalName}</span>
         </div>
@@ -191,10 +196,16 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
             <p class="text-sm text-[#171717] truncate">${item.newName}</p>
             <p class="text-xs text-gray-400">${formatSize(item.size)}</p>
           </div>
+          <button data-copy-idx="${idx}" class="px-3 py-1.5 border border-gray-200 text-gray-600 text-sm rounded hover:border-[#171717] hover:text-[#171717]">复制</button>
           <a href="${item.url}" download="${item.newName}" class="px-3 py-1.5 bg-[#171717] text-white text-sm rounded hover:bg-gray-800">下载</a>
         </div>
       `).join('');
       results.classList.remove('hidden');
+
+      results.querySelectorAll<HTMLButtonElement>('[data-copy-idx]').forEach(btn => {
+        const item = resultsList[Number(btn.dataset.copyIdx)];
+        if (item && !item.error) bindCopyButton(btn, () => ({ blob: item.blob, mime: item.mime }));
+      });
     }
 
     convertBtn.textContent = origText ?? '开始转换';

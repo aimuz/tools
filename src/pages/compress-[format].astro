@@ -8,22 +8,22 @@ type Fmt = 'png' | 'jpg' | 'webp';
 const LABEL: Record<Fmt, string> = { png: 'PNG', jpg: 'JPG', webp: 'WebP' };
 const FULL: Record<Fmt, string> = { png: 'PNG', jpg: 'JPEG', webp: 'WebP' };
 
-// 每种格式的压缩机理说明 + 用户决策语 — 手写，不走模板。
+// 每种格式的定位 —— 对普通用户说人话，不讲算法名。
 const PITCH: Record<Fmt, { headline: string; hint: string; seoBenefit: string }> = {
   png: {
-    headline: '保留透明度 · 调色板量化通常减小 60-80%',
-    hint: '基于 imagequant 调色板量化（pngquant 等效算法）。UI 截图、插画、图标、logo 压缩收益尤其明显。',
-    seoBenefit: '智能调色板量化，UI 截图/插画/图标可缩小 60-80%，照片类 PNG 也有 20-30% 改善，视觉几乎无差。',
+    headline: '保留透明背景 · 文件通常缩小 60-80%',
+    hint: '截图、插画、图标、logo 效果最好，肉眼几乎看不出差别，透明背景自动保留。',
+    seoBenefit: 'PNG 智能压缩，截图、插画、图标可缩小 60-80%，照片类 PNG 也能缩小 20-30%，视觉几乎无差。',
   },
   jpg: {
-    headline: '4:2:0 子采样 + 优化 Huffman · 通常减小 30-45%',
-    hint: '对照片类图片使用行业标准的 JPEG 优化管线（色度子采样、渐进式编码、优化 Huffman 表），EXIF 元数据自动剥离。',
-    seoBenefit: '采用 4:2:0 色度子采样、渐进式编码、优化 Huffman 表的 JPEG 压缩管线，照片类图片减小 30-45%。',
+    headline: '照片专用压缩 · 文件通常缩小 30-45%',
+    hint: '针对照片深度优化，画质基本不变；同时自动清除照片里的拍摄地点、设备等隐私信息。',
+    seoBenefit: 'JPG 照片压缩，文件缩小 30-45%，自动剥离照片中的拍摄地点、设备型号等隐私信息。',
   },
   webp: {
-    headline: 'WebP 无损再压缩 · 保留透明度',
-    hint: '在纯 Rust WASM 环境下采用无损 WebP 重编码。若输入已是高度压缩的 lossy WebP，本工具会返回原文件确保不劣化。',
-    seoBenefit: 'WebP 无损重编码，保留透明度。若输入已足够优化，工具会自动返回原文件，确保你拿到的永远是更小的那个。',
+    headline: '无损压缩 · 保留透明背景',
+    hint: '对 WebP 图片做无损优化，画质和透明度完整保留。如果你的图片已经足够小，工具会自动返回原图。',
+    seoBenefit: 'WebP 无损压缩，保留透明度；若原图已经足够优化，工具会返回原图，确保你拿到的永远是更小的那个。',
   },
 };
 

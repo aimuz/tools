@@ -26,4 +26,8 @@ export default defineConfig({
     }),
   ],
   output: 'static',
+  vite: {
+    // Rollup can't bundle IIFE workers that dynamic-import the WASM glue chunk.
+    worker: { format: 'es' },
+  },
 });

@@ -292,7 +292,9 @@ import Badge from '../components/ui/Badge.astro';
 
         // Convert image
         const outputFormatValue = outputFormat.value;
-        const quality = parseInt(qualitySlider.value);
+        
+        // Only use quality for JPEG format
+        const quality = outputFormatValue === 'jpeg' ? parseInt(qualitySlider.value) : 100;
         
         const result = imageConverter.convertImage(
           inputData,

@@ -12,14 +12,18 @@ export class ImageConverter {
     const response = await fetch('/wasm/image-converter.wasm');
     const wasmBuffer = await response.arrayBuffer();
 
-    const wasmModule = await WebAssembly.instantiate(wasmBuffer, {
+    // Import object with memory
+    const importObject = {
       env: {
         memory: new WebAssembly.Memory({ initial: 256, maximum: 512 }),
       },
-    });
+    };
+
+    const wasmModule = await WebAssembly.instantiate(wasmBuffer, importObject);
 
     this.instance = wasmModule.instance.exports;
-    this.memory = this.instance.memory;
+    // Use exported memory or imported memory
+    this.memory = this.instance.memory || importObject.env.memory;
   }
 
   allocate(size) {
@@ -41,25 +45,30 @@ export class ImageConverter {
       const memory = new Uint8Array(this.memory.buffer);
       memory.set(imageData, ptr);
 
-      // Allocate width/height pointers
+      // Allocate width/height pointers (4 bytes each)
       const widthPtr = this.allocate(4);
       const heightPtr = this.allocate(4);
 
-      const format = this.instance.getImageInfo(ptr, imageData.length, widthPtr, heightPtr);
+      if (!widthPtr || !heightPtr) throw new Error('Failed to allocate width/height pointers');
 
-      // Read width and height
-      const width = new DataView(this.memory.buffer).getUint32(widthPtr, true);
-      const height = new DataView(this.memory.buffer).getUint32(heightPtr, true);
+      try {
+        const format = this.instance.getImageInfo(ptr, imageData.length, widthPtr, heightPtr);
 
-      this.deallocate(widthPtr, 4);
-      this.deallocate(heightPtr, 4);
+        // Read width and height (little endian)
+        const dataView = new DataView(this.memory.buffer);
+        const width = dataView.getUint32(widthPtr, true);
+        const height = dataView.getUint32(heightPtr, true);
 
-      const formats = ['png', 'jpeg', 'bmp', 'gif', 'tga', 'qoi'];
-      return {
-        width,
-        height,
-        format: format < 6 ? formats[format] : 'unknown',
-      };
+        const formats = ['png', 'jpeg', 'bmp', 'gif', 'tga', 'qoi'];
+        return {
+          width,
+          height,
+          format: format < 6 ? formats[format] : 'unknown',
+        };
+      } finally {
+        this.deallocate(widthPtr, 4);
+        this.deallocate(heightPtr, 4);
+      }
     } finally {
       this.deallocate(ptr, imageData.length);
     }
@@ -70,10 +79,10 @@ export class ImageConverter {
 
     const formatCodes = { png: 0, jpeg: 1, bmp: 2, gif: 3, tga: 4, qoi: 5 };
     const formatCode = formatCodes[outputFormat];
-    if (formatCode === undefined) throw new Error('Unsupported format');
+    if (formatCode === undefined) throw new Error('Unsupported format: ' + outputFormat);
 
     const ptr = this.allocate(imageData.length);
-    if (!ptr) throw new Error('Failed to allocate memory');
+    if (!ptr) throw new Error('Failed to allocate memory for input');
 
     try {
       // Copy image data to WASM memory
@@ -88,7 +97,7 @@ export class ImageConverter {
       const resultPtr = this.instance.getResultPointer();
       const resultSize = this.instance.getResultSize();
 
-      if (!resultPtr || resultSize === 0) throw new Error('No result');
+      if (!resultPtr || resultSize === 0) throw new Error('No result from conversion');
 
       // Copy result from WASM memory
       const result = new Uint8Array(resultSize);

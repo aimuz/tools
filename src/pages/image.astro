@@ -130,7 +130,7 @@ import Badge from '../components/ui/Badge.astro';
 </Layout>
 
 <script>
-  import { getImageConverter } from '../wasm/image-converter.js';
+  import { getImageConverter } from '../wasm/vips-converter.js';
 
   // File handling
   const uploadZone = document.getElementById('upload-zone');
@@ -287,7 +287,7 @@ import Badge from '../components/ui/Badge.astro';
         const inputData = new Uint8Array(arrayBuffer);
 
         // Get image info
-        const info = imageConverter.getImageInfo(inputData);
+        const info = await imageConverter.getImageInfo(inputData);
         console.log('Image info:', info);
 
         // Convert image
@@ -296,7 +296,7 @@ import Badge from '../components/ui/Badge.astro';
         // Only use quality for JPEG format
         const quality = outputFormatValue === 'jpeg' ? parseInt(qualitySlider.value) : 100;
         
-        const result = imageConverter.convertImage(
+        const result = await imageConverter.convertImage(
           inputData,
           outputFormatValue,
           quality

@@ -16,10 +16,11 @@
     "@astrojs/tailwind": "^5.1.0",
     "@ffmpeg/ffmpeg": "^0.12.10",
     "@ffmpeg/util": "^0.12.1",
-    "@fontsource/geist-sans": "^5.0.3",
     "@fontsource/geist-mono": "^5.0.3",
+    "@fontsource/geist-sans": "^5.0.3",
     "astro": "^4.5.0",
-    "tailwindcss": "^3.4.0"
+    "tailwindcss": "^3.4.0",
+    "wasm-vips": "^0.0.17"
   },
   "devDependencies": {
     "@vite-pwa/astro": "^0.4.0",

@@ -19,6 +19,7 @@
     "@fontsource/geist-mono": "^5.0.3",
     "@fontsource/geist-sans": "^5.0.3",
     "astro": "^4.5.0",
+    "pica": "^9.0.1",
     "tailwindcss": "^3.4.0",
     "wasm-vips": "^0.0.17"
   },

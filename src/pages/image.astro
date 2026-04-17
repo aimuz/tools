@@ -9,7 +9,6 @@ import Badge from '../components/ui/Badge.astro';
 ---
 
 <Layout title="图片格式转换 - Tools Hub">
-  <script is:inline src="/wasm-vips/vips.js"></script>
   <Header />
   
   <main class="flex-1 py-12">
@@ -131,7 +130,7 @@ import Badge from '../components/ui/Badge.astro';
 </Layout>
 
 <script>
-  import { getImageConverter } from '../wasm/vips-converter.js';
+  import { getImageConverter } from '../wasm/image-converter.js';
 
   // File handling
   const uploadZone = document.getElementById('upload-zone');

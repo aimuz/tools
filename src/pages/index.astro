@@ -2,130 +2,143 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
-import Container from '../components/layout/Container.astro';
-import ToolCard from '../components/ui/ToolCard.astro';
+import { quickActions } from '../data/tools';
+
+const pageTitle = 'WizGo - 免费在线工具箱 · 图片压缩、格式转换、JWT、时间戳';
+const pageDescription = 'WizGo 提供图片压缩、图片格式转换、JWT 解码、时间戳转换、JSON 格式化、代码转图片等免费在线工具。纯浏览器本地处理不上传，安全快速无需安装。';
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://wizgo.xyz';
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'WizGo',
+  alternateName: 'WizGo 工具箱',
+  url: siteUrl,
+  description: pageDescription,
+  inLanguage: 'zh-CN',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${siteUrl}/?q={search_term_string}`,
+    'query-input': 'required name=search_term_string',
+  },
+};
 ---
 
-<Layout title="Tools Hub - 安全快速的本地文件格式转换">
+<Layout title={pageTitle} description={pageDescription}>
+  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} slot="head" />
   <Header />
-  
+
   <main class="flex-1">
-    <!-- Hero Section -->
-    <section class="pt-20 pb-16 text-center">
-      <Container>
-        <h1 class="text-[48px] md:text-[64px] font-semibold text-vercel-black tracking-tight-2.88 leading-tight animate-fade-in">
-          文件格式转换
+    <!-- Hero -->
+    <section class="pt-16 pb-8 text-center">
+      <div class="max-w-[720px] mx-auto px-6">
+        <h1 class="text-4xl md:text-5xl font-semibold text-[#171717] tracking-tight mb-4">
+          免费在线工具箱
         </h1>
-        <p class="text-xl text-gray-600 mt-6 max-w-2xl mx-auto leading-body-relaxed animate-fade-in animation-delay-200">
-          安全、快速的本地转换工具。所有处理都在浏览器中完成，文件不会上传至服务器。
+        <p class="text-lg text-gray-500">
+          图片压缩、格式转换、JWT、时间戳 · 本地处理不上传
         </p>
-      </Container>
+      </div>
     </section>
 
-    <!-- Tools Grid -->
-    <section class="py-16">
-      <Container>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="animate-slide-up">
-            <ToolCard 
-              href="/image"
-              icon="🖼️"
-              title="图片转换"
-              description="支持 PNG、JPEG、BMP、GIF、TGA、QOI 格式互转，支持质量调整和尺寸修改"
-            />
+    <!-- Search -->
+    <section class="pb-10">
+      <div class="max-w-[480px] mx-auto px-6">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
           </div>
-          <div class="animate-slide-up animation-delay-200">
-            <ToolCard 
-              href="/audio"
-              icon="🎵"
-              title="提取音频"
-              description="从 MP4 视频中提取高质量 MP3 音频，支持自定义比特率和采样率"
-            />
-          </div>
+          <input
+            type="text"
+            id="tool-search"
+            class="w-full pl-11 pr-4 py-3 bg-white border border-gray-200 rounded-xl text-sm text-[#171717] placeholder-gray-400 focus:outline-none focus:border-[#171717] transition-colors"
+            placeholder="搜索工具，例如：PNG 压缩、转 JPG..."
+          />
         </div>
-      </Container>
+      </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="py-16 border-t border-gray-100">
-      <Container>
-        <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 text-center">
-          <div class="animate-fade-in">
-            <div class="text-4xl font-semibold text-vercel-black tracking-tight" id="convert-count">0</div>
-            <div class="text-sm text-gray-600 mt-1">已转换文件</div>
-          </div>
-          <div class="w-px h-12 bg-gray-200 hidden md:block"></div>
-          <div class="animate-fade-in animation-delay-200">
-            <div class="text-4xl font-semibold text-vercel-black tracking-tight">100%</div>
-            <div class="text-sm text-gray-600 mt-1">本地处理</div>
-          </div>
-          <div class="w-px h-12 bg-gray-200 hidden md:block"></div>
-          <div class="animate-fade-in animation-delay-400">
-            <div class="text-4xl font-semibold text-vercel-black tracking-tight">0</div>
-            <div class="text-sm text-gray-600 mt-1">文件上传</div>
-          </div>
+    <!-- Quick Actions -->
+    <section class="pb-16">
+      <div class="max-w-[800px] mx-auto px-6">
+        <div id="actions-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          {quickActions.map((action) => (
+            <a
+              href={action.href}
+              class="action-card group block p-4 bg-white border border-gray-200 rounded-xl hover:border-[#171717] hover:shadow-sm transition-all duration-200"
+              data-search={action.name.toLowerCase() + ' ' + action.tags.join(' ')}
+            >
+              <h3 class="text-sm font-semibold text-[#171717] mb-1">
+                {action.name}
+              </h3>
+              <p class="text-xs text-gray-400">{action.description}</p>
+            </a>
+          ))}
         </div>
-      </Container>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="hidden text-center py-12">
+          <p class="text-gray-400">没有找到相关工具</p>
+        </div>
+      </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="py-16 bg-gray-50/50">
-      <Container>
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-semibold text-vercel-black tracking-tight-1.28 mb-4">
-            为什么选择 Tools Hub？
-          </h2>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="w-12 h-12 mx-auto mb-4 rounded-comfortable bg-vercel-black text-white flex items-center justify-center">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-              </svg>
-            </div>
-            <h3 class="text-lg font-semibold text-vercel-black mb-2">隐私安全</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">
-              所有文件都在浏览器中处理，不会上传到任何服务器，确保您的数据隐私
-            </p>
+    <!-- Features -->
+    <section class="py-10 border-t border-gray-100">
+      <div class="max-w-[600px] mx-auto px-6">
+        <div class="flex flex-wrap justify-center gap-8 text-center">
+          <div class="flex items-center gap-2 text-sm text-gray-500">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+            </svg>
+            <span>文件不上传</span>
           </div>
-          
-          <div class="text-center">
-            <div class="w-12 h-12 mx-auto mb-4 rounded-comfortable bg-vercel-black text-white flex items-center justify-center">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-              </svg>
-            </div>
-            <h3 class="text-lg font-semibold text-vercel-black mb-2">快速高效</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">
-              使用 WebAssembly 技术，在浏览器中实现接近原生的处理速度
-            </p>
+          <div class="flex items-center gap-2 text-sm text-gray-500">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            <span>免费使用</span>
           </div>
-          
-          <div class="text-center">
-            <div class="w-12 h-12 mx-auto mb-4 rounded-comfortable bg-vercel-black text-white flex items-center justify-center">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
-              </svg>
-            </div>
-            <h3 class="text-lg font-semibold text-vercel-black mb-2">随时随地</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">
-              支持 PWA，可安装到桌面或手机，离线也能使用
-            </p>
+          <div class="flex items-center gap-2 text-sm text-gray-500">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            <span>无需安装</span>
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   </main>
-  
+
   <Footer />
 </Layout>
 
 <script>
-  // Load stats from localStorage
-  const stats = JSON.parse(localStorage.getItem('wizgo-stats') || '{"conversions": 0}');
-  const countElement = document.getElementById('convert-count');
-  if (countElement) {
-    countElement.textContent = stats.conversions.toString();
-  }
+  const searchInput = document.getElementById('tool-search');
+  const actionCards = document.querySelectorAll('.action-card');
+  const emptyState = document.getElementById('empty-state');
+
+  searchInput?.addEventListener('input', (e) => {
+    const query = (e.target as HTMLInputElement).value.toLowerCase().trim();
+    let hasVisible = false;
+
+    actionCards.forEach((card) => {
+      const searchData = (card as HTMLElement).dataset.search || '';
+      
+      if (!query || searchData.includes(query)) {
+        (card as HTMLElement).style.display = '';
+        hasVisible = true;
+      } else {
+        (card as HTMLElement).style.display = 'none';
+      }
+    });
+
+    if (hasVisible) {
+      emptyState?.classList.add('hidden');
+    } else {
+      emptyState?.classList.remove('hidden');
+    }
+  });
 </script>

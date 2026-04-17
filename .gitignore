@@ -1,2 +1,4 @@
 node_modules
 wasm/.zig-cache
+rust-wasm/target
+dist/

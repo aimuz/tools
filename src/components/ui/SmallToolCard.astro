@@ -1,0 +1,28 @@
+---
+interface Props {
+  href: string;
+  icon: string;
+  title: string;
+  description?: string;
+}
+
+const { href, icon, title, description } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group block p-5 bg-white border border-gray-200 rounded-lg hover:border-[#171717] hover:shadow-sm transition-all duration-200"
+  data-tool-card
+  data-tool-title={title.toLowerCase()}
+  data-tool-desc={description?.toLowerCase() || ''}
+>
+  <div class="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center mb-3 group-hover:bg-gray-100 transition-colors">
+    <span class="text-xl">{icon}</span>
+  </div>
+  <h3 class="text-base font-semibold text-[#171717] mb-1">
+    {title}
+  </h3>
+  {description && (
+    <p class="text-sm text-gray-500 line-clamp-2">{description}</p>
+  )}
+</a>

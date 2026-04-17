@@ -1,69 +1,179 @@
 ---
+interface MenuItem {
+  name: string;
+  href: string;
+  desc: string;
+}
+
+interface MenuGroup {
+  id: string;
+  label: string;
+  items: MenuItem[];
+}
+
+const menu: MenuGroup[] = [
+  {
+    id: 'image',
+    label: '图片工具',
+    items: [
+      { name: '图片压缩', href: '/compress', desc: 'PNG / JPG / WebP 智能压缩' },
+      { name: '图片格式转换', href: '/convert', desc: 'PNG JPG WebP GIF BMP 互转' },
+      { name: 'PNG 转 JPG', href: '/png-to-jpg', desc: '透明背景白色填充 · 体积更小' },
+      { name: 'JPG 转 PNG', href: '/jpg-to-png', desc: '无损保存 · 支持透明度' },
+      { name: 'PNG 转 WebP', href: '/png-to-webp', desc: '保留透明 · 更小体积' },
+      { name: 'JPG 转 WebP', href: '/jpg-to-webp', desc: '同画质再压缩 25-35%' },
+    ],
+  },
+  {
+    id: 'dev',
+    label: '开发者工具',
+    items: [
+      { name: 'JWT 解码/验签', href: '/jwt', desc: 'HS256 RS256 ES256' },
+      { name: '时间戳转换', href: '/timestamp', desc: 'Unix 时间戳和日期互转' },
+      { name: 'JSON 格式化', href: '/json', desc: '美化 / 压缩 / 校验' },
+      { name: '代码转图片', href: '/code-image', desc: '生成代码分享图' },
+    ],
+  },
+];
 ---
 
-<header class="sticky top-0 z-50 bg-vercel-white/80 backdrop-blur-md shadow-border">
+<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
   <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
+    <!-- Logo -->
     <a href="/" class="flex items-center gap-2 group">
-      <span class="text-xl font-semibold text-vercel-black tracking-tight-0.96 group-hover:text-develop-blue transition-colors">
-        Tools Hub
-      </span>
+      <span class="text-xl font-semibold text-[#171717] tracking-tight">WizGo</span>
     </a>
-    
-    <nav class="flex items-center gap-6">
-      <a 
-        href="/image" 
-        class="text-sm font-medium text-gray-600 hover:text-vercel-black transition-colors"
-      >
-        图片转换
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex items-center gap-1" id="desktop-nav">
+      {menu.map((group) => (
+        <div class="relative" data-dropdown={group.id}>
+          <button
+            type="button"
+            class="dropdown-trigger flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#171717] hover:bg-gray-50 rounded-md transition-colors"
+            data-target={group.id}
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            {group.label}
+            <svg class="w-3.5 h-3.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div
+            class="dropdown-panel hidden absolute right-0 mt-2 w-80 bg-white border border-gray-200 rounded-xl shadow-lg p-2"
+            data-panel={group.id}
+            role="menu"
+          >
+            {group.items.map((item) => (
+              <a
+                href={item.href}
+                role="menuitem"
+                class="block px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors group"
+              >
+                <p class="text-sm font-medium text-[#171717]">{item.name}</p>
+                <p class="text-xs text-gray-400 mt-0.5">{item.desc}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+      <a href="/about" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#171717] hover:bg-gray-50 rounded-md transition-colors">
+        关于
       </a>
-      <a 
-        href="/audio" 
-        class="text-sm font-medium text-gray-600 hover:text-vercel-black transition-colors"
-      >
-        提取音频
-      </a>
-      
-      <button 
-        id="theme-toggle" 
-        class="p-2 rounded-standard hover:bg-gray-50 transition-colors focus-ring"
-        aria-label="切换主题"
-      >
-        <svg id="sun-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-        </svg>
-        <svg id="moon-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-        </svg>
-      </button>
     </nav>
+
+    <!-- Mobile menu button -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden p-2 rounded-md hover:bg-gray-50 transition-colors"
+      aria-label="菜单"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white max-h-[75vh] overflow-y-auto">
+    <div class="px-4 py-3 space-y-2">
+      {menu.map((group) => (
+        <details class="group border border-gray-100 rounded-lg">
+          <summary class="list-none flex items-center justify-between px-4 py-3 cursor-pointer text-sm font-medium text-[#171717]">
+            {group.label}
+            <svg class="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </summary>
+          <div class="px-2 pb-2 space-y-1">
+            {group.items.map((item) => (
+              <a href={item.href} class="block px-3 py-2.5 rounded hover:bg-gray-50">
+                <p class="text-sm font-medium text-[#171717]">{item.name}</p>
+                <p class="text-xs text-gray-400 mt-0.5">{item.desc}</p>
+              </a>
+            ))}
+          </div>
+        </details>
+      ))}
+      <a href="/about" class="block px-4 py-3 text-sm font-medium text-[#171717] border border-gray-100 rounded-lg hover:bg-gray-50">
+        关于
+      </a>
+    </div>
   </div>
 </header>
 
 <script>
-  const themeToggle = document.getElementById('theme-toggle');
-  const sunIcon = document.getElementById('sun-icon');
-  const moonIcon = document.getElementById('moon-icon');
+  const triggers = document.querySelectorAll<HTMLButtonElement>('.dropdown-trigger');
+  const panels = document.querySelectorAll<HTMLElement>('.dropdown-panel');
 
-  function updateIcons(theme: string) {
-    if (theme === 'dark') {
-      sunIcon?.classList.remove('hidden');
-      moonIcon?.classList.add('hidden');
-    } else {
-      sunIcon?.classList.add('hidden');
-      moonIcon?.classList.remove('hidden');
+  const closeAll = (except?: string) => {
+    triggers.forEach(t => {
+      if (t.dataset.target !== except) {
+        t.setAttribute('aria-expanded', 'false');
+        t.querySelector('svg')?.classList.remove('rotate-180');
+      }
+    });
+    panels.forEach(p => {
+      if (p.dataset.panel !== except) p.classList.add('hidden');
+    });
+  };
+
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const id = trigger.dataset.target!;
+      const panel = document.querySelector<HTMLElement>(`[data-panel="${id}"]`);
+      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+      closeAll(isOpen ? undefined : id);
+      if (!isOpen) {
+        panel?.classList.remove('hidden');
+        trigger.setAttribute('aria-expanded', 'true');
+        trigger.querySelector('svg')?.classList.add('rotate-180');
+      }
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    const target = e.target as Node;
+    const insideDropdown = Array.from(document.querySelectorAll('[data-dropdown]')).some(el => el.contains(target));
+    if (!insideDropdown) closeAll();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeAll();
+      (document.activeElement as HTMLElement | null)?.blur();
     }
-  }
+  });
 
-  // Initial icon state
-  const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-  updateIcons(currentTheme);
-
-  themeToggle?.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateIcons(newTheme);
+  // Mobile toggle
+  const mobileBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  mobileBtn?.addEventListener('click', () => {
+    const open = mobileMenu?.classList.toggle('hidden') === false;
+    mobileBtn.setAttribute('aria-expanded', String(open));
   });
 </script>

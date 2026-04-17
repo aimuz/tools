@@ -1,0 +1,144 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+type Fmt = 'png' | 'jpg' | 'webp';
+
+const LABEL: Record<Fmt, string> = { png: 'PNG', jpg: 'JPG', webp: 'WebP' };
+const FULL: Record<Fmt, string> = { png: 'PNG', jpg: 'JPEG', webp: 'WebP' };
+
+// 每种格式的压缩机理说明 + 用户决策语 — 手写，不走模板。
+const PITCH: Record<Fmt, { headline: string; hint: string; seoBenefit: string }> = {
+  png: {
+    headline: '保留透明度 · 调色板量化通常减小 60-80%',
+    hint: '基于 imagequant 调色板量化（pngquant 等效算法）。UI 截图、插画、图标、logo 压缩收益尤其明显。',
+    seoBenefit: '智能调色板量化，UI 截图/插画/图标可缩小 60-80%，照片类 PNG 也有 20-30% 改善，视觉几乎无差。',
+  },
+  jpg: {
+    headline: '4:2:0 子采样 + 优化 Huffman · 通常减小 30-45%',
+    hint: '对照片类图片使用行业标准的 JPEG 优化管线（色度子采样、渐进式编码、优化 Huffman 表），EXIF 元数据自动剥离。',
+    seoBenefit: '采用 4:2:0 色度子采样、渐进式编码、优化 Huffman 表的 JPEG 压缩管线，照片类图片减小 30-45%。',
+  },
+  webp: {
+    headline: 'WebP 无损再压缩 · 保留透明度',
+    hint: '在纯 Rust WASM 环境下采用无损 WebP 重编码。若输入已是高度压缩的 lossy WebP，本工具会返回原文件确保不劣化。',
+    seoBenefit: 'WebP 无损重编码，保留透明度。若输入已足够优化，工具会自动返回原文件，确保你拿到的永远是更小的那个。',
+  },
+};
+
+export async function getStaticPaths() {
+  const formats: Fmt[] = ['png', 'jpg', 'webp'];
+  return formats.map((format) => ({ params: { format } }));
+}
+
+const { format } = Astro.params as { format: Fmt };
+if (!['png', 'jpg', 'webp'].includes(format)) {
+  return Astro.redirect('/compress');
+}
+
+const label = LABEL[format];
+const full = FULL[format];
+const pitch = PITCH[format];
+
+const title = `${label} 压缩 - 免费在线 ${full} 图片压缩工具 | WizGo`;
+const description = `免费在线 ${label} 图片压缩工具。${pitch.seoBenefit} 纯浏览器本地处理不上传，支持批量，保护隐私。`;
+
+const siteUrl = 'https://wizgo.xyz';
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: `${label} 压缩`,
+  applicationCategory: 'MultimediaApplication',
+  operatingSystem: 'Any',
+  browserRequirements: '需要支持 WebAssembly 的现代浏览器',
+  description: `${full} 图片在线压缩，${pitch.headline}。`,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: `${siteUrl}/compress-${format}`,
+};
+---
+
+<Layout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <Header />
+
+  <main class="flex-1 py-12">
+    <div class="max-w-[720px] mx-auto px-6">
+      <!-- Hero -->
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-semibold text-[#171717] mb-2">
+          {label} 图片压缩
+        </h1>
+        <p class="text-gray-500">{pitch.headline}</p>
+      </div>
+
+      <!-- Upload zone -->
+      <div
+        id="upload-zone"
+        class="relative w-full min-h-[240px] rounded-xl border-2 border-dashed border-gray-300 hover:border-[#171717] transition-colors bg-white flex flex-col items-center justify-center gap-3 cursor-pointer mb-6"
+      >
+        <svg class="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+        </svg>
+        <div class="text-center">
+          <p class="text-base text-[#171717]">拖放 {label} 图片到此处</p>
+          <p class="text-sm text-gray-400 mt-1">或点击上传（其他格式也接受）</p>
+        </div>
+        <p class="text-xs text-gray-400">最大 100MB · 支持批量</p>
+        <input type="file" id="file-input" class="hidden" accept="image/*" multiple />
+      </div>
+
+      <!-- Options -->
+      <div id="options" class="mb-6 hidden">
+        <p class="text-sm text-gray-500 mb-2">压缩力度：</p>
+        <div class="flex gap-2 mb-6">
+          <button class="mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 bg-[#171717] text-white" data-mode="smart">智能推荐</button>
+          <button class="mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" data-mode="light">轻度</button>
+          <button class="mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" data-mode="strong">强力</button>
+        </div>
+
+        <button id="compress-btn" class="w-full py-3 bg-[#171717] text-white rounded-lg font-medium hover:bg-gray-800 transition-colors">
+          开始压缩
+        </button>
+      </div>
+
+      <div id="file-list" class="space-y-3 mb-6"></div>
+      <div id="results" class="space-y-3 hidden"></div>
+
+      <!-- How it works (SEO body content) -->
+      <section class="mt-12 pt-8 border-t border-gray-100">
+        <h2 class="text-lg font-semibold text-[#171717] mb-3">关于 {label} 压缩</h2>
+        <p class="text-sm text-gray-600 leading-relaxed">{pitch.hint}</p>
+      </section>
+
+      <!-- Related -->
+      <section class="mt-8 pt-8 border-t border-gray-100">
+        <p class="text-sm text-gray-500 mb-4">其他格式压缩</p>
+        <div class="flex flex-wrap gap-2">
+          {(['png','jpg','webp'] as Fmt[]).filter(f => f !== format).map(f => (
+            <a href={`/compress-${f}`} class="text-xs px-3 py-1.5 border border-gray-200 rounded-full text-gray-600 hover:border-[#171717] hover:text-[#171717]">
+              {LABEL[f]} 压缩
+            </a>
+          ))}
+          <a href={`/${format}-to-jpg`} class="text-xs px-3 py-1.5 border border-gray-200 rounded-full text-gray-600 hover:border-[#171717] hover:text-[#171717]">
+            {label} 转 JPG
+          </a>
+          <a href={`/${format}-to-webp`} class="text-xs px-3 py-1.5 border border-gray-200 rounded-full text-gray-600 hover:border-[#171717] hover:text-[#171717]">
+            {label} 转 WebP
+          </a>
+          <a href="/compress" class="text-xs px-3 py-1.5 border border-gray-200 rounded-full text-gray-600 hover:border-[#171717] hover:text-[#171717]">
+            全部图片压缩
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  import { initCompressPage } from '../scripts/compress-page';
+  initCompressPage();
+</script>

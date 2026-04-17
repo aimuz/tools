@@ -9,22 +9,6 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #fafafa;
-    --text-primary: #171717;
-    --text-secondary: #4d4d4d;
-    --border-color: rgba(0, 0, 0, 0.08);
-  }
-
-  [data-theme="dark"] {
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #171717;
-    --text-primary: #fafafa;
-    --text-secondary: #a1a1aa;
-    --border-color: rgba(255, 255, 255, 0.1);
-  }
-
   * {
     @apply box-border;
   }

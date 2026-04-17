@@ -1,23 +1,23 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import sitemap from '@astrojs/sitemap';
 import AstroPWA from '@vite-pwa/astro';
 
 export default defineConfig({
+  site: 'https://wizgo.xyz',
   integrations: [
     tailwind(),
+    sitemap(),
     AstroPWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'Tools Hub',
-        short_name: 'Tools Hub',
-        description: '安全快速的本地文件格式转换工具',
+        name: 'WizGo',
+        short_name: 'WizGo',
+        description: '免费在线工具箱：图片压缩、格式转换、JWT、时间戳等，本地处理不上传',
         theme_color: '#171717',
         background_color: '#ffffff',
         display: 'standalone',
-        icons: [
-          { src: '/icons/icon-192.png', sizes: '192x192' },
-          { src: '/icons/icon-512.png', sizes: '512x512' },
-        ],
+        start_url: '/',
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,wasm}'],
@@ -26,20 +26,4 @@ export default defineConfig({
     }),
   ],
   output: 'static',
-  vite: {
-    optimizeDeps: {
-      exclude: ['wasm-vips'],
-    },
-    server: {
-      headers: {
-        'Cross-Origin-Opener-Policy': 'same-origin',
-        'Cross-Origin-Embedder-Policy': 'require-corp',
-      },
-    },
-    build: {
-      rollupOptions: {
-        external: ['wasm-vips'],
-      },
-    },
-  },
 });

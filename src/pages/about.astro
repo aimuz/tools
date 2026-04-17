@@ -5,100 +5,101 @@ import Footer from '../components/layout/Footer.astro';
 import Container from '../components/layout/Container.astro';
 ---
 
-<Layout title="关于 - Tools Hub" description="了解 Tools Hub 的技术栈和隐私政策">
+<Layout
+  title="关于 WizGo - 本地处理的免费在线工具箱 | 隐私与技术栈"
+  description="了解 WizGo 的技术实现与隐私政策。所有工具都在浏览器本地运行，文件不上传。基于 Astro + Rust WASM + WebCrypto 构建。"
+>
   <Header />
-  
+
   <main class="flex-1 py-16">
     <Container>
       <div class="max-w-3xl mx-auto">
         <h1 class="text-[40px] font-semibold text-vercel-black tracking-tight-2.4 mb-8">
-          关于 Tools Hub
+          关于 WizGo
         </h1>
-        
+
         <div class="prose prose-lg max-w-none">
           <p class="text-gray-600 leading-body-relaxed mb-6">
-            Tools Hub 是一个安全、快速的本地文件格式转换工具。我们坚信用户的数据隐私至关重要，
-            因此所有的文件处理都在您的浏览器中完成，文件不会上传到任何服务器。
+            WizGo 是一套免费、安全、快速的在线工具箱。我们坚信用户的数据隐私至关重要，
+            因此所有工具都在你的浏览器中本地完成处理，文件和数据不会上传到任何服务器。
           </p>
-          
+
           <h2 class="text-2xl font-semibold text-vercel-black tracking-tight-0.96 mt-12 mb-4">
             技术栈
           </h2>
-          
+
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
             <div class="p-6 rounded-comfortable bg-gray-50">
-              <h3 class="font-semibold text-vercel-black mb-2">🖼️ 图片处理</h3>
+              <h3 class="font-semibold text-vercel-black mb-2">图片处理</h3>
               <p class="text-sm text-gray-600">
-                使用 <span class="font-mono text-vercel-black">Zig</span> 语言编写，
-                编译为 WebAssembly，支持 PNG、JPEG、BMP、GIF、TGA、QOI 格式
+                Rust 编写的 WebAssembly 模块，集成 imagequant 调色板量化与 jpeg-encoder
+                优化管线，支持 PNG、JPEG、WebP、GIF、BMP 等格式
               </p>
             </div>
-            
+
             <div class="p-6 rounded-comfortable bg-gray-50">
-              <h3 class="font-semibold text-vercel-black mb-2">🎵 音频提取</h3>
+              <h3 class="font-semibold text-vercel-black mb-2">加密与签名</h3>
               <p class="text-sm text-gray-600">
-                使用 <span class="font-mono text-vercel-black">FFmpeg.wasm</span>，
-                在浏览器中运行 FFmpeg，从视频中提取高质量音频
+                JWT 解码、签发与验签全部走浏览器原生 WebCrypto，支持 HS、RS、ES 系列算法，
+                零第三方依赖
               </p>
             </div>
-            
+
             <div class="p-6 rounded-comfortable bg-gray-50">
-              <h3 class="font-semibold text-vercel-black mb-2">⚡ 前端框架</h3>
+              <h3 class="font-semibold text-vercel-black mb-2">前端框架</h3>
               <p class="text-sm text-gray-600">
-                基于 <span class="font-mono text-vercel-black">Astro</span> 构建，
-                使用 Tailwind CSS 实现 Vercel 风格的现代设计
+                基于 Astro 静态构建，Tailwind CSS 实现 Vercel 风格的简洁界面
               </p>
             </div>
-            
+
             <div class="p-6 rounded-comfortable bg-gray-50">
-              <h3 class="font-semibold text-vercel-black mb-2">📱 PWA 支持</h3>
+              <h3 class="font-semibold text-vercel-black mb-2">PWA 支持</h3>
               <p class="text-sm text-gray-600">
                 支持渐进式 Web 应用，可安装到桌面和移动设备，离线也能使用
               </p>
             </div>
           </div>
-          
+
           <h2 class="text-2xl font-semibold text-vercel-black tracking-tight-0.96 mt-12 mb-4">
             隐私政策
           </h2>
-          
+
           <p class="text-gray-600 leading-body-relaxed mb-4">
-            我们非常重视您的隐私。Tools Hub 采用纯前端架构，所有文件处理都在您的浏览器中完成：
+            WizGo 采用纯前端架构，所有文件处理都在你的浏览器中完成：
           </p>
-          
+
           <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6">
             <li>文件不会上传到任何服务器</li>
             <li>不收集任何个人数据</li>
-            <li>转换历史仅存储在您的本地浏览器</li>
-            <li>使用 LocalStorage 存储设置和统计数据</li>
+            <li>少量偏好设置仅存储在本地 LocalStorage 中</li>
           </ul>
-          
+
           <h2 class="text-2xl font-semibold text-vercel-black tracking-tight-0.96 mt-12 mb-4">
             限制说明
           </h2>
-          
+
           <p class="text-gray-600 leading-body-relaxed mb-4">
-            由于浏览器环境的限制，Tools Hub 有以下使用限制：
+            由于浏览器环境的限制，WizGo 有以下使用约束：
           </p>
-          
+
           <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6">
-            <li>图片文件最大 50MB</li>
-            <li>视频文件最大 500MB</li>
-            <li>不支持 WebP 格式（开发中）</li>
-            <li>大文件转换可能需要较长时间</li>
+            <li>图片文件建议 100MB 以内</li>
+            <li>大文件处理可能需要较长时间</li>
+            <li>部分高级压缩算法（如 mozjpeg trellis、libwebp 有损）受限于纯 Rust WASM 工具链</li>
           </ul>
-          
+
           <h2 class="text-2xl font-semibold text-vercel-black tracking-tight-0.96 mt-12 mb-4">
-            开源项目
+            开源库致谢
           </h2>
-          
+
           <p class="text-gray-600 leading-body-relaxed">
-            Tools Hub 是一个开源项目，使用了以下优秀的开源库：
+            WizGo 构建过程中使用了以下优秀的开源库：
           </p>
-          
+
           <ul class="list-disc list-inside text-gray-600 space-y-2 mt-4">
-            <li><a href="https://github.com/zigimg/zigimg" class="text-link-blue hover:underline">zigimg</a> - Zig 图像处理库</li>
-            <li><a href="https://github.com/ffmpegwasm/ffmpeg.wasm" class="text-link-blue hover:underline">FFmpeg.wasm</a> - 浏览器版 FFmpeg</li>
+            <li><a href="https://github.com/ImageOptim/libimagequant" class="text-link-blue hover:underline">imagequant</a> - PNG 调色板量化</li>
+            <li><a href="https://github.com/kornelski/lodepng-rust" class="text-link-blue hover:underline">lodepng-rust</a> - 纯 Rust PNG 编码</li>
+            <li><a href="https://github.com/vstroebel/jpeg-encoder" class="text-link-blue hover:underline">jpeg-encoder</a> - Rust JPEG 编码</li>
             <li><a href="https://astro.build" class="text-link-blue hover:underline">Astro</a> - 现代静态站点生成器</li>
             <li><a href="https://vercel.com/font" class="text-link-blue hover:underline">Geist</a> - Vercel 设计字体</li>
           </ul>
@@ -106,6 +107,6 @@ import Container from '../components/layout/Container.astro';
       </div>
     </Container>
   </main>
-  
+
   <Footer />
 </Layout>

@@ -1,0 +1,156 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+type Fmt = 'png' | 'jpg' | 'webp' | 'gif' | 'bmp';
+
+const FORMATS: readonly Fmt[] = ['png', 'jpg', 'webp', 'gif', 'bmp'] as const;
+const LABEL: Record<Fmt, string> = { png: 'PNG', jpg: 'JPG', webp: 'WebP', gif: 'GIF', bmp: 'BMP' };
+const FULL: Record<Fmt, string> = { png: 'PNG', jpg: 'JPEG', webp: 'WebP', gif: 'GIF', bmp: 'BMP' };
+
+// 手写的每对转换场景描述，比模板填空自然，也更有 SEO 价值。
+const PAIR_HINT: Record<string, string> = {
+  'png-jpg':  '透明背景会被白色填充，文件通常可缩小 40-80%，适合网页、邮件、微信分享。',
+  'png-webp': 'WebP 保留透明度的同时比 PNG 小 25-50%，现代浏览器普遍支持。',
+  'png-gif':  '把 PNG 转成 GIF，常用于老旧平台或需要 256 色调色板的场景。',
+  'png-bmp':  '把 PNG 转成无损未压缩的 BMP，常用于兼容老旧 Windows 程序。',
+  'jpg-png':  'JPG 转 PNG 可无损保存并获得透明度支持，适合 logo 底图抠图前处理。',
+  'jpg-webp': 'JPG 转 WebP 可再压缩 25-35%，视觉几乎无差，适合图片量大的网站。',
+  'jpg-gif':  'JPG 转 GIF，常用于把照片变成可发送到老旧聊天平台的格式。',
+  'jpg-bmp':  'JPG 转 BMP 会得到一个无损但体积巨大的位图，用于打印或特殊程序输入。',
+  'webp-png': 'WebP 不被某些软件支持时，转回 PNG 是最安全的兜底选择，完整保留透明度。',
+  'webp-jpg': '需要给不支持 WebP 的老平台（微博、某些 CMS）发图时，转 JPG 最稳妥。',
+  'webp-gif': 'WebP 转 GIF，兼容老旧浏览器或只支持 GIF 的聊天平台。',
+  'webp-bmp': 'WebP 转 BMP，用于特定的图形程序或打印流程。',
+  'gif-png':  'GIF 转 PNG 保留透明度且避免调色板压缩伪影，仅转换首帧。',
+  'gif-jpg':  'GIF 转 JPG 体积更小，但会丢透明度、只保留首帧，适合分享用途。',
+  'gif-webp': 'GIF 转 WebP 静态图可以进一步压缩，保留透明度。',
+  'gif-bmp':  'GIF 转 BMP，仅保留首帧，适用于图形程序批量处理。',
+  'bmp-png':  'BMP 转 PNG 可以无损大幅缩小体积（通常减小 70%+），适合归档。',
+  'bmp-jpg':  'BMP 转 JPG 压缩率最高，适合有大量扫描件、截图需要分享时使用。',
+  'bmp-webp': 'BMP 转 WebP 可获得最高压缩率，现代浏览器普遍支持。',
+  'bmp-gif':  'BMP 转 GIF，用于兼容只支持 GIF 的老旧聊天或论坛平台。',
+};
+
+export async function getStaticPaths() {
+  const formats: Fmt[] = ['png', 'jpg', 'webp', 'gif', 'bmp'];
+  const paths: { params: { from: Fmt; to: Fmt } }[] = [];
+  for (const from of formats) {
+    for (const to of formats) {
+      if (from !== to) paths.push({ params: { from, to } });
+    }
+  }
+  return paths;
+}
+
+const { from, to } = Astro.params as { from: Fmt; to: Fmt };
+if (!FORMATS.includes(from) || !FORMATS.includes(to)) {
+  return Astro.redirect('/convert');
+}
+
+const fromLabel = LABEL[from];
+const toLabel = LABEL[to];
+const fromFull = FULL[from];
+const toFull = FULL[to];
+const hint = PAIR_HINT[`${from}-${to}`] ?? '';
+
+const title = `${fromLabel} 转 ${toLabel} - 免费在线 ${fromFull} 转 ${toFull} 工具 | WizGo`;
+const description = `免费在线 ${fromLabel} 转 ${toLabel} 工具，支持批量转换、拖放上传、一键下载。${hint ? hint + ' ' : ''}纯浏览器本地处理不上传，保护隐私。`;
+
+const siteUrl = 'https://wizgo.xyz';
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: `${fromLabel} 转 ${toLabel}`,
+  applicationCategory: 'MultimediaApplication',
+  operatingSystem: 'Any',
+  description: `把 ${fromFull} 图片在线转换为 ${toFull} 格式，本地处理不上传。`,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: `${siteUrl}/${from}-to-${to}`,
+};
+---
+
+<Layout title={title} description={description}>
+  <meta name="x-preset-to" content={to} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <Header />
+
+  <main class="flex-1 py-12">
+    <div class="max-w-[720px] mx-auto px-6">
+      <!-- Hero -->
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-semibold text-[#171717] mb-2">
+          {fromLabel} 转 {toLabel}
+        </h1>
+        <p class="text-gray-500">
+          {hint || `把 ${fromFull} 图片在线转换为 ${toFull} 格式 · 本地处理不上传`}
+        </p>
+      </div>
+
+      <!-- Upload zone -->
+      <div
+        id="upload-zone"
+        class="relative w-full min-h-[200px] rounded-xl border-2 border-dashed border-gray-300 hover:border-[#171717] transition-colors bg-white flex flex-col items-center justify-center gap-3 cursor-pointer mb-6"
+      >
+        <svg class="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+        </svg>
+        <div class="text-center">
+          <p class="text-base text-[#171717]">拖放 {fromLabel} 图片到此处</p>
+          <p class="text-sm text-gray-400 mt-1">或点击上传（也接受其他图片格式）</p>
+        </div>
+        <p class="text-xs text-gray-400">最大 100MB · 支持批量</p>
+        <input type="file" id="file-input" class="hidden" accept="image/*" multiple />
+      </div>
+
+      <!-- Options (only when files picked) -->
+      <div id="options" class="mb-6 hidden">
+        <div id="quality-option" class={to === 'jpg' ? 'mb-6' : 'mb-6 hidden'}>
+          <p class="text-sm text-gray-500 mb-2">画质：</p>
+          <div class="flex gap-2">
+            <button class="quality-btn px-4 py-2 text-sm rounded-full border border-gray-200 bg-[#171717] text-white" data-quality="90">高</button>
+            <button class="quality-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" data-quality="75">中</button>
+            <button class="quality-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" data-quality="60">低</button>
+          </div>
+        </div>
+
+        <button id="convert-btn" class="w-full py-3 bg-[#171717] text-white rounded-lg font-medium hover:bg-gray-800 transition-colors">
+          开始转换为 {toLabel}
+        </button>
+      </div>
+
+      <!-- Files / Results -->
+      <div id="file-list" class="space-y-3 mb-6"></div>
+      <div id="results" class="space-y-3 hidden"></div>
+
+      <!-- Related conversions (internal links for SEO + UX) -->
+      <section class="mt-12 pt-8 border-t border-gray-100">
+        <p class="text-sm text-gray-500 mb-4">相关格式转换</p>
+        <div class="flex flex-wrap gap-2" id="related-links">
+          {FORMATS.filter(f => f !== from && f !== to).slice(0, 4).map(f => (
+            <a href={`/${from}-to-${f}`} class="text-xs px-3 py-1.5 border border-gray-200 rounded-full text-gray-600 hover:border-[#171717] hover:text-[#171717]">
+              {fromLabel} 转 {LABEL[f]}
+            </a>
+          ))}
+          {FORMATS.filter(f => f !== from && f !== to).slice(0, 4).map(f => (
+            <a href={`/${f}-to-${to}`} class="text-xs px-3 py-1.5 border border-gray-200 rounded-full text-gray-600 hover:border-[#171717] hover:text-[#171717]">
+              {LABEL[f]} 转 {toLabel}
+            </a>
+          ))}
+          <a href="/convert" class="text-xs px-3 py-1.5 border border-gray-200 rounded-full text-gray-600 hover:border-[#171717] hover:text-[#171717]">
+            更多格式
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  import { initConvertPage } from '../scripts/convert-page';
+  initConvertPage();
+</script>

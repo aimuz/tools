@@ -2,9 +2,25 @@
 interface Props {
   title: string;
   description?: string;
+  /** Absolute URL of the social share image. Falls back to the site logo. */
+  ogImage?: string;
+  /** Override the auto-derived canonical URL. */
+  canonical?: string;
+  /** og:type — defaults to "website"; use "article" for blog posts. */
+  ogType?: 'website' | 'article';
 }
 
-const { title, description = '安全快速的本地文件格式转换工具' } = Astro.props;
+const {
+  title,
+  description = 'WizGo 是免费在线工具箱：图片压缩、格式转换、JWT、时间戳等开发者日常工具，纯浏览器本地处理不上传。',
+  ogImage,
+  canonical,
+  ogType = 'website',
+} = Astro.props;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://wizgo.xyz';
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? siteUrl).toString();
+const socialImage = ogImage ?? `${siteUrl}/favicon.svg`;
 ---
 
 <!doctype html>
@@ -14,25 +30,32 @@ const { title, description = '安全快速的本地文件格式转换工具' } =
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#171717" />
-    
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
     <!-- PWA -->
     <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-    
-    <!-- Preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="WizGo" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:locale" content="zh_CN" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+
     <title>{title}</title>
     <slot name="head" />
   </head>
   <body class="min-h-screen flex flex-col">
     <slot />
-    
-    <script>
-      // Theme initialization
-      const theme = localStorage.getItem('theme') || 'light';
-      document.documentElement.setAttribute('data-theme', theme);
-    </script>
   </body>
 </html>

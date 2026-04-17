@@ -1,0 +1,25 @@
+---
+interface Props {
+  progress: number;
+  label?: string;
+  class?: string;
+}
+
+const { progress, label, class: className = '' } = Astro.props;
+const clampedProgress = Math.min(Math.max(progress, 0), 100);
+---
+
+<div class={`w-full ${className}`}>
+  {label && (
+    <div class="flex justify-between items-center mb-2">
+      <span class="text-sm text-gray-600">{label}</span>
+      <span class="text-sm font-medium text-vercel-black">{clampedProgress}%</span>
+    </div>
+  )}
+  <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+    <div 
+      class="h-full bg-vercel-black rounded-full transition-all duration-300 ease-out"
+      style={`width: ${clampedProgress}%`}
+    />
+  </div>
+</div>

@@ -1,0 +1,131 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Container from '../components/layout/Container.astro';
+import ToolCard from '../components/ui/ToolCard.astro';
+---
+
+<Layout title="Tools Hub - 安全快速的本地文件格式转换">
+  <Header />
+  
+  <main class="flex-1">
+    <!-- Hero Section -->
+    <section class="pt-20 pb-16 text-center">
+      <Container>
+        <h1 class="text-[48px] md:text-[64px] font-semibold text-vercel-black tracking-tight-2.88 leading-tight animate-fade-in">
+          文件格式转换
+        </h1>
+        <p class="text-xl text-gray-600 mt-6 max-w-2xl mx-auto leading-body-relaxed animate-fade-in animation-delay-200">
+          安全、快速的本地转换工具。所有处理都在浏览器中完成，文件不会上传至服务器。
+        </p>
+      </Container>
+    </section>
+
+    <!-- Tools Grid -->
+    <section class="py-16">
+      <Container>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="animate-slide-up">
+            <ToolCard 
+              href="/image"
+              icon="🖼️"
+              title="图片转换"
+              description="支持 PNG、JPEG、BMP、GIF、TGA、QOI 格式互转，支持质量调整和尺寸修改"
+            />
+          </div>
+          <div class="animate-slide-up animation-delay-200">
+            <ToolCard 
+              href="/audio"
+              icon="🎵"
+              title="提取音频"
+              description="从 MP4 视频中提取高质量 MP3 音频，支持自定义比特率和采样率"
+            />
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 border-t border-gray-100">
+      <Container>
+        <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 text-center">
+          <div class="animate-fade-in">
+            <div class="text-4xl font-semibold text-vercel-black tracking-tight" id="convert-count">0</div>
+            <div class="text-sm text-gray-600 mt-1">已转换文件</div>
+          </div>
+          <div class="w-px h-12 bg-gray-200 hidden md:block"></div>
+          <div class="animate-fade-in animation-delay-200">
+            <div class="text-4xl font-semibold text-vercel-black tracking-tight">100%</div>
+            <div class="text-sm text-gray-600 mt-1">本地处理</div>
+          </div>
+          <div class="w-px h-12 bg-gray-200 hidden md:block"></div>
+          <div class="animate-fade-in animation-delay-400">
+            <div class="text-4xl font-semibold text-vercel-black tracking-tight">0</div>
+            <div class="text-sm text-gray-600 mt-1">文件上传</div>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-gray-50/50">
+      <Container>
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-semibold text-vercel-black tracking-tight-1.28 mb-4">
+            为什么选择 Tools Hub？
+          </h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="w-12 h-12 mx-auto mb-4 rounded-comfortable bg-vercel-black text-white flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-vercel-black mb-2">隐私安全</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              所有文件都在浏览器中处理，不会上传到任何服务器，确保您的数据隐私
+            </p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-12 h-12 mx-auto mb-4 rounded-comfortable bg-vercel-black text-white flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-vercel-black mb-2">快速高效</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              使用 WebAssembly 技术，在浏览器中实现接近原生的处理速度
+            </p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-12 h-12 mx-auto mb-4 rounded-comfortable bg-vercel-black text-white flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-vercel-black mb-2">随时随地</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              支持 PWA，可安装到桌面或手机，离线也能使用
+            </p>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<script>
+  // Load stats from localStorage
+  const stats = JSON.parse(localStorage.getItem('wizgo-stats') || '{"conversions": 0}');
+  const countElement = document.getElementById('convert-count');
+  if (countElement) {
+    countElement.textContent = stats.conversions.toString();
+  }
+</script>

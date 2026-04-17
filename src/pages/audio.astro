@@ -1,0 +1,250 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Container from '../components/layout/Container.astro';
+import Button from '../components/ui/Button.astro';
+import ProgressBar from '../components/ui/ProgressBar.astro';
+import Badge from '../components/ui/Badge.astro';
+---
+
+<Layout title="提取音频 - Tools Hub">
+  <Header />
+  
+  <main class="flex-1 py-12">
+    <Container>
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-[40px] font-semibold text-vercel-black tracking-tight-2.4 mb-4">
+          提取音频
+        </h1>
+        <p class="text-gray-600 mb-8">从 MP4 视频中提取高质量 MP3 音频</p>
+        
+        <!-- Step 1: Upload -->
+        <section class="mb-8" id="upload-section">
+          <h2 class="text-sm font-medium text-gray-600 uppercase tracking-wide mb-4">
+            1. 选择视频
+          </h2>
+          <div 
+            id="upload-zone"
+            class="relative w-full min-h-[280px] rounded-comfortable bg-vercel-white shadow-border
+                   flex flex-col items-center justify-center gap-4
+                   border-2 border-dashed border-gray-200 hover:border-vercel-black/20
+                   transition-all duration-200 cursor-pointer group"
+          >
+            <div class="p-4 rounded-full bg-gray-50 group-hover:bg-gray-100 transition-colors">
+              <svg class="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <div class="text-center">
+              <p class="text-lg font-medium text-vercel-black">拖放视频文件到这里</p>
+              <p class="text-sm text-gray-600 mt-1">或点击选择文件</p>
+            </div>
+            <div class="flex gap-2 mt-2">
+              <Badge>MP4</Badge>
+            </div>
+            <p class="text-xs text-gray-400 mt-2">最大文件：500MB</p>
+            <input type="file" id="file-input" class="hidden" accept="video/mp4" />
+          </div>
+        </section>
+
+        <!-- File Info -->
+        <section id="file-info-section" class="mb-8 hidden">
+          <div class="flex items-center justify-between p-4 rounded-standard bg-gray-50">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-standard bg-gray-200 flex items-center justify-center text-lg">
+                🎬
+              </div>
+              <div>
+                <p class="font-medium text-vercel-black" id="file-name">filename.mp4</p>
+                <p class="text-sm text-gray-600" id="file-size">0 MB</p>
+              </div>
+            </div>
+            <button id="remove-file" class="p-2 text-gray-400 hover:text-red-500 transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+        </section>
+
+        <!-- Step 2: Configure -->
+        <section id="config-section" class="mb-8 hidden">
+          <h2 class="text-sm font-medium text-gray-600 uppercase tracking-wide mb-4">
+            2. 音频设置
+          </h2>
+          <div class="p-6 rounded-comfortable bg-vercel-white shadow-border">
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-vercel-black mb-2">
+                比特率
+              </label>
+              <select id="bitrate" class="w-full px-4 py-2 rounded-standard border border-gray-200 focus:border-vercel-black focus:outline-none">
+                <option value="128k">128 kbps (标准)</option>
+                <option value="192k" selected>192 kbps (良好)</option>
+                <option value="256k">256 kbps (高质量)</option>
+                <option value="320k">320 kbps (最佳)</option>
+              </select>
+            </div>
+            
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-vercel-black mb-2">
+                采样率
+              </label>
+              <select id="sample-rate" class="w-full px-4 py-2 rounded-standard border border-gray-200 focus:border-vercel-black focus:outline-none">
+                <option value="44100" selected>44100 Hz (CD 质量)</option>
+                <option value="48000">48000 Hz (专业)</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <!-- Progress -->
+        <section id="progress-section" class="mb-8 hidden">
+          <ProgressBar progress={0} label="提取进度" id="extract-progress" />
+          <p class="text-sm text-gray-600 mt-2 text-center" id="progress-text">正在加载 FFmpeg...</p>
+        </section>
+
+        <!-- Convert Button -->
+        <section id="convert-section" class="mb-8 hidden">
+          <Button variant="primary" size="lg" class="w-full" id="extract-btn">
+            提取音频
+          </Button>
+        </section>
+
+        <!-- Results -->
+        <section id="results-section" class="hidden">
+          <h2 class="text-sm font-medium text-gray-600 uppercase tracking-wide mb-4">
+            提取完成
+          </h2>
+          <div class="flex items-center justify-between p-4 rounded-standard bg-green-50 border border-green-200">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-standard bg-green-100 flex items-center justify-center">
+                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium text-vercel-black" id="result-filename">output.mp3</p>
+                <p class="text-sm text-green-600">提取成功</p>
+              </div>
+            </div>
+            <Button variant="secondary" size="sm" id="download-btn">
+              下载 MP3
+            </Button>
+          </div>
+        </section>
+      </div>
+    </Container>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<script>
+  // File handling
+  const uploadZone = document.getElementById('upload-zone');
+  const fileInput = document.getElementById('file-input') as HTMLInputElement;
+  const fileInfoSection = document.getElementById('file-info-section');
+  const fileName = document.getElementById('file-name');
+  const fileSize = document.getElementById('file-size');
+  const removeFileBtn = document.getElementById('remove-file');
+  const configSection = document.getElementById('config-section');
+  const convertSection = document.getElementById('convert-section');
+  const extractBtn = document.getElementById('extract-btn');
+  const progressSection = document.getElementById('progress-section');
+  const resultsSection = document.getElementById('results-section');
+  const resultFilename = document.getElementById('result-filename');
+  const downloadBtn = document.getElementById('download-btn');
+
+  let currentFile: File | null = null;
+
+  uploadZone?.addEventListener('click', () => fileInput?.click());
+  
+  uploadZone?.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    uploadZone.classList.add('border-vercel-black/40', 'bg-gray-50');
+  });
+
+  uploadZone?.addEventListener('dragleave', () => {
+    uploadZone.classList.remove('border-vercel-black/40', 'bg-gray-50');
+  });
+
+  uploadZone?.addEventListener('drop', (e) => {
+    e.preventDefault();
+    uploadZone.classList.remove('border-vercel-black/40', 'bg-gray-50');
+    if (e.dataTransfer?.files?.[0]) {
+      handleFile(e.dataTransfer.files[0]);
+    }
+  });
+
+  fileInput?.addEventListener('change', () => {
+    if (fileInput.files?.[0]) {
+      handleFile(fileInput.files[0]);
+    }
+  });
+
+  function handleFile(file: File) {
+    currentFile = file;
+    if (fileName) fileName.textContent = file.name;
+    if (fileSize) fileSize.textContent = (file.size / 1024 / 1024).toFixed(2) + ' MB';
+    fileInfoSection?.classList.remove('hidden');
+    configSection?.classList.remove('hidden');
+    convertSection?.classList.remove('hidden');
+  }
+
+  removeFileBtn?.addEventListener('click', () => {
+    currentFile = null;
+    if (fileInput) fileInput.value = '';
+    fileInfoSection?.classList.add('hidden');
+    configSection?.classList.add('hidden');
+    convertSection?.classList.add('hidden');
+    resultsSection?.classList.add('hidden');
+  });
+
+  // Extract button (simplified simulation)
+  extractBtn?.addEventListener('click', async () => {
+    if (!currentFile) return;
+    
+    extractBtn.disabled = true;
+    extractBtn.textContent = '处理中...';
+    progressSection?.classList.remove('hidden');
+
+    // Simulate progress
+    const progressBar = document.getElementById('extract-progress');
+    const progressText = document.getElementById('progress-text');
+    let progress = 0;
+    
+    const interval = setInterval(() => {
+      progress += 10;
+      if (progressBar) {
+        const bar = progressBar.querySelector('div');
+        if (bar) bar.style.width = progress + '%';
+      }
+      if (progressText) {
+        if (progress < 30) progressText.textContent = '正在加载 FFmpeg...';
+        else if (progress < 60) progressText.textContent = '正在解码视频...';
+        else if (progress < 90) progressText.textContent = '正在编码 MP3...';
+        else progressText.textContent = '正在完成...';
+      }
+      
+      if (progress >= 100) {
+        clearInterval(interval);
+        showResult();
+      }
+    }, 300);
+  });
+
+  function showResult() {
+    if (resultFilename && currentFile) {
+      resultFilename.textContent = currentFile.name.replace('.mp4', '.mp3');
+    }
+    resultsSection?.classList.remove('hidden');
+    extractBtn.textContent = '完成';
+    
+    // Update stats
+    const stats = JSON.parse(localStorage.getItem('wizgo-stats') || '{"conversions": 0}');
+    stats.conversions += 1;
+    localStorage.setItem('wizgo-stats', JSON.stringify(stats));
+  }
+</script>

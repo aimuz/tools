@@ -1,0 +1,33 @@
+---
+interface Props {
+  variant?: 'default' | 'blue' | 'green' | 'red';
+  size?: 'sm' | 'md';
+  class?: string;
+}
+
+const { 
+  variant = 'default', 
+  size = 'sm',
+  class: className = ''
+} = Astro.props;
+
+const baseStyles = 'inline-flex items-center font-medium rounded-pill';
+
+const variants = {
+  default: 'bg-gray-100 text-gray-600',
+  blue: 'bg-badge-blue-bg text-badge-blue-text',
+  green: 'bg-green-50 text-green-600',
+  red: 'bg-red-50 text-red-600',
+};
+
+const sizes = {
+  sm: 'px-2.5 py-0.5 text-xs',
+  md: 'px-3 py-1 text-sm',
+};
+
+const classes = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;
+---
+
+<span class={classes}>
+  <slot />
+</span>

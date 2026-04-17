@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Container from '../components/layout/Container.astro';
+---
+
+<Layout title="关于 - Tools Hub" description="了解 Tools Hub 的技术栈和隐私政策">
+  <Header />
+  
+  <main class="flex-1 py-16">
+    <Container>
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-[40px] font-semibold text-vercel-black tracking-tight-2.4 mb-8">
+          关于 Tools Hub
+        </h1>
+        
+        <div class="prose prose-lg max-w-none">
+          <p class="text-gray-600 leading-body-relaxed mb-6">
+            Tools Hub 是一个安全、快速的本地文件格式转换工具。我们坚信用户的数据隐私至关重要，
+            因此所有的文件处理都在您的浏览器中完成，文件不会上传到任何服务器。
+          </p>
+          
+          <h2 class="text-2xl font-semibold text-vercel-black tracking-tight-0.96 mt-12 mb-4">
+            技术栈
+          </h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+            <div class="p-6 rounded-comfortable bg-gray-50">
+              <h3 class="font-semibold text-vercel-black mb-2">🖼️ 图片处理</h3>
+              <p class="text-sm text-gray-600">
+                使用 <span class="font-mono text-vercel-black">Zig</span> 语言编写，
+                编译为 WebAssembly，支持 PNG、JPEG、BMP、GIF、TGA、QOI 格式
+              </p>
+            </div>
+            
+            <div class="p-6 rounded-comfortable bg-gray-50">
+              <h3 class="font-semibold text-vercel-black mb-2">🎵 音频提取</h3>
+              <p class="text-sm text-gray-600">
+                使用 <span class="font-mono text-vercel-black">FFmpeg.wasm</span>，
+                在浏览器中运行 FFmpeg，从视频中提取高质量音频
+              </p>
+            </div>
+            
+            <div class="p-6 rounded-comfortable bg-gray-50">
+              <h3 class="font-semibold text-vercel-black mb-2">⚡ 前端框架</h3>
+              <p class="text-sm text-gray-600">
+                基于 <span class="font-mono text-vercel-black">Astro</span> 构建，
+                使用 Tailwind CSS 实现 Vercel 风格的现代设计
+              </p>
+            </div>
+            
+            <div class="p-6 rounded-comfortable bg-gray-50">
+              <h3 class="font-semibold text-vercel-black mb-2">📱 PWA 支持</h3>
+              <p class="text-sm text-gray-600">
+                支持渐进式 Web 应用，可安装到桌面和移动设备，离线也能使用
+              </p>
+            </div>
+          </div>
+          
+          <h2 class="text-2xl font-semibold text-vercel-black tracking-tight-0.96 mt-12 mb-4">
+            隐私政策
+          </h2>
+          
+          <p class="text-gray-600 leading-body-relaxed mb-4">
+            我们非常重视您的隐私。Tools Hub 采用纯前端架构，所有文件处理都在您的浏览器中完成：
+          </p>
+          
+          <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6">
+            <li>文件不会上传到任何服务器</li>
+            <li>不收集任何个人数据</li>
+            <li>转换历史仅存储在您的本地浏览器</li>
+            <li>使用 LocalStorage 存储设置和统计数据</li>
+          </ul>
+          
+          <h2 class="text-2xl font-semibold text-vercel-black tracking-tight-0.96 mt-12 mb-4">
+            限制说明
+          </h2>
+          
+          <p class="text-gray-600 leading-body-relaxed mb-4">
+            由于浏览器环境的限制，Tools Hub 有以下使用限制：
+          </p>
+          
+          <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6">
+            <li>图片文件最大 50MB</li>
+            <li>视频文件最大 500MB</li>
+            <li>不支持 WebP 格式（开发中）</li>
+            <li>大文件转换可能需要较长时间</li>
+          </ul>
+          
+          <h2 class="text-2xl font-semibold text-vercel-black tracking-tight-0.96 mt-12 mb-4">
+            开源项目
+          </h2>
+          
+          <p class="text-gray-600 leading-body-relaxed">
+            Tools Hub 是一个开源项目，使用了以下优秀的开源库：
+          </p>
+          
+          <ul class="list-disc list-inside text-gray-600 space-y-2 mt-4">
+            <li><a href="https://github.com/zigimg/zigimg" class="text-link-blue hover:underline">zigimg</a> - Zig 图像处理库</li>
+            <li><a href="https://github.com/ffmpegwasm/ffmpeg.wasm" class="text-link-blue hover:underline">FFmpeg.wasm</a> - 浏览器版 FFmpeg</li>
+            <li><a href="https://astro.build" class="text-link-blue hover:underline">Astro</a> - 现代静态站点生成器</li>
+            <li><a href="https://vercel.com/font" class="text-link-blue hover:underline">Geist</a> - Vercel 设计字体</li>
+          </ul>
+        </div>
+      </div>
+    </Container>
+  </main>
+  
+  <Footer />
+</Layout>

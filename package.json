@@ -1,0 +1,29 @@
+{
+  "name": "wizgo",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "安全快速的本地文件格式转换工具 - wizgo.xyz",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "build:wasm": "cd wasm && zig build -Dtarget=wasm32-freestanding -Doptimize=ReleaseSmall && cd .. && mkdir -p public/wasm && cp zig-out/bin/image-converter.wasm public/wasm/",
+    "preview": "astro preview",
+    "astro": "astro",
+    "deploy": "wrangler pages deploy dist"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^5.1.0",
+    "@ffmpeg/ffmpeg": "^0.12.10",
+    "@ffmpeg/util": "^0.12.1",
+    "@fontsource/geist-sans": "^5.0.3",
+    "@fontsource/geist-mono": "^5.0.3",
+    "astro": "^4.5.0",
+    "tailwindcss": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vite-pwa/astro": "^0.4.0",
+    "typescript": "^5.3.0",
+    "wrangler": "^3.0.0"
+  }
+}

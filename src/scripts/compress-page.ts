@@ -165,7 +165,12 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
           </div>
           <div class="flex-1 min-w-0">
             <p class="text-sm text-[#171717] truncate">${item.name}</p>
-            <p class="text-xs text-gray-400">${formatSize(item.originalSize)} → ${formatSize(item.compressedSize)} · ${item.ratio > 0 ? '节省了 ' + item.ratio + '%' : '已优化'}</p>
+            <p class="text-xs text-gray-400">
+              ${formatSize(item.originalSize)} → ${formatSize(item.compressedSize)}
+              <span class="ml-1 ${item.ratio > 0 ? 'text-[#171717] font-semibold' : 'text-gray-500'}">
+                ${item.ratio > 0 ? '· 节省 ' + item.ratio + '%' : '· 已优化'}
+              </span>
+            </p>
           </div>
           <button data-copy-idx="${idx}" class="px-3 py-1.5 border border-gray-200 text-gray-600 text-sm rounded hover:border-[#171717] hover:text-[#171717]">复制</button>
           <a href="${item.url}" download="compressed_${item.name}" class="px-3 py-1.5 bg-[#171717] text-white text-sm rounded hover:bg-gray-800">下载</a>

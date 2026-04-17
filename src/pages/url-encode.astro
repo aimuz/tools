@@ -1,0 +1,312 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+
+<Layout
+  title="URL 编解码 - 在线 URL 编码/解码工具 | WizGo"
+  description="免费在线 URL 编解码工具，支持中文和特殊字符编码、批量处理、encodeURI 与 encodeURIComponent 模式切换。浏览器本地处理不上传。"
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'URL 编解码',
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Any',
+    description: 'URL 编码解码工具，支持中文和特殊字符',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    url: 'https://wizgo.xyz/url-encode',
+  })} slot="head" />
+  <Header />
+
+  <main class="flex-1 py-10">
+    <div class="max-w-[960px] mx-auto px-6">
+      <!-- Title -->
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-semibold text-[#171717] mb-2">URL 编解码</h1>
+        <p class="text-gray-500">URL 特殊字符编码解码 · 支持中文 · 批量处理 · 本地处理不上传</p>
+      </div>
+
+      <!-- Mode Switch -->
+      <div class="flex justify-center mb-6">
+        <div class="inline-flex p-1 bg-gray-100 rounded-lg">
+          <button data-mode="encode" class="mode-btn px-4 py-2 text-sm rounded-md bg-white text-[#171717] shadow-sm transition-all">编码</button>
+          <button data-mode="decode" class="mode-btn px-4 py-2 text-sm rounded-md text-gray-500 hover:text-[#171717] transition-all">解码</button>
+        </div>
+      </div>
+
+      <!-- Encode Options (only shown in encode mode) -->
+      <div id="encode-options" class="mb-6">
+        <p class="text-sm text-gray-500 mb-2">编码模式</p>
+        <div class="flex flex-wrap gap-2">
+          <button data-encode-mode="component" class="encode-mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 bg-[#171717] text-white">完整编码（推荐）</button>
+          <button data-encode-mode="uri" class="encode-mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]">保留 URL 字符</button>
+        </div>
+        <p id="encode-hint" class="text-xs text-gray-400 mt-2">完整编码：编码所有特殊字符，适合作为 URL 参数值</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Input Section -->
+        <section>
+          <div class="flex justify-between items-center mb-2">
+            <span id="input-label" class="text-sm font-medium text-[#171717]">输入文本</span>
+            <button id="clear-btn" class="text-xs text-gray-400 hover:text-red-500">清空</button>
+          </div>
+          <textarea
+            id="text-input"
+            class="w-full h-72 p-4 bg-white border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717] resize-none"
+            placeholder="在此输入要编码的文本..."
+          ></textarea>
+          <p class="text-xs text-gray-400 mt-2">支持多行批量处理</p>
+        </section>
+
+        <!-- Output Section -->
+        <section>
+          <div class="flex justify-between items-center mb-2">
+            <span id="output-label" class="text-sm font-medium text-[#171717]">编码结果</span>
+            <div class="flex gap-2">
+              <button id="copy-btn" class="text-xs text-gray-400 hover:text-[#171717]">复制</button>
+            </div>
+          </div>
+          <textarea
+            id="text-output"
+            readonly
+            class="w-full h-72 p-4 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm resize-none break-all"
+            placeholder="结果将显示在这里..."
+          ></textarea>
+          <p id="output-stats" class="text-xs text-gray-400 mt-2">字符数：0</p>
+        </section>
+      </div>
+
+      <!-- Error -->
+      <div id="error-msg" class="hidden mt-5 p-3 bg-red-50 border border-red-100 rounded-lg text-red-500 text-sm"></div>
+
+      <!-- Examples -->
+      <div class="mt-8 grid sm:grid-cols-2 gap-4">
+        <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl">
+          <h3 class="text-sm font-medium text-[#171717] mb-2">编码示例</h3>
+          <table class="w-full text-xs">
+            <tbody class="text-gray-500">
+              <tr class="border-b border-gray-100">
+                <td class="py-2 font-mono text-[#171717]">中文</td>
+                <td class="py-2 font-mono">→ %E4%B8%AD%E6%96%87</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 font-mono text-[#171717]">空格</td>
+                <td class="py-2 font-mono">→ %20</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 font-mono text-[#171717]">&</td>
+                <td class="py-2 font-mono">→ %26</td>
+              </tr>
+              <tr>
+                <td class="py-2 font-mono text-[#171717]">=</td>
+                <td class="py-2 font-mono">→ %3D</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl">
+          <h3 class="text-sm font-medium text-[#171717] mb-2">使用场景</h3>
+          <ul class="text-xs text-gray-500 space-y-2 list-disc list-inside">
+            <li>在 URL 中传递中文字符</li>
+            <li>构造带参数的 URL 链接</li>
+            <li>处理表单数据中的特殊字符</li>
+            <li>API 请求参数编码</li>
+            <li>解析已编码的 URL 字符串</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+
+  // Elements
+  const modeBtns = document.querySelectorAll<HTMLButtonElement>('.mode-btn');
+  const encodeModeBtns = document.querySelectorAll<HTMLButtonElement>('.encode-mode-btn');
+  const encodeOptions = $('encode-options');
+  const encodeHint = $('encode-hint');
+  const textInput = $<HTMLTextAreaElement>('text-input');
+  const textOutput = $<HTMLTextAreaElement>('text-output');
+  const inputLabel = $('input-label');
+  const outputLabel = $('output-label');
+  const outputStats = $('output-stats');
+  const errorMsg = $('error-msg');
+
+  let mode: 'encode' | 'decode' = 'encode';
+  let encodeMode: 'component' | 'uri' = 'component';
+
+  // Show error
+  const showError = (msg: string) => {
+    errorMsg.textContent = msg;
+    errorMsg.classList.remove('hidden');
+  };
+
+  const hideError = () => {
+    errorMsg.classList.add('hidden');
+  };
+
+  // Update stats
+  const updateStats = () => {
+    const len = textOutput.value.length;
+    outputStats.textContent = `字符数：${len}`;
+  };
+
+  // Set main mode
+  const setMode = (newMode: 'encode' | 'decode') => {
+    mode = newMode;
+    modeBtns.forEach(btn => {
+      const isActive = btn.dataset.mode === mode;
+      btn.classList.toggle('bg-white', isActive);
+      btn.classList.toggle('text-[#171717]', isActive);
+      btn.classList.toggle('shadow-sm', isActive);
+      btn.classList.toggle('text-gray-500', !isActive);
+    });
+
+    // Update UI
+    if (mode === 'encode') {
+      inputLabel.textContent = '输入文本';
+      outputLabel.textContent = '编码结果';
+      textInput.placeholder = '在此输入要编码的文本...';
+      encodeOptions.classList.remove('hidden');
+    } else {
+      inputLabel.textContent = '输入编码';
+      outputLabel.textContent = '解码结果';
+      textInput.placeholder = '在此输入要解码的 URL 编码字符串...';
+      encodeOptions.classList.add('hidden');
+    }
+
+    // Clear and reprocess
+    textOutput.value = '';
+    updateStats();
+    hideError();
+  };
+
+  // Set encode mode
+  const setEncodeMode = (newMode: 'component' | 'uri') => {
+    encodeMode = newMode;
+    encodeModeBtns.forEach(btn => {
+      const isActive = btn.dataset.encodeMode === encodeMode;
+      btn.classList.toggle('bg-[#171717]', isActive);
+      btn.classList.toggle('text-white', isActive);
+      btn.classList.toggle('text-gray-600', !isActive);
+    });
+
+    // Update hint
+    if (encodeMode === 'component') {
+      encodeHint.textContent = '完整编码：编码所有特殊字符，适合作为 URL 参数值';
+    } else {
+      encodeHint.textContent = '保留 URL 字符：不编码 : / ? # & = 等 URL 保留字符，适合编码完整 URL';
+    }
+
+    // Re-encode if in encode mode
+    if (mode === 'encode' && textInput.value) {
+      processEncode();
+    }
+  };
+
+  // Encode process
+  const processEncode = () => {
+    const input = textInput.value;
+    hideError();
+
+    if (!input) {
+      textOutput.value = '';
+      updateStats();
+      return;
+    }
+
+    try {
+      let result: string;
+      if (encodeMode === 'component') {
+        result = encodeURIComponent(input);
+      } else {
+        result = encodeURI(input);
+      }
+      textOutput.value = result;
+      updateStats();
+    } catch (e) {
+      showError('编码失败：包含无法编码的字符');
+    }
+  };
+
+  // Decode process
+  const processDecode = () => {
+    const input = textInput.value.trim();
+    hideError();
+
+    if (!input) {
+      textOutput.value = '';
+      updateStats();
+      return;
+    }
+
+    try {
+      // Try decodeURIComponent first
+      let result = decodeURIComponent(input);
+      textOutput.value = result;
+      updateStats();
+    } catch (e) {
+      // If that fails, try decodeURI
+      try {
+        let result = decodeURI(input);
+        textOutput.value = result;
+        updateStats();
+      } catch (e) {
+        showError('解码失败：无效的 URL 编码字符串');
+      }
+    }
+  };
+
+  // Process based on mode
+  const process = () => {
+    if (mode === 'encode') {
+      processEncode();
+    } else {
+      processDecode();
+    }
+  };
+
+  // Event listeners
+  modeBtns.forEach(btn => {
+    btn.addEventListener('click', () => setMode(btn.dataset.mode as 'encode' | 'decode'));
+  });
+
+  encodeModeBtns.forEach(btn => {
+    btn.addEventListener('click', () => setEncodeMode(btn.dataset.encodeMode as 'component' | 'uri'));
+  });
+
+  textInput.addEventListener('input', () => {
+    hideError();
+    process();
+  });
+
+  $('clear-btn').addEventListener('click', () => {
+    textInput.value = '';
+    textOutput.value = '';
+    updateStats();
+    hideError();
+  });
+
+  $('copy-btn').addEventListener('click', async () => {
+    if (!textOutput.value) return;
+    try {
+      await navigator.clipboard.writeText(textOutput.value);
+      const btn = $('copy-btn');
+      const old = btn.textContent;
+      btn.textContent = '已复制';
+      setTimeout(() => btn.textContent = old, 1200);
+    } catch {}
+  });
+
+  // Init
+  setMode('encode');
+  setEncodeMode('component');
+</script>

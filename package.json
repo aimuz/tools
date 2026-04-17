@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "build:wasm": "cd wasm && zig build -Dtarget=wasm32-freestanding -Doptimize=ReleaseSmall && cd .. && mkdir -p public/wasm && cp zig-out/bin/image-converter.wasm public/wasm/",
+    "build:wasm": "cd wasm && zig build -Doptimize=ReleaseSmall",
     "preview": "astro preview",
     "astro": "astro",
     "deploy": "wrangler pages deploy dist"

@@ -281,9 +281,9 @@ export const zhTW = {
       },
     },
     convertPair: {
-      titleTemplate: '{fromLabel} 轉 {toLabel} - 免費線上 {fromFull} 轉 {toFull} 工具 | WizGo',
+      titleTemplate: '{fromLabel} 轉 {toLabel}：免費線上工具 | WizGo',
       descriptionTemplate:
-        '免費線上 {fromLabel} 轉 {toLabel} 工具，支援批次轉換、拖放上傳、一鍵下載。{hintWithSpace}純瀏覽器本機處理不上傳，保護隱私。',
+        '{fromLabel} 轉 {toLabel} 線上工具。{hintWithSpace}純瀏覽器本機處理不上傳。',
       h1Template: '{fromLabel} 轉 {toLabel}',
       fallbackHintTemplate: '把 {fromFull} 圖片線上轉換為 {toFull} 格式 · 本機處理不上傳',
       pairHints: {
@@ -794,9 +794,9 @@ export const zhTW = {
       },
     },
     textWatermark: {
-      title: '身分證加浮水印 · 圖片文字浮水印線上工具 - 備案 / 防盜 / 證件 | WizGo',
+      title: '身分證加浮水印：防盜圖片浮水印工具 | WizGo',
       description:
-        '免費線上給圖片加文字浮水印：身分證、營利事業登記證、合約等證件加「僅供xx使用」防冒用浮水印；網站備案、版權防盜場景下為圖片加上文字保護。支援平鋪 / 居中 / 右下角排列，可調顏色、字級、透明度、旋轉。瀏覽器本機處理不上傳照片。',
+        '給圖片加「僅供xx使用」文字浮水印：身分證、登記證、合約、網站備案防冒用。平鋪/居中/右下角排列。本機處理不上傳照片。',
       h1: '圖片文字浮水印',
       subheading: '在圖片上加上「僅供備案使用」等文字浮水印 · 防盜、溯源 · 本機處理不上傳',
       schema: {

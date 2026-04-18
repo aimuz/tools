@@ -281,9 +281,9 @@ export const zhCN = {
       },
     },
     convertPair: {
-      titleTemplate: '{fromLabel} 转 {toLabel} - 免费在线 {fromFull} 转 {toFull} 工具 | WizGo',
+      titleTemplate: '{fromLabel} 转 {toLabel}：免费在线工具 | WizGo',
       descriptionTemplate:
-        '免费在线 {fromLabel} 转 {toLabel} 工具，支持批量转换、拖放上传、一键下载。{hintWithSpace}纯浏览器本地处理不上传，保护隐私。',
+        '{fromLabel} 转 {toLabel} 在线工具。{hintWithSpace}纯浏览器本地处理不上传。',
       h1Template: '{fromLabel} 转 {toLabel}',
       fallbackHintTemplate: '把 {fromFull} 图片在线转换为 {toFull} 格式 · 本地处理不上传',
       pairHints: {
@@ -794,9 +794,9 @@ export const zhCN = {
       },
     },
     textWatermark: {
-      title: '身份证加水印 · 图片文字水印在线工具 - 备案 / 防盗 / 营业执照 | WizGo',
+      title: '身份证加水印：防盗图片水印工具 | WizGo',
       description:
-        '免费在线给图片加文字水印：身份证、营业执照、合同等证件加"仅供xx使用"防冒用水印；网站备案、版权防盗场景下为图片添加文字保护。支持平铺 / 居中 / 右下角排列，可调颜色、字号、透明度、旋转。浏览器本地处理不上传照片。',
+        '给图片加"仅供xx使用"文字水印：身份证、营业执照、合同、网站备案防冒用。平铺/居中/右下角排列。本地处理不上传照片。',
       h1: '图片文字水印',
       subheading: '在图片上添加"仅供备案使用"等文字水印 · 防盗、溯源 · 本地处理不上传',
       schema: {

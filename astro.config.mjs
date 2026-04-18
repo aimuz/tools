@@ -7,7 +7,7 @@ export default defineConfig({
   site: 'https://wizgo.xyz',
   i18n: {
     defaultLocale: 'zh-CN',
-    locales: ['zh-CN', 'zh-TW', 'en', 'ja', 'ko'],
+    locales: ['zh-CN', 'zh-TW', 'en', 'ja', 'ko', 'es'],
     routing: {
       prefixDefaultLocale: false,
     },
@@ -23,6 +23,7 @@ export default defineConfig({
           en: 'en',
           ja: 'ja',
           ko: 'ko',
+          es: 'es',
         },
       },
     }),

@@ -7,6 +7,7 @@ export const getStaticPaths = () => [
   { params: { locale: 'zh-TW' } },
   { params: { locale: 'ja' } },
   { params: { locale: 'ko' } },
+  { params: { locale: 'es' } },
 ];
 
 export const GET: APIRoute = ({ params }) => {

@@ -2,7 +2,7 @@
 import TimestampPage from '../../components/pages/TimestampPage.astro';
 import { isLocale, type Locale } from '../../i18n/config';
 
-export const getStaticPaths = () => [{ params: { locale: 'en' } }, { params: { locale: 'zh-TW' } }, { params: { locale: 'ja' } }, { params: { locale: 'ko' } }];
+export const getStaticPaths = () => [{ params: { locale: 'en' } }, { params: { locale: 'zh-TW' } }, { params: { locale: 'ja' } }, { params: { locale: 'ko' } }, { params: { locale: 'es' } }];
 
 const { locale } = Astro.params;
 if (!locale || !isLocale(locale)) throw new Error(`Invalid locale: ${locale}`);

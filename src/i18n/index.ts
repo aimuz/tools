@@ -5,6 +5,7 @@ import { zhTW } from './locales/zh-TW';
 import { en } from './locales/en';
 import { ja } from './locales/ja';
 import { ko } from './locales/ko';
+import { es } from './locales/es';
 
 const TABLES: Record<Locale, Translations> = {
   'zh-CN': zhCN,
@@ -12,6 +13,7 @@ const TABLES: Record<Locale, Translations> = {
   en,
   ja,
   ko,
+  es,
 };
 
 export function useTranslations(locale: Locale = DEFAULT_LOCALE): Translations {

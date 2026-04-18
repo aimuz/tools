@@ -5,7 +5,7 @@ import type { CompressFormat } from '../../i18n/schema';
 
 export const getStaticPaths = () => {
   const formats: CompressFormat[] = ['png', 'jpg', 'webp'];
-  const locales: Locale[] = ['en', 'zh-TW', 'ja', 'ko'];
+  const locales: Locale[] = ['en', 'zh-TW', 'ja', 'ko', 'es'];
   return locales.flatMap((locale) =>
     formats.map((format) => ({ params: { locale, format } })),
   );

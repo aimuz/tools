@@ -88,7 +88,7 @@ const aboutHref = localizedPath(locale, '/about');
             aria-expanded="false"
           >
             {group.label}
-            <svg class="w-3.5 h-3.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg data-chevron class="w-3.5 h-3.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
@@ -169,7 +169,7 @@ const aboutHref = localizedPath(locale, '/about');
     triggers.forEach(t => {
       if (t.dataset.target !== except) {
         t.setAttribute('aria-expanded', 'false');
-        t.querySelector('svg')?.classList.remove('rotate-180');
+        t.querySelector<SVGElement>('svg[data-chevron]')?.classList.remove('rotate-180');
       }
     });
     panels.forEach(p => {
@@ -187,7 +187,7 @@ const aboutHref = localizedPath(locale, '/about');
       if (!isOpen) {
         panel?.classList.remove('hidden');
         trigger.setAttribute('aria-expanded', 'true');
-        trigger.querySelector('svg')?.classList.add('rotate-180');
+        trigger.querySelector<SVGElement>('svg[data-chevron]')?.classList.add('rotate-180');
       }
     });
   });

@@ -5,53 +5,92 @@ import { localizedPath, stripLocaleFromPath } from '../../i18n/seo';
 
 interface Props {
   locale: Locale;
+  variant?: 'dropdown' | 'inline';
 }
 
-const { locale } = Astro.props;
+const { locale, variant = 'dropdown' } = Astro.props;
 const t = useTranslations(locale);
 const currentPath = '/' + stripLocaleFromPath(Astro.url.pathname);
+
+const links = LOCALES.map((target) => {
+  const isActive = target === locale;
+  return {
+    target,
+    href: localizedPath(target, currentPath),
+    isActive,
+    label: LOCALE_LABELS[target],
+    cls: [
+      'block px-3 py-2 rounded-lg text-sm transition-colors',
+      isActive
+        ? 'bg-gray-100 text-[#171717] font-medium'
+        : 'text-gray-600 hover:bg-gray-50 hover:text-[#171717]',
+    ].join(' '),
+  };
+});
+
+const globePath = 'M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129';
 ---
 
-<div class="relative" data-dropdown="lang">
-  <button
-    type="button"
-    class="dropdown-trigger flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#171717] hover:bg-gray-50 rounded-md transition-colors"
-    data-target="lang"
-    aria-haspopup="true"
-    aria-expanded="false"
-    aria-label={t.common.languageSwitcherAria}
-  >
-    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
-    </svg>
-    <span>{LOCALE_LABELS[locale]}</span>
-    <svg data-chevron class="w-3.5 h-3.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-    </svg>
-  </button>
-  <div
-    class="dropdown-panel hidden absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-xl shadow-lg p-1.5"
-    data-panel="lang"
-    role="menu"
-  >
-    {LOCALES.map((target) => {
-      const isActive = target === locale;
-      return (
+{variant === 'dropdown' ? (
+  <div class="relative" data-dropdown="lang">
+    <button
+      type="button"
+      class="dropdown-trigger flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#171717] hover:bg-gray-50 rounded-md transition-colors"
+      data-target="lang"
+      aria-haspopup="true"
+      aria-expanded="false"
+      aria-label={t.common.languageSwitcherAria}
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={globePath}></path>
+      </svg>
+      <span>{LOCALE_LABELS[locale]}</span>
+      <svg data-chevron class="w-3.5 h-3.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+      </svg>
+    </button>
+    <div
+      class="dropdown-panel hidden absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-xl shadow-lg p-1.5"
+      data-panel="lang"
+      role="menu"
+    >
+      {links.map((l) => (
         <a
-          href={localizedPath(target, currentPath)}
+          href={l.href}
+          hreflang={l.target}
           role="menuitem"
-          aria-current={isActive ? 'true' : undefined}
-          hreflang={target}
-          class:list={[
-            'block px-3 py-2 rounded-lg text-sm transition-colors',
-            isActive
-              ? 'bg-gray-100 text-[#171717] font-medium'
-              : 'text-gray-600 hover:bg-gray-50 hover:text-[#171717]',
-          ]}
+          aria-current={l.isActive ? 'true' : undefined}
+          class={l.cls}
         >
-          {LOCALE_LABELS[target]}
+          {l.label}
         </a>
-      );
-    })}
+      ))}
+    </div>
   </div>
-</div>
+) : (
+  <details class="group">
+    <summary class="list-none flex items-center justify-between cursor-pointer text-sm font-medium text-[#171717]">
+      <span class="flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={globePath}></path>
+        </svg>
+        {LOCALE_LABELS[locale]}
+      </span>
+      <svg class="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+      </svg>
+    </summary>
+    <div class="mt-2 space-y-1">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          hreflang={l.target}
+          aria-current={l.isActive ? 'true' : undefined}
+          class={l.cls}
+        >
+          {l.label}
+        </a>
+      ))}
+    </div>
+  </details>
+)}

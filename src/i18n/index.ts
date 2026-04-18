@@ -1,11 +1,17 @@
 import type { Translations } from './schema';
 import { DEFAULT_LOCALE, type Locale } from './config';
 import { zhCN } from './locales/zh-CN';
+import { zhTW } from './locales/zh-TW';
 import { en } from './locales/en';
+import { ja } from './locales/ja';
+import { ko } from './locales/ko';
 
 const TABLES: Record<Locale, Translations> = {
   'zh-CN': zhCN,
+  'zh-TW': zhTW,
   en,
+  ja,
+  ko,
 };
 
 export function useTranslations(locale: Locale = DEFAULT_LOCALE): Translations {

@@ -1,17 +1,23 @@
-export const LOCALES = ['zh-CN', 'en'] as const;
+export const LOCALES = ['zh-CN', 'zh-TW', 'en', 'ja', 'ko'] as const;
 
 export type Locale = (typeof LOCALES)[number];
 
 export const DEFAULT_LOCALE: Locale = 'zh-CN';
 
 export const LOCALE_LABELS: Record<Locale, string> = {
-  'zh-CN': '中文',
+  'zh-CN': '简体中文',
+  'zh-TW': '繁體中文',
   en: 'English',
+  ja: '日本語',
+  ko: '한국어',
 };
 
 export const OG_LOCALES: Record<Locale, string> = {
   'zh-CN': 'zh_CN',
+  'zh-TW': 'zh_TW',
   en: 'en_US',
+  ja: 'ja_JP',
+  ko: 'ko_KR',
 };
 
 export function isLocale(value: string): value is Locale {

@@ -59,6 +59,17 @@ export const en = {
         timestamp: { name: 'Timestamp Convert', desc: 'Unix timestamp ↔ date' },
         json: { name: 'JSON Format', desc: 'Beautify / minify / validate' },
         'code-image': { name: 'Code to Image', desc: 'Generate code share images' },
+        base64: { name: 'Base64 Encode/Decode', desc: 'Text and file encoding & decoding' },
+        uuid: { name: 'UUID Generator', desc: 'Batch generate unique IDs' },
+        'url-encode': { name: 'URL Encode/Decode', desc: 'URL special character encoding' },
+        color: { name: 'Color Converter', desc: 'HEX, RGB, HSL conversions' },
+        qrcode: { name: 'QR Code Generator', desc: 'Generate QR codes from text/links' },
+      },
+    },
+    media: {
+      label: 'Media Tools',
+      items: {
+        'mp4-to-mp3': { name: 'MP4 to MP3', desc: 'Extract audio from video files' },
       },
     },
   },

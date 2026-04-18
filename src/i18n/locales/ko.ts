@@ -58,6 +58,17 @@ export const ko = {
         timestamp: { name: '타임스탬프 변환', desc: 'Unix 타임스탬프 ↔ 날짜' },
         json: { name: 'JSON 포매터', desc: '미화 / 압축 / 검증' },
         'code-image': { name: '코드 이미지화', desc: '코드 공유 이미지 생성' },
+        base64: { name: 'Base64 인코딩/디코딩', desc: '텍스트/파일 인코딩 및 디코딩' },
+        uuid: { name: 'UUID 생성', desc: '고유 식별자 일괄 생성' },
+        'url-encode': { name: 'URL 인코딩/디코딩', desc: 'URL 특수 문자 인코딩' },
+        color: { name: '색상 변환', desc: 'HEX, RGB, HSL 상호 변환' },
+        qrcode: { name: 'QR 코드 생성기', desc: '텍스트/링크로 QR 코드 생성' },
+      },
+    },
+    media: {
+      label: '미디어 도구',
+      items: {
+        'mp4-to-mp3': { name: 'MP4 → MP3', desc: '동영상 파일에서 오디오 추출' },
       },
     },
   },

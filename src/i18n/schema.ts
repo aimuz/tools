@@ -61,7 +61,13 @@ export type NavItemKey =
   | 'jwt'
   | 'timestamp'
   | 'json'
-  | 'code-image';
+  | 'code-image'
+  | 'base64'
+  | 'uuid'
+  | 'url-encode'
+  | 'color'
+  | 'qrcode'
+  | 'mp4-to-mp3';
 
 export type CompressFormat = 'png' | 'jpg' | 'webp';
 
@@ -125,6 +131,10 @@ export type Translations = {
       items: Partial<Record<NavItemKey, { name: string; desc: string }>>;
     };
     dev: {
+      label: string;
+      items: Partial<Record<NavItemKey, { name: string; desc: string }>>;
+    };
+    media: {
       label: string;
       items: Partial<Record<NavItemKey, { name: string; desc: string }>>;
     };

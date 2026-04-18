@@ -58,6 +58,17 @@ export const zhCN = {
         timestamp: { name: '时间戳转换', desc: 'Unix 时间戳和日期互转' },
         json: { name: 'JSON 格式化', desc: '美化 / 压缩 / 校验' },
         'code-image': { name: '代码转图片', desc: '生成代码分享图' },
+        base64: { name: 'Base64 编解码', desc: '文本 / 文件编码解码' },
+        uuid: { name: 'UUID 生成', desc: '批量生成唯一标识符' },
+        'url-encode': { name: 'URL 编解码', desc: 'URL 特殊字符编码解码' },
+        color: { name: '颜色转换', desc: '十六进制、RGB、HSL 互转' },
+        qrcode: { name: '二维码生成', desc: '文本 / 链接生成二维码' },
+      },
+    },
+    media: {
+      label: '媒体工具',
+      items: {
+        'mp4-to-mp3': { name: 'MP4 转 MP3', desc: '从视频文件提取音频' },
       },
     },
   },

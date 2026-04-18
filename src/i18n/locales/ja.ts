@@ -58,6 +58,17 @@ export const ja = {
         timestamp: { name: 'タイムスタンプ変換', desc: 'Unix タイムスタンプと日付を相互変換' },
         json: { name: 'JSON フォーマッタ', desc: '整形 / 圧縮 / 検証' },
         'code-image': { name: 'コード画像化', desc: 'コードをシェア画像に' },
+        base64: { name: 'Base64 エンコード/デコード', desc: 'テキスト・ファイルのエンコード/デコード' },
+        uuid: { name: 'UUID 生成', desc: '一意な識別子を一括生成' },
+        'url-encode': { name: 'URL エンコード/デコード', desc: 'URL 特殊文字のエンコード/デコード' },
+        color: { name: 'カラー変換', desc: 'HEX・RGB・HSL 相互変換' },
+        qrcode: { name: 'QR コード生成', desc: 'テキスト / リンクから QR コード' },
+      },
+    },
+    media: {
+      label: 'メディアツール',
+      items: {
+        'mp4-to-mp3': { name: 'MP4 から MP3', desc: '動画ファイルから音声を抽出' },
       },
     },
   },

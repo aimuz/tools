@@ -58,6 +58,17 @@ export const zhTW = {
         timestamp: { name: '時間戳記轉換', desc: 'Unix 時間戳記和日期互轉' },
         json: { name: 'JSON 格式化', desc: '美化 / 壓縮 / 校驗' },
         'code-image': { name: '程式碼轉圖片', desc: '產生程式碼分享圖' },
+        base64: { name: 'Base64 編解碼', desc: '文字 / 檔案編碼解碼' },
+        uuid: { name: 'UUID 產生器', desc: '批量產生唯一識別碼' },
+        'url-encode': { name: 'URL 編解碼', desc: 'URL 特殊字元編碼解碼' },
+        color: { name: '色彩轉換', desc: '十六進位、RGB、HSL 互轉' },
+        qrcode: { name: 'QR Code 產生器', desc: '文字 / 連結產生 QR Code' },
+      },
+    },
+    media: {
+      label: '媒體工具',
+      items: {
+        'mp4-to-mp3': { name: 'MP4 轉 MP3', desc: '從影片檔案擷取音訊' },
       },
     },
   },

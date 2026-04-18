@@ -25,6 +25,12 @@ const NAV_HREFS: Record<NavItemKey, string> = {
   timestamp: '/timestamp',
   json: '/json',
   'code-image': '/code-image',
+  base64: '/base64',
+  uuid: '/uuid',
+  'url-encode': '/url-encode',
+  color: '/color',
+  qrcode: '/qrcode',
+  'mp4-to-mp3': '/mp4-to-mp3',
 };
 
 const IMAGE_ORDER: NavItemKey[] = [
@@ -38,12 +44,24 @@ const IMAGE_ORDER: NavItemKey[] = [
   'text-watermark',
 ];
 
-const DEV_ORDER: NavItemKey[] = ['jwt', 'timestamp', 'json', 'code-image'];
+const DEV_ORDER: NavItemKey[] = [
+  'jwt',
+  'timestamp',
+  'json',
+  'code-image',
+  'base64',
+  'uuid',
+  'url-encode',
+  'color',
+  'qrcode',
+];
+
+const MEDIA_ORDER: NavItemKey[] = ['mp4-to-mp3'];
 
 type RenderedItem = { key: NavItemKey; name: string; desc: string; href: string };
 
 function buildItems(
-  group: typeof t.nav.image | typeof t.nav.dev,
+  group: typeof t.nav.image | typeof t.nav.dev | typeof t.nav.media,
   order: NavItemKey[],
 ): RenderedItem[] {
   return order
@@ -63,6 +81,7 @@ function buildItems(
 const menu = [
   { id: 'image', label: t.nav.image.label, items: buildItems(t.nav.image, IMAGE_ORDER) },
   { id: 'dev', label: t.nav.dev.label, items: buildItems(t.nav.dev, DEV_ORDER) },
+  { id: 'media', label: t.nav.media.label, items: buildItems(t.nav.media, MEDIA_ORDER) },
 ];
 
 const homeHref = localizedPath(locale, '/');

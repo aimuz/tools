@@ -1,49 +1,79 @@
 ---
-interface MenuItem {
-  name: string;
-  href: string;
-  desc: string;
+import { useTranslations } from '../../i18n';
+import { DEFAULT_LOCALE, type Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/seo';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import type { NavItemKey } from '../../i18n/schema';
+
+interface Props {
+  locale?: Locale;
 }
 
-interface MenuGroup {
-  id: string;
-  label: string;
-  items: MenuItem[];
-}
+const { locale = DEFAULT_LOCALE } = Astro.props;
+const t = useTranslations(locale);
 
-const menu: MenuGroup[] = [
-  {
-    id: 'image',
-    label: '图片工具',
-    items: [
-      { name: '图片压缩', href: '/compress', desc: 'PNG / JPG / WebP 智能压缩' },
-      { name: '图片格式转换', href: '/convert', desc: 'PNG JPG WebP GIF BMP 互转' },
-      { name: 'PNG 转 JPG', href: '/png-to-jpg', desc: '透明背景白色填充 · 体积更小' },
-      { name: 'JPG 转 PNG', href: '/jpg-to-png', desc: '无损保存 · 支持透明度' },
-      { name: 'PNG 转 WebP', href: '/png-to-webp', desc: '保留透明 · 更小体积' },
-      { name: 'JPG 转 WebP', href: '/jpg-to-webp', desc: '同画质再压缩 25-35%' },
-      { name: '图片隐藏水印', href: '/watermark', desc: '嵌入 / 提取隐藏文字' },
-      { name: '图片文字水印', href: '/text-watermark', desc: '仅供备案使用 · 防盗水印' },
-    ],
-  },
-  {
-    id: 'dev',
-    label: '开发者工具',
-    items: [
-      { name: 'JWT 解码/验签', href: '/jwt', desc: '解析、生成、签名验证' },
-      { name: '时间戳转换', href: '/timestamp', desc: 'Unix 时间戳和日期互转' },
-      { name: 'JSON 格式化', href: '/json', desc: '美化 / 压缩 / 校验' },
-      { name: '代码转图片', href: '/code-image', desc: '生成代码分享图' },
-    ],
-  },
+const NAV_HREFS: Record<NavItemKey, string> = {
+  compress: '/compress',
+  convert: '/convert',
+  'png-to-jpg': '/png-to-jpg',
+  'jpg-to-png': '/jpg-to-png',
+  'png-to-webp': '/png-to-webp',
+  'jpg-to-webp': '/jpg-to-webp',
+  watermark: '/watermark',
+  'text-watermark': '/text-watermark',
+  jwt: '/jwt',
+  timestamp: '/timestamp',
+  json: '/json',
+  'code-image': '/code-image',
+};
+
+const IMAGE_ORDER: NavItemKey[] = [
+  'compress',
+  'convert',
+  'png-to-jpg',
+  'jpg-to-png',
+  'png-to-webp',
+  'jpg-to-webp',
+  'watermark',
+  'text-watermark',
 ];
+
+const DEV_ORDER: NavItemKey[] = ['jwt', 'timestamp', 'json', 'code-image'];
+
+type RenderedItem = { key: NavItemKey; name: string; desc: string; href: string };
+
+function buildItems(
+  group: typeof t.nav.image | typeof t.nav.dev,
+  order: NavItemKey[],
+): RenderedItem[] {
+  return order
+    .map((key) => {
+      const item = group.items[key];
+      if (!item) return null;
+      return {
+        key,
+        name: item.name,
+        desc: item.desc,
+        href: localizedPath(locale, NAV_HREFS[key]),
+      };
+    })
+    .filter((x): x is RenderedItem => x !== null);
+}
+
+const menu = [
+  { id: 'image', label: t.nav.image.label, items: buildItems(t.nav.image, IMAGE_ORDER) },
+  { id: 'dev', label: t.nav.dev.label, items: buildItems(t.nav.dev, DEV_ORDER) },
+];
+
+const homeHref = localizedPath(locale, '/');
+const aboutHref = localizedPath(locale, '/about');
 ---
 
 <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
   <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-2 group">
-      <span class="text-xl font-semibold text-[#171717] tracking-tight">WizGo</span>
+    <a href={homeHref} class="flex items-center gap-2 group">
+      <span class="text-xl font-semibold text-[#171717] tracking-tight">{t.common.siteName}</span>
     </a>
 
     <!-- Desktop nav -->
@@ -80,16 +110,17 @@ const menu: MenuGroup[] = [
           </div>
         </div>
       ))}
-      <a href="/about" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#171717] hover:bg-gray-50 rounded-md transition-colors">
-        关于
+      <a href={aboutHref} class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#171717] hover:bg-gray-50 rounded-md transition-colors">
+        {t.common.aboutLink}
       </a>
+      <LanguageSwitcher locale={locale} />
     </nav>
 
     <!-- Mobile menu button -->
     <button
       id="mobile-menu-btn"
       class="md:hidden p-2 rounded-md hover:bg-gray-50 transition-colors"
-      aria-label="菜单"
+      aria-label={t.common.menuButtonAria}
       aria-expanded="false"
       aria-controls="mobile-menu"
     >
@@ -120,9 +151,12 @@ const menu: MenuGroup[] = [
           </div>
         </details>
       ))}
-      <a href="/about" class="block px-4 py-3 text-sm font-medium text-[#171717] border border-gray-100 rounded-lg hover:bg-gray-50">
-        关于
+      <a href={aboutHref} class="block px-4 py-3 text-sm font-medium text-[#171717] border border-gray-100 rounded-lg hover:bg-gray-50">
+        {t.common.aboutLink}
       </a>
+      <div class="px-4 py-3 border border-gray-100 rounded-lg">
+        <LanguageSwitcher locale={locale} />
+      </div>
     </div>
   </div>
 </header>

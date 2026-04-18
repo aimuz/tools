@@ -1,0 +1,201 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../layout/Header.astro';
+import Footer from '../layout/Footer.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/config';
+import { absoluteUrl } from '../../i18n/seo';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const u = t.pages.uuid;
+const pageUrl = absoluteUrl(locale, '/uuid');
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: u.schema.name,
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Any',
+  description: u.schema.description,
+  inLanguage: locale,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: pageUrl,
+};
+---
+
+<Layout title={u.title} description={u.description} locale={locale}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <Header locale={locale} />
+
+  <main class="flex-1 py-10">
+    <div class="max-w-[800px] mx-auto px-6">
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-semibold text-[#171717] mb-2">{u.h1}</h1>
+        <p class="text-gray-500">{u.subheading}</p>
+      </div>
+
+      <section class="mb-6 p-5 bg-white border border-gray-200 rounded-xl">
+        <div class="grid sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-sm text-gray-500 mb-2">{u.countLabel}</label>
+            <div class="flex flex-wrap gap-2">
+              <button data-qty="1" class="qty-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]">1</button>
+              <button data-qty="5" class="qty-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 bg-[#171717] text-white">5</button>
+              <button data-qty="10" class="qty-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]">10</button>
+              <button data-qty="50" class="qty-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]">50</button>
+              <button data-qty="100" class="qty-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]">100</button>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm text-gray-500 mb-2">{u.formatLabel}</label>
+            <div class="space-y-2">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" id="no-dashes" class="accent-[#171717]" />
+                <span class="text-sm text-gray-600">{u.noDashes}</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" id="uppercase" class="accent-[#171717]" />
+                <span class="text-sm text-gray-600">{u.uppercase}</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="flex items-end">
+            <button id="generate-btn" class="w-full px-4 py-2 bg-[#171717] text-white text-sm rounded-lg hover:bg-gray-800 transition-colors">
+              {u.generateBtn}
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="flex justify-between items-center mb-3">
+          <span class="text-sm text-gray-500">{u.resultLabel}</span>
+          <button
+            id="copy-all-btn"
+            class="text-sm text-gray-400 hover:text-[#171717]"
+            data-i18n-default={u.copyAllBtn}
+            data-i18n-active={u.copiedAllBtn}
+          >{u.copyAllBtn}</button>
+        </div>
+
+        <div
+          id="uuid-list"
+          class="space-y-2"
+          data-i18n-copy={u.copyBtn}
+          data-i18n-copied={u.copiedBtn}
+        ></div>
+
+        <div id="empty-state" class="hidden text-center py-12 border border-dashed border-gray-200 rounded-xl">
+          <p class="text-gray-400 text-sm">{u.empty}</p>
+        </div>
+      </section>
+
+      <div class="mt-8 p-4 bg-gray-50 border border-gray-200 rounded-xl">
+        <h3 class="text-sm font-medium text-[#171717] mb-2">{u.info.heading}</h3>
+        <p class="text-xs text-gray-500 leading-relaxed">{u.info.body}</p>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+
+  const qtyBtns = document.querySelectorAll<HTMLButtonElement>('.qty-btn');
+  const noDashesCheckbox = $<HTMLInputElement>('no-dashes');
+  const uppercaseCheckbox = $<HTMLInputElement>('uppercase');
+  const generateBtn = $('generate-btn');
+  const copyAllBtn = $('copy-all-btn');
+  const uuidList = $('uuid-list');
+
+  const COPY_LABEL = uuidList?.dataset.i18nCopy ?? 'Copy';
+  const COPIED_LABEL = uuidList?.dataset.i18nCopied ?? 'Copied';
+  const COPY_ALL_LABEL = copyAllBtn?.dataset.i18nDefault ?? 'Copy all';
+  const COPIED_ALL_LABEL = copyAllBtn?.dataset.i18nActive ?? 'Copied all';
+
+  let quantity = 5;
+
+  const generateUUID = (): string => {
+    const bytes = new Uint8Array(16);
+    crypto.getRandomValues(bytes);
+    bytes[6] = (bytes[6] & 0x0f) | 0x40;
+    bytes[8] = (bytes[8] & 0x3f) | 0x80;
+    const hex = Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('');
+    let uuid = `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+    if (noDashesCheckbox.checked) uuid = uuid.replace(/-/g, '');
+    if (uppercaseCheckbox.checked) uuid = uuid.toUpperCase();
+    return uuid;
+  };
+
+  const generateAndDisplay = () => {
+    uuidList.innerHTML = '';
+    for (let i = 0; i < quantity; i++) {
+      const uuid = generateUUID();
+      const item = document.createElement('div');
+      item.className = 'flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg group hover:border-[#171717] transition-colors';
+      const code = document.createElement('code');
+      code.className = 'flex-1 font-mono text-sm text-[#171717] break-all';
+      code.textContent = uuid;
+      const btn = document.createElement('button');
+      btn.className = 'copy-btn text-xs text-gray-400 hover:text-[#171717] opacity-0 group-hover:opacity-100 transition-opacity';
+      btn.dataset.uuid = uuid;
+      btn.textContent = COPY_LABEL;
+      item.appendChild(code);
+      item.appendChild(btn);
+      uuidList.appendChild(item);
+    }
+
+    uuidList.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const uuid = btn.dataset.uuid!;
+        try {
+          await navigator.clipboard.writeText(uuid);
+          btn.textContent = COPIED_LABEL;
+          btn.classList.add('text-green-600');
+          setTimeout(() => {
+            btn.textContent = COPY_LABEL;
+            btn.classList.remove('text-green-600');
+          }, 1200);
+        } catch {}
+      });
+    });
+  };
+
+  qtyBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      quantity = parseInt(btn.dataset.qty!, 10);
+      qtyBtns.forEach(b => {
+        const active = b === btn;
+        b.classList.toggle('bg-[#171717]', active);
+        b.classList.toggle('text-white', active);
+        b.classList.toggle('text-gray-600', !active);
+      });
+      generateAndDisplay();
+    });
+  });
+
+  noDashesCheckbox.addEventListener('change', generateAndDisplay);
+  uppercaseCheckbox.addEventListener('change', generateAndDisplay);
+  generateBtn.addEventListener('click', generateAndDisplay);
+
+  copyAllBtn.addEventListener('click', async () => {
+    const uuids = Array.from(uuidList.querySelectorAll('code')).map(el => el.textContent).join('\n');
+    if (!uuids) return;
+    try {
+      await navigator.clipboard.writeText(uuids);
+      copyAllBtn.textContent = COPIED_ALL_LABEL;
+      setTimeout(() => copyAllBtn.textContent = COPY_ALL_LABEL, 1200);
+    } catch {}
+  });
+
+  generateAndDisplay();
+</script>

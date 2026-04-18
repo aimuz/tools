@@ -1,0 +1,23 @@
+---
+import CompressFormatPage from '../../components/pages/CompressFormatPage.astro';
+import { isLocale, type Locale } from '../../i18n/config';
+import type { CompressFormat } from '../../i18n/schema';
+
+export const getStaticPaths = () => {
+  const formats: CompressFormat[] = ['png', 'jpg', 'webp'];
+  const locales: Locale[] = ['en'];
+  return locales.flatMap((locale) =>
+    formats.map((format) => ({ params: { locale, format } })),
+  );
+};
+
+const { locale, format } = Astro.params as { locale: string; format: CompressFormat };
+if (!isLocale(locale)) {
+  throw new Error(`Invalid locale: ${locale}`);
+}
+if (!['png', 'jpg', 'webp'].includes(format)) {
+  return Astro.redirect(`/${locale}/compress`);
+}
+---
+
+<CompressFormatPage locale={locale as Locale} format={format} />

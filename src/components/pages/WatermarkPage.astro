@@ -1,0 +1,182 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../layout/Header.astro';
+import Footer from '../layout/Footer.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/config';
+import { absoluteUrl } from '../../i18n/seo';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const w = t.pages.watermark;
+const pageUrl = absoluteUrl(locale, '/watermark');
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: w.schema.name,
+  applicationCategory: 'MultimediaApplication',
+  operatingSystem: 'Any',
+  description: w.schema.description,
+  inLanguage: locale,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: pageUrl,
+};
+---
+
+<Layout title={w.title} description={w.description} locale={locale}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <Header locale={locale} />
+
+  <main class="flex-1 py-12">
+    <div class="max-w-[1040px] mx-auto px-6">
+      <div class="text-center mb-10">
+        <h1 class="text-[40px] leading-[1.1] font-semibold text-[#171717] tracking-[-0.04em] mb-3">{w.h1}</h1>
+        <p class="text-[15px] text-[#666666]">{w.subheading}</p>
+      </div>
+
+      <div class="flex gap-1 mb-8 shadow-[inset_0_-1px_0_rgba(0,0,0,0.08)]">
+        <button type="button" data-tab="embed" class="tab-btn px-4 py-2.5 text-sm font-medium text-[#171717] shadow-[inset_0_-2px_0_#171717]">{w.tabs.embed}</button>
+        <button type="button" data-tab="extract" class="tab-btn px-4 py-2.5 text-sm font-medium text-[#666666] hover:text-[#171717] transition-colors">{w.tabs.extract}</button>
+      </div>
+
+      <section data-panel="embed" class="grid md:grid-cols-2 gap-6">
+        <div class="flex flex-col">
+          <span class="block text-xs font-medium text-[#666666] mb-2 uppercase tracking-wide">{w.common.imageLabel}</span>
+          <label
+            id="embed-dropzone"
+            for="embed-file"
+            class="flex-1 flex flex-col rounded-lg bg-[#fafafa] cursor-pointer transition-shadow shadow-[0_0_0_1px_rgba(0,0,0,0.08)] hover:shadow-[0_0_0_1px_rgba(0,0,0,0.18)]"
+          >
+            <input id="embed-file" type="file" accept="image/*" class="sr-only" />
+            <div data-zone="empty" class="flex-1 flex flex-col items-center justify-center px-6 py-14 text-center min-h-[240px]">
+              <svg class="w-7 h-7 text-[#808080] mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 7.5m0 0L7.5 12M12 7.5v12" />
+              </svg>
+              <p class="text-sm font-medium text-[#171717]">{w.common.dropImage}</p>
+              <p class="mt-1 text-xs text-[#808080]">{w.common.formats}</p>
+            </div>
+            <div data-zone="filled" class="hidden p-4">
+              <div class="flex items-center justify-center h-[260px] rounded-md bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.08)] overflow-hidden">
+                <canvas id="embed-preview" class="max-h-full max-w-full object-contain"></canvas>
+              </div>
+              <div class="mt-3 flex items-baseline justify-between gap-3">
+                <span id="embed-filename" class="flex-1 truncate text-xs text-[#4d4d4d]"></span>
+                <span class="shrink-0 text-xs font-medium text-[#171717] underline underline-offset-2 decoration-[#e5e5e5] hover:decoration-[#171717]">{w.common.replaceImage}</span>
+              </div>
+              <p id="embed-capacity" class="mt-2 text-[11px] text-[#808080]"></p>
+              <p id="embed-jpg-warn" class="mt-1 text-[11px] text-[#808080] hidden">{w.embed.jpgWarn}</p>
+            </div>
+          </label>
+        </div>
+
+        <div class="flex flex-col">
+          <label for="embed-text" class="block text-xs font-medium text-[#666666] mb-2 uppercase tracking-wide">{w.embed.textLabel}</label>
+          <textarea
+            id="embed-text"
+            class="flex-1 min-h-[200px] p-3 bg-white rounded-lg font-mono text-sm text-[#171717] placeholder:text-[#808080] shadow-[0_0_0_1px_rgba(0,0,0,0.08)] focus:shadow-[0_0_0_1px_#171717] focus:outline-none resize-none transition-shadow"
+            placeholder={w.embed.textPlaceholder}
+          ></textarea>
+          <button
+            id="embed-run"
+            type="button"
+            class="mt-3 h-10 rounded-md bg-[#171717] text-white text-sm font-medium hover:bg-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >{w.embed.runBtn}</button>
+        </div>
+
+        <div id="embed-result" class="md:col-span-2 hidden">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-medium text-[#666666] uppercase tracking-wide">{w.embed.resultLabel}</span>
+            <div class="flex gap-2">
+              <a
+                id="embed-download"
+                class="h-9 inline-flex items-center px-4 rounded-md bg-[#171717] text-white text-sm font-medium hover:bg-black transition-colors"
+                download="watermark.png"
+                href="#"
+              >{w.embed.downloadBtn}</a>
+              <button
+                id="embed-copy"
+                type="button"
+                class="h-9 px-4 rounded-md bg-white text-[#171717] text-sm font-medium shadow-[0_0_0_1px_rgba(0,0,0,0.08)] hover:shadow-[0_0_0_1px_#171717] transition-shadow"
+              >{w.embed.copyImageBtn}</button>
+            </div>
+          </div>
+          <div class="flex items-center justify-center h-[320px] rounded-lg bg-[#fafafa] shadow-[0_0_0_1px_rgba(0,0,0,0.08)] overflow-hidden">
+            <canvas id="embed-out" class="max-h-full max-w-full object-contain"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section data-panel="extract" class="grid md:grid-cols-2 gap-6 hidden">
+        <div class="flex flex-col">
+          <span class="block text-xs font-medium text-[#666666] mb-2 uppercase tracking-wide">{w.common.imageLabel}</span>
+          <label
+            id="extract-dropzone"
+            for="extract-file"
+            class="flex-1 flex flex-col rounded-lg bg-[#fafafa] cursor-pointer transition-shadow shadow-[0_0_0_1px_rgba(0,0,0,0.08)] hover:shadow-[0_0_0_1px_rgba(0,0,0,0.18)]"
+          >
+            <input id="extract-file" type="file" accept="image/*" class="sr-only" />
+            <div data-zone="empty" class="flex-1 flex flex-col items-center justify-center px-6 py-14 text-center min-h-[240px]">
+              <svg class="w-7 h-7 text-[#808080] mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 7.5m0 0L7.5 12M12 7.5v12" />
+              </svg>
+              <p class="text-sm font-medium text-[#171717]">{w.common.dropImage}</p>
+              <p class="mt-1 text-xs text-[#808080]">{w.common.formats}</p>
+            </div>
+            <div data-zone="filled" class="hidden p-4">
+              <div class="flex items-center justify-center h-[260px] rounded-md bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.08)] overflow-hidden">
+                <canvas id="extract-preview" class="max-h-full max-w-full object-contain"></canvas>
+              </div>
+              <div class="mt-3 flex items-baseline justify-between gap-3">
+                <span id="extract-filename" class="flex-1 truncate text-xs text-[#4d4d4d]"></span>
+                <span class="shrink-0 text-xs font-medium text-[#171717] underline underline-offset-2 decoration-[#e5e5e5] hover:decoration-[#171717]">{w.common.replaceImage}</span>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <div class="flex flex-col">
+          <label class="block text-xs font-medium text-[#666666] mb-2 uppercase tracking-wide">{w.extract.resultLabel}</label>
+          <div class="relative flex-1 flex">
+            <textarea
+              id="extract-text"
+              readonly
+              class="flex-1 min-h-[200px] p-3 pr-16 bg-white rounded-lg font-mono text-sm text-[#171717] placeholder:text-[#808080] shadow-[0_0_0_1px_rgba(0,0,0,0.08)] resize-none focus:outline-none"
+              placeholder={w.extract.resultPlaceholder}
+            ></textarea>
+            <button
+              id="extract-copy"
+              type="button"
+              class="absolute top-2 right-2 px-2 py-1 rounded-md text-xs text-[#666666] hover:text-[#171717] hover:bg-[#fafafa] transition-colors"
+            >{w.common.copyBtn}</button>
+          </div>
+          <button
+            id="extract-run"
+            type="button"
+            class="mt-3 h-10 rounded-md bg-[#171717] text-white text-sm font-medium hover:bg-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >{w.extract.runBtn}</button>
+        </div>
+      </section>
+
+      <div id="err" class="hidden mt-6 px-4 py-3 rounded-lg text-sm text-[#c92a2a] bg-[#fff5f5] shadow-[0_0_0_1px_rgba(201,42,42,0.15)]"></div>
+
+      <section class="mt-16 max-w-[720px] mx-auto">
+        <h2 class="text-xl font-semibold text-[#171717] tracking-tight mb-4">{w.faq.heading}</h2>
+        <div class="space-y-3 text-[15px] leading-[1.7] text-[#4d4d4d]">
+          {w.faq.paragraphs.map((p) => <p>{p}</p>)}
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  import { initWatermarkPage } from '../../scripts/watermark';
+  initWatermarkPage();
+</script>

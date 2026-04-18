@@ -1,0 +1,283 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../layout/Header.astro';
+import Footer from '../layout/Footer.astro';
+import { useTranslations, interpolate } from '../../i18n';
+import type { Locale } from '../../i18n/config';
+import { absoluteUrl } from '../../i18n/seo';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const ue = t.pages.urlEncode;
+const pageUrl = absoluteUrl(locale, '/url-encode');
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: ue.schema.name,
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Any',
+  description: ue.schema.description,
+  inLanguage: locale,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: pageUrl,
+};
+
+const initialCharCount = interpolate(ue.charCountTemplate, { count: 0 });
+---
+
+<Layout title={ue.title} description={ue.description} locale={locale}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <Header locale={locale} />
+
+  <main class="flex-1 py-10">
+    <div class="max-w-[960px] mx-auto px-6"
+      data-i18n-input-encode-label={ue.labels.inputEncode}
+      data-i18n-input-decode-label={ue.labels.inputDecode}
+      data-i18n-output-encode-label={ue.labels.outputEncode}
+      data-i18n-output-decode-label={ue.labels.outputDecode}
+      data-i18n-input-encode-placeholder={ue.placeholders.inputEncode}
+      data-i18n-input-decode-placeholder={ue.placeholders.inputDecode}
+      data-i18n-component-hint={ue.encodeMode.componentHint}
+      data-i18n-uri-hint={ue.encodeMode.uriHint}
+      data-i18n-error-encode={ue.errors.encode}
+      data-i18n-error-decode={ue.errors.decode}
+      data-i18n-char-count-template={ue.charCountTemplate}
+      data-i18n-copy={ue.copyBtn}
+      data-i18n-copied={ue.copiedBtn}
+    >
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-semibold text-[#171717] mb-2">{ue.h1}</h1>
+        <p class="text-gray-500">{ue.subheading}</p>
+      </div>
+
+      <div class="flex justify-center mb-6">
+        <div class="inline-flex p-1 bg-gray-100 rounded-lg">
+          <button data-mode="encode" class="mode-btn px-4 py-2 text-sm rounded-md bg-white text-[#171717] shadow-sm transition-all">{ue.tabEncode}</button>
+          <button data-mode="decode" class="mode-btn px-4 py-2 text-sm rounded-md text-gray-500 hover:text-[#171717] transition-all">{ue.tabDecode}</button>
+        </div>
+      </div>
+
+      <div id="encode-options" class="mb-6">
+        <p class="text-sm text-gray-500 mb-2">{ue.encodeMode.label}</p>
+        <div class="flex flex-wrap gap-2">
+          <button data-encode-mode="component" class="encode-mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 bg-[#171717] text-white">{ue.encodeMode.component}</button>
+          <button data-encode-mode="uri" class="encode-mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]">{ue.encodeMode.uri}</button>
+        </div>
+        <p id="encode-hint" class="text-xs text-gray-400 mt-2">{ue.encodeMode.componentHint}</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <section>
+          <div class="flex justify-between items-center mb-2">
+            <span id="input-label" class="text-sm font-medium text-[#171717]">{ue.labels.inputEncode}</span>
+            <button id="clear-btn" class="text-xs text-gray-400 hover:text-red-500">{ue.clearBtn}</button>
+          </div>
+          <textarea
+            id="text-input"
+            class="w-full h-72 p-4 bg-white border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717] resize-none"
+            placeholder={ue.placeholders.inputEncode}
+          ></textarea>
+          <p class="text-xs text-gray-400 mt-2">{ue.hint}</p>
+        </section>
+
+        <section>
+          <div class="flex justify-between items-center mb-2">
+            <span id="output-label" class="text-sm font-medium text-[#171717]">{ue.labels.outputEncode}</span>
+            <div class="flex gap-2">
+              <button id="copy-btn" class="text-xs text-gray-400 hover:text-[#171717]">{ue.copyBtn}</button>
+            </div>
+          </div>
+          <textarea
+            id="text-output"
+            readonly
+            class="w-full h-72 p-4 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm resize-none break-all"
+            placeholder={ue.placeholders.output}
+          ></textarea>
+          <p id="output-stats" class="text-xs text-gray-400 mt-2">{initialCharCount}</p>
+        </section>
+      </div>
+
+      <div id="error-msg" class="hidden mt-5 p-3 bg-red-50 border border-red-100 rounded-lg text-red-500 text-sm"></div>
+
+      <div class="mt-8 grid sm:grid-cols-2 gap-4">
+        <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl">
+          <h3 class="text-sm font-medium text-[#171717] mb-2">{ue.examples.heading}</h3>
+          <table class="w-full text-xs">
+            <tbody class="text-gray-500">
+              <tr class="border-b border-gray-100">
+                <td class="py-2 font-mono text-[#171717]">{ue.examples.labels.chinese}</td>
+                <td class="py-2 font-mono">→ %E4%B8%AD%E6%96%87</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 font-mono text-[#171717]">{ue.examples.labels.space}</td>
+                <td class="py-2 font-mono">→ %20</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2 font-mono text-[#171717]">{ue.examples.labels.ampersand}</td>
+                <td class="py-2 font-mono">→ %26</td>
+              </tr>
+              <tr>
+                <td class="py-2 font-mono text-[#171717]">{ue.examples.labels.equals}</td>
+                <td class="py-2 font-mono">→ %3D</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl">
+          <h3 class="text-sm font-medium text-[#171717] mb-2">{ue.useCases.heading}</h3>
+          <ul class="text-xs text-gray-500 space-y-2 list-disc list-inside">
+            {ue.useCases.items.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  const root = document.querySelector<HTMLElement>('main .max-w-\\[960px\\]')!;
+  const D = root.dataset;
+  const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+
+  const modeBtns = document.querySelectorAll<HTMLButtonElement>('.mode-btn');
+  const encodeModeBtns = document.querySelectorAll<HTMLButtonElement>('.encode-mode-btn');
+  const encodeOptions = $('encode-options');
+  const encodeHint = $('encode-hint');
+  const textInput = $<HTMLTextAreaElement>('text-input');
+  const textOutput = $<HTMLTextAreaElement>('text-output');
+  const inputLabel = $('input-label');
+  const outputLabel = $('output-label');
+  const outputStats = $('output-stats');
+  const errorMsg = $('error-msg');
+  const copyBtn = $('copy-btn');
+
+  let mode: 'encode' | 'decode' = 'encode';
+  let encodeMode: 'component' | 'uri' = 'component';
+
+  const showError = (msg: string) => {
+    errorMsg.textContent = msg;
+    errorMsg.classList.remove('hidden');
+  };
+  const hideError = () => errorMsg.classList.add('hidden');
+
+  const interpolateCount = (count: number) =>
+    (D.i18nCharCountTemplate ?? '{count}').replace('{count}', String(count));
+
+  const updateStats = () => {
+    outputStats.textContent = interpolateCount(textOutput.value.length);
+  };
+
+  const setMode = (newMode: 'encode' | 'decode') => {
+    mode = newMode;
+    modeBtns.forEach(btn => {
+      const isActive = btn.dataset.mode === mode;
+      btn.classList.toggle('bg-white', isActive);
+      btn.classList.toggle('text-[#171717]', isActive);
+      btn.classList.toggle('shadow-sm', isActive);
+      btn.classList.toggle('text-gray-500', !isActive);
+    });
+
+    if (mode === 'encode') {
+      inputLabel.textContent = D.i18nInputEncodeLabel ?? '';
+      outputLabel.textContent = D.i18nOutputEncodeLabel ?? '';
+      textInput.placeholder = D.i18nInputEncodePlaceholder ?? '';
+      encodeOptions.classList.remove('hidden');
+    } else {
+      inputLabel.textContent = D.i18nInputDecodeLabel ?? '';
+      outputLabel.textContent = D.i18nOutputDecodeLabel ?? '';
+      textInput.placeholder = D.i18nInputDecodePlaceholder ?? '';
+      encodeOptions.classList.add('hidden');
+    }
+
+    textOutput.value = '';
+    updateStats();
+    hideError();
+  };
+
+  const setEncodeMode = (newMode: 'component' | 'uri') => {
+    encodeMode = newMode;
+    encodeModeBtns.forEach(btn => {
+      const isActive = btn.dataset.encodeMode === encodeMode;
+      btn.classList.toggle('bg-[#171717]', isActive);
+      btn.classList.toggle('text-white', isActive);
+      btn.classList.toggle('text-gray-600', !isActive);
+    });
+
+    encodeHint.textContent =
+      encodeMode === 'component' ? (D.i18nComponentHint ?? '') : (D.i18nUriHint ?? '');
+
+    if (mode === 'encode' && textInput.value) processEncode();
+  };
+
+  const processEncode = () => {
+    const input = textInput.value;
+    hideError();
+    if (!input) {
+      textOutput.value = '';
+      updateStats();
+      return;
+    }
+    try {
+      textOutput.value = encodeMode === 'component' ? encodeURIComponent(input) : encodeURI(input);
+      updateStats();
+    } catch (e) {
+      showError(D.i18nErrorEncode ?? 'Encode failed');
+    }
+  };
+
+  const processDecode = () => {
+    const input = textInput.value.trim();
+    hideError();
+    if (!input) {
+      textOutput.value = '';
+      updateStats();
+      return;
+    }
+    try {
+      textOutput.value = decodeURIComponent(input);
+      updateStats();
+    } catch (e) {
+      try {
+        textOutput.value = decodeURI(input);
+        updateStats();
+      } catch {
+        showError(D.i18nErrorDecode ?? 'Decode failed');
+      }
+    }
+  };
+
+  const process = () => (mode === 'encode' ? processEncode() : processDecode());
+
+  modeBtns.forEach(btn => {
+    btn.addEventListener('click', () => setMode(btn.dataset.mode as 'encode' | 'decode'));
+  });
+  encodeModeBtns.forEach(btn => {
+    btn.addEventListener('click', () => setEncodeMode(btn.dataset.encodeMode as 'component' | 'uri'));
+  });
+  textInput.addEventListener('input', () => { hideError(); process(); });
+  $('clear-btn').addEventListener('click', () => {
+    textInput.value = '';
+    textOutput.value = '';
+    updateStats();
+    hideError();
+  });
+  copyBtn.addEventListener('click', async () => {
+    if (!textOutput.value) return;
+    try {
+      await navigator.clipboard.writeText(textOutput.value);
+      copyBtn.textContent = D.i18nCopied ?? 'Copied';
+      setTimeout(() => copyBtn.textContent = D.i18nCopy ?? 'Copy', 1200);
+    } catch {}
+  });
+
+  setMode('encode');
+  setEncodeMode('component');
+</script>

@@ -1,6 +1,10 @@
-// 常用场景 - 用户最容易理解的功能入口
+import { useTranslations } from '../i18n';
+import { DEFAULT_LOCALE, type Locale } from '../i18n/config';
+import { localizedPath } from '../i18n/seo';
+import type { CategoryKey, CategoryToolKey, QuickActionKey } from '../i18n/schema';
+
 export interface QuickAction {
-  id: string;
+  id: QuickActionKey;
   name: string;
   description: string;
   href: string;
@@ -8,379 +12,148 @@ export interface QuickAction {
   isNew?: boolean;
 }
 
-// 工具分类
+export interface Tool {
+  id: CategoryToolKey;
+  name: string;
+  description: string;
+  href: string;
+  category: CategoryKey;
+  isNew?: boolean;
+}
+
 export interface ToolCategory {
-  id: string;
+  id: CategoryKey;
   name: string;
   description: string;
   tools: Tool[];
 }
 
-export interface Tool {
-  id: string;
-  name: string;
-  description: string;
+type QuickActionMeta = {
+  id: QuickActionKey;
   href: string;
-  category: string;
   isNew?: boolean;
-}
+};
 
-// 常用场景列表 - 首页直接展示
-export const quickActions: QuickAction[] = [
-  // 图片压缩（独立 slug，独立 SEO）
-  {
-    id: "png-compress",
-    name: "PNG 压缩",
-    description: "智能压缩 · 减小 60-80%",
-    href: "/compress-png",
-    tags: ["PNG压缩", "PNG compress", "pngquant", "图片压缩"],
-  },
-  {
-    id: "jpg-compress",
-    name: "JPG 压缩",
-    description: "照片压缩 · 减小 30-45%",
-    href: "/compress-jpg",
-    tags: ["JPG压缩", "JPEG压缩", "JPG compress", "图片压缩"],
-  },
-  {
-    id: "webp-compress",
-    name: "WebP 压缩",
-    description: "无损压缩 · 保留透明",
-    href: "/compress-webp",
-    tags: ["WebP压缩", "WebP compress"],
-  },
-  // 格式转换（独立 slug，独立 SEO）
-  {
-    id: "png-to-jpg",
-    name: "PNG 转 JPG",
-    description: "透明背景白色填充 · 体积更小",
-    href: "/png-to-jpg",
-    tags: ["PNG转JPG", "PNG转JPEG", "png to jpg"],
-  },
-  {
-    id: "jpg-to-png",
-    name: "JPG 转 PNG",
-    description: "无损保存 · 支持透明度",
-    href: "/jpg-to-png",
-    tags: ["JPG转PNG", "JPEG转PNG", "jpg to png"],
-  },
-  {
-    id: "png-to-webp",
-    name: "PNG 转 WebP",
-    description: "保留透明 · 体积更小",
-    href: "/png-to-webp",
-    tags: ["PNG转WebP", "png to webp"],
-  },
-  {
-    id: "jpg-to-webp",
-    name: "JPG 转 WebP",
-    description: "同等画质更小体积",
-    href: "/jpg-to-webp",
-    tags: ["JPG转WebP", "JPEG转WebP", "jpg to webp"],
-  },
-  {
-    id: "webp-to-png",
-    name: "WebP 转 PNG",
-    description: "WebP 兼容性兜底",
-    href: "/webp-to-png",
-    tags: ["WebP转PNG", "webp to png"],
-  },
-  {
-    id: "webp-to-jpg",
-    name: "WebP 转 JPG",
-    description: "兼容老旧平台",
-    href: "/webp-to-jpg",
-    tags: ["WebP转JPG", "webp to jpg"],
-  },
-  // 代码工具
-  {
-    id: "code-image",
-    name: "代码转图片",
-    description: "代码生成分享图",
-    href: "/code-image",
-    tags: ["代码", "图片", "分享"],
-    isNew: true,
-  },
-  {
-    id: "jwt",
-    name: "JWT 解码",
-    description: "生成、解析、验签",
-    href: "/jwt",
-    tags: ["JWT", "token", "加密", "jsonwebtoken"],
-    isNew: true,
-  },
-  {
-    id: "timestamp",
-    name: "时间戳转换",
-    description: "Unix 时间戳和日期互转",
-    href: "/timestamp",
-    tags: ["时间戳", "timestamp", "Unix", "日期", "时间"],
-    isNew: true,
-  },
-  {
-    id: "json",
-    name: "JSON 格式化",
-    description: "JSON 美化、压缩、校验",
-    href: "/json",
-    tags: ["JSON", "格式化", "美化", "压缩", "校验", "format", "parser"],
-  },
-  {
-    id: "base64",
-    name: "Base64 编解码",
-    description: "文本/文件与 Base64 互转",
-    href: "/base64",
-    tags: [
-      "Base64",
-      "编码",
-      "解码",
-      "文件转换",
-      "base64 encode",
-      "base64 decode",
-    ],
-    isNew: true,
-  },
-  {
-    id: "uuid",
-    name: "UUID 生成器",
-    description: "批量生成唯一标识符",
-    href: "/uuid",
-    tags: ["UUID", "GUID", "唯一ID", "随机ID", "uuid generator"],
-    isNew: true,
-  },
-  {
-    id: "url-encode",
-    name: "URL 编解码",
-    description: "URL 特殊字符编码解码",
-    href: "/url-encode",
-    tags: [
-      "URL编码",
-      "URL解码",
-      "encodeURIComponent",
-      "百分号编码",
-      "url encode",
-    ],
-    isNew: true,
-  },
-  {
-    id: "color",
-    name: "颜色转换",
-    description: "十六进制、RGB、HSL 色值互转",
-    href: "/color",
-    tags: [
-      "颜色",
-      "色值",
-      "颜色转换",
-      "RGB",
-      "HEX",
-      "HSL",
-      "color picker",
-      "取色器",
-    ],
-    isNew: true,
-  },
-  {
-    id: "qrcode",
-    name: "二维码生成",
-    description: "文本/链接生成二维码",
-    href: "/qrcode",
-    tags: ["二维码", "QR Code", "条码", "qrcode generator", "二维码生成器"],
-    isNew: true,
-  },
-  // 通用
-  {
-    id: "any-convert",
-    name: "图片转换",
-    description: "PNG JPG WebP 格式互转",
-    href: "/convert",
-    tags: [
-      "图片转换",
-      "图片格式转换",
-      "PNG转JPG",
-      "JPG转PNG",
-      "WebP",
-      "HEIC",
-      "BMP",
-      "GIF",
-    ],
-  },
-  {
-    id: "any-compress",
-    name: "图片压缩",
-    description: "任意图片压缩",
-    href: "/compress",
-    tags: ["压缩", "通用"],
-  },
-  {
-    id: "watermark",
-    name: "图片隐藏水印",
-    description: "嵌入/提取隐藏文本",
-    href: "/watermark",
-    tags: ["隐藏水印", "隐写", "watermark", "steganography", "LSB", "DCT"],
-    isNew: true,
-  },
-  {
-    id: "text-watermark",
-    name: "图片文字水印",
-    description: "身份证 / 备案 / 防盗水印",
-    href: "/text-watermark",
-    tags: [
-      "文字水印",
-      "图片水印",
-      "图片加水印",
-      "在线加水印",
-      "身份证水印",
-      "身份证加水印",
-      "证件水印",
-      "营业执照水印",
-      "合同水印",
-      "备案水印",
-      "ICP备案水印",
-      "防盗水印",
-      "版权水印",
-      "仅供备案使用",
-      "仅供xx使用",
-      "照片水印",
-      "text watermark",
-      "image watermark",
-      "photo watermark",
-    ],
-    isNew: true,
-  },
+const QUICK_ACTION_ORDER: QuickActionMeta[] = [
+  { id: 'png-compress', href: '/compress-png' },
+  { id: 'jpg-compress', href: '/compress-jpg' },
+  { id: 'webp-compress', href: '/compress-webp' },
+  { id: 'png-to-jpg', href: '/png-to-jpg' },
+  { id: 'jpg-to-png', href: '/jpg-to-png' },
+  { id: 'png-to-webp', href: '/png-to-webp' },
+  { id: 'jpg-to-webp', href: '/jpg-to-webp' },
+  { id: 'webp-to-png', href: '/webp-to-png' },
+  { id: 'webp-to-jpg', href: '/webp-to-jpg' },
+  { id: 'code-image', href: '/code-image', isNew: true },
+  { id: 'jwt', href: '/jwt', isNew: true },
+  { id: 'timestamp', href: '/timestamp', isNew: true },
+  { id: 'json', href: '/json' },
+  { id: 'base64', href: '/base64', isNew: true },
+  { id: 'uuid', href: '/uuid', isNew: true },
+  { id: 'url-encode', href: '/url-encode', isNew: true },
+  { id: 'color', href: '/color', isNew: true },
+  { id: 'qrcode', href: '/qrcode', isNew: true },
+  { id: 'any-convert', href: '/convert' },
+  { id: 'any-compress', href: '/compress' },
+  { id: 'watermark', href: '/watermark', isNew: true },
+  { id: 'text-watermark', href: '/text-watermark', isNew: true },
 ];
 
-// 工具分类 - 导航使用
-export const toolCategories: ToolCategory[] = [
+type CategoryToolMeta = {
+  id: CategoryToolKey;
+  href: string;
+  isNew?: boolean;
+};
+
+const CATEGORY_ORDER: { id: CategoryKey; tools: CategoryToolMeta[] }[] = [
   {
-    id: "image",
-    name: "图片工具",
-    description: "图片压缩、格式转换",
+    id: 'image',
     tools: [
-      {
-        id: "compress",
-        name: "图片压缩",
-        description: "压缩图片大小，保持画质",
-        href: "/compress",
-        category: "image",
-      },
-      {
-        id: "convert",
-        name: "图片格式转换",
-        description: "PNG JPG WebP GIF BMP 互转",
-        href: "/convert",
-        category: "image",
-      },
-      {
-        id: "watermark",
-        name: "图片隐藏水印",
-        description: "嵌入 / 提取隐藏文字",
-        href: "/watermark",
-        category: "image",
-        isNew: true,
-      },
-      {
-        id: "text-watermark",
-        name: "图片文字水印",
-        description: "备案 / 防盗水印",
-        href: "/text-watermark",
-        category: "image",
-        isNew: true,
-      },
+      { id: 'compress', href: '/compress' },
+      { id: 'convert', href: '/convert' },
+      { id: 'watermark', href: '/watermark', isNew: true },
+      { id: 'text-watermark', href: '/text-watermark', isNew: true },
     ],
   },
   {
-    id: "code",
-    name: "代码工具",
-    description: "开发者工具",
+    id: 'code',
     tools: [
-      {
-        id: "code-image",
-        name: "代码转图片",
-        description: "把代码生成精美的分享图片",
-        href: "/code-image",
-        category: "code",
-        isNew: true,
-      },
-      {
-        id: "json",
-        name: "JSON",
-        description: "JSON 格式化",
-        href: "/json",
-        category: "code",
-      },
-      {
-        id: "jwt",
-        name: "JWT",
-        description: "生成 / 解析 / 验签",
-        href: "/jwt",
-        category: "code",
-        isNew: true,
-      },
-      {
-        id: "timestamp",
-        name: "时间戳",
-        description: "Unix 时间戳转换",
-        href: "/timestamp",
-        category: "code",
-        isNew: true,
-      },
-      {
-        id: "base64",
-        name: "Base64",
-        description: "文本/文件编解码",
-        href: "/base64",
-        category: "code",
-        isNew: true,
-      },
-      {
-        id: "uuid",
-        name: "UUID",
-        description: "批量生成唯一标识符",
-        href: "/uuid",
-        category: "code",
-        isNew: true,
-      },
-      {
-        id: "url-encode",
-        name: "URL 编解码",
-        description: "URL 特殊字符编码解码",
-        href: "/url-encode",
-        category: "code",
-        isNew: true,
-      },
-      {
-        id: "color",
-        name: "颜色转换",
-        description: "十六进制、RGB、HSL 色值互转",
-        href: "/color",
-        category: "code",
-        isNew: true,
-      },
-      {
-        id: "qrcode",
-        name: "二维码生成",
-        description: "文本/链接生成二维码",
-        href: "/qrcode",
-        category: "code",
-        isNew: true,
-      },
+      { id: 'code-image', href: '/code-image', isNew: true },
+      { id: 'json', href: '/json' },
+      { id: 'jwt', href: '/jwt', isNew: true },
+      { id: 'timestamp', href: '/timestamp', isNew: true },
+      { id: 'base64', href: '/base64', isNew: true },
+      { id: 'uuid', href: '/uuid', isNew: true },
+      { id: 'url-encode', href: '/url-encode', isNew: true },
+      { id: 'color', href: '/color', isNew: true },
+      { id: 'qrcode', href: '/qrcode', isNew: true },
     ],
   },
 ];
 
-export const allTools: Tool[] = toolCategories.flatMap((cat) => cat.tools);
-
-export function getToolById(id: string): Tool | undefined {
-  return allTools.find((tool) => tool.id === id);
+export function getQuickActions(locale: Locale = DEFAULT_LOCALE): QuickAction[] {
+  const t = useTranslations(locale);
+  return QUICK_ACTION_ORDER.map((meta) => {
+    const entry = t.quickActions[meta.id];
+    return {
+      id: meta.id,
+      name: entry.name,
+      description: entry.description,
+      href: localizedPath(locale, meta.href),
+      tags: entry.tags,
+      ...(meta.isNew ? { isNew: true } : {}),
+    };
+  });
 }
 
-export function getToolsByCategory(categoryId: string): Tool[] {
-  const category = toolCategories.find((cat) => cat.id === categoryId);
-  return category?.tools || [];
+export function getToolCategories(locale: Locale = DEFAULT_LOCALE): ToolCategory[] {
+  const t = useTranslations(locale);
+  return CATEGORY_ORDER.map((cat) => {
+    const catEntry = t.toolCategories[cat.id];
+    return {
+      id: cat.id,
+      name: catEntry.name,
+      description: catEntry.description,
+      tools: cat.tools
+        .map((toolMeta): Tool | null => {
+          const toolEntry = catEntry.tools[toolMeta.id];
+          if (!toolEntry) return null;
+          return {
+            id: toolMeta.id,
+            name: toolEntry.name,
+            description: toolEntry.description,
+            href: localizedPath(locale, toolMeta.href),
+            category: cat.id,
+            ...(toolMeta.isNew ? { isNew: true } : {}),
+          };
+        })
+        .filter((x): x is Tool => x !== null),
+    };
+  });
 }
 
-export function searchQuickActions(query: string): QuickAction[] {
+export function getAllTools(locale: Locale = DEFAULT_LOCALE): Tool[] {
+  return getToolCategories(locale).flatMap((cat) => cat.tools);
+}
+
+export function getToolById(id: CategoryToolKey, locale: Locale = DEFAULT_LOCALE): Tool | undefined {
+  return getAllTools(locale).find((tool) => tool.id === id);
+}
+
+export function getToolsByCategory(
+  categoryId: CategoryKey,
+  locale: Locale = DEFAULT_LOCALE,
+): Tool[] {
+  const category = getToolCategories(locale).find((cat) => cat.id === categoryId);
+  return category?.tools ?? [];
+}
+
+export function searchQuickActions(
+  query: string,
+  locale: Locale = DEFAULT_LOCALE,
+): QuickAction[] {
   const lowerQuery = query.toLowerCase();
-  return quickActions.filter(
+  return getQuickActions(locale).filter(
     (action) =>
       action.name.toLowerCase().includes(lowerQuery) ||
       action.description.toLowerCase().includes(lowerQuery) ||

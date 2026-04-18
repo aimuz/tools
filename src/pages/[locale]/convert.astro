@@ -1,0 +1,11 @@
+---
+import ConvertPage from '../../components/pages/ConvertPage.astro';
+import { isLocale, type Locale } from '../../i18n/config';
+
+export const getStaticPaths = () => [{ params: { locale: 'en' } }];
+
+const { locale } = Astro.params;
+if (!locale || !isLocale(locale)) throw new Error(`Invalid locale: ${locale}`);
+---
+
+<ConvertPage locale={locale as Locale} />

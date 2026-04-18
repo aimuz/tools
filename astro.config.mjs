@@ -5,9 +5,24 @@ import AstroPWA from '@vite-pwa/astro';
 
 export default defineConfig({
   site: 'https://wizgo.xyz',
+  i18n: {
+    defaultLocale: 'zh-CN',
+    locales: ['zh-CN', 'en'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   integrations: [
     tailwind(),
-    sitemap(),
+    sitemap({
+      i18n: {
+        defaultLocale: 'zh-CN',
+        locales: {
+          'zh-CN': 'zh-CN',
+          en: 'en',
+        },
+      },
+    }),
     AstroPWA({
       registerType: 'autoUpdate',
       manifest: {

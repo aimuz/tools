@@ -1,4 +1,14 @@
 ---
+import { useTranslations } from '../i18n';
+import { DEFAULT_LOCALE, type Locale } from '../i18n/config';
+import {
+  absoluteUrl,
+  alternateOgLocales,
+  buildHreflangEntries,
+  ogLocale,
+  stripLocaleFromPath,
+} from '../i18n/seo';
+
 interface Props {
   title: string;
   description?: string;
@@ -8,23 +18,32 @@ interface Props {
   canonical?: string;
   /** og:type — defaults to "website"; use "article" for blog posts. */
   ogType?: 'website' | 'article';
+  /** Page locale. Defaults to zh-CN; required for any non-default locale page. */
+  locale?: Locale;
 }
 
 const {
   title,
-  description = 'WizGo 是免费在线工具箱：图片压缩、格式转换、JWT、时间戳等开发者日常工具，纯浏览器本地处理不上传。',
   ogImage,
   canonical,
   ogType = 'website',
+  locale = DEFAULT_LOCALE,
 } = Astro.props;
 
+const t = useTranslations(locale);
+const description = Astro.props.description ?? t.common.siteTagline;
+
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://wizgo.xyz';
-const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? siteUrl).toString();
+const localePath = '/' + stripLocaleFromPath(Astro.url.pathname);
+const canonicalUrl = canonical ?? absoluteUrl(locale, localePath, siteUrl);
 const socialImage = ogImage ?? `${siteUrl}/favicon.svg`;
+const hreflangEntries = buildHreflangEntries(localePath, siteUrl);
+const ogLocaleValue = ogLocale(locale);
+const ogAlternates = alternateOgLocales(locale);
 ---
 
 <!doctype html>
-<html lang="zh-CN">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,18 +52,25 @@ const socialImage = ogImage ?? `${siteUrl}/favicon.svg`;
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    {hreflangEntries.map((entry) => (
+      <link rel="alternate" hreflang={entry.hreflang} href={entry.href} />
+    ))}
+
     <!-- PWA -->
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
 
     <!-- Open Graph -->
-    <meta property="og:site_name" content="WizGo" />
+    <meta property="og:site_name" content={t.common.siteName} />
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={socialImage} />
-    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:locale" content={ogLocaleValue} />
+    {ogAlternates.map((alt) => (
+      <meta property="og:locale:alternate" content={alt} />
+    ))}
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />

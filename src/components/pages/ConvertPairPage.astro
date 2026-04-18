@@ -1,0 +1,146 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../layout/Header.astro';
+import Footer from '../layout/Footer.astro';
+import { useTranslations, interpolate } from '../../i18n';
+import type { Locale } from '../../i18n/config';
+import type { ConvertFormat, ConvertPairKey } from '../../i18n/schema';
+import { absoluteUrl, localizedPath } from '../../i18n/seo';
+
+interface Props {
+  locale: Locale;
+  from: ConvertFormat;
+  to: ConvertFormat;
+}
+
+const { locale, from, to } = Astro.props;
+
+const FORMATS: readonly ConvertFormat[] = ['png', 'jpg', 'webp', 'gif', 'bmp'] as const;
+const LABEL: Record<ConvertFormat, string> = {
+  png: 'PNG', jpg: 'JPG', webp: 'WebP', gif: 'GIF', bmp: 'BMP',
+};
+const FULL: Record<ConvertFormat, string> = {
+  png: 'PNG', jpg: 'JPEG', webp: 'WebP', gif: 'GIF', bmp: 'BMP',
+};
+
+const t = useTranslations(locale);
+const cp = t.pages.convertPair;
+
+const fromLabel = LABEL[from];
+const toLabel = LABEL[to];
+const fromFull = FULL[from];
+const toFull = FULL[to];
+
+const pairKey = `${from}-${to}` as ConvertPairKey;
+const hint = cp.pairHints[pairKey] ?? '';
+const fallbackHint = interpolate(cp.fallbackHintTemplate, { fromFull, toFull });
+
+const title = interpolate(cp.titleTemplate, { fromLabel, toLabel, fromFull, toFull });
+const description = interpolate(cp.descriptionTemplate, {
+  fromLabel,
+  toLabel,
+  hintWithSpace: hint ? hint + ' ' : '',
+});
+const h1 = interpolate(cp.h1Template, { fromLabel, toLabel });
+const dragText = interpolate(cp.upload.dragTemplate, { fromLabel });
+const startText = interpolate(cp.options.startTemplate, { toLabel });
+const schemaName = interpolate(cp.h1Template, { fromLabel, toLabel });
+const schemaDesc = interpolate(cp.schema.descriptionTemplate, { fromFull, toFull });
+
+const pageUrl = absoluteUrl(locale, `/${from}-to-${to}`);
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: schemaName,
+  applicationCategory: 'MultimediaApplication',
+  operatingSystem: 'Any',
+  description: schemaDesc,
+  inLanguage: locale,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: pageUrl,
+};
+
+const sameFromOthers = FORMATS.filter((f) => f !== from && f !== to).slice(0, 4);
+const sameToOthers = FORMATS.filter((f) => f !== from && f !== to).slice(0, 4);
+const moreHref = localizedPath(locale, '/convert');
+---
+
+<Layout title={title} description={description} locale={locale}>
+  <meta name="x-preset-to" content={to} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <Header locale={locale} />
+
+  <main class="flex-1 py-12">
+    <div class="max-w-[720px] mx-auto px-6">
+      <!-- Hero -->
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-semibold text-[#171717] mb-2">{h1}</h1>
+        <p class="text-gray-500">{hint || fallbackHint}</p>
+      </div>
+
+      <!-- Upload zone -->
+      <div
+        id="upload-zone"
+        class="relative w-full min-h-[200px] rounded-xl border-2 border-dashed border-gray-300 hover:border-[#171717] transition-colors bg-white flex flex-col items-center justify-center gap-3 cursor-pointer mb-6"
+      >
+        <svg class="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+        </svg>
+        <div class="text-center">
+          <p class="text-base text-[#171717]">{dragText}</p>
+          <p class="text-sm text-gray-400 mt-1">{cp.upload.orClick}</p>
+        </div>
+        <p class="text-xs text-gray-400">{cp.upload.sizeHint}</p>
+        <input type="file" id="file-input" class="hidden" accept="image/*" multiple />
+      </div>
+
+      <!-- Options (only when files picked) -->
+      <div id="options" class="mb-6 hidden">
+        <div id="quality-option" class={to === 'jpg' ? 'mb-6' : 'mb-6 hidden'}>
+          <p class="text-sm text-gray-500 mb-2">{cp.options.quality}</p>
+          <div class="flex gap-2">
+            <button class="quality-btn px-4 py-2 text-sm rounded-full border border-gray-200 bg-[#171717] text-white" data-quality="90">{cp.options.qualityHigh}</button>
+            <button class="quality-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" data-quality="75">{cp.options.qualityMid}</button>
+            <button class="quality-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" data-quality="60">{cp.options.qualityLow}</button>
+          </div>
+        </div>
+
+        <button id="convert-btn" class="w-full py-3 bg-[#171717] text-white rounded-lg font-medium hover:bg-gray-800 transition-colors">
+          {startText}
+        </button>
+      </div>
+
+      <!-- Files / Results -->
+      <div id="file-list" class="space-y-3 mb-6"></div>
+      <div id="results" class="space-y-3 hidden"></div>
+
+      <!-- Related conversions (internal links for SEO + UX) -->
+      <section class="mt-12 pt-8 border-t border-gray-100">
+        <p class="text-sm text-gray-500 mb-4">{cp.related.label}</p>
+        <div class="flex flex-wrap gap-2" id="related-links">
+          {sameFromOthers.map((f) => (
+            <a href={localizedPath(locale, `/${from}-to-${f}`)} class="text-xs px-3 py-1.5 border border-gray-200 rounded-full text-gray-600 hover:border-[#171717] hover:text-[#171717]">
+              {interpolate(cp.related.pairTemplate, { fromLabel, toLabel: LABEL[f] })}
+            </a>
+          ))}
+          {sameToOthers.map((f) => (
+            <a href={localizedPath(locale, `/${f}-to-${to}`)} class="text-xs px-3 py-1.5 border border-gray-200 rounded-full text-gray-600 hover:border-[#171717] hover:text-[#171717]">
+              {interpolate(cp.related.pairTemplate, { fromLabel: LABEL[f], toLabel })}
+            </a>
+          ))}
+          <a href={moreHref} class="text-xs px-3 py-1.5 border border-gray-200 rounded-full text-gray-600 hover:border-[#171717] hover:text-[#171717]">
+            {cp.related.more}
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  import { initConvertPage } from '../../scripts/convert-page';
+  initConvertPage();
+</script>

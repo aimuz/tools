@@ -1,0 +1,152 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../layout/Header.astro';
+import Footer from '../layout/Footer.astro';
+import { getQuickActions } from '../../data/tools';
+import { useTranslations } from '../../i18n';
+import { absoluteUrl, localizedPath } from '../../i18n/seo';
+import type { Locale } from '../../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const quickActions = getQuickActions(locale);
+const homeUrl = absoluteUrl(locale, '/');
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: t.common.siteName,
+  alternateName: t.pages.home.schema.alternateName,
+  url: homeUrl.replace(/\/$/, ''),
+  description: t.pages.home.description,
+  inLanguage: locale,
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${homeUrl}?q={search_term_string}`,
+    'query-input': 'required name=search_term_string',
+  },
+};
+---
+
+<Layout title={t.pages.home.title} description={t.pages.home.description} locale={locale}>
+  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} slot="head" />
+  <Header locale={locale} />
+
+  <main class="flex-1">
+    <!-- Hero -->
+    <section class="pt-16 pb-8 text-center">
+      <div class="max-w-[720px] mx-auto px-6">
+        <h1 class="text-4xl md:text-5xl font-semibold text-[#171717] tracking-tight mb-4">
+          {t.pages.home.heroHeading}
+        </h1>
+        <p class="text-lg text-gray-500">
+          {t.pages.home.heroSubheading}
+        </p>
+      </div>
+    </section>
+
+    <!-- Search -->
+    <section class="pb-10">
+      <div class="max-w-[480px] mx-auto px-6">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="tool-search"
+            class="w-full pl-11 pr-4 py-3 bg-white border border-gray-200 rounded-xl text-sm text-[#171717] placeholder-gray-400 focus:outline-none focus:border-[#171717] transition-colors"
+            placeholder={t.pages.home.searchPlaceholder}
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="pb-16">
+      <div class="max-w-[800px] mx-auto px-6">
+        <div id="actions-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          {quickActions.map((action) => (
+            <a
+              href={action.href}
+              class="action-card group block p-4 bg-white border border-gray-200 rounded-xl hover:border-[#171717] hover:shadow-sm transition-all duration-200"
+              data-search={action.name.toLowerCase() + ' ' + action.tags.join(' ')}
+            >
+              <h3 class="text-sm font-semibold text-[#171717] mb-1">
+                {action.name}
+              </h3>
+              <p class="text-xs text-gray-400">{action.description}</p>
+            </a>
+          ))}
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="hidden text-center py-12">
+          <p class="text-gray-400">{t.pages.home.emptyState}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-10 border-t border-gray-100">
+      <div class="max-w-[600px] mx-auto px-6">
+        <div class="flex flex-wrap justify-center gap-8 text-center">
+          <div class="flex items-center gap-2 text-sm text-gray-500">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+            </svg>
+            <span>{t.pages.home.features.noUpload}</span>
+          </div>
+          <div class="flex items-center gap-2 text-sm text-gray-500">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            <span>{t.pages.home.features.free}</span>
+          </div>
+          <div class="flex items-center gap-2 text-sm text-gray-500">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            <span>{t.pages.home.features.noInstall}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  const searchInput = document.getElementById('tool-search');
+  const actionCards = document.querySelectorAll('.action-card');
+  const emptyState = document.getElementById('empty-state');
+
+  searchInput?.addEventListener('input', (e) => {
+    const query = (e.target as HTMLInputElement).value.toLowerCase().trim();
+    let hasVisible = false;
+
+    actionCards.forEach((card) => {
+      const searchData = (card as HTMLElement).dataset.search || '';
+
+      if (!query || searchData.includes(query)) {
+        (card as HTMLElement).style.display = '';
+        hasVisible = true;
+      } else {
+        (card as HTMLElement).style.display = 'none';
+      }
+    });
+
+    if (hasVisible) {
+      emptyState?.classList.add('hidden');
+    } else {
+      emptyState?.classList.remove('hidden');
+    }
+  });
+</script>

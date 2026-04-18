@@ -1,0 +1,35 @@
+---
+import ConvertPairPage from '../../components/pages/ConvertPairPage.astro';
+import { isLocale, type Locale } from '../../i18n/config';
+import type { ConvertFormat } from '../../i18n/schema';
+
+const FORMATS: readonly ConvertFormat[] = ['png', 'jpg', 'webp', 'gif', 'bmp'] as const;
+
+export const getStaticPaths = () => {
+  const formats: ConvertFormat[] = ['png', 'jpg', 'webp', 'gif', 'bmp'];
+  const locales: Locale[] = ['en'];
+  const paths: { params: { locale: Locale; from: ConvertFormat; to: ConvertFormat } }[] = [];
+  for (const locale of locales) {
+    for (const from of formats) {
+      for (const to of formats) {
+        if (from !== to) paths.push({ params: { locale, from, to } });
+      }
+    }
+  }
+  return paths;
+};
+
+const { locale, from, to } = Astro.params as {
+  locale: string;
+  from: ConvertFormat;
+  to: ConvertFormat;
+};
+if (!isLocale(locale)) {
+  throw new Error(`Invalid locale: ${locale}`);
+}
+if (!FORMATS.includes(from) || !FORMATS.includes(to)) {
+  return Astro.redirect(`/${locale}/convert`);
+}
+---
+
+<ConvertPairPage locale={locale as Locale} from={from} to={to} />

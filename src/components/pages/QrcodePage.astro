@@ -1,0 +1,343 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../layout/Header.astro';
+import Footer from '../layout/Footer.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/config';
+import { absoluteUrl } from '../../i18n/seo';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const q = t.pages.qrcode;
+const pageUrl = absoluteUrl(locale, '/qrcode');
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: q.schema.name,
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Any',
+  description: q.schema.description,
+  inLanguage: locale,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: pageUrl,
+};
+---
+
+<Layout title={q.title} description={q.description} locale={locale}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <Header locale={locale} />
+
+  <main class="flex-1 py-10">
+    <div class="max-w-[960px] mx-auto px-6"
+      data-i18n-empty={q.previewEmpty}
+      data-i18n-generating={q.generating}
+      data-i18n-error={q.generateError}
+      data-i18n-empty-content={q.emptyContent}
+      data-i18n-info-template={q.infoTemplate}
+    >
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-semibold text-[#171717] mb-2">{q.h1}</h1>
+        <p class="text-gray-500">{q.subheading}</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <section class="space-y-4">
+          <div class="p-4 bg-white border border-gray-200 rounded-xl">
+            <label class="block text-sm font-medium text-[#171717] mb-2">{q.content.label}</label>
+            <textarea
+              id="qr-input"
+              class="w-full h-24 p-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#171717] resize-none"
+              placeholder={q.content.placeholder}
+            ></textarea>
+            <p class="text-xs text-gray-400 mt-2">{q.content.hint}</p>
+          </div>
+
+          <div class="p-4 bg-white border border-gray-200 rounded-xl">
+            <label class="block text-sm font-medium text-[#171717] mb-2">{q.size}</label>
+            <div class="flex flex-wrap gap-2">
+              <button data-size="128" class="size-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]">128px</button>
+              <button data-size="256" class="size-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 bg-[#171717] text-white">256px</button>
+              <button data-size="512" class="size-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]">512px</button>
+              <button data-size="1024" class="size-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]">1024px</button>
+            </div>
+          </div>
+
+          <div class="p-4 bg-white border border-gray-200 rounded-xl">
+            <label class="block text-sm font-medium text-[#171717] mb-2">{q.colors.label}</label>
+            <div class="flex gap-4">
+              <div class="flex items-center gap-2">
+                <input type="color" id="color-dark" value="#000000" class="w-10 h-10 rounded-lg cursor-pointer border-0 p-0" />
+                <span class="text-xs text-gray-500">{q.colors.foreground}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <input type="color" id="color-light" value="#FFFFFF" class="w-10 h-10 rounded-lg cursor-pointer border-0 p-0" />
+                <span class="text-xs text-gray-500">{q.colors.background}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 bg-white border border-gray-200 rounded-xl">
+            <label class="block text-sm font-medium text-[#171717] mb-2">{q.ec.label}</label>
+            <div class="flex flex-wrap gap-2">
+              <button data-level="L" class="level-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" title={q.ec.lowTitle}>{q.ec.low}</button>
+              <button data-level="M" class="level-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 bg-[#171717] text-white" title={q.ec.mediumTitle}>{q.ec.medium}</button>
+              <button data-level="Q" class="level-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" title={q.ec.quartileTitle}>{q.ec.quartile}</button>
+              <button data-level="H" class="level-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" title={q.ec.highTitle}>{q.ec.high}</button>
+            </div>
+            <p class="text-xs text-gray-400 mt-2">{q.ec.hint}</p>
+          </div>
+
+          <div class="flex gap-3">
+            <button id="generate-btn" class="flex-1 px-4 py-2 bg-[#171717] text-white text-sm rounded-lg hover:bg-gray-800 transition-colors">
+              {q.generateBtn}
+            </button>
+            <button id="reset-btn" class="px-4 py-2 border border-gray-200 text-gray-600 text-sm rounded-lg hover:border-[#171717] transition-colors">
+              {q.resetBtn}
+            </button>
+          </div>
+        </section>
+
+        <section>
+          <div class="p-6 bg-white border border-gray-200 rounded-xl min-h-[400px] flex flex-col">
+            <div class="flex justify-between items-center mb-4">
+              <span class="text-sm font-medium text-[#171717]">{q.preview}</span>
+              <div class="flex gap-2">
+                <button id="download-png" class="text-xs text-gray-400 hover:text-[#171717]" disabled>{q.downloadPng}</button>
+                <button id="download-svg" class="text-xs text-gray-400 hover:text-[#171717]" disabled>{q.downloadSvg}</button>
+              </div>
+            </div>
+
+            <div id="qr-container" class="flex-1 flex items-center justify-center bg-gray-50 rounded-lg">
+              <p class="text-gray-400 text-sm">{q.previewEmpty}</p>
+            </div>
+
+            <p id="qr-info" class="text-xs text-gray-400 mt-3 text-center"></p>
+          </div>
+        </section>
+      </div>
+
+      <div class="mt-8 p-4 bg-gray-50 border border-gray-200 rounded-xl">
+        <h3 class="text-sm font-medium text-[#171717] mb-2">{q.examples.heading}</h3>
+        <div class="grid sm:grid-cols-2 gap-3 text-xs text-gray-500">
+          <div>
+            <span class="font-medium">{q.examples.url}</span>
+            <code class="bg-white px-2 py-1 rounded">https://wizgo.xyz</code>
+          </div>
+          <div>
+            <span class="font-medium">{q.examples.email}</span>
+            <code class="bg-white px-2 py-1 rounded">mailto:hello@example.com</code>
+          </div>
+          <div>
+            <span class="font-medium">{q.examples.phone}</span>
+            <code class="bg-white px-2 py-1 rounded">tel:+8612345678900</code>
+          </div>
+          <div>
+            <span class="font-medium">{q.examples.wifi}</span>
+            <code class="bg-white px-2 py-1 rounded">WIFI:T:WPA;S:network;P:password;;</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  // @ts-ignore
+  import QRCode from 'qrcode';
+
+  const root = document.querySelector<HTMLElement>('main .max-w-\\[960px\\]')!;
+  const D = root.dataset;
+  const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+
+  const qrInput = $<HTMLTextAreaElement>('qr-input');
+  const qrContainer = $('qr-container');
+  const qrInfo = $('qr-info');
+  const generateBtn = $('generate-btn');
+  const resetBtn = $('reset-btn');
+  const downloadPng = $<HTMLButtonElement>('download-png');
+  const downloadSvg = $<HTMLButtonElement>('download-svg');
+  const colorDark = $<HTMLInputElement>('color-dark');
+  const colorLight = $<HTMLInputElement>('color-light');
+
+  let currentSize = 256;
+  let currentLevel: 'L' | 'M' | 'Q' | 'H' = 'M';
+  let currentDataUrl = '';
+  let currentSvg = '';
+
+  const renderEmpty = () => {
+    qrContainer.innerHTML = '';
+    const p = document.createElement('p');
+    p.className = 'text-gray-400 text-sm';
+    p.textContent = D.i18nEmpty ?? '';
+    qrContainer.appendChild(p);
+  };
+
+  const renderEmptyContent = () => {
+    qrContainer.innerHTML = '';
+    const p = document.createElement('p');
+    p.className = 'text-gray-400 text-sm';
+    p.textContent = D.i18nEmptyContent ?? '';
+    qrContainer.appendChild(p);
+  };
+
+  const renderGenerating = () => {
+    qrContainer.innerHTML = '';
+    const p = document.createElement('p');
+    p.className = 'text-gray-400 text-sm';
+    p.textContent = D.i18nGenerating ?? '';
+    qrContainer.appendChild(p);
+  };
+
+  const renderGenerateError = () => {
+    qrContainer.innerHTML = '';
+    const p = document.createElement('p');
+    p.className = 'text-red-500 text-sm';
+    p.textContent = D.i18nError ?? '';
+    qrContainer.appendChild(p);
+  };
+
+  const interpolateInfo = (vars: Record<string, string | number>) => {
+    return (D.i18nInfoTemplate ?? '').replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ''));
+  };
+
+  const sizeBtns = document.querySelectorAll<HTMLButtonElement>('.size-btn');
+  sizeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentSize = parseInt(btn.dataset.size!);
+      sizeBtns.forEach(b => {
+        const active = b === btn;
+        b.classList.toggle('bg-[#171717]', active);
+        b.classList.toggle('text-white', active);
+        b.classList.toggle('text-gray-600', !active);
+      });
+    });
+  });
+
+  const levelBtns = document.querySelectorAll<HTMLButtonElement>('.level-btn');
+  levelBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentLevel = btn.dataset.level as 'L' | 'M' | 'Q' | 'H';
+      levelBtns.forEach(b => {
+        const active = b === btn;
+        b.classList.toggle('bg-[#171717]', active);
+        b.classList.toggle('text-white', active);
+        b.classList.toggle('text-gray-600', !active);
+      });
+    });
+  });
+
+  const generateQR = async () => {
+    const text = qrInput.value.trim();
+    if (!text) {
+      renderEmptyContent();
+      qrInfo.textContent = '';
+      downloadPng.disabled = true;
+      downloadSvg.disabled = true;
+      return;
+    }
+
+    renderGenerating();
+
+    try {
+      const opts = {
+        width: currentSize,
+        margin: 2,
+        color: { dark: colorDark.value, light: colorLight.value },
+        errorCorrectionLevel: currentLevel,
+      };
+      currentDataUrl = await QRCode.toDataURL(text, opts);
+      currentSvg = await QRCode.toString(text, { ...opts, type: 'svg' });
+
+      const img = document.createElement('img');
+      img.src = currentDataUrl;
+      img.alt = 'QR Code';
+      img.className = 'max-w-full max-h-full';
+      qrContainer.innerHTML = '';
+      qrContainer.appendChild(img);
+
+      const chars = text.length;
+      const bytes = new TextEncoder().encode(text).length;
+      qrInfo.textContent = interpolateInfo({ chars, bytes, size: currentSize });
+
+      downloadPng.disabled = false;
+      downloadSvg.disabled = false;
+    } catch (err) {
+      renderGenerateError();
+      qrInfo.textContent = '';
+      downloadPng.disabled = true;
+      downloadSvg.disabled = true;
+    }
+  };
+
+  const reset = () => {
+    qrInput.value = '';
+    renderEmpty();
+    qrInfo.textContent = '';
+    currentDataUrl = '';
+    currentSvg = '';
+    downloadPng.disabled = true;
+    downloadSvg.disabled = true;
+
+    currentSize = 256;
+    currentLevel = 'M';
+    colorDark.value = '#000000';
+    colorLight.value = '#FFFFFF';
+
+    sizeBtns.forEach(b => {
+      const active = b.dataset.size === '256';
+      b.classList.toggle('bg-[#171717]', active);
+      b.classList.toggle('text-white', active);
+      b.classList.toggle('text-gray-600', !active);
+    });
+    levelBtns.forEach(b => {
+      const active = b.dataset.level === 'M';
+      b.classList.toggle('bg-[#171717]', active);
+      b.classList.toggle('text-white', active);
+      b.classList.toggle('text-gray-600', !active);
+    });
+  };
+
+  downloadPng.addEventListener('click', () => {
+    if (!currentDataUrl) return;
+    const a = document.createElement('a');
+    a.href = currentDataUrl;
+    a.download = `qrcode-${Date.now()}.png`;
+    a.click();
+  });
+
+  downloadSvg.addEventListener('click', () => {
+    if (!currentSvg) return;
+    const blob = new Blob([currentSvg], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `qrcode-${Date.now()}.svg`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  generateBtn.addEventListener('click', generateQR);
+  resetBtn.addEventListener('click', reset);
+
+  let debounceTimer: number;
+  qrInput.addEventListener('input', () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = window.setTimeout(() => {
+      if (qrInput.value.trim()) generateQR();
+    }, 500);
+  });
+
+  colorDark.addEventListener('change', () => {
+    if (qrInput.value.trim()) generateQR();
+  });
+  colorLight.addEventListener('change', () => {
+    if (qrInput.value.trim()) generateQR();
+  });
+</script>

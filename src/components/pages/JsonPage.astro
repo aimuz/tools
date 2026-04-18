@@ -1,0 +1,158 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../layout/Header.astro';
+import Footer from '../layout/Footer.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/config';
+import { absoluteUrl } from '../../i18n/seo';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const j = t.pages.json;
+const pageUrl = absoluteUrl(locale, '/json');
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: j.schema.name,
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Any',
+  description: j.schema.description,
+  inLanguage: locale,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: pageUrl,
+};
+---
+
+<Layout title={j.title} description={j.description} locale={locale}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <Header locale={locale} />
+
+  <main class="flex-1 py-12">
+    <div class="max-w-[960px] mx-auto px-6">
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-semibold text-[#171717] mb-2">{j.h1}</h1>
+        <p class="text-gray-500">{j.subheading}</p>
+      </div>
+
+      <div class="mb-4">
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-sm text-gray-500">{j.inputLabel}</span>
+          <div class="flex gap-2">
+            <button id="format-btn" class="px-3 py-1.5 text-sm bg-[#171717] text-white rounded hover:bg-gray-800">{j.formatBtn}</button>
+            <button id="minify-btn" class="px-3 py-1.5 text-sm border border-gray-200 text-gray-600 rounded hover:border-[#171717]">{j.minifyBtn}</button>
+            <button id="clear-btn" class="px-3 py-1.5 text-sm text-gray-400 hover:text-red-500">{j.clearBtn}</button>
+          </div>
+        </div>
+        <textarea
+          id="json-input"
+          class="w-full h-64 p-4 bg-white border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717] resize-none"
+          placeholder={j.inputPlaceholder}
+        ></textarea>
+      </div>
+
+      <div>
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-sm text-gray-500">{j.resultLabel}</span>
+          <button
+            id="copy-btn"
+            class="text-sm text-gray-400 hover:text-[#171717]"
+            data-i18n-copy={j.copyBtn}
+            data-i18n-copied={j.copiedBtn}
+          >{j.copyBtn}</button>
+        </div>
+        <textarea
+          id="json-output"
+          readonly
+          class="w-full h-64 p-4 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm resize-none"
+          placeholder={j.outputPlaceholder}
+        ></textarea>
+      </div>
+
+      <div
+        id="error-msg"
+        class="hidden mt-4 p-3 bg-red-50 border border-red-100 rounded-lg text-red-500 text-sm"
+        data-i18n-format-error={j.formatError}
+      ></div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  const input = document.getElementById('json-input') as HTMLTextAreaElement;
+  const output = document.getElementById('json-output') as HTMLTextAreaElement;
+  const formatBtn = document.getElementById('format-btn');
+  const minifyBtn = document.getElementById('minify-btn');
+  const clearBtn = document.getElementById('clear-btn');
+  const copyBtn = document.getElementById('copy-btn');
+  const errorMsg = document.getElementById('error-msg');
+
+  const FORMAT_ERROR = errorMsg?.dataset.i18nFormatError ?? 'Invalid JSON';
+  const COPY_LABEL = copyBtn?.dataset.i18nCopy ?? 'Copy';
+  const COPIED_LABEL = copyBtn?.dataset.i18nCopied ?? 'Copied';
+
+  function showError(msg: string) {
+    if (errorMsg) {
+      errorMsg.textContent = msg;
+      errorMsg.classList.remove('hidden');
+    }
+  }
+
+  function hideError() {
+    if (errorMsg) {
+      errorMsg.classList.add('hidden');
+    }
+  }
+
+  formatBtn?.addEventListener('click', () => {
+    try {
+      const value = input?.value.trim();
+      if (!value) return;
+
+      const parsed = JSON.parse(value);
+      if (output) {
+        output.value = JSON.stringify(parsed, null, 2);
+      }
+      hideError();
+    } catch (e) {
+      showError(FORMAT_ERROR);
+    }
+  });
+
+  minifyBtn?.addEventListener('click', () => {
+    try {
+      const value = input?.value.trim();
+      if (!value) return;
+
+      const parsed = JSON.parse(value);
+      if (output) {
+        output.value = JSON.stringify(parsed);
+      }
+      hideError();
+    } catch (e) {
+      showError(FORMAT_ERROR);
+    }
+  });
+
+  clearBtn?.addEventListener('click', () => {
+    if (input) input.value = '';
+    if (output) output.value = '';
+    hideError();
+  });
+
+  copyBtn?.addEventListener('click', () => {
+    if (output?.value) {
+      navigator.clipboard.writeText(output.value);
+      copyBtn.textContent = COPIED_LABEL;
+      setTimeout(() => {
+        copyBtn.textContent = COPY_LABEL;
+      }, 1500);
+    }
+  });
+</script>

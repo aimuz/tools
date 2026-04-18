@@ -1,0 +1,97 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../layout/Header.astro';
+import Footer from '../layout/Footer.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/config';
+import { absoluteUrl } from '../../i18n/seo';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const c = t.pages.convert;
+const pageUrl = absoluteUrl(locale, '/convert');
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: c.schema.name,
+  applicationCategory: 'MultimediaApplication',
+  operatingSystem: 'Any',
+  description: c.schema.description,
+  inLanguage: locale,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: pageUrl,
+};
+---
+
+<Layout title={c.title} description={c.description} locale={locale}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <Header locale={locale} />
+
+  <main class="flex-1 py-12">
+    <div class="max-w-[720px] mx-auto px-6">
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-semibold text-[#171717] mb-2">{c.h1}</h1>
+        <p class="text-gray-500">{c.subheading}</p>
+      </div>
+
+      <div
+        id="upload-zone"
+        class="relative w-full min-h-[200px] rounded-xl border-2 border-dashed border-gray-300 hover:border-[#171717] transition-colors bg-white flex flex-col items-center justify-center gap-3 cursor-pointer mb-6"
+      >
+        <svg class="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+        </svg>
+        <div class="text-center">
+          <p class="text-base text-[#171717]">{c.upload.drag}</p>
+          <p class="text-sm text-gray-400 mt-1">{c.upload.orClick}</p>
+        </div>
+        <p class="text-xs text-gray-400">{c.upload.sizeHint}</p>
+        <input type="file" id="file-input" class="hidden" accept="image/*" multiple />
+      </div>
+
+      <div id="options" class="mb-6 hidden">
+        <div class="mb-4">
+          <p class="text-sm text-gray-500 mb-2">{c.options.fromLabel}<span id="detected-format" class="text-[#171717] font-medium">{c.options.autoDetect}</span></p>
+        </div>
+
+        <div class="mb-4">
+          <p class="text-sm text-gray-500 mb-2">{c.options.toLabel}</p>
+          <div class="flex flex-wrap gap-2" id="format-buttons">
+            <button class="format-btn px-4 py-2 text-sm rounded-lg border border-gray-200 bg-[#171717] text-white" data-format="jpg">JPG</button>
+            <button class="format-btn px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:border-[#171717]" data-format="png">PNG</button>
+            <button class="format-btn px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:border-[#171717]" data-format="webp">WebP</button>
+            <button class="format-btn px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:border-[#171717]" data-format="bmp">BMP</button>
+          </div>
+        </div>
+
+        <div id="quality-option" class="mb-6">
+          <p class="text-sm text-gray-500 mb-2">{c.options.qualityLabel}</p>
+          <div class="flex gap-2">
+            <button class="quality-btn px-4 py-2 text-sm rounded-full border border-gray-200 bg-[#171717] text-white" data-quality="90">{c.options.qualityHigh}</button>
+            <button class="quality-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" data-quality="75">{c.options.qualityMid}</button>
+            <button class="quality-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" data-quality="60">{c.options.qualityLow}</button>
+          </div>
+        </div>
+
+        <button id="convert-btn" class="w-full py-3 bg-[#171717] text-white rounded-lg font-medium hover:bg-gray-800 transition-colors">
+          {c.options.start}
+        </button>
+      </div>
+
+      <div id="file-list" class="space-y-3 mb-6"></div>
+      <div id="results" class="space-y-3 hidden"></div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  import { initConvertPage } from '../../scripts/convert-page';
+  initConvertPage({ readUrlParams: true, defaultTo: 'jpg' });
+</script>

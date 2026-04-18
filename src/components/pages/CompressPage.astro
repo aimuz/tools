@@ -1,0 +1,82 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../layout/Header.astro';
+import Footer from '../layout/Footer.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/config';
+import { absoluteUrl } from '../../i18n/seo';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const c = t.pages.compress;
+const pageUrl = absoluteUrl(locale, '/compress');
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: c.schema.name,
+  applicationCategory: 'MultimediaApplication',
+  operatingSystem: 'Any',
+  browserRequirements: c.schema.browserReq,
+  description: c.schema.description,
+  inLanguage: locale,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: pageUrl,
+};
+---
+
+<Layout title={c.title} description={c.description} locale={locale}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <Header locale={locale} />
+
+  <main class="flex-1 py-12">
+    <div class="max-w-[720px] mx-auto px-6">
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-semibold text-[#171717] mb-2">{c.h1}</h1>
+        <p class="text-gray-500">{c.subheading}</p>
+      </div>
+
+      <div
+        id="upload-zone"
+        class="relative w-full min-h-[240px] rounded-xl border-2 border-dashed border-gray-300 hover:border-[#171717] transition-colors bg-white flex flex-col items-center justify-center gap-3 cursor-pointer mb-6"
+      >
+        <svg class="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+        </svg>
+        <div class="text-center">
+          <p class="text-base text-[#171717]">{c.upload.drag}</p>
+          <p class="text-sm text-gray-400 mt-1">{c.upload.orClick}</p>
+        </div>
+        <p class="text-xs text-gray-400">{c.upload.sizeHint}</p>
+        <input type="file" id="file-input" class="hidden" accept="image/*" multiple />
+      </div>
+
+      <div id="options" class="mb-6 hidden">
+        <p class="text-sm text-gray-500 mb-2">{c.options.strength}</p>
+        <div class="flex gap-2 mb-6">
+          <button class="mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 bg-[#171717] text-white" data-mode="smart">{c.options.smart}</button>
+          <button class="mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" data-mode="light">{c.options.light}</button>
+          <button class="mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" data-mode="strong">{c.options.strong}</button>
+        </div>
+
+        <button id="compress-btn" class="w-full py-3 bg-[#171717] text-white rounded-lg font-medium hover:bg-gray-800 transition-colors">
+          {c.options.start}
+        </button>
+      </div>
+
+      <div id="file-list" class="space-y-3 mb-6"></div>
+      <div id="results" class="space-y-3 hidden"></div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  import { initCompressPage } from '../../scripts/compress-page';
+  initCompressPage({ readUrlParams: true });
+</script>

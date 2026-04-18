@@ -1,0 +1,239 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../layout/Header.astro';
+import Footer from '../layout/Footer.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/config';
+import { absoluteUrl } from '../../i18n/seo';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const tw = t.pages.textWatermark;
+const pageUrl = absoluteUrl(locale, '/text-watermark');
+
+const appSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: tw.schema.name,
+  alternateName: tw.schema.alternateNames,
+  applicationCategory: 'MultimediaApplication',
+  operatingSystem: 'Any',
+  description: tw.schema.description,
+  inLanguage: locale,
+  featureList: tw.schema.featureList,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: pageUrl,
+};
+
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: tw.howToSchema.name,
+  description: tw.howToSchema.description,
+  inLanguage: locale,
+  totalTime: 'PT1M',
+  tool: [{ '@type': 'HowToTool', name: tw.howToSchema.toolName }],
+  step: tw.howToSchema.steps.map((s) => ({
+    '@type': 'HowToStep',
+    name: s.name,
+    text: s.text,
+  })),
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  inLanguage: locale,
+  mainEntity: tw.faqSchema.items.map((it) => ({
+    '@type': 'Question',
+    name: it.question,
+    acceptedAnswer: { '@type': 'Answer', text: it.answer },
+  })),
+};
+
+const swatches: { color: string; titleKey: keyof typeof tw.swatches }[] = [
+  { color: '#ff0000', titleKey: 'red' },
+  { color: '#ffffff', titleKey: 'white' },
+  { color: '#d4d4d4', titleKey: 'lightGray' },
+  { color: '#808080', titleKey: 'midGray' },
+  { color: '#4d4d4d', titleKey: 'darkGray' },
+  { color: '#171717', titleKey: 'charcoal' },
+  { color: '#000000', titleKey: 'black' },
+];
+---
+
+<Layout title={tw.title} description={tw.description} locale={locale}>
+  <script type="application/ld+json" set:html={JSON.stringify(appSchema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+  <Header locale={locale} />
+
+  <main class="flex-1 py-12">
+    <div class="max-w-[1040px] mx-auto px-6">
+      <div class="text-center mb-10">
+        <h1 class="text-[40px] leading-[1.1] font-semibold text-[#171717] tracking-[-0.04em] mb-3">{tw.h1}</h1>
+        <p class="text-[15px] text-[#666666]">{tw.subheading}</p>
+      </div>
+
+      <div class="grid md:grid-cols-[1fr_300px] gap-6">
+        <div class="flex flex-col">
+          <span class="block text-xs font-medium text-[#666666] mb-2 uppercase tracking-wide">{tw.imageLabel}</span>
+          <label
+            id="tw-dropzone"
+            for="tw-file"
+            class="flex-1 flex flex-col rounded-lg bg-[#fafafa] cursor-pointer transition-shadow shadow-[0_0_0_1px_rgba(0,0,0,0.08)] hover:shadow-[0_0_0_1px_rgba(0,0,0,0.18)]"
+          >
+            <input id="tw-file" type="file" accept="image/*" class="sr-only" />
+            <div data-zone="empty" class="flex-1 flex flex-col items-center justify-center px-6 py-20 text-center min-h-[380px]">
+              <svg class="w-7 h-7 text-[#808080] mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 7.5m0 0L7.5 12M12 7.5v12" />
+              </svg>
+              <p class="text-sm font-medium text-[#171717]">{tw.dropImage}</p>
+              <p class="mt-1 text-xs text-[#808080]">{tw.formats}</p>
+            </div>
+            <div data-zone="filled" id="tw-result-card" class="hidden p-4">
+              <div class="flex items-center justify-center min-h-[320px] max-h-[520px] rounded-md bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.08)] overflow-hidden">
+                <canvas id="tw-result" class="max-h-[500px] max-w-full object-contain"></canvas>
+              </div>
+              <div class="mt-3 flex items-baseline justify-between gap-3">
+                <span id="tw-filename" class="flex-1 truncate text-xs text-[#4d4d4d]"></span>
+                <span class="shrink-0 text-xs font-medium text-[#171717] underline underline-offset-2 decoration-[#e5e5e5] hover:decoration-[#171717]">{tw.replaceImage}</span>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <div class="space-y-5">
+          <div>
+            <label for="tw-text" class="block text-xs font-medium text-[#666666] mb-2 uppercase tracking-wide">{tw.textLabel}</label>
+            <input
+              id="tw-text"
+              type="text"
+              value={tw.textDefault}
+              maxlength="60"
+              class="w-full h-10 px-3 bg-white rounded-md font-mono text-sm text-[#171717] placeholder:text-[#808080] shadow-[0_0_0_1px_rgba(0,0,0,0.08)] focus:shadow-[0_0_0_1px_#171717] focus:outline-none transition-shadow"
+              placeholder={tw.textPlaceholder}
+            />
+          </div>
+
+          <div>
+            <div class="flex items-baseline justify-between mb-2">
+              <label for="tw-size" class="text-xs font-medium text-[#666666] uppercase tracking-wide">{tw.sizeLabel}</label>
+              <span id="tw-size-val" class="text-xs text-[#171717] font-mono">40px</span>
+            </div>
+            <input id="tw-size" type="range" min="12" max="160" step="1" value="40" class="w-full accent-[#171717]" />
+          </div>
+
+          <div>
+            <div class="flex items-baseline justify-between mb-2">
+              <label class="text-xs font-medium text-[#666666] uppercase tracking-wide">{tw.colorLabel}</label>
+              <label class="flex items-center gap-2 text-xs text-[#666666]">
+                <input id="tw-bold" type="checkbox" class="accent-[#171717]" />
+                {tw.boldLabel}
+              </label>
+            </div>
+            <div class="flex flex-wrap gap-2 mb-3">
+              {swatches.map((s) => (
+                <button type="button" data-color={s.color} class="tw-swatch w-7 h-7 rounded-full shadow-[0_0_0_1px_rgba(0,0,0,0.15)] hover:shadow-[0_0_0_2px_#171717] transition-shadow" style={`background:${s.color}`} title={tw.swatches[s.titleKey]}></button>
+              ))}
+            </div>
+            <div class="flex items-center gap-3">
+              <input
+                id="tw-color"
+                type="color"
+                value="#ff0000"
+                class="w-10 h-10 rounded-md cursor-pointer bg-transparent shadow-[0_0_0_1px_rgba(0,0,0,0.08)]"
+                style="padding:2px;"
+                title={tw.customColorTitle}
+              />
+              <div class="flex-1">
+                <div class="flex items-baseline justify-between mb-1">
+                  <span class="text-[11px] text-[#808080]">{tw.opacityLabel}</span>
+                  <span id="tw-opacity-val" class="text-[11px] text-[#171717] font-mono">35%</span>
+                </div>
+                <input id="tw-opacity" type="range" min="0.05" max="1" step="0.05" value="0.35" class="w-full accent-[#171717]" />
+              </div>
+            </div>
+          </div>
+
+          <div id="tw-rotation-row">
+            <div class="flex items-baseline justify-between mb-2">
+              <label for="tw-rotation" class="text-xs font-medium text-[#666666] uppercase tracking-wide">{tw.rotationLabel}</label>
+              <span id="tw-rotation-val" class="text-xs text-[#171717] font-mono">-30°</span>
+            </div>
+            <input id="tw-rotation" type="range" min="-90" max="90" step="1" value="-30" class="w-full accent-[#171717]" />
+          </div>
+
+          <div id="tw-spacing-row">
+            <div class="flex items-baseline justify-between mb-2">
+              <label for="tw-spacing" class="text-xs font-medium text-[#666666] uppercase tracking-wide">{tw.spacingLabel}</label>
+              <span id="tw-spacing-val" class="text-xs text-[#171717] font-mono">1.0×</span>
+            </div>
+            <input id="tw-spacing" type="range" min="0.5" max="3" step="0.1" value="1" class="w-full accent-[#171717]" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-[#666666] mb-2 uppercase tracking-wide">{tw.patternLabel}</label>
+            <div class="grid grid-cols-3 gap-1 p-1 rounded-md bg-[#fafafa] shadow-[0_0_0_1px_rgba(0,0,0,0.08)]">
+              <button type="button" data-pattern="tile" class="tw-pattern-btn h-8 rounded text-xs font-medium bg-[#171717] text-white">{tw.patterns.tile}</button>
+              <button type="button" data-pattern="single" class="tw-pattern-btn h-8 rounded text-xs font-medium text-[#666666] hover:text-[#171717] transition-colors">{tw.patterns.single}</button>
+              <button type="button" data-pattern="corner" class="tw-pattern-btn h-8 rounded text-xs font-medium text-[#666666] hover:text-[#171717] transition-colors">{tw.patterns.corner}</button>
+            </div>
+          </div>
+
+          <div class="flex gap-2 pt-2">
+            <button id="tw-download" type="button" class="flex-1 h-10 rounded-md bg-[#171717] text-white text-sm font-medium hover:bg-black transition-colors">{tw.downloadBtn}</button>
+            <button id="tw-copy" type="button" class="flex-1 h-10 rounded-md bg-white text-[#171717] text-sm font-medium shadow-[0_0_0_1px_rgba(0,0,0,0.08)] hover:shadow-[0_0_0_1px_#171717] transition-shadow">{tw.copyImageBtn}</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="err" class="hidden mt-6 px-4 py-3 rounded-lg text-sm text-[#c92a2a] bg-[#fff5f5] shadow-[0_0_0_1px_rgba(201,42,42,0.15)]"></div>
+
+      <section class="mt-16 max-w-[760px] mx-auto">
+        <h2 class="text-2xl font-semibold text-[#171717] tracking-tight mb-5">{tw.useCases.heading}</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          {tw.useCases.items.map((item) => (
+            <article class="p-5 rounded-lg bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.08)]">
+              <h3 class="text-base font-semibold text-[#171717] mb-2">{item.title}</h3>
+              <p class="text-[14px] leading-[1.7] text-[#4d4d4d]" set:html={item.bodyHtml}></p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="mt-12 max-w-[760px] mx-auto">
+        <h2 class="text-2xl font-semibold text-[#171717] tracking-tight mb-5">{tw.steps.heading}</h2>
+        <ol class="space-y-3 text-[15px] leading-[1.7] text-[#4d4d4d] list-decimal pl-5">
+          {tw.steps.itemsHtml.map((step) => <li set:html={step}></li>)}
+        </ol>
+      </section>
+
+      <section class="mt-12 max-w-[760px] mx-auto">
+        <h2 class="text-2xl font-semibold text-[#171717] tracking-tight mb-5">{tw.faq.heading}</h2>
+        <div class="space-y-2">
+          {tw.faq.items.map((it) => (
+            <details class="group p-4 rounded-lg bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.08)]">
+              <summary class="cursor-pointer text-[15px] font-medium text-[#171717] list-none flex items-center justify-between">
+                {it.q}
+                <span class="text-[#808080] text-xs group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p class="mt-3 text-[14px] leading-[1.7] text-[#4d4d4d]" set:html={it.aHtml}></p>
+            </details>
+          ))}
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  import { initTextWatermarkPage } from '../../scripts/text-watermark';
+  initTextWatermarkPage();
+</script>

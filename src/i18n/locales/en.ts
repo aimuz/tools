@@ -216,9 +216,9 @@ export const en = {
   },
   pages: {
     home: {
-      title: 'WizGo - Free Online Toolbox · Image Compress, Convert, JWT, Timestamp',
+      title: 'Free Online Toolbox: Compress, JWT, Timestamps | WizGo',
       description:
-        'WizGo offers free online tools: image compression, format conversion, JWT decode, timestamp conversion, JSON formatting, code-to-image and more. Pure in-browser processing — no uploads, no install.',
+        'Free in-browser tools: image compression, format conversion, JWT decode, timestamp, JSON formatting, code-to-image. No uploads, no install.',
       heroHeading: 'Free Online Toolbox',
       heroSubheading: 'Image compression, format conversion, JWT, timestamps · runs locally',
       searchPlaceholder: 'Search tools, e.g. PNG compress, to JPG...',
@@ -231,28 +231,28 @@ export const en = {
       schema: { alternateName: 'WizGo Toolbox' },
     },
     compressFormat: {
-      titleTemplate: '{label} Compress - Free Online {full} Image Compression Tool | WizGo',
+      titleTemplate: '{label} Compress: Free Online Lossless Tool | WizGo',
       descriptionTemplate:
-        'Free online {label} image compression tool. {seoBenefit} Pure in-browser processing — no uploads, batch supported, privacy preserved.',
+        'Compress {label} online — {seoBenefit} Runs in your browser, no uploads.',
       h1Template: '{label} Image Compression',
       formats: {
         png: {
           headline: 'Keep transparency · typically 60-80% smaller',
           hint: 'Best for screenshots, illustrations, icons and logos. Visually indistinguishable from the original; transparent backgrounds preserved automatically.',
           seoBenefit:
-            'Smart PNG compression — screenshots, illustrations and icons shrink 60-80%, photographic PNGs shrink 20-30%, with virtually no visual difference.',
+            'screenshots and icons shrink 60-80%, photos 20-30%, virtually no quality loss.',
         },
         jpg: {
           headline: 'Photo-tuned compression · typically 30-45% smaller',
           hint: 'Optimized for photos with virtually no visible quality loss; also strips embedded location, device and other privacy metadata.',
           seoBenefit:
-            'JPG photo compression cuts file size by 30-45% and automatically strips embedded location, device model and other privacy metadata.',
+            'files shrink 30-45%, EXIF location and device metadata automatically stripped.',
         },
         webp: {
           headline: 'Lossless compression · keeps transparency',
           hint: 'Lossless WebP optimization that fully preserves quality and transparency. If your image is already small enough, the tool returns the original untouched.',
           seoBenefit:
-            'Lossless WebP compression that keeps transparency. If the source is already optimized, the tool returns the original — you always get the smaller file.',
+            'lossless optimization that keeps transparency, returns original if already optimal.',
         },
       },
       upload: {
@@ -281,32 +281,32 @@ export const en = {
       },
     },
     convertPair: {
-      titleTemplate: '{fromLabel} to {toLabel} - Free Online {fromFull} to {toFull} Converter | WizGo',
+      titleTemplate: '{fromLabel} to {toLabel}: Free Online Converter | WizGo',
       descriptionTemplate:
-        'Free online {fromLabel} to {toLabel} converter with batch conversion, drag & drop and one-click download. {hintWithSpace}Pure in-browser processing — no uploads, privacy preserved.',
+        'Convert {fromLabel} to {toLabel} online. {hintWithSpace}Runs locally, no uploads.',
       h1Template: '{fromLabel} to {toLabel}',
       fallbackHintTemplate: 'Convert {fromFull} images to {toFull} online · runs locally, no uploads',
       pairHints: {
-        'png-jpg': 'Transparent backgrounds are filled with white. Files typically shrink 40-80% — great for web, email and chat sharing.',
-        'png-webp': 'WebP keeps transparency while being 25-50% smaller than PNG. Supported across all modern browsers.',
-        'png-gif': 'Convert PNG to GIF for legacy platforms that only accept GIF.',
-        'png-bmp': 'Convert PNG to lossless uncompressed BMP for older Windows applications.',
-        'jpg-png': 'Lossless save with transparency support — useful as a pre-processing step before background removal.',
-        'jpg-webp': 'Re-compress JPG to WebP for another 25-35% size reduction with virtually no visual difference. Ideal for image-heavy sites.',
-        'jpg-gif': 'Convert JPG photos into GIF for legacy chat platforms.',
-        'jpg-bmp': 'Produces a lossless but very large bitmap — used for printing or specialized program input.',
-        'webp-png': 'When WebP is unsupported, PNG is the safest fallback — transparency fully preserved.',
-        'webp-jpg': 'Best choice when sharing to platforms that lack WebP support (forums, older publishers, etc).',
-        'webp-gif': 'Convert WebP to GIF for older browsers or chat platforms that only accept GIF.',
-        'webp-bmp': 'Convert WebP to BMP for specific graphics programs or print pipelines.',
-        'gif-png': 'Convert GIF to PNG to keep transparency with sharper quality (first frame only).',
-        'gif-jpg': 'Smaller files but loses transparency and keeps only the first frame. Suited for sharing.',
-        'gif-webp': 'Static GIFs can be further compressed as WebP while keeping transparency.',
-        'gif-bmp': 'Convert GIF to BMP (first frame only) for batch graphics processing.',
-        'bmp-png': 'Convert BMP to PNG for major lossless size reduction (typically 70%+ smaller). Great for archiving.',
-        'bmp-jpg': 'Highest compression ratio for sharing scans and screenshots in bulk.',
-        'bmp-webp': 'Convert BMP to WebP for the highest compression ratio. Supported across modern browsers.',
-        'bmp-gif': 'Convert BMP to GIF for legacy chat or forum platforms that only accept GIF.',
+        'png-jpg': 'Transparent backgrounds filled white, typically 40-80% smaller, great for web, email, chat.',
+        'png-webp': 'WebP keeps transparency while 25-50% smaller than PNG, widely supported.',
+        'png-gif': 'For legacy platforms that only accept GIF.',
+        'png-bmp': 'Lossless uncompressed BMP for older Windows applications.',
+        'jpg-png': 'Lossless save with transparency — useful before background removal.',
+        'jpg-webp': '25-35% smaller with virtually no visible difference — ideal for image-heavy sites.',
+        'jpg-gif': 'Photos to GIF for legacy chat platforms.',
+        'jpg-bmp': 'Lossless but very large bitmap — for printing or special program input.',
+        'webp-png': 'When WebP is unsupported, PNG is the safest fallback. Transparency preserved.',
+        'webp-jpg': 'Best for platforms lacking WebP support (forums, older publishers).',
+        'webp-gif': 'For older browsers or chat platforms that only accept GIF.',
+        'webp-bmp': 'For specific graphics programs or print pipelines.',
+        'gif-png': 'Keeps transparency, sharper quality (first frame only).',
+        'gif-jpg': 'Smaller files but loses transparency, first frame only — suited for sharing.',
+        'gif-webp': 'Static GIFs compressed further as WebP, transparency kept.',
+        'gif-bmp': 'First frame only, for batch graphics processing.',
+        'bmp-png': 'Major lossless size reduction (70%+) — great for archiving.',
+        'bmp-jpg': 'Highest compression for sharing scans and screenshots in bulk.',
+        'bmp-webp': 'Highest compression ratio, supported across modern browsers.',
+        'bmp-gif': 'For legacy chat or forum platforms accepting only GIF.',
       },
       upload: {
         dragTemplate: 'Drop {fromLabel} images here',
@@ -330,9 +330,9 @@ export const en = {
       },
     },
     compress: {
-      title: 'Image Compression - Free Online PNG, JPG, WebP Compressor | WizGo',
+      title: 'Image Compression: Free PNG/JPG/WebP Online | WizGo',
       description:
-        'Free online image compression for PNG, JPG, JPEG, WebP, GIF and more. Smart quality preservation with major file-size reduction. Pure in-browser processing — no uploads, batch supported.',
+        'Compress PNG, JPG, JPEG, WebP, GIF online — smart algorithm preserves quality, batch supported, runs in browser, no uploads.',
       h1: 'Image Compression',
       subheading: 'Online PNG, JPG, WebP compression · runs locally · batch supported',
       schema: {
@@ -354,9 +354,9 @@ export const en = {
       },
     },
     convert: {
-      title: 'Image Format Converter - PNG JPG WebP HEIC Online | WizGo',
+      title: 'Image Format Converter: PNG/JPG/WebP/HEIC | WizGo',
       description:
-        'Free online image format converter supporting PNG, JPG, JPEG, WebP, GIF, BMP. Pure in-browser processing — no uploads, no install.',
+        'Convert PNG, JPG, JPEG, WebP, GIF, BMP online — runs in your browser, no uploads, no install.',
       h1: 'Image Format Converter',
       subheading: 'Online PNG, JPG, WebP, GIF, BMP interchange · runs locally',
       schema: {
@@ -380,9 +380,9 @@ export const en = {
       },
     },
     about: {
-      title: 'About WizGo - Local-First Free Online Toolbox | Privacy & Tech Stack',
+      title: 'About WizGo — Local-First Tools, Privacy & Stack',
       description:
-        'Learn about WizGo\'s technology and privacy policy. All tools run locally in your browser — no file uploads. Built with Astro + Rust WASM + WebCrypto.',
+        'WizGo\'s tech and privacy policy: tools run locally in your browser — no file uploads. Built with Astro + Rust WASM + WebCrypto.',
       h1: 'About WizGo',
       schema: {
         name: 'About WizGo',
@@ -444,9 +444,9 @@ export const en = {
       },
     },
     watermark: {
-      title: 'Hidden Image Watermark - Embed / Extract Steganographic Text | WizGo',
+      title: 'Hidden Image Watermark: Embed/Extract | WizGo',
       description:
-        'Free online hidden image watermark tool. Embed hidden text into image pixels or extract watermark from images. Supports LSB and DCT algorithms — LSB has high capacity, DCT survives JPG re-compression. Pure in-browser processing.',
+        'Embed hidden text in image pixels or extract watermark — LSB and DCT steganography. Pure in-browser processing, no uploads.',
       h1: 'Hidden Image Watermark',
       subheading: 'Hide text inside image pixels or extract it back · runs locally',
       schema: {
@@ -486,9 +486,9 @@ export const en = {
       },
     },
     uuid: {
-      title: 'UUID Generator - Online Batch Unique ID Generator | WizGo',
+      title: 'UUID Generator: Online Batch Tool | WizGo',
       description:
-        'Free online UUID generator with batch generation, multiple formats (standard / no-dashes / uppercase) and one-click copy. Cryptographically secure random — runs locally, no uploads.',
+        'Free online UUID v4 generator — batch, multiple formats (standard / no-dashes / uppercase), one-click copy. Crypto-secure random, runs locally.',
       h1: 'UUID Generator',
       subheading: 'Batch generate unique IDs · standard / no-dashes / uppercase · runs locally',
       schema: {
@@ -513,9 +513,9 @@ export const en = {
       },
     },
     urlEncode: {
-      title: 'URL Encode/Decode - Online URL Encoder/Decoder | WizGo',
+      title: 'URL Encode/Decode: Online Tool | WizGo',
       description:
-        'Free online URL encode/decode tool supporting Chinese and special characters, batch processing, and encodeURI / encodeURIComponent mode switching. Runs locally, no uploads.',
+        'Free URL encode/decode online — Unicode and special characters, batch processing, encodeURI vs encodeURIComponent modes. Runs locally.',
       h1: 'URL Encode/Decode',
       subheading: 'URL special character encoding · supports Unicode · batch processing · runs locally',
       schema: {
@@ -614,9 +614,9 @@ export const en = {
       },
     },
     timestamp: {
-      title: 'Unix Timestamp Converter - Timestamp ↔ Date | WizGo',
+      title: 'Unix Timestamp Converter — Timestamp ↔ Date | WizGo',
       description:
-        'Free online Unix timestamp converter supporting seconds/milliseconds, UTC and local timezone, ISO 8601 conversion. Live current timestamp display, one-click copy. Runs locally, no uploads.',
+        'Free Unix timestamp ↔ date converter — sec/ms, UTC/local timezone, ISO 8601. Live timestamp display, one-click copy. Runs locally.',
       h1: 'Timestamp Converter',
       subheading: 'Unix timestamp ↔ date · seconds / milliseconds / ISO 8601',
       schema: {
@@ -655,9 +655,9 @@ export const en = {
       footerHint: 'Unix epoch: 1970-01-01 00:00:00 UTC · 10-digit second · 13-digit millisecond',
     },
     color: {
-      title: 'Color Converter - Online HEX/RGB/HSL Color Conversion | WizGo',
+      title: 'Color Converter: HEX/RGB/HSL Online | WizGo',
       description:
-        'Free online color converter supporting HEX, RGB and HSL color value conversion. Live preview and one-click copy — built for designers and developers. Runs locally, no uploads.',
+        'Free HEX, RGB, HSL color converter online — live preview, one-click copy. Built for designers and developers. Runs locally.',
       h1: 'Color Converter',
       subheading: 'HEX, RGB and HSL color value conversion · live preview · runs locally',
       schema: {
@@ -698,9 +698,9 @@ export const en = {
       renderError: 'Render failed',
     },
     base64: {
-      title: 'Base64 Encode/Decode - Online Text/File Converter | WizGo',
+      title: 'Base64 Encode/Decode: Text & File Online | WizGo',
       description:
-        'Free online Base64 encoder/decoder for text and files. Upload files to Base64, decode Base64 back to files. Supports images, text and binary content. Runs locally, no uploads.',
+        'Free Base64 encoder/decoder online — text and files, image preview, binary download. Runs in your browser, no uploads.',
       h1: 'Base64 Encode/Decode',
       subheading: 'Text/file ↔ Base64 · supports images, text and binary · runs locally',
       schema: {
@@ -747,9 +747,9 @@ export const en = {
       },
     },
     jwt: {
-      title: 'JWT Online Decoder/Generator/Verifier - HS256 RS256 ES256 | WizGo',
+      title: 'JWT Decoder/Generator/Verifier: HS/RS/ES | WizGo',
       description:
-        'Online JSON Web Token tool: decode header/payload, verify signatures, generate new tokens. Supports HS256/384/512, RS256/384/512, ES256/384. Runs locally in your browser.',
+        'Decode JWT header/payload, verify signatures, generate tokens online. Supports HS, RS, ES algorithms. Runs locally, no uploads.',
       h1: 'JWT Decode/Sign/Verify',
       subheading: 'JSON Web Token · HS256 RS256 ES256 · runs locally',
       schema: {
@@ -795,9 +795,9 @@ export const en = {
       },
     },
     textWatermark: {
-      title: 'ID Card Watermark · Online Image Text Watermark Tool - For Documents, Filings, Anti-Theft | WizGo',
+      title: 'ID Card Watermark: Anti-Theft Image Tool | WizGo',
       description:
-        'Free online image text watermark: add "for X use only" anti-fraud watermark to ID cards, business licenses, contracts and other documents; protect images for ICP filings and copyright. Tile / center / corner layouts; adjustable color, size, opacity, rotation. Photos processed locally — never uploaded.',
+        'Add "for X use only" watermark to ID cards, contracts, ICP filings — anti-fraud, copyright protection. Tile/center/corner layouts. Browser-only.',
       h1: 'Image Text Watermark',
       subheading: 'Add "for filing only" style text watermarks to images · anti-theft, traceable · runs locally',
       schema: {
@@ -887,9 +887,9 @@ export const en = {
       },
     },
     json: {
-      title: 'JSON Formatter - Online Beautify, Minify, Validate | WizGo',
+      title: 'JSON Formatter: Beautify, Minify, Validate | WizGo',
       description:
-        'Free online JSON formatter supporting beautify, minify and syntax validation with one-click copy. Pure in-browser processing — pasted data is never uploaded.',
+        'Free online JSON formatter — beautify, minify, validate with one-click copy. Runs in your browser, pasted data never uploaded.',
       h1: 'JSON Formatter',
       subheading: 'Beautify, minify, validate JSON · runs locally',
       schema: {

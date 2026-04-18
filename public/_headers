@@ -1,9 +1,16 @@
 # Global security defaults — applied to every response.
+# Link headers (RFC 8288 / RFC 9727) advertise agent-discoverable resources:
+#   describedby → /llms.txt         (site description for LLM agents)
+#   service-doc → /llms-full.txt    (full tool catalog)
+#   sitemap     → /sitemap-index.xml
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: interest-cohort=()
   X-Frame-Options: SAMEORIGIN
+  Link: </llms.txt>; rel="describedby"; type="text/markdown"
+  Link: </llms-full.txt>; rel="service-doc"; type="text/markdown"
+  Link: </sitemap-index.xml>; rel="sitemap"; type="application/xml"
 
 # Astro hashed build artefacts are content-addressed — safe to cache forever.
 /_astro/*
@@ -22,6 +29,14 @@
 
 /robots.txt
   Cache-Control: public, max-age=86400
+
+# Agent Skills Discovery (https://agentskills.io, RFC v0.2.0)
+/.well-known/agent-skills/index.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=300
+/.well-known/agent-skills/wizgo-tools/SKILL.md
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=300
 
 /sitemap-index.xml
   Cache-Control: public, max-age=3600

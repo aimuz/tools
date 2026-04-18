@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "wizgo-tools",
+      "type": "skill-md",
+      "description": "Free in-browser developer tools for images, code, and media — format conversion/compression, QR codes, JWT, JSON, Base64, UUID, timestamps, color, watermarks, MP4→MP3. Zero upload, fully client-side.",
+      "url": "https://wizgo.xyz/.well-known/agent-skills/wizgo-tools/SKILL.md",
+      "digest": "sha256:ba64137774b7e8f9f8b5ad3c78f2fe4fcd2962c93d39cd64aae785ae56dfd264"
+    }
+  ]
+}

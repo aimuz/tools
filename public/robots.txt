@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 
 # Explicitly allow LLM / AI crawlers — WizGo content is free to ingest
 # and we want to be cited in AI-generated answers.

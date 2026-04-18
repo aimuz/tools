@@ -1,0 +1,354 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../layout/Header.astro';
+import Footer from '../layout/Footer.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/config';
+import { absoluteUrl } from '../../i18n/seo';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const b = t.pages.base64;
+const pageUrl = absoluteUrl(locale, '/base64');
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: b.schema.name,
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Any',
+  description: b.schema.description,
+  inLanguage: locale,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: pageUrl,
+};
+---
+
+<Layout title={b.title} description={b.description} locale={locale}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <Header locale={locale} />
+
+  <main class="flex-1 py-10">
+    <div class="max-w-[960px] mx-auto px-6"
+      data-i18n-input-encode-label={b.labels.inputEncode}
+      data-i18n-input-decode-label={b.labels.inputDecode}
+      data-i18n-output-encode-label={b.labels.outputEncode}
+      data-i18n-output-decode-label={b.labels.outputDecode}
+      data-i18n-input-encode-placeholder={b.placeholders.inputEncode}
+      data-i18n-input-decode-placeholder={b.placeholders.inputDecode}
+      data-i18n-output-encode-placeholder={b.placeholders.outputEncode}
+      data-i18n-output-decode-placeholder={b.placeholders.outputDecode}
+      data-i18n-copy={b.copyBtn}
+      data-i18n-copied={b.copiedBtn}
+      data-i18n-error-encode={b.errors.encodeFail}
+      data-i18n-error-read={b.errors.fileReadFail}
+      data-i18n-error-decode={b.errors.decodeFail}
+      data-i18n-error-too-large-template={b.errors.fileTooLargeTemplate}
+      data-i18n-binary-file-template={b.binaryFileTemplate}
+      data-i18n-unknown-type={b.unknownType}
+    >
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-semibold text-[#171717] mb-2">{b.h1}</h1>
+        <p class="text-gray-500">{b.subheading}</p>
+      </div>
+
+      <div class="flex justify-center mb-6">
+        <div class="inline-flex p-1 bg-gray-100 rounded-lg">
+          <button data-mode="encode" class="mode-btn px-4 py-2 text-sm rounded-md bg-white text-[#171717] shadow-sm transition-all">{b.tabs.encode}</button>
+          <button data-mode="decode" class="mode-btn px-4 py-2 text-sm rounded-md text-gray-500 hover:text-[#171717] transition-all">{b.tabs.decode}</button>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <section>
+          <div class="flex justify-between items-center mb-2">
+            <span id="input-label" class="text-sm font-medium text-[#171717]">{b.labels.inputEncode}</span>
+            <div class="flex gap-2">
+              <button id="clear-btn" class="text-xs text-gray-400 hover:text-red-500">{b.clearBtn}</button>
+              <label class="text-xs text-gray-400 hover:text-[#171717] cursor-pointer">
+                <input id="file-input" type="file" class="hidden" />
+                <span>{b.uploadBtn}</span>
+              </label>
+            </div>
+          </div>
+
+          <textarea
+            id="text-input"
+            class="w-full h-64 p-4 bg-white border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717] resize-none"
+            placeholder={b.placeholders.inputEncode}
+          ></textarea>
+
+          <div id="file-info" class="hidden mt-3 p-3 bg-gray-50 border border-gray-200 rounded-lg">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                <span id="file-name" class="text-sm text-[#171717] truncate max-w-[200px]"></span>
+              </div>
+              <span id="file-size" class="text-xs text-gray-400"></span>
+            </div>
+            <p id="file-type" class="text-xs text-gray-400 mt-1"></p>
+          </div>
+
+          <p class="text-xs text-gray-400 mt-2">{b.fileSizeLimit}</p>
+        </section>
+
+        <section>
+          <div class="flex justify-between items-center mb-2">
+            <span id="output-label" class="text-sm font-medium text-[#171717]">{b.labels.outputEncode}</span>
+            <div class="flex gap-2">
+              <button id="copy-btn" class="text-xs text-gray-400 hover:text-[#171717]">{b.copyBtn}</button>
+              <button id="download-btn" class="hidden text-xs text-gray-400 hover:text-[#171717]">{b.downloadBtn}</button>
+            </div>
+          </div>
+
+          <textarea
+            id="text-output"
+            readonly
+            class="w-full h-64 p-4 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm resize-none break-all"
+            placeholder={b.placeholders.outputEncode}
+          ></textarea>
+
+          <div id="image-preview" class="hidden mt-3">
+            <p class="text-xs text-gray-400 mb-2">{b.labels.imagePreview}</p>
+            <div class="p-3 bg-gray-50 border border-gray-200 rounded-lg">
+              <img id="preview-img" class="max-w-full max-h-48 mx-auto" alt={b.labels.imageAlt} />
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div id="error-msg" class="hidden mt-5 p-3 bg-red-50 border border-red-100 rounded-lg text-red-500 text-sm"></div>
+
+      <div class="mt-8 p-4 bg-gray-50 border border-gray-200 rounded-xl">
+        <h3 class="text-sm font-medium text-[#171717] mb-2">{b.tips.heading}</h3>
+        <ul class="text-xs text-gray-500 space-y-1 list-disc list-inside">
+          {b.tips.items.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  const root = document.querySelector<HTMLElement>('main .max-w-\\[960px\\]')!;
+  const D = root.dataset;
+  const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+
+  const interpolate = (template: string, vars: Record<string, string>) =>
+    template.replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? '');
+
+  const modeBtns = document.querySelectorAll<HTMLButtonElement>('.mode-btn');
+  const textInput = $<HTMLTextAreaElement>('text-input');
+  const textOutput = $<HTMLTextAreaElement>('text-output');
+  const fileInput = $<HTMLInputElement>('file-input');
+  const fileInfo = $('file-info');
+  const fileName = $('file-name');
+  const fileSize = $('file-size');
+  const fileType = $('file-type');
+  const imagePreview = $('image-preview');
+  const previewImg = $<HTMLImageElement>('preview-img');
+  const downloadBtn = $('download-btn');
+  const errorMsg = $('error-msg');
+  const inputLabel = $('input-label');
+  const outputLabel = $('output-label');
+  const copyBtn = $('copy-btn');
+
+  let mode: 'encode' | 'decode' = 'encode';
+  let currentFile: File | null = null;
+  let decodedBlob: Blob | null = null;
+  let decodedFileName = '';
+
+  const MAX_FILE_SIZE = 5 * 1024 * 1024;
+
+  const showError = (msg: string) => {
+    errorMsg.textContent = msg;
+    errorMsg.classList.remove('hidden');
+  };
+  const hideError = () => errorMsg.classList.add('hidden');
+
+  const formatSize = (bytes: number) => {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  };
+
+  const setMode = (newMode: 'encode' | 'decode') => {
+    mode = newMode;
+    modeBtns.forEach(btn => {
+      const isActive = btn.dataset.mode === mode;
+      btn.classList.toggle('bg-white', isActive);
+      btn.classList.toggle('text-[#171717]', isActive);
+      btn.classList.toggle('shadow-sm', isActive);
+      btn.classList.toggle('text-gray-500', !isActive);
+    });
+
+    if (mode === 'encode') {
+      inputLabel.textContent = D.i18nInputEncodeLabel ?? '';
+      outputLabel.textContent = D.i18nOutputEncodeLabel ?? '';
+      textInput.placeholder = D.i18nInputEncodePlaceholder ?? '';
+      textOutput.placeholder = D.i18nOutputEncodePlaceholder ?? '';
+    } else {
+      inputLabel.textContent = D.i18nInputDecodeLabel ?? '';
+      outputLabel.textContent = D.i18nOutputDecodeLabel ?? '';
+      textInput.placeholder = D.i18nInputDecodePlaceholder ?? '';
+      textOutput.placeholder = D.i18nOutputDecodePlaceholder ?? '';
+    }
+    clearAll();
+  };
+
+  const clearAll = () => {
+    textInput.value = '';
+    textOutput.value = '';
+    fileInput.value = '';
+    currentFile = null;
+    decodedBlob = null;
+    decodedFileName = '';
+    fileInfo.classList.add('hidden');
+    imagePreview.classList.add('hidden');
+    downloadBtn.classList.add('hidden');
+    hideError();
+  };
+
+  const encodeText = (text: string) => {
+    try {
+      const encoded = btoa(unescape(encodeURIComponent(text)));
+      textOutput.value = encoded;
+      downloadBtn.classList.add('hidden');
+      imagePreview.classList.add('hidden');
+      hideError();
+    } catch (e) {
+      showError(D.i18nErrorEncode ?? 'Encode failed');
+    }
+  };
+
+  const encodeFile = (file: File) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      textOutput.value = result;
+      hideError();
+      if (file.type.startsWith('image/')) {
+        previewImg.src = result;
+        imagePreview.classList.remove('hidden');
+      }
+    };
+    reader.onerror = () => showError(D.i18nErrorRead ?? 'File read failed');
+    reader.readAsDataURL(file);
+  };
+
+  const getExtensionFromMime = (mime: string) => {
+    const extensions: Record<string, string> = {
+      'image/png': '.png', 'image/jpeg': '.jpg', 'image/jpg': '.jpg',
+      'image/gif': '.gif', 'image/webp': '.webp', 'image/svg+xml': '.svg',
+      'text/plain': '.txt', 'text/html': '.html', 'text/css': '.css',
+      'text/javascript': '.js', 'application/json': '.json',
+      'application/pdf': '.pdf', 'application/zip': '.zip',
+    };
+    return extensions[mime] || '';
+  };
+
+  const decodeBase64 = (input: string) => {
+    try {
+      hideError();
+      let base64String = input.trim();
+      let mimeType = '';
+      const dataUriMatch = base64String.match(/^data:([^;]+);base64,(.+)$/);
+      if (dataUriMatch) {
+        mimeType = dataUriMatch[1];
+        base64String = dataUriMatch[2];
+      }
+      try {
+        const text = decodeURIComponent(escape(atob(base64String)));
+        textOutput.value = text;
+        downloadBtn.classList.add('hidden');
+        imagePreview.classList.add('hidden');
+        if (mimeType) {
+          const byteCharacters = atob(base64String);
+          const byteNumbers = new Array(byteCharacters.length);
+          for (let i = 0; i < byteCharacters.length; i++) byteNumbers[i] = byteCharacters.charCodeAt(i);
+          decodedBlob = new Blob([new Uint8Array(byteNumbers)], { type: mimeType });
+          decodedFileName = `decoded-file${getExtensionFromMime(mimeType)}`;
+          downloadBtn.classList.remove('hidden');
+          if (mimeType.startsWith('image/')) {
+            previewImg.src = URL.createObjectURL(decodedBlob);
+            imagePreview.classList.remove('hidden');
+          }
+        }
+      } catch (e) {
+        const byteCharacters = atob(base64String);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) byteNumbers[i] = byteCharacters.charCodeAt(i);
+        decodedBlob = new Blob([new Uint8Array(byteNumbers)], { type: mimeType || 'application/octet-stream' });
+        decodedFileName = `decoded-file${getExtensionFromMime(mimeType || 'application/octet-stream')}`;
+        textOutput.value = interpolate(D.i18nBinaryFileTemplate ?? '[binary - {size}]', { size: formatSize(decodedBlob.size) });
+        downloadBtn.classList.remove('hidden');
+        if ((mimeType || '').startsWith('image/')) {
+          previewImg.src = URL.createObjectURL(decodedBlob);
+          imagePreview.classList.remove('hidden');
+        } else {
+          imagePreview.classList.add('hidden');
+        }
+      }
+    } catch (e) {
+      showError(D.i18nErrorDecode ?? 'Decode failed');
+    }
+  };
+
+  modeBtns.forEach(btn => btn.addEventListener('click', () => setMode(btn.dataset.mode as 'encode' | 'decode')));
+
+  textInput.addEventListener('input', () => {
+    hideError();
+    if (mode === 'encode') {
+      if (!currentFile) encodeText(textInput.value);
+    } else {
+      decodeBase64(textInput.value);
+    }
+  });
+
+  fileInput.addEventListener('change', () => {
+    const file = fileInput.files?.[0];
+    if (!file) return;
+    if (file.size > MAX_FILE_SIZE) {
+      showError(interpolate(D.i18nErrorTooLargeTemplate ?? 'Too large {size}', { size: formatSize(file.size) }));
+      return;
+    }
+    currentFile = file;
+    fileName.textContent = file.name;
+    fileSize.textContent = formatSize(file.size);
+    fileType.textContent = file.type || (D.i18nUnknownType ?? 'unknown');
+    fileInfo.classList.remove('hidden');
+    textInput.value = '';
+    if (mode === 'encode') encodeFile(file);
+  });
+
+  $('clear-btn').addEventListener('click', clearAll);
+
+  copyBtn.addEventListener('click', async () => {
+    if (!textOutput.value) return;
+    try {
+      await navigator.clipboard.writeText(textOutput.value);
+      copyBtn.textContent = D.i18nCopied ?? 'Copied';
+      setTimeout(() => copyBtn.textContent = D.i18nCopy ?? 'Copy', 1200);
+    } catch {}
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    if (!decodedBlob) return;
+    const url = URL.createObjectURL(decodedBlob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = decodedFileName;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  setMode('encode');
+</script>

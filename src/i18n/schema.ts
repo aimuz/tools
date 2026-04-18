@@ -404,6 +404,127 @@ export type Translations = {
       justNow: string;
       footerHint: string;
     };
+    base64: {
+      title: string;
+      description: string;
+      h1: string;
+      subheading: string;
+      schema: { name: string; description: string };
+      tabs: { encode: string; decode: string };
+      labels: {
+        inputEncode: string;
+        inputDecode: string;
+        outputEncode: string;
+        outputDecode: string;
+        imagePreview: string;
+        imageAlt: string;
+      };
+      placeholders: {
+        inputEncode: string;
+        inputDecode: string;
+        outputEncode: string;
+        outputDecode: string;
+      };
+      clearBtn: string;
+      uploadBtn: string;
+      copyBtn: string;
+      copiedBtn: string;
+      downloadBtn: string;
+      fileSizeLimit: string;
+      unknownType: string;
+      errors: {
+        encodeFail: string;
+        fileReadFail: string;
+        decodeFail: string;
+        fileTooLargeTemplate: string;
+      };
+      binaryFileTemplate: string;
+      tips: { heading: string; items: [string, string, string, string] };
+    };
+    jwt: {
+      title: string;
+      description: string;
+      h1: string;
+      subheading: string;
+      schema: { name: string; description: string };
+      algoLabel: string;
+      encodedLabel: string;
+      encodedPlaceholder: string;
+      sampleBtn: string;
+      copyBtn: string;
+      copiedBtn: string;
+      verify: {
+        idle: string;
+        ok: string;
+        bad: string;
+        needSecret: string;
+        needPubkey: string;
+        needSecretForSign: string;
+        needPrivkeyForSign: string;
+        signedNoVerify: string;
+        failTemplate: string;
+      };
+      headerLabel: string;
+      payloadLabel: string;
+      secret: { label: string; isB64Label: string; placeholder: string };
+      pubkeyLabel: string;
+      privkeyLabel: string;
+      pubkeyPlaceholder: string;
+      privkeyPlaceholder: string;
+      errors: {
+        pemEmpty: string;
+        jwtFormat: string;
+        headerB64: string;
+        payloadB64: string;
+        headerJson: string;
+        payloadJson: string;
+        signFailTemplate: string;
+      };
+    };
+    color: {
+      title: string;
+      description: string;
+      h1: string;
+      subheading: string;
+      schema: { name: string; description: string };
+      pickerHint: string;
+      hex: { label: string };
+      rgb: { label: string; r: string; g: string; b: string };
+      hsl: { label: string; h: string; s: string; l: string };
+      copyBtn: string;
+      copiedBtn: string;
+      quickColorsLabel: string;
+      colorNames: {
+        black: string;
+        red: string;
+        orange: string;
+        amber: string;
+        yellowGreen: string;
+        green: string;
+        cyan: string;
+        blue: string;
+        indigo: string;
+        purple: string;
+        pink: string;
+        white: string;
+      };
+      randomBtn: string;
+    };
+    codeImage: {
+      title: string;
+      description: string;
+      h1: string;
+      subheading: string;
+      schema: { name: string; description: string };
+      placeholder: string;
+      formatBtn: string;
+      sampleBtn: string;
+      copyBtn: string;
+      downloadBtn: string;
+      tipPrefix: string;
+      tipBody: string;
+      renderError: string;
+    };
     textWatermark: {
       title: string;
       description: string;

@@ -63,6 +63,7 @@ export const zhTW = {
         'url-encode': { name: 'URL 編解碼', desc: 'URL 特殊字元編碼解碼' },
         color: { name: '色彩轉換', desc: '十六進位、RGB、HSL 互轉' },
         qrcode: { name: 'QR Code 產生器', desc: '文字 / 連結產生 QR Code' },
+        hash: { name: '雜湊值產生器', desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 校驗' },
       },
     },
     media: {
@@ -193,6 +194,11 @@ export const zhTW = {
       description: '從影片中擷取音訊 · 128-320 kbps',
       tags: ['mp4轉mp3', '影片轉mp3', '擷取音訊', '影片轉音訊', 'mp3', '音訊擷取', 'mp4 to mp3'],
     },
+    hash: {
+      name: '雜湊值產生器',
+      description: '一鍵產生 SHA-1 / SHA-256 / SHA-384 / SHA-512',
+      tags: ['雜湊', 'hash', 'sha256', 'sha-256', 'sha512', '校驗值', '檔案校驗', 'checksum', '雜湊值'],
+    },
   },
   toolCategories: {
     image: {
@@ -218,6 +224,7 @@ export const zhTW = {
         'url-encode': { name: 'URL 編解碼', description: 'URL 特殊字元編碼解碼' },
         color: { name: '色彩轉換', description: '十六進位、RGB、HSL 色彩值互轉' },
         qrcode: { name: 'QR Code 產生', description: '文字/連結產生 QR Code' },
+        hash: { name: '雜湊值產生器', description: '文字和檔案的 SHA 校驗值' },
       },
     },
     media: {
@@ -930,6 +937,57 @@ export const zhTW = {
       copiedBtn: '已複製',
       outputPlaceholder: '格式化後的 JSON 將顯示在這裡',
       formatError: 'JSON 格式錯誤，請檢查輸入',
+    },
+    hash: {
+      title: '雜湊值產生器：SHA-256、SHA-512 線上計算 | WizGo',
+      description: '在瀏覽器中為文字和檔案產生 SHA-1、SHA-256、SHA-384、SHA-512 雜湊值。校驗下載完整性，資料全程本機處理，不上傳。',
+      h1: '雜湊值產生器',
+      subheading: '校驗檔案完整性或對任意文字計算雜湊 · SHA-1 / SHA-256 / SHA-384 / SHA-512 · 純瀏覽器本機運算',
+      schema: {
+        name: '雜湊值產生器',
+        description: '免費線上工具，為文字或檔案一次產生 SHA-1、SHA-256、SHA-384、SHA-512 雜湊值，全部在瀏覽器本機計算。',
+      },
+      tabs: { text: '文字', file: '檔案' },
+      input: {
+        textLabel: '輸入文字',
+        textPlaceholder: '輸入或貼上需要計算雜湊的文字...',
+        fileLabel: '選擇檔案',
+        fileDrop: '拖曳檔案到此處',
+        fileHint: '或點擊選擇檔案',
+        clearBtn: '清空',
+        fileReplace: '換一個檔案',
+        fileSizeHint: '最大支援 2GB · 本機處理，不上傳',
+      },
+      output: {
+        label: '計算結果',
+        formatLabel: '輸出格式',
+        hex: '十六進位',
+        base64: 'Base64',
+        copyBtn: '複製',
+        copiedBtn: '已複製',
+        computing: '計算中...',
+        empty: '輸入文字或選擇檔案後顯示雜湊值',
+      },
+      algorithms: {
+        sha1: 'SHA-1',
+        sha256: 'SHA-256',
+        sha384: 'SHA-384',
+        sha512: 'SHA-512',
+      },
+      errors: {
+        tooLargeTemplate: '檔案過大（{size}），目前支援最大 2GB。',
+        readFailed: '無法讀取檔案，請重試。',
+        hashFailed: '計算失敗，目前瀏覽器可能不支援該演算法。',
+      },
+      tips: {
+        heading: '關於雜湊值',
+        items: [
+          '雜湊是一段固定長度的「指紋」，相同內容始終產生相同的雜湊值。',
+          '最常用的是 SHA-256，用於校驗下載檔案的完整性。',
+          '全部在瀏覽器本機計算，檔案和文字不會上傳到任何伺服器。',
+          '已不建議使用 MD5（有安全隱憂），本工具僅提供 SHA 系列演算法。',
+        ],
+      },
     },
     mp4ToMp3: {
       title: 'MP4 轉 MP3：免費線上擷取影片音訊 | WizGo',

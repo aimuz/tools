@@ -25,6 +25,7 @@ export type QuickActionKey =
   | 'url-encode'
   | 'color'
   | 'qrcode'
+  | 'hash'
   | 'any-convert'
   | 'any-compress'
   | 'watermark'
@@ -45,6 +46,7 @@ export type CategoryToolKey =
   | 'url-encode'
   | 'color'
   | 'qrcode'
+  | 'hash'
   | 'mp4-to-mp3';
 
 export type CategoryKey = 'image' | 'code' | 'media';
@@ -67,6 +69,7 @@ export type NavItemKey =
   | 'url-encode'
   | 'color'
   | 'qrcode'
+  | 'hash'
   | 'mp4-to-mp3';
 
 export type CompressFormat = 'png' | 'jpg' | 'webp';
@@ -622,6 +625,46 @@ export type Translations = {
       };
       steps: { heading: string; itemsHtml: string[] };
       faq: { heading: string; items: { q: string; aHtml: string }[] };
+    };
+    hash: {
+      title: string;
+      description: string;
+      h1: string;
+      subheading: string;
+      schema: { name: string; description: string };
+      tabs: { text: string; file: string };
+      input: {
+        textLabel: string;
+        textPlaceholder: string;
+        fileLabel: string;
+        fileDrop: string;
+        fileHint: string;
+        clearBtn: string;
+        fileReplace: string;
+        fileSizeHint: string;
+      };
+      output: {
+        label: string;
+        formatLabel: string;
+        hex: string;
+        base64: string;
+        copyBtn: string;
+        copiedBtn: string;
+        computing: string;
+        empty: string;
+      };
+      algorithms: {
+        sha1: string;
+        sha256: string;
+        sha384: string;
+        sha512: string;
+      };
+      errors: {
+        tooLargeTemplate: string;
+        readFailed: string;
+        hashFailed: string;
+      };
+      tips: { heading: string; items: string[] };
     };
     mp4ToMp3: {
       title: string;

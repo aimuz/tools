@@ -64,6 +64,7 @@ export const es = {
         'url-encode': { name: 'Codificar/Decodificar URL', desc: 'Codificación de caracteres especiales de URL' },
         color: { name: 'Conversor de Color', desc: 'Conversiones HEX, RGB, HSL' },
         qrcode: { name: 'Generador de Código QR', desc: 'Genera códigos QR desde texto o enlaces' },
+        hash: { name: 'Generador de Hash', desc: 'Sumas SHA-1 / SHA-256 / SHA-384 / SHA-512' },
       },
     },
     media: {
@@ -193,6 +194,11 @@ export const es = {
       description: 'Extrae audio de vídeo · 128-320 kbps',
       tags: ['mp4 a mp3', 'vídeo a mp3', 'extraer audio', 'audio de vídeo', 'convertidor mp3', 'mp4 to mp3'],
     },
+    hash: {
+      name: 'Generador de Hash',
+      description: 'Genera SHA-1 / SHA-256 / SHA-384 / SHA-512 con un clic',
+      tags: ['hash', 'sha256', 'sha-256', 'sha512', 'checksum', 'suma de verificación', 'integridad de archivo'],
+    },
   },
   toolCategories: {
     image: {
@@ -218,6 +224,7 @@ export const es = {
         'url-encode': { name: 'Codificar/Decodificar URL', description: 'Caracteres especiales de URL' },
         color: { name: 'Conversor de Color', description: 'Conversiones HEX, RGB, HSL' },
         qrcode: { name: 'Generador de QR', description: 'Genera códigos QR desde texto/enlaces' },
+        hash: { name: 'Generador de Hash', description: 'Sumas SHA para texto y archivos' },
       },
     },
     media: {
@@ -931,6 +938,58 @@ export const es = {
       copiedBtn: 'Copiado',
       outputPlaceholder: 'El JSON formateado aparecerá aquí',
       formatError: 'JSON inválido — revisa tu entrada',
+    },
+    hash: {
+      title: 'Generador de Hash: SHA-256, SHA-512 Online | WizGo',
+      description:
+        'Genera hashes SHA-1, SHA-256, SHA-384 y SHA-512 para texto y archivos en tu navegador. Verifica la integridad de descargas — nada sale de tu dispositivo.',
+      h1: 'Generador de Hash',
+      subheading: 'Verifica la integridad de archivos o calcula el hash de cualquier texto · SHA-1 / SHA-256 / SHA-384 / SHA-512 · todo en tu navegador',
+      schema: {
+        name: 'Generador de Hash',
+        description: 'Herramienta online gratuita para calcular hashes SHA-1, SHA-256, SHA-384 y SHA-512 de texto y archivos, todo localmente en tu navegador.',
+      },
+      tabs: { text: 'Texto', file: 'Archivo' },
+      input: {
+        textLabel: 'Texto a hashear',
+        textPlaceholder: 'Escribe o pega cualquier texto aquí...',
+        fileLabel: 'Archivo a hashear',
+        fileDrop: 'Suelta un archivo aquí',
+        fileHint: 'o haz clic para elegir un archivo',
+        clearBtn: 'Limpiar',
+        fileReplace: 'Elegir otro archivo',
+        fileSizeHint: 'Hasta 2 GB · procesado localmente, sin subir',
+      },
+      output: {
+        label: 'Resultados',
+        formatLabel: 'Formato de salida',
+        hex: 'Hex',
+        base64: 'Base64',
+        copyBtn: 'Copiar',
+        copiedBtn: 'Copiado',
+        computing: 'Calculando...',
+        empty: 'Introduce texto o selecciona un archivo para ver los hashes',
+      },
+      algorithms: {
+        sha1: 'SHA-1',
+        sha256: 'SHA-256',
+        sha384: 'SHA-384',
+        sha512: 'SHA-512',
+      },
+      errors: {
+        tooLargeTemplate: 'El archivo es demasiado grande ({size}). Tamaño máximo soportado: 2 GB.',
+        readFailed: 'No se pudo leer el archivo. Inténtalo de nuevo.',
+        hashFailed: 'Fallo al calcular el hash. Tu navegador podría no soportar este algoritmo.',
+      },
+      tips: {
+        heading: 'Sobre los hashes',
+        items: [
+          'Un hash es una huella digital de longitud fija: la misma entrada siempre produce el mismo hash.',
+          'SHA-256 es la opción más común para verificar la integridad de archivos descargados.',
+          'Todo se ejecuta en tu navegador. Los archivos y textos nunca salen de tu dispositivo.',
+          'MD5 no está incluido porque ya no se considera seguro — usa SHA-256 o superior.',
+        ],
+      },
     },
     mp4ToMp3: {
       title: 'MP4 a MP3: extrae audio de vídeos gratis | WizGo',

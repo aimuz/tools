@@ -64,6 +64,7 @@ export const en = {
         'url-encode': { name: 'URL Encode/Decode', desc: 'URL special character encoding' },
         color: { name: 'Color Converter', desc: 'HEX, RGB, HSL conversions' },
         qrcode: { name: 'QR Code Generator', desc: 'Generate QR codes from text/links' },
+        hash: { name: 'Hash Generator', desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 checksums' },
       },
     },
     media: {
@@ -193,6 +194,11 @@ export const en = {
       description: 'Extract audio from video · 128-320 kbps',
       tags: ['mp4 to mp3', 'video to mp3', 'extract audio', 'mp4 audio', 'mp3 converter', 'audio extractor'],
     },
+    hash: {
+      name: 'Hash Generator',
+      description: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 in one click',
+      tags: ['hash', 'sha256', 'sha-256', 'sha512', 'checksum', 'file hash', 'sha1', 'file integrity'],
+    },
   },
   toolCategories: {
     image: {
@@ -218,6 +224,7 @@ export const en = {
         'url-encode': { name: 'URL Encode/Decode', description: 'URL special character encoding' },
         color: { name: 'Color Converter', description: 'HEX, RGB, HSL conversions' },
         qrcode: { name: 'QR Code Generator', description: 'Generate QR codes from text/links' },
+        hash: { name: 'Hash Generator', description: 'SHA family checksums for text and files' },
       },
     },
     media: {
@@ -931,6 +938,58 @@ export const en = {
       copiedBtn: 'Copied',
       outputPlaceholder: 'Formatted JSON will appear here',
       formatError: 'Invalid JSON — please check your input',
+    },
+    hash: {
+      title: 'Hash Generator: SHA-256, SHA-512 Online | WizGo',
+      description:
+        'Generate SHA-1, SHA-256, SHA-384, SHA-512 hashes for text and files in your browser. Verify downloads, check integrity — nothing leaves your device.',
+      h1: 'Hash Generator',
+      subheading: 'Check file integrity or hash any text · SHA-1 / SHA-256 / SHA-384 / SHA-512 · runs in your browser',
+      schema: {
+        name: 'Hash Generator',
+        description: 'Free online tool to compute SHA-1, SHA-256, SHA-384, and SHA-512 hashes for text and files — all locally in your browser.',
+      },
+      tabs: { text: 'Text', file: 'File' },
+      input: {
+        textLabel: 'Text to hash',
+        textPlaceholder: 'Type or paste any text here...',
+        fileLabel: 'File to hash',
+        fileDrop: 'Drop a file here',
+        fileHint: 'or click to choose a file',
+        clearBtn: 'Clear',
+        fileReplace: 'Choose another file',
+        fileSizeHint: 'Up to 2GB · processed locally, never uploaded',
+      },
+      output: {
+        label: 'Results',
+        formatLabel: 'Output format',
+        hex: 'Hex',
+        base64: 'Base64',
+        copyBtn: 'Copy',
+        copiedBtn: 'Copied',
+        computing: 'Computing...',
+        empty: 'Enter text or pick a file to see hashes',
+      },
+      algorithms: {
+        sha1: 'SHA-1',
+        sha256: 'SHA-256',
+        sha384: 'SHA-384',
+        sha512: 'SHA-512',
+      },
+      errors: {
+        tooLargeTemplate: 'File is too large ({size}). Maximum supported size is 2GB.',
+        readFailed: 'Could not read the file. Please try again.',
+        hashFailed: 'Hashing failed. Your browser may not support this algorithm.',
+      },
+      tips: {
+        heading: 'About hash values',
+        items: [
+          'A hash is a fixed-length fingerprint of your content — identical input always yields identical hash.',
+          'SHA-256 is the most common choice for file integrity checks (e.g., verifying downloads).',
+          'Everything runs in your browser. Files and text never leave your device.',
+          'MD5 is not included because it is no longer considered secure — prefer SHA-256 or stronger.',
+        ],
+      },
     },
     mp4ToMp3: {
       title: 'MP4 to MP3: Free Online Video to Audio | WizGo',

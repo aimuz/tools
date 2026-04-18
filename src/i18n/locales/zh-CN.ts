@@ -63,6 +63,7 @@ export const zhCN = {
         'url-encode': { name: 'URL 编解码', desc: 'URL 特殊字符编码解码' },
         color: { name: '颜色转换', desc: '十六进制、RGB、HSL 互转' },
         qrcode: { name: '二维码生成', desc: '文本 / 链接生成二维码' },
+        hash: { name: '哈希值生成', desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 校验' },
       },
     },
     media: {
@@ -193,6 +194,11 @@ export const zhCN = {
       description: '从视频中提取音频 · 128-320 kbps',
       tags: ['mp4转mp3', '视频转mp3', '提取音频', '视频转音频', 'mp3', '音频提取', 'mp4 to mp3'],
     },
+    hash: {
+      name: '哈希值生成',
+      description: '一键生成 SHA-1 / SHA-256 / SHA-384 / SHA-512',
+      tags: ['哈希', 'hash', 'sha256', 'sha-256', 'sha512', '校验值', '文件校验', 'checksum', '散列'],
+    },
   },
   toolCategories: {
     image: {
@@ -218,6 +224,7 @@ export const zhCN = {
         'url-encode': { name: 'URL 编解码', description: 'URL 特殊字符编码解码' },
         color: { name: '颜色转换', description: '十六进制、RGB、HSL 色值互转' },
         qrcode: { name: '二维码生成', description: '文本/链接生成二维码' },
+        hash: { name: '哈希值生成', description: '文本和文件的 SHA 校验值' },
       },
     },
     media: {
@@ -930,6 +937,57 @@ export const zhCN = {
       copiedBtn: '已复制',
       outputPlaceholder: '格式化后的 JSON 将显示在这里',
       formatError: 'JSON 格式错误，请检查输入',
+    },
+    hash: {
+      title: '哈希值生成器：SHA-256、SHA-512 在线计算 | WizGo',
+      description: '在浏览器中为文本和文件生成 SHA-1、SHA-256、SHA-384、SHA-512 哈希值。校验下载完整性，数据全程本地处理，不上传。',
+      h1: '哈希值生成器',
+      subheading: '校验文件完整性或对任意文本计算哈希 · SHA-1 / SHA-256 / SHA-384 / SHA-512 · 纯浏览器本地运算',
+      schema: {
+        name: '哈希值生成器',
+        description: '免费在线工具，为文本或文件一次性生成 SHA-1、SHA-256、SHA-384、SHA-512 哈希值，全部在浏览器本地计算。',
+      },
+      tabs: { text: '文本', file: '文件' },
+      input: {
+        textLabel: '输入文本',
+        textPlaceholder: '输入或粘贴需要计算哈希的文本...',
+        fileLabel: '选择文件',
+        fileDrop: '拖拽文件到此处',
+        fileHint: '或点击选择文件',
+        clearBtn: '清空',
+        fileReplace: '换一个文件',
+        fileSizeHint: '最大支持 2GB · 本地处理，不上传',
+      },
+      output: {
+        label: '计算结果',
+        formatLabel: '输出格式',
+        hex: '十六进制',
+        base64: 'Base64',
+        copyBtn: '复制',
+        copiedBtn: '已复制',
+        computing: '计算中...',
+        empty: '输入文本或选择文件后显示哈希值',
+      },
+      algorithms: {
+        sha1: 'SHA-1',
+        sha256: 'SHA-256',
+        sha384: 'SHA-384',
+        sha512: 'SHA-512',
+      },
+      errors: {
+        tooLargeTemplate: '文件过大（{size}），当前支持最大 2GB。',
+        readFailed: '无法读取文件，请重试。',
+        hashFailed: '计算失败，当前浏览器可能不支持该算法。',
+      },
+      tips: {
+        heading: '关于哈希值',
+        items: [
+          '哈希是一段固定长度的"指纹"，相同内容始终产生相同的哈希值。',
+          '最常用的是 SHA-256，用于校验下载文件的完整性。',
+          '全部在浏览器本地计算，文件和文本不会上传到任何服务器。',
+          '已不推荐使用 MD5（存在安全隐患），本工具仅提供 SHA 系列算法。',
+        ],
+      },
     },
     mp4ToMp3: {
       title: 'MP4 转 MP3：免费在线提取视频音频 | WizGo',

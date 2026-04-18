@@ -63,6 +63,7 @@ export const ko = {
         'url-encode': { name: 'URL 인코딩/디코딩', desc: 'URL 특수 문자 인코딩' },
         color: { name: '색상 변환', desc: 'HEX, RGB, HSL 상호 변환' },
         qrcode: { name: 'QR 코드 생성기', desc: '텍스트/링크로 QR 코드 생성' },
+        hash: { name: '해시 생성기', desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 체크섬' },
       },
     },
     media: {
@@ -192,6 +193,11 @@ export const ko = {
       description: '동영상에서 오디오 추출 · 128-320 kbps',
       tags: ['mp4 mp3 변환', '동영상 mp3', '오디오 추출', '비디오 오디오', 'mp3 변환', 'mp4 to mp3'],
     },
+    hash: {
+      name: '해시 생성기',
+      description: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 한 번에 생성',
+      tags: ['해시', 'hash', 'sha256', 'sha-256', 'sha512', '체크섬', '파일 무결성', 'checksum'],
+    },
   },
   toolCategories: {
     image: {
@@ -217,6 +223,7 @@ export const ko = {
         'url-encode': { name: 'URL 인코딩/디코딩', description: 'URL 특수 문자 처리' },
         color: { name: '색상 변환', description: 'HEX, RGB, HSL 색상값 상호 변환' },
         qrcode: { name: 'QR 코드 생성', description: '텍스트/링크로 QR 코드 생성' },
+        hash: { name: '해시 생성기', description: '텍스트와 파일의 SHA 체크섬' },
       },
     },
     media: {
@@ -929,6 +936,58 @@ export const ko = {
       copiedBtn: '복사됨',
       outputPlaceholder: '포맷팅된 JSON이 여기에 표시됩니다',
       formatError: 'JSON 형식 오류, 입력을 확인하세요',
+    },
+    hash: {
+      title: '해시 생성기: SHA-256, SHA-512 온라인 계산 | WizGo',
+      description:
+        '브라우저에서 텍스트와 파일의 SHA-1, SHA-256, SHA-384, SHA-512 해시를 생성합니다. 다운로드 무결성을 확인하세요. 모든 처리는 로컬에서 이루어집니다.',
+      h1: '해시 생성기',
+      subheading: '파일 무결성 검증 또는 텍스트 해시 계산 · SHA-1 / SHA-256 / SHA-384 / SHA-512 · 브라우저에서 실행',
+      schema: {
+        name: '해시 생성기',
+        description: '텍스트나 파일에 대해 SHA-1, SHA-256, SHA-384, SHA-512 해시를 브라우저에서 계산하는 무료 온라인 도구.',
+      },
+      tabs: { text: '텍스트', file: '파일' },
+      input: {
+        textLabel: '해시할 텍스트',
+        textPlaceholder: '텍스트를 입력하거나 붙여넣기...',
+        fileLabel: '해시할 파일',
+        fileDrop: '파일을 여기에 놓으세요',
+        fileHint: '또는 클릭하여 파일 선택',
+        clearBtn: '지우기',
+        fileReplace: '다른 파일 선택',
+        fileSizeHint: '최대 2GB · 로컬 처리, 업로드 없음',
+      },
+      output: {
+        label: '결과',
+        formatLabel: '출력 형식',
+        hex: '16진수',
+        base64: 'Base64',
+        copyBtn: '복사',
+        copiedBtn: '복사됨',
+        computing: '계산 중...',
+        empty: '텍스트를 입력하거나 파일을 선택하면 해시가 표시됩니다',
+      },
+      algorithms: {
+        sha1: 'SHA-1',
+        sha256: 'SHA-256',
+        sha384: 'SHA-384',
+        sha512: 'SHA-512',
+      },
+      errors: {
+        tooLargeTemplate: '파일이 너무 큽니다({size}). 최대 지원 크기는 2GB입니다.',
+        readFailed: '파일을 읽을 수 없습니다. 다시 시도해주세요.',
+        hashFailed: '해시 계산 실패. 브라우저가 해당 알고리즘을 지원하지 않을 수 있습니다.',
+      },
+      tips: {
+        heading: '해시에 대하여',
+        items: [
+          '해시는 고정 길이의 "지문"으로, 동일한 입력은 항상 동일한 해시를 생성합니다.',
+          '파일 무결성 확인(다운로드 검증)에는 SHA-256이 가장 많이 사용됩니다.',
+          '모든 계산은 브라우저에서 이루어지며, 파일과 텍스트는 어떤 서버로도 전송되지 않습니다.',
+          'MD5는 보안성이 약해 포함하지 않았습니다. SHA-256 이상을 사용하는 것이 좋습니다.',
+        ],
+      },
     },
     mp4ToMp3: {
       title: 'MP4를 MP3로: 무료 온라인 영상→오디오 | WizGo',

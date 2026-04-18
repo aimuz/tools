@@ -63,6 +63,7 @@ export const ja = {
         'url-encode': { name: 'URL エンコード/デコード', desc: 'URL 特殊文字のエンコード/デコード' },
         color: { name: 'カラー変換', desc: 'HEX・RGB・HSL 相互変換' },
         qrcode: { name: 'QR コード生成', desc: 'テキスト / リンクから QR コード' },
+        hash: { name: 'ハッシュ値生成', desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 チェックサム' },
       },
     },
     media: {
@@ -192,6 +193,11 @@ export const ja = {
       description: '動画から音声を抽出 · 128-320 kbps',
       tags: ['mp4 から mp3', '動画から mp3', '音声抽出', '動画 音声', 'mp3 変換', 'mp4 to mp3'],
     },
+    hash: {
+      name: 'ハッシュ値生成',
+      description: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 をワンクリックで生成',
+      tags: ['ハッシュ', 'hash', 'sha256', 'sha-256', 'sha512', 'チェックサム', 'ファイル検証', 'checksum'],
+    },
   },
   toolCategories: {
     image: {
@@ -217,6 +223,7 @@ export const ja = {
         'url-encode': { name: 'URL エンコード/デコード', description: 'URL 特殊文字の処理' },
         color: { name: 'カラー変換', description: 'HEX、RGB、HSL の相互変換' },
         qrcode: { name: 'QR コード生成', description: 'テキスト/リンクから QR コードを生成' },
+        hash: { name: 'ハッシュ値生成', description: 'テキストとファイルの SHA チェックサム' },
       },
     },
     media: {
@@ -929,6 +936,58 @@ export const ja = {
       copiedBtn: 'コピーしました',
       outputPlaceholder: '整形された JSON がここに表示されます',
       formatError: 'JSON 形式エラー、入力を確認してください',
+    },
+    hash: {
+      title: 'ハッシュ値生成：SHA-256、SHA-512 オンライン | WizGo',
+      description:
+        'テキストやファイルの SHA-1、SHA-256、SHA-384、SHA-512 ハッシュをブラウザで生成。ダウンロードの整合性チェックに。データはあなたのデバイスから出ません。',
+      h1: 'ハッシュ値生成',
+      subheading: 'ファイルの整合性チェックやテキストのハッシュ化 · SHA-1 / SHA-256 / SHA-384 / SHA-512 · ブラウザ内で完結',
+      schema: {
+        name: 'ハッシュ値生成',
+        description: 'テキストやファイルの SHA-1、SHA-256、SHA-384、SHA-512 ハッシュをブラウザ内で計算する無料オンラインツール。',
+      },
+      tabs: { text: 'テキスト', file: 'ファイル' },
+      input: {
+        textLabel: 'ハッシュ化するテキスト',
+        textPlaceholder: 'ここにテキストを入力または貼り付け...',
+        fileLabel: 'ハッシュ化するファイル',
+        fileDrop: 'ファイルをここにドロップ',
+        fileHint: 'またはクリックしてファイルを選択',
+        clearBtn: 'クリア',
+        fileReplace: '別のファイルを選択',
+        fileSizeHint: '最大 2GB · ローカル処理、アップロード不要',
+      },
+      output: {
+        label: '結果',
+        formatLabel: '出力形式',
+        hex: '16 進数',
+        base64: 'Base64',
+        copyBtn: 'コピー',
+        copiedBtn: 'コピー済み',
+        computing: '計算中...',
+        empty: 'テキストを入力またはファイルを選択するとハッシュが表示されます',
+      },
+      algorithms: {
+        sha1: 'SHA-1',
+        sha256: 'SHA-256',
+        sha384: 'SHA-384',
+        sha512: 'SHA-512',
+      },
+      errors: {
+        tooLargeTemplate: 'ファイルが大きすぎます（{size}）。最大 2GB まで対応しています。',
+        readFailed: 'ファイルを読み込めませんでした。もう一度お試しください。',
+        hashFailed: '計算に失敗しました。ブラウザがこのアルゴリズムに対応していない可能性があります。',
+      },
+      tips: {
+        heading: 'ハッシュ値について',
+        items: [
+          'ハッシュは固定長の「指紋」で、同じ入力からは常に同じハッシュが得られます。',
+          'ファイル整合性チェック（ダウンロード検証など）には SHA-256 が最も一般的です。',
+          'すべてブラウザ内で処理され、ファイルやテキストはデバイスから送信されません。',
+          'MD5 は安全性が低いため含めていません。SHA-256 以上の使用を推奨します。',
+        ],
+      },
     },
     mp4ToMp3: {
       title: 'MP4 を MP3 に：無料オンライン動画→音声 | WizGo',

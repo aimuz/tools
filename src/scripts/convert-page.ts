@@ -7,6 +7,7 @@
 
 import { getImageConverter } from '../wasm/rust-image-converter.js';
 import { bindCopyButton, setClipboardLabels } from './clipboard';
+import { openCompare, setCompareLabels, thumbPairHtml } from './image-compare';
 
 export interface ConvertLabels {
   loading: string;
@@ -22,6 +23,9 @@ export interface ConvertLabels {
   canvasError: string;
   pngFailed: string;
   clipboardNotSupported: string;
+  compareBtn: string;
+  compareBefore: string;
+  compareAfter: string;
 }
 
 const DEFAULT_LABELS: ConvertLabels = {
@@ -38,6 +42,9 @@ const DEFAULT_LABELS: ConvertLabels = {
   canvasError: 'Failed to create canvas context',
   pngFailed: 'PNG generation failed',
   clipboardNotSupported: 'Clipboard API is not supported in this browser',
+  compareBtn: 'Compare',
+  compareBefore: 'Before',
+  compareAfter: 'After',
 };
 
 const interpolate = (template: string, vars: Record<string, string>) =>
@@ -83,6 +90,11 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
     copied: labels.copied,
     copyFailed: labels.copyFailed,
   });
+  setCompareLabels({
+    before: labels.compareBefore,
+    after: labels.compareAfter,
+    compareBtn: labels.compareBtn,
+  });
 
   const uploadZone = document.getElementById('upload-zone');
   const fileInput = document.getElementById('file-input') as HTMLInputElement | null;
@@ -98,7 +110,7 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
   // Resolve preset: explicit opt > <meta> on page > URL param (if enabled) > default.
   const presetTo = opts.presetTo ?? readPresetFromMeta();
 
-  let files: { file: File; id: string }[] = [];
+  let files: { file: File; id: string; originalUrl: string }[] = [];
   let imageConverter: any = null;
   let targetFormat = presetTo ?? opts.defaultTo ?? 'jpg';
   let quality = 90;
@@ -163,6 +175,7 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
   });
 
   async function handleFiles(newFiles: File[]) {
+    files.forEach(f => URL.revokeObjectURL(f.originalUrl));
     const imgs = newFiles.filter(f => f.type.startsWith('image/'));
     if (imgs.length > 0 && imageConverter && detectedFormatSpan) {
       try {
@@ -171,7 +184,11 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
         if (info.format) detectedFormatSpan.textContent = info.format.toUpperCase();
       } catch (e) { console.error('Failed to detect format:', e); }
     }
-    files = imgs.map(file => ({ file, id: Math.random().toString(36).slice(2, 11) }));
+    files = imgs.map(file => ({
+      file,
+      id: Math.random().toString(36).slice(2, 11),
+      originalUrl: URL.createObjectURL(file),
+    }));
     renderFileList();
     options?.classList.remove('hidden');
     uploadZone?.classList.add('hidden');
@@ -179,15 +196,11 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
 
   function renderFileList() {
     if (!fileList) return;
-    fileList.innerHTML = files.map(({ file, id }) => `
+    fileList.innerHTML = files.map(({ file, id, originalUrl }) => `
       <div class="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg">
-        <div class="w-10 h-10 bg-gray-100 rounded flex items-center justify-center">
-          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-          </svg>
-        </div>
+        <img src="${originalUrl}" alt="" class="w-10 h-10 object-cover rounded bg-gray-100 border border-gray-200" />
         <div class="flex-1 min-w-0">
-          <p class="text-sm text-[#171717] truncate">${file.name}</p>
+          <p class="text-sm text-[#171717] truncate">${escapeHtml(file.name)}</p>
           <p class="text-xs text-gray-400">${formatSize(file.size)}</p>
         </div>
         <button data-remove="${id}" class="text-gray-400 hover:text-red-500">✕</button>
@@ -195,6 +208,8 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
     `).join('');
     fileList.querySelectorAll<HTMLButtonElement>('[data-remove]').forEach(btn => {
       btn.addEventListener('click', () => {
+        const removed = files.find(f => f.id === btn.dataset.remove);
+        if (removed) URL.revokeObjectURL(removed.originalUrl);
         files = files.filter(f => f.id !== btn.dataset.remove);
         renderFileList();
         if (files.length === 0) {
@@ -217,14 +232,14 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
 
     resultsList.forEach(r => r.url && URL.revokeObjectURL(r.url));
     resultsList = [];
-    for (const { file } of files) {
+    for (const { file, originalUrl } of files) {
       try {
         const buf = new Uint8Array(await file.arrayBuffer());
         const out = await imageConverter.convertImage(buf, targetFormat, quality);
         const mime = MIME[targetFormat] || 'image/png';
         const blob = new Blob([out], { type: mime });
         const newName = file.name.replace(/\.[^/.]+$/, '') + '.' + targetFormat;
-        resultsList.push({ newName, url: URL.createObjectURL(blob), blob, mime, size: blob.size });
+        resultsList.push({ newName, url: URL.createObjectURL(blob), originalUrl, blob, mime, size: blob.size });
       } catch (err) {
         console.error(err);
         resultsList.push({ originalName: file.name, error: true });
@@ -238,11 +253,9 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
         </div>
       ` : `
         <div class="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg">
-          <div class="w-10 h-10 bg-gray-100 rounded flex items-center justify-center">
-            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-            </svg>
-          </div>
+          <button type="button" data-compare-idx="${idx}" class="flex items-center gap-1 rounded hover:ring-2 hover:ring-[#171717]/20 transition-all" title="${escapeHtml(labels.compareBtn)}" aria-label="${escapeHtml(labels.compareBtn)}">
+            ${thumbPairHtml(item.originalUrl, item.url)}
+          </button>
           <div class="flex-1 min-w-0">
             <p class="text-sm text-[#171717] truncate">${escapeHtml(item.newName)}</p>
             <p class="text-xs text-gray-400">${formatSize(item.size)}</p>
@@ -256,6 +269,13 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
       results.querySelectorAll<HTMLButtonElement>('[data-copy-idx]').forEach(btn => {
         const item = resultsList[Number(btn.dataset.copyIdx)];
         if (item && !item.error) bindCopyButton(btn, () => ({ blob: item.blob, mime: item.mime }));
+      });
+
+      results.querySelectorAll<HTMLButtonElement>('[data-compare-idx]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = resultsList[Number(btn.dataset.compareIdx)];
+          if (item && !item.error) openCompare(item.originalUrl, item.url, item.newName);
+        });
       });
     }
 

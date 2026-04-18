@@ -35,6 +35,9 @@ export const zhTW = {
       pngGenerationFailed: 'PNG 產生失敗',
       audioDecodeFailed: '無法解碼音訊，請嘗試其他檔案或使用 Chrome / Firefox',
       audioEncodeFailed: '音訊編碼失敗',
+      compareBtn: '對比',
+      compareBefore: '原圖',
+      compareAfter: '輸出',
     },
   },
   nav: {

@@ -35,6 +35,9 @@ export const ja = {
       pngGenerationFailed: 'PNG 生成に失敗しました',
       audioDecodeFailed: '音声をデコードできませんでした。別のファイルを試すか、Chrome / Firefox を使用してください',
       audioEncodeFailed: '音声のエンコードに失敗しました',
+      compareBtn: '比較',
+      compareBefore: 'オリジナル',
+      compareAfter: '出力',
     },
   },
   nav: {

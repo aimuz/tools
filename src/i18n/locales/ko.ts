@@ -35,6 +35,9 @@ export const ko = {
       pngGenerationFailed: 'PNG 생성 실패',
       audioDecodeFailed: '오디오를 디코딩할 수 없습니다. 다른 파일을 시도하거나 Chrome / Firefox를 사용하세요',
       audioEncodeFailed: '오디오 인코딩 실패',
+      compareBtn: '비교',
+      compareBefore: '원본',
+      compareAfter: '결과',
     },
   },
   nav: {

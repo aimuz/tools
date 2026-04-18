@@ -36,6 +36,9 @@ export const en = {
       pngGenerationFailed: 'PNG generation failed',
       audioDecodeFailed: 'Could not decode audio. Try another file or use Chrome/Firefox.',
       audioEncodeFailed: 'Audio encoding failed',
+      compareBtn: 'Compare',
+      compareBefore: 'Before',
+      compareAfter: 'After',
     },
   },
   nav: {

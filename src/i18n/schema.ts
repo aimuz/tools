@@ -117,6 +117,9 @@ export type ScriptLabels = {
   pngGenerationFailed: string;
   audioDecodeFailed: string;
   audioEncodeFailed: string;
+  compareBtn: string;
+  compareBefore: string;
+  compareAfter: string;
 };
 
 export type Translations = {

@@ -35,6 +35,9 @@ export const zhCN = {
       pngGenerationFailed: 'PNG 生成失败',
       audioDecodeFailed: '无法解码音频，请尝试其他文件或使用 Chrome / Firefox',
       audioEncodeFailed: '音频编码失败',
+      compareBtn: '对比',
+      compareBefore: '原图',
+      compareAfter: '输出',
     },
   },
   nav: {

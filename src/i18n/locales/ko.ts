@@ -215,9 +215,9 @@ export const ko = {
   },
   pages: {
     home: {
-      title: 'WizGo - 무료 온라인 도구 모음 · 이미지 압축, 형식 변환, JWT, 타임스탬프',
+      title: '무료 온라인 도구: 이미지 압축, JWT, 타임스탬프 | WizGo',
       description:
-        'WizGo는 이미지 압축, 이미지 형식 변환, JWT 디코드, 타임스탬프 변환, JSON 포맷팅, 코드 이미지화 등 무료 온라인 도구를 제공합니다. 모두 브라우저에서 처리, 업로드 없이 안전, 빠르고 설치 불필요.',
+        '브라우저에서 실행되는 무료 도구: 이미지 압축, 형식 변환, JWT 디코드, 타임스탬프, JSON 포맷팅, 코드 이미지화. 업로드 없음, 설치 불필요.',
       heroHeading: '무료 온라인 도구 모음',
       heroSubheading: '이미지 압축, 형식 변환, JWT, 타임스탬프 · 브라우저에서 처리',
       searchPlaceholder: '도구 검색 (예: PNG 압축, to JPG)...',
@@ -230,28 +230,28 @@ export const ko = {
       schema: { alternateName: 'WizGo 도구 모음' },
     },
     compressFormat: {
-      titleTemplate: '{label} 압축 - 무료 온라인 {full} 이미지 압축 도구 | WizGo',
+      titleTemplate: '{label} 압축: 무료 온라인 {full} 도구 | WizGo',
       descriptionTemplate:
-        '무료 온라인 {label} 이미지 압축 도구. {seoBenefit} 모두 브라우저에서 처리, 일괄 처리 지원, 개인 정보 보호.',
+        '{label} 이미지를 브라우저에서 압축. {seoBenefit} 업로드 없음, 일괄 지원.',
       h1Template: '{label} 이미지 압축',
       formats: {
         png: {
           headline: '투명 배경 유지 · 일반적으로 60-80% 축소',
           hint: '스크린샷, 일러스트, 아이콘, 로고에 가장 적합. 육안으로 거의 차이를 알 수 없으며 투명 배경은 자동 유지.',
           seoBenefit:
-            'PNG 스마트 압축. 스크린샷, 일러스트, 아이콘은 60-80% 축소, 사진 PNG도 20-30% 축소, 시각적 차이 거의 없음.',
+            '스크린샷·아이콘 60-80%, 사진 PNG 20-30% 축소, 시각적 차이 거의 없음.',
         },
         jpg: {
           headline: '사진 전용 압축 · 일반적으로 30-45% 축소',
           hint: '사진에 깊이 최적화, 화질 거의 변화 없음. 사진의 촬영 위치, 기기 등 개인 정보도 자동 제거.',
           seoBenefit:
-            'JPG 사진 압축, 파일 30-45% 축소, 사진의 촬영 위치, 기기 모델 등 개인 정보 자동 제거.',
+            '사진 30-45% 축소, 촬영 위치·기기 모델 등 개인 정보 자동 제거.',
         },
         webp: {
           headline: '무손실 압축 · 투명 배경 유지',
           hint: 'WebP 이미지를 무손실 최적화, 화질과 투명도 완전 유지. 이미 충분히 작으면 도구가 원본을 반환합니다.',
           seoBenefit:
-            'WebP 무손실 압축, 투명도 유지. 원본이 이미 최적화된 경우 원본을 반환하여 항상 더 작은 파일을 얻을 수 있습니다.',
+            '무손실 압축으로 투명도 유지, 최적화된 원본은 그대로 반환.',
         },
       },
       upload: {
@@ -280,32 +280,32 @@ export const ko = {
       },
     },
     convertPair: {
-      titleTemplate: '{fromLabel} → {toLabel} - 무료 온라인 {fromFull} → {toFull} 도구 | WizGo',
+      titleTemplate: '{fromLabel} → {toLabel}: 무료 온라인 변환 | WizGo',
       descriptionTemplate:
-        '무료 온라인 {fromLabel} → {toLabel} 도구. 일괄 변환, 드래그 앤 드롭, 원클릭 다운로드 지원. {hintWithSpace}모두 브라우저에서 처리, 개인 정보 보호.',
+        '{fromLabel} → {toLabel} 브라우저에서 변환. {hintWithSpace}업로드 없음.',
       h1Template: '{fromLabel} → {toLabel}',
       fallbackHintTemplate: '{fromFull} 이미지를 온라인에서 {toFull} 형식으로 변환 · 브라우저에서 처리',
       pairHints: {
-        'png-jpg': '투명 배경은 흰색으로 채워지며 일반적으로 40-80% 축소. 웹, 이메일, 메신저 공유에 적합.',
-        'png-webp': 'WebP는 투명도를 유지하면서도 PNG보다 25-50% 작고, 최신 브라우저에서 널리 지원.',
-        'png-gif': 'PNG를 GIF로 변환, GIF만 지원하는 구형 플랫폼용.',
-        'png-bmp': 'PNG를 무손실 비압축 BMP로 변환, 구형 Windows 프로그램과 호환에 사용.',
-        'jpg-png': 'JPG를 PNG로 변환하면 무손실 저장과 투명도를 얻을 수 있어 로고 배경 처리 전 단계에 적합.',
-        'jpg-webp': 'JPG를 WebP로 재압축하여 25-35% 추가 축소, 시각적 차이 거의 없음, 이미지가 많은 사이트에 적합.',
-        'jpg-gif': 'JPG를 GIF로, 사진을 구형 채팅 플랫폼에 보낼 수 있는 형식으로.',
-        'jpg-bmp': 'JPG를 BMP로 변환하면 무손실이지만 큰 비트맵, 인쇄나 특수 프로그램 입력용.',
-        'webp-png': 'WebP가 일부 소프트웨어에서 지원되지 않을 때 PNG로 되돌리는 것이 가장 안전한 폴백, 투명도 완전 유지.',
-        'webp-jpg': 'WebP 미지원 구형 플랫폼에 보낼 때 JPG로 변환이 가장 확실.',
-        'webp-gif': 'WebP를 GIF로, 구형 브라우저나 GIF만 지원하는 채팅 플랫폼용.',
-        'webp-bmp': 'WebP를 BMP로, 특정 그래픽 프로그램이나 인쇄 흐름용.',
-        'gif-png': 'GIF를 PNG로 변환하면 투명도 유지, 더 선명 (첫 프레임만).',
-        'gif-jpg': 'GIF를 JPG로 하면 더 작지만 투명도 손실, 첫 프레임만 유지, 공유에 적합.',
-        'gif-webp': 'GIF를 WebP로, 정적 이미지는 더 압축 가능, 투명도 유지.',
-        'gif-bmp': 'GIF를 BMP로, 첫 프레임만 유지, 그래픽 프로그램 일괄 처리용.',
-        'bmp-png': 'BMP를 PNG로 무손실 대폭 축소 (보통 70%+), 보관에 적합.',
-        'bmp-jpg': 'BMP를 JPG로 하면 압축률 최고, 대량 스캔 파일, 스크린샷 공유에 적합.',
-        'bmp-webp': 'BMP를 WebP로 최고 압축률, 최신 브라우저에서 널리 지원.',
-        'bmp-gif': 'BMP를 GIF로, GIF만 지원하는 구형 채팅이나 포럼용.',
+        'png-jpg': '투명 배경은 흰색으로 채워지며 40-80% 축소, 웹·메일 공유에 적합.',
+        'png-webp': '투명도 유지하며 PNG보다 25-50% 작고, 최신 브라우저 지원.',
+        'png-gif': 'GIF만 지원하는 구형 플랫폼용.',
+        'png-bmp': '무손실 비압축 BMP, 구형 Windows 프로그램 호환용.',
+        'jpg-png': '무손실 저장과 투명도, 로고 배경 처리 전 단계에 적합.',
+        'jpg-webp': '25-35% 추가 축소, 시각적 차이 거의 없음, 이미지 많은 사이트에.',
+        'jpg-gif': '사진을 구형 채팅 플랫폼 형식으로.',
+        'jpg-bmp': '무손실이지만 큰 비트맵, 인쇄나 특수 프로그램 입력용.',
+        'webp-png': 'WebP 미지원 시 가장 안전한 폴백, 투명도 완전 유지.',
+        'webp-jpg': 'WebP 미지원 구형 플랫폼에 가장 확실.',
+        'webp-gif': '구형 브라우저나 GIF만 지원하는 채팅용.',
+        'webp-bmp': '특정 그래픽 프로그램이나 인쇄 흐름용.',
+        'gif-png': '투명도 유지, 더 선명 (첫 프레임만).',
+        'gif-jpg': '더 작지만 투명도·다른 프레임 손실, 공유용.',
+        'gif-webp': '정적 이미지 추가 압축 가능, 투명도 유지.',
+        'gif-bmp': '첫 프레임만, 그래픽 일괄 처리용.',
+        'bmp-png': '무손실 대폭 축소 (보통 70%+), 보관에 적합.',
+        'bmp-jpg': '압축률 최고, 대량 스캔·스크린샷 공유에 적합.',
+        'bmp-webp': '최고 압축률, 최신 브라우저 지원.',
+        'bmp-gif': 'GIF만 지원하는 구형 채팅·포럼용.',
       },
       upload: {
         dragTemplate: '{fromLabel} 이미지를 여기에 드롭',
@@ -353,7 +353,7 @@ export const ko = {
       },
     },
     convert: {
-      title: '이미지 형식 변환 - PNG JPG WebP HEIC 온라인 상호 변환 | WizGo',
+      title: '이미지 형식 변환: PNG/JPG/WebP/HEIC 온라인 | WizGo',
       description:
         '무료 온라인 이미지 형식 변환 도구. PNG, JPG, JPEG, WebP, GIF, BMP 등 일반 형식 상호 변환 지원. 모두 브라우저에서 처리, 안전, 빠르고 설치 불필요.',
       h1: '이미지 형식 변환',
@@ -379,9 +379,9 @@ export const ko = {
       },
     },
     about: {
-      title: 'WizGo 소개 - 로컬 처리 무료 온라인 도구 모음 | 개인 정보와 기술 스택',
+      title: 'WizGo 소개: 로컬 처리 도구 | WizGo',
       description:
-        'WizGo의 기술 구현과 개인 정보 정책을 알아보세요. 모든 도구는 브라우저에서 로컬로 실행되며 파일을 업로드하지 않습니다. Astro + Rust WASM + WebCrypto 기반.',
+        'WizGo의 기술과 개인 정보 정책. 모든 도구는 브라우저에서 로컬 실행, 파일 업로드 없음. Astro + Rust WASM + WebCrypto 기반.',
       h1: 'WizGo 소개',
       schema: {
         name: 'WizGo 소개',
@@ -442,9 +442,9 @@ export const ko = {
       },
     },
     watermark: {
-      title: '이미지 숨김 워터마크 - 스테가노그래피 텍스트 삽입/추출 | WizGo',
+      title: '이미지 숨김 워터마크: 삽입·추출 | WizGo',
       description:
-        '무료 온라인 이미지 숨김 워터마크 도구. 이미지 픽셀에 숨김 텍스트를 삽입하거나 이미지에서 워터마크 추출. LSB와 DCT 두 가지 알고리즘 지원, LSB는 용량 크고 DCT는 JPG 재압축에 강함. 모두 브라우저에서 처리.',
+        '이미지 픽셀에 숨김 텍스트를 삽입하거나 추출. LSB와 DCT 두 알고리즘 지원. 모두 브라우저에서 처리.',
       h1: '이미지 숨김 워터마크',
       subheading: '텍스트를 이미지 픽셀에 숨기거나 이미지에서 추출 · 브라우저에서 처리',
       schema: {
@@ -696,9 +696,9 @@ export const ko = {
       renderError: '렌더링 실패',
     },
     base64: {
-      title: 'Base64 인코딩/디코딩 - 온라인 텍스트/파일 변환 도구 | WizGo',
+      title: 'Base64 인코딩/디코딩: 텍스트·파일 | WizGo',
       description:
-        '무료 온라인 Base64 인코딩/디코딩 도구. 텍스트와 Base64 상호 변환, 파일 업로드를 Base64로, Base64를 파일로 다운로드 지원. 이미지, 텍스트, 바이너리 파일 모두 처리 가능, 브라우저에서 처리.',
+        '무료 Base64 인코딩/디코딩. 텍스트와 Base64 상호 변환, 이미지 미리보기, 바이너리 다운로드 지원. 브라우저에서 처리.',
       h1: 'Base64 인코딩/디코딩',
       subheading: '텍스트/파일과 Base64 상호 변환 · 이미지, 텍스트, 바이너리 지원 · 브라우저에서 처리',
       schema: {
@@ -793,9 +793,9 @@ export const ko = {
       },
     },
     textWatermark: {
-      title: '신분증 워터마크 · 이미지 텍스트 워터마크 온라인 도구 - 제출 / 도용 방지 / 문서 | WizGo',
+      title: '신분증 워터마크: 도용 방지 도구 | WizGo',
       description:
-        '무료 온라인으로 이미지에 텍스트 워터마크 추가: 신분증, 사업자등록증, 계약서 등 문서에 "○○용도만 사용" 부정 사용 방지 워터마크. ICP 제출, 저작권 보호 시나리오에서 이미지에 텍스트 보호 추가. 타일 / 중앙 / 우하단 배치, 색상, 크기, 투명도, 회전 조정 가능. 브라우저에서 처리, 사진 업로드 없음.',
+        '이미지에 "○○용도만 사용" 텍스트 워터마크 추가: 신분증·계약서·ICP 제출, 도용 방지·저작권 보호. 타일/중앙/우하단 배치. 브라우저에서 처리.',
       h1: '이미지 텍스트 워터마크',
       subheading: '이미지에 "ICP 제출 전용" 등 텍스트 워터마크 추가 · 도용 방지, 출처 추적 · 브라우저에서 처리',
       schema: {

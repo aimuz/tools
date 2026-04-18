@@ -40,6 +40,8 @@ const socialImage = ogImage ?? `${siteUrl}/favicon.svg`;
 const hreflangEntries = buildHreflangEntries(localePath, siteUrl);
 const ogLocaleValue = ogLocale(locale);
 const ogAlternates = alternateOgLocales(locale);
+
+const manifestHref = locale === DEFAULT_LOCALE ? '/manifest.webmanifest' : `/${locale}/manifest.webmanifest`;
 ---
 
 <!doctype html>
@@ -57,7 +59,7 @@ const ogAlternates = alternateOgLocales(locale);
     ))}
 
     <!-- PWA -->
-    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="manifest" href={manifestHref} />
     <link rel="apple-touch-icon" href="/favicon.svg" />
 
     <!-- Open Graph -->

@@ -15,6 +15,24 @@ const t = useTranslations(locale);
 const w = t.pages.watermark;
 const pageUrl = absoluteUrl(locale, '/watermark');
 
+const s = t.common.scripts;
+const watermarkLabels = {
+  parseImageError: s.parseImageError,
+  needImageFirst: s.needImageFirst,
+  needText: s.needText,
+  noWatermark: s.noWatermark,
+  copied: s.copied,
+  capacityHintTemplate: s.capacityHintTemplate,
+  capacityErrorTemplate: s.capacityErrorTemplate,
+  imageTooSmallDct: s.imageTooSmallDct,
+  imageTooSmallLsb: s.imageTooSmallLsb,
+  copying: s.copying,
+  copyFailed: s.copyFailed,
+  canvasError: s.canvasError,
+  pngFailed: s.pngGenerationFailed,
+  clipboardNotSupported: s.clipboardNotSupported,
+};
+
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
@@ -176,7 +194,10 @@ const schema = {
   <Footer />
 </Layout>
 
+<script type="application/json" id="watermark-labels" set:html={JSON.stringify({ labels: watermarkLabels, locale })}></script>
 <script>
   import { initWatermarkPage } from '../../scripts/watermark';
-  initWatermarkPage();
+  const cfgEl = document.getElementById('watermark-labels');
+  const cfg = cfgEl ? JSON.parse(cfgEl.textContent ?? '{}') : {};
+  initWatermarkPage({ labels: cfg.labels, locale: cfg.locale });
 </script>

@@ -33,6 +33,24 @@ const schemaName = interpolate(cf.related.compressTemplate, { label });
 const schemaDesc = interpolate(cf.schema.descriptionTemplate, { full, headline: pitch.headline });
 
 const pageUrl = absoluteUrl(locale, `/compress-${format}`);
+
+const s = t.common.scripts;
+const compressLabels = {
+  loading: s.loading,
+  processing: s.processing,
+  startCompress: s.startCompress,
+  processingFailedTemplate: s.processingFailedTemplate,
+  savedPercentTemplate: s.savedPercentTemplate,
+  optimized: s.optimized,
+  copyBtn: s.copyBtn,
+  downloadBtn: s.downloadBtn,
+  copying: s.copying,
+  copied: s.copied,
+  copyFailed: s.copyFailed,
+  canvasError: s.canvasError,
+  pngFailed: s.pngGenerationFailed,
+  clipboardNotSupported: s.clipboardNotSupported,
+};
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
@@ -130,7 +148,10 @@ const toWebpHref = localizedPath(locale, `/${format}-to-webp`);
   <Footer />
 </Layout>
 
+<script type="application/json" id="compress-labels" set:html={JSON.stringify(compressLabels)}></script>
 <script>
   import { initCompressPage } from '../../scripts/compress-page';
-  initCompressPage();
+  const labelsEl = document.getElementById('compress-labels');
+  const labels = labelsEl ? JSON.parse(labelsEl.textContent ?? '{}') : undefined;
+  initCompressPage({ labels });
 </script>

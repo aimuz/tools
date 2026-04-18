@@ -78,6 +78,34 @@ export type FormatPitch = {
   seoBenefit: string;
 };
 
+export type ScriptLabels = {
+  loading: string;
+  processing: string;
+  processingFailedTemplate: string;
+  convertFailedTemplate: string;
+  savedPercentTemplate: string;
+  optimized: string;
+  copyBtn: string;
+  downloadBtn: string;
+  copying: string;
+  copied: string;
+  copyFailed: string;
+  startCompress: string;
+  startConvert: string;
+  autoDetect: string;
+  canvasError: string;
+  parseImageError: string;
+  needImageFirst: string;
+  needText: string;
+  noWatermark: string;
+  capacityHintTemplate: string;
+  capacityErrorTemplate: string;
+  imageTooSmallDct: string;
+  imageTooSmallLsb: string;
+  clipboardNotSupported: string;
+  pngGenerationFailed: string;
+};
+
 export type Translations = {
   common: {
     siteName: string;
@@ -85,6 +113,7 @@ export type Translations = {
     aboutLink: string;
     menuButtonAria: string;
     languageSwitcherAria: string;
+    scripts: ScriptLabels;
   };
   nav: {
     image: {
@@ -105,6 +134,17 @@ export type Translations = {
       tools: Partial<Record<CategoryToolKey, { name: string; description: string }>>;
     }
   >;
+  notFound: {
+    title: string;
+    h1: string;
+    body: string;
+    homeBtn: string;
+  };
+  manifest: {
+    name: string;
+    shortName: string;
+    description: string;
+  };
   pages: {
     home: {
       title: string;

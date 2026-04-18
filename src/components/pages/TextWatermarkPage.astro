@@ -15,6 +15,18 @@ const t = useTranslations(locale);
 const tw = t.pages.textWatermark;
 const pageUrl = absoluteUrl(locale, '/text-watermark');
 
+const s = t.common.scripts;
+const textWatermarkLabels = {
+  parseImageError: s.parseImageError,
+  needImageFirst: s.needImageFirst,
+  copying: s.copying,
+  copied: s.copied,
+  copyFailed: s.copyFailed,
+  canvasError: s.canvasError,
+  pngFailed: s.pngGenerationFailed,
+  clipboardNotSupported: s.clipboardNotSupported,
+};
+
 const appSchema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
@@ -233,7 +245,10 @@ const swatches: { color: string; titleKey: keyof typeof tw.swatches }[] = [
   <Footer />
 </Layout>
 
+<script type="application/json" id="text-watermark-labels" set:html={JSON.stringify(textWatermarkLabels)}></script>
 <script>
   import { initTextWatermarkPage } from '../../scripts/text-watermark';
-  initTextWatermarkPage();
+  const labelsEl = document.getElementById('text-watermark-labels');
+  const labels = labelsEl ? JSON.parse(labelsEl.textContent ?? '{}') : undefined;
+  initTextWatermarkPage({ labels });
 </script>

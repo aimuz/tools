@@ -1,5 +1,31 @@
-import { bindCopyButton, canvasToPngBlob } from './clipboard';
+import { bindCopyButton, canvasToPngBlob, setClipboardLabels } from './clipboard';
 import { setZoneEmpty, setZoneFilled, wireDropzone } from './dropzone';
+
+export interface TextWatermarkLabels {
+  parseImageError: string;
+  needImageFirst: string;
+  copying: string;
+  copied: string;
+  copyFailed: string;
+  canvasError: string;
+  pngFailed: string;
+  clipboardNotSupported: string;
+}
+
+const DEFAULT_LABELS: TextWatermarkLabels = {
+  parseImageError: 'Could not parse image, try another',
+  needImageFirst: 'Please upload an image first',
+  copying: 'Copying...',
+  copied: 'Copied',
+  copyFailed: 'Copy failed',
+  canvasError: 'Failed to create canvas context',
+  pngFailed: 'PNG generation failed',
+  clipboardNotSupported: 'Clipboard API is not supported in this browser',
+};
+
+export interface TextWatermarkInitOptions {
+  labels?: TextWatermarkLabels;
+}
 
 type Pattern = 'tile' | 'single' | 'corner';
 
@@ -72,7 +98,16 @@ function drawWatermark(canvas: HTMLCanvasElement, bitmap: ImageBitmap, opts: Opt
 
 const FONT_STACK = `'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif`;
 
-export function initTextWatermarkPage(): void {
+export function initTextWatermarkPage(opts: TextWatermarkInitOptions = {}): void {
+  const labels = opts.labels ?? DEFAULT_LABELS;
+  setClipboardLabels({
+    notSupported: labels.clipboardNotSupported,
+    canvasError: labels.canvasError,
+    pngFailed: labels.pngFailed,
+    copying: labels.copying,
+    copied: labels.copied,
+    copyFailed: labels.copyFailed,
+  });
   const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
 
   const dropzone = $<HTMLLabelElement>('tw-dropzone');
@@ -191,7 +226,7 @@ export function initTextWatermarkPage(): void {
       displayBitmap = null;
       previewScale = 1;
       setZoneEmpty(dropzone);
-      showErr('无法解析图片，请换一张');
+      showErr(labels.parseImageError);
     }
   };
 
@@ -255,7 +290,7 @@ export function initTextWatermarkPage(): void {
   patternBtns.forEach((b) => b.addEventListener('click', () => applyPattern(b.dataset.pattern as Pattern)));
 
   downloadBtn.addEventListener('click', async () => {
-    if (!bitmap) { showErr('请先上传图片'); return; }
+    if (!bitmap) { showErr(labels.needImageFirst); return; }
     // Render at full resolution on demand — the live canvas is preview-sized,
     // so users still get a watermarked image at the source's native dimensions.
     const blob = await canvasToPngBlob(renderFull());

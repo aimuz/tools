@@ -15,6 +15,23 @@ const t = useTranslations(locale);
 const c = t.pages.convert;
 const pageUrl = absoluteUrl(locale, '/convert');
 
+const s = t.common.scripts;
+const convertLabels = {
+  loading: s.loading,
+  processing: s.processing,
+  startConvert: s.startConvert,
+  convertFailedTemplate: s.convertFailedTemplate,
+  copyBtn: s.copyBtn,
+  downloadBtn: s.downloadBtn,
+  copying: s.copying,
+  copied: s.copied,
+  copyFailed: s.copyFailed,
+  autoDetect: s.autoDetect,
+  canvasError: s.canvasError,
+  pngFailed: s.pngGenerationFailed,
+  clipboardNotSupported: s.clipboardNotSupported,
+};
+
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
@@ -91,7 +108,10 @@ const schema = {
   <Footer />
 </Layout>
 
+<script type="application/json" id="convert-labels" set:html={JSON.stringify(convertLabels)}></script>
 <script>
   import { initConvertPage } from '../../scripts/convert-page';
-  initConvertPage({ readUrlParams: true, defaultTo: 'jpg' });
+  const labelsEl = document.getElementById('convert-labels');
+  const labels = labelsEl ? JSON.parse(labelsEl.textContent ?? '{}') : undefined;
+  initConvertPage({ readUrlParams: true, defaultTo: 'jpg', labels });
 </script>

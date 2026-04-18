@@ -15,6 +15,24 @@ const t = useTranslations(locale);
 const c = t.pages.compress;
 const pageUrl = absoluteUrl(locale, '/compress');
 
+const s = t.common.scripts;
+const compressLabels = {
+  loading: s.loading,
+  processing: s.processing,
+  startCompress: s.startCompress,
+  processingFailedTemplate: s.processingFailedTemplate,
+  savedPercentTemplate: s.savedPercentTemplate,
+  optimized: s.optimized,
+  copyBtn: s.copyBtn,
+  downloadBtn: s.downloadBtn,
+  copying: s.copying,
+  copied: s.copied,
+  copyFailed: s.copyFailed,
+  canvasError: s.canvasError,
+  pngFailed: s.pngGenerationFailed,
+  clipboardNotSupported: s.clipboardNotSupported,
+};
+
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
@@ -76,7 +94,10 @@ const schema = {
   <Footer />
 </Layout>
 
+<script type="application/json" id="compress-labels" set:html={JSON.stringify(compressLabels)}></script>
 <script>
   import { initCompressPage } from '../../scripts/compress-page';
-  initCompressPage({ readUrlParams: true });
+  const labelsEl = document.getElementById('compress-labels');
+  const labels = labelsEl ? JSON.parse(labelsEl.textContent ?? '{}') : undefined;
+  initCompressPage({ readUrlParams: true, labels });
 </script>

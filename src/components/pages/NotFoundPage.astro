@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../layout/Header.astro';
+import Footer from '../layout/Footer.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/seo';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const nf = t.notFound;
+const homeHref = localizedPath(locale, '/');
+---
+
+<Layout title={nf.title} description={nf.body} locale={locale}>
+  <Header locale={locale} />
+
+  <main class="flex-1 flex items-center justify-center py-20">
+    <div class="max-w-[480px] mx-auto px-6 text-center">
+      <h1 class="text-7xl font-semibold text-[#171717] tracking-tight mb-4">{nf.h1}</h1>
+      <p class="text-base text-gray-500 mb-8">{nf.body}</p>
+      <a
+        href={homeHref}
+        class="inline-block px-5 py-2.5 bg-[#171717] text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors"
+      >
+        {nf.homeBtn}
+      </a>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

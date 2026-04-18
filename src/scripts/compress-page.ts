@@ -4,21 +4,74 @@
 // and buttons matching `.mode-btn[data-mode="smart|light|strong"]`.
 
 import { getImageConverter } from '../wasm/rust-image-converter.js';
-import { bindCopyButton } from './clipboard';
+import { bindCopyButton, setClipboardLabels } from './clipboard';
 
 type Mode = 'smart' | 'light' | 'strong';
+
+export interface CompressLabels {
+  loading: string;
+  processing: string;
+  startCompress: string;
+  processingFailedTemplate: string;
+  savedPercentTemplate: string;
+  optimized: string;
+  copyBtn: string;
+  downloadBtn: string;
+  copying: string;
+  copied: string;
+  copyFailed: string;
+  canvasError: string;
+  pngFailed: string;
+  clipboardNotSupported: string;
+}
+
+const DEFAULT_LABELS: CompressLabels = {
+  loading: 'Loading, please try again shortly',
+  processing: 'Processing...',
+  startCompress: 'Start compressing',
+  processingFailedTemplate: 'Failed: {name}',
+  savedPercentTemplate: '· saved {pct}%',
+  optimized: '· already optimized',
+  copyBtn: 'Copy',
+  downloadBtn: 'Download',
+  copying: 'Copying...',
+  copied: 'Copied',
+  copyFailed: 'Copy failed',
+  canvasError: 'Failed to create canvas context',
+  pngFailed: 'PNG generation failed',
+  clipboardNotSupported: 'Clipboard API is not supported in this browser',
+};
+
+const interpolate = (template: string, vars: Record<string, string | number>) =>
+  template.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ''));
+
+const escapeHtml = (s: string) =>
+  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+   .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
 export interface CompressPageOptions {
   /** Read `mode` from `?mode=` query param on load. Used by /compress. */
   readUrlParams?: boolean;
   /** Override the starting mode. */
   defaultMode?: Mode;
+  /** i18n labels (defaults to English). */
+  labels?: CompressLabels;
 }
 
 const formatSize = (b: number) =>
   b < 1024 * 1024 ? (b / 1024).toFixed(1) + ' KB' : (b / 1024 / 1024).toFixed(2) + ' MB';
 
 export function initCompressPage(opts: CompressPageOptions = {}) {
+  const labels = opts.labels ?? DEFAULT_LABELS;
+  setClipboardLabels({
+    notSupported: labels.clipboardNotSupported,
+    canvasError: labels.canvasError,
+    pngFailed: labels.pngFailed,
+    copying: labels.copying,
+    copied: labels.copied,
+    copyFailed: labels.copyFailed,
+  });
+
   const uploadZone = document.getElementById('upload-zone');
   const fileInput = document.getElementById('file-input') as HTMLInputElement | null;
   const options = document.getElementById('options');
@@ -111,9 +164,9 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
   let resultsList: any[] = [];
 
   compressBtn?.addEventListener('click', async () => {
-    if (!imageConverter) { alert('加载中，请稍后再试'); return; }
+    if (!imageConverter) { alert(labels.loading); return; }
     const origText = compressBtn.textContent;
-    compressBtn.textContent = '处理中...';
+    compressBtn.textContent = labels.processing;
     compressBtn.disabled = true;
 
     // Release object URLs from the previous batch so they don't leak across re-runs.
@@ -154,7 +207,7 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
     if (results) {
       results.innerHTML = resultsList.map((item, idx) => item.error ? `
         <div class="flex items-center gap-3 p-3 bg-red-50 border border-red-100 rounded-lg">
-          <span class="text-red-500 text-sm">处理失败：${item.name}</span>
+          <span class="text-red-500 text-sm">${escapeHtml(interpolate(labels.processingFailedTemplate, { name: item.name }))}</span>
         </div>
       ` : `
         <div class="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg">
@@ -164,16 +217,16 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
             </svg>
           </div>
           <div class="flex-1 min-w-0">
-            <p class="text-sm text-[#171717] truncate">${item.name}</p>
+            <p class="text-sm text-[#171717] truncate">${escapeHtml(item.name)}</p>
             <p class="text-xs text-gray-400">
               ${formatSize(item.originalSize)} → ${formatSize(item.compressedSize)}
               <span class="ml-1 ${item.ratio > 0 ? 'text-[#171717] font-semibold' : 'text-gray-500'}">
-                ${item.ratio > 0 ? '· 节省 ' + item.ratio + '%' : '· 已优化'}
+                ${item.ratio > 0 ? escapeHtml(interpolate(labels.savedPercentTemplate, { pct: item.ratio })) : escapeHtml(labels.optimized)}
               </span>
             </p>
           </div>
-          <button data-copy-idx="${idx}" class="px-3 py-1.5 border border-gray-200 text-gray-600 text-sm rounded hover:border-[#171717] hover:text-[#171717]">复制</button>
-          <a href="${item.url}" download="compressed_${item.name}" class="px-3 py-1.5 bg-[#171717] text-white text-sm rounded hover:bg-gray-800">下载</a>
+          <button data-copy-idx="${idx}" class="px-3 py-1.5 border border-gray-200 text-gray-600 text-sm rounded hover:border-[#171717] hover:text-[#171717]">${escapeHtml(labels.copyBtn)}</button>
+          <a href="${item.url}" download="compressed_${escapeHtml(item.name)}" class="px-3 py-1.5 bg-[#171717] text-white text-sm rounded hover:bg-gray-800">${escapeHtml(labels.downloadBtn)}</a>
         </div>
       `).join('');
       results.classList.remove('hidden');
@@ -184,7 +237,7 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
       });
     }
 
-    compressBtn.textContent = origText ?? '开始压缩';
+    compressBtn.textContent = origText ?? labels.startCompress;
     compressBtn.disabled = false;
   });
 }

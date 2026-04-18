@@ -1,5 +1,5 @@
 import { dct8, idct8 } from './dct8';
-import { bindCopyButton, canvasToPngBlob } from './clipboard';
+import { bindCopyButton, canvasToPngBlob, setClipboardLabels } from './clipboard';
 import {
   drawImageData,
   fileToImageData,
@@ -7,6 +7,49 @@ import {
   setZoneFilled,
   wireDropzone,
 } from './dropzone';
+
+export interface WatermarkLabels {
+  parseImageError: string;
+  needImageFirst: string;
+  needText: string;
+  noWatermark: string;
+  copied: string;
+  capacityHintTemplate: string;
+  capacityErrorTemplate: string;
+  imageTooSmallDct: string;
+  imageTooSmallLsb: string;
+  copying: string;
+  copyFailed: string;
+  canvasError: string;
+  pngFailed: string;
+  clipboardNotSupported: string;
+}
+
+const DEFAULT_LABELS: WatermarkLabels = {
+  parseImageError: 'Could not parse image, try another',
+  needImageFirst: 'Please upload an image first',
+  needText: 'Please enter the text to embed',
+  noWatermark: 'No watermark detected',
+  copied: 'Copied',
+  capacityHintTemplate: 'Capacity {bytes} bytes · ~{chars} characters',
+  capacityErrorTemplate: 'Image capacity exceeded — max {cap} bytes (current text {len} bytes)',
+  imageTooSmallDct: 'Image too small — DCT requires at least 128×128 px',
+  imageTooSmallLsb: 'Image too small — at least ~32×32 px required to embed a watermark',
+  copying: 'Copying...',
+  copyFailed: 'Copy failed',
+  canvasError: 'Failed to create canvas context',
+  pngFailed: 'PNG generation failed',
+  clipboardNotSupported: 'Clipboard API is not supported in this browser',
+};
+
+class WatermarkError extends Error {
+  constructor(public code: string, public context?: Record<string, number | string>) {
+    super(code);
+  }
+}
+
+const interpolate = (template: string, vars: Record<string, string | number>) =>
+  template.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ''));
 
 // Header layout (9 bytes, little-endian where relevant):
 //   0..3  magic       "WZGL" for LSB, "WZGD" for DCT
@@ -59,7 +102,7 @@ function lsbEmbed(img: ImageData, text: string): ImageData {
   const payload = new TextEncoder().encode(text);
   const cap = lsbCapacity(img.width, img.height);
   if (payload.length > cap) {
-    throw new Error(`图片容量不足，最多可嵌入 ${cap} 字节（当前文本 ${payload.length} 字节）`);
+    throw new WatermarkError('CAPACITY_EXCEEDED', { cap, len: payload.length });
   }
   const header = buildHeader(MAGIC_LSB, payload.length);
   const total = new Uint8Array(header.length + payload.length);
@@ -148,10 +191,10 @@ function dctEmbed(img: ImageData, text: string): ImageData {
   const payload = new TextEncoder().encode(text);
   const cap = dctCapacity(img.width, img.height);
   if (cap <= 0) {
-    throw new Error('图片太小，DCT 算法至少需要 128×128 像素');
+    throw new WatermarkError('IMAGE_TOO_SMALL_DCT');
   }
   if (payload.length > cap) {
-    throw new Error(`图片容量不足，最多可嵌入 ${cap} 字节（当前文本 ${payload.length} 字节）`);
+    throw new WatermarkError('CAPACITY_EXCEEDED', { cap, len: payload.length });
   }
 
   const header = buildHeader(MAGIC_DCT, payload.length);
@@ -266,10 +309,10 @@ function embedBoth(img: ImageData, text: string): ImageData {
   const payload = new TextEncoder().encode(text);
   const lsbCap = lsbCapacity(img.width, img.height);
   if (lsbCap <= 0) {
-    throw new Error('图片太小，无法嵌入水印（至少需要约 32×32 像素）');
+    throw new WatermarkError('IMAGE_TOO_SMALL_LSB');
   }
   if (payload.length > lsbCap) {
-    throw new Error(`图片容量不足，最多可嵌入 ${lsbCap} 字节（当前文本 ${payload.length} 字节）`);
+    throw new WatermarkError('CAPACITY_EXCEEDED', { cap: lsbCap, len: payload.length });
   }
   const dctCap = dctCapacity(img.width, img.height);
   let out = img;
@@ -289,18 +332,53 @@ function extractAny(img: ImageData): string {
 
 // ---------- UI glue ----------
 
-function capacityText(w: number, h: number): string {
+function capacityText(w: number, h: number, template: string, locale: string): string {
   const cap = Math.max(0, lsbCapacity(w, h));
-  const approxChars = Math.floor(cap / 3); // UTF-8 汉字 ≈ 3 字节
-  const fmt = (n: number) => n.toLocaleString('en-US');
-  return `可嵌入 ${fmt(cap)} 字节 · 约 ${fmt(approxChars)} 个汉字`;
+  const approxChars = Math.floor(cap / 3);
+  const fmt = (n: number) => n.toLocaleString(locale);
+  return interpolate(template, { bytes: fmt(cap), chars: fmt(approxChars) });
 }
 
 function isJpeg(file: File): boolean {
   return /jpe?g/i.test(file.type) || /\.jpe?g$/i.test(file.name);
 }
 
-export function initWatermarkPage(): void {
+export interface WatermarkInitOptions {
+  labels?: WatermarkLabels;
+  locale?: string;
+}
+
+function translateError(e: unknown, labels: WatermarkLabels): string {
+  if (e instanceof WatermarkError) {
+    switch (e.code) {
+      case 'CAPACITY_EXCEEDED':
+        return interpolate(labels.capacityErrorTemplate, e.context ?? {});
+      case 'IMAGE_TOO_SMALL_DCT':
+        return labels.imageTooSmallDct;
+      case 'IMAGE_TOO_SMALL_LSB':
+        return labels.imageTooSmallLsb;
+      case 'NO_WATERMARK':
+        return labels.noWatermark;
+    }
+  }
+  if (e && typeof e === 'object' && 'message' in e && (e as { message?: string }).message === 'NO_WATERMARK') {
+    return labels.noWatermark;
+  }
+  return (e instanceof Error ? e.message : String(e));
+}
+
+export function initWatermarkPage(opts: WatermarkInitOptions = {}): void {
+  const labels = opts.labels ?? DEFAULT_LABELS;
+  const locale = opts.locale ?? 'en-US';
+  setClipboardLabels({
+    notSupported: labels.clipboardNotSupported,
+    canvasError: labels.canvasError,
+    pngFailed: labels.pngFailed,
+    copying: labels.copying,
+    copied: labels.copied,
+    copyFailed: labels.copyFailed,
+  });
+
   const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
 
   // Tab panels + buttons
@@ -348,7 +426,9 @@ export function initWatermarkPage(): void {
 
   const refreshCapacity = () => {
     if (embedImg) {
-      embedCapacity.textContent = capacityText(embedImg.width, embedImg.height);
+      embedCapacity.textContent = capacityText(
+        embedImg.width, embedImg.height, labels.capacityHintTemplate, locale,
+      );
     }
   };
 
@@ -383,7 +463,7 @@ export function initWatermarkPage(): void {
       onImg(img, file);
     } catch {
       setZoneEmpty(dropzone);
-      showErr('无法解析图片，请换一张');
+      showErr(labels.parseImageError);
     }
   };
 
@@ -396,9 +476,9 @@ export function initWatermarkPage(): void {
 
   embedRun.addEventListener('click', async () => {
     clearStatus();
-    if (!embedImg) { showErr('请先上传一张图片'); return; }
+    if (!embedImg) { showErr(labels.needImageFirst); return; }
     const text = embedText.value;
-    if (!text) { showErr('请输入要嵌入的文本'); return; }
+    if (!text) { showErr(labels.needText); return; }
     embedRun.disabled = true;
     try {
       const out = embedBoth(embedImg, text);
@@ -408,8 +488,8 @@ export function initWatermarkPage(): void {
       embedBlobUrl = URL.createObjectURL(blob);
       embedDownload.href = embedBlobUrl;
       embedResult.classList.remove('hidden');
-    } catch (e: any) {
-      showErr(e?.message || String(e));
+    } catch (e) {
+      showErr(translateError(e, labels));
     } finally {
       embedRun.disabled = false;
     }
@@ -424,14 +504,13 @@ export function initWatermarkPage(): void {
 
   extractRun.addEventListener('click', () => {
     clearStatus();
-    if (!extractImg) { showErr('请先上传一张图片'); return; }
+    if (!extractImg) { showErr(labels.needImageFirst); return; }
     extractRun.disabled = true;
     try {
       extractOut.value = extractAny(extractImg);
-    } catch (e: any) {
-      const msg = e?.message === 'NO_WATERMARK' ? '未检测到水印' : (e?.message || String(e));
+    } catch (e) {
       extractOut.value = '';
-      showErr(msg);
+      showErr(translateError(e, labels));
     } finally {
       extractRun.disabled = false;
     }
@@ -441,7 +520,7 @@ export function initWatermarkPage(): void {
     if (!extractOut.value) return;
     await navigator.clipboard.writeText(extractOut.value);
     const orig = extractCopy.textContent;
-    extractCopy.textContent = '已复制';
+    extractCopy.textContent = labels.copied;
     setTimeout(() => { extractCopy.textContent = orig; }, 1200);
   });
 

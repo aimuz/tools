@@ -5,9 +5,34 @@
 // try the native mime first, then transcode to PNG and retry (unless the
 // source is already PNG, in which case the failure is final).
 
+export type ClipboardLabels = {
+  notSupported?: string;
+  canvasError?: string;
+  pngFailed?: string;
+  copying?: string;
+  copied?: string;
+  copyFailed?: string;
+};
+
+const DEFAULT_LABELS: Required<ClipboardLabels> = {
+  notSupported: 'Clipboard API is not supported in this browser',
+  canvasError: 'Failed to create canvas context',
+  pngFailed: 'PNG generation failed',
+  copying: 'Copying...',
+  copied: 'Copied',
+  copyFailed: 'Copy failed',
+};
+
+let activeLabels: Required<ClipboardLabels> = { ...DEFAULT_LABELS };
+
+/** Override default labels (English fallbacks) for the current page. */
+export function setClipboardLabels(labels: ClipboardLabels): void {
+  activeLabels = { ...DEFAULT_LABELS, ...labels };
+}
+
 export async function copyImageToClipboard(blob: Blob, mime: string): Promise<void> {
   if (!('clipboard' in navigator) || !('ClipboardItem' in window)) {
-    throw new Error('当前浏览器不支持剪贴板 API');
+    throw new Error(activeLabels.notSupported);
   }
 
   const write = (b: Blob, type: string) =>
@@ -30,7 +55,7 @@ async function transcodeToPng(blob: Blob): Promise<Blob> {
   canvas.width = bitmap.width;
   canvas.height = bitmap.height;
   const ctx = canvas.getContext('2d');
-  if (!ctx) throw new Error('无法创建 canvas 上下文');
+  if (!ctx) throw new Error(activeLabels.canvasError);
   ctx.drawImage(bitmap, 0, 0);
   bitmap.close?.();
   return canvasToPngBlob(canvas);
@@ -38,15 +63,15 @@ async function transcodeToPng(blob: Blob): Promise<Blob> {
 
 export function canvasToPngBlob(canvas: HTMLCanvasElement): Promise<Blob> {
   return new Promise((resolve, reject) => {
-    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('PNG 生成失败'))), 'image/png');
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error(activeLabels.pngFailed))), 'image/png');
   });
 }
 
 /**
  * Wire up a button that, when clicked, copies an image to the clipboard.
  * `source()` may return a Blob or a Promise of one (useful when the blob is
- * produced lazily, e.g. from a canvas). The button cycles through:
- * idle → 复制中... → 已复制 / 复制失败 → idle (1500 ms).
+ * produced lazily, e.g. from a canvas). Button text cycles through
+ * copying → copied / failed → idle (1500 ms).
  */
 export function bindCopyButton(
   btn: HTMLButtonElement,
@@ -55,13 +80,13 @@ export function bindCopyButton(
   btn.addEventListener('click', async () => {
     const original = btn.innerHTML;
     btn.disabled = true;
-    btn.textContent = '复制中...';
+    btn.textContent = activeLabels.copying;
     try {
       const { blob, mime } = source();
       await copyImageToClipboard(await blob, mime);
-      btn.textContent = '已复制';
+      btn.textContent = activeLabels.copied;
     } catch (e) {
-      btn.textContent = '复制失败';
+      btn.textContent = activeLabels.copyFailed;
       console.error(e);
     }
     setTimeout(() => {

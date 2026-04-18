@@ -6,7 +6,46 @@
 // `#quality-option` wrapper, and `#detected-format` span for showing the detected input format.
 
 import { getImageConverter } from '../wasm/rust-image-converter.js';
-import { bindCopyButton } from './clipboard';
+import { bindCopyButton, setClipboardLabels } from './clipboard';
+
+export interface ConvertLabels {
+  loading: string;
+  processing: string;
+  startConvert: string;
+  convertFailedTemplate: string;
+  copyBtn: string;
+  downloadBtn: string;
+  copying: string;
+  copied: string;
+  copyFailed: string;
+  autoDetect: string;
+  canvasError: string;
+  pngFailed: string;
+  clipboardNotSupported: string;
+}
+
+const DEFAULT_LABELS: ConvertLabels = {
+  loading: 'Loading, please try again shortly',
+  processing: 'Processing...',
+  startConvert: 'Start converting',
+  convertFailedTemplate: 'Convert failed: {name}',
+  copyBtn: 'Copy',
+  downloadBtn: 'Download',
+  copying: 'Copying...',
+  copied: 'Copied',
+  copyFailed: 'Copy failed',
+  autoDetect: 'Auto-detected',
+  canvasError: 'Failed to create canvas context',
+  pngFailed: 'PNG generation failed',
+  clipboardNotSupported: 'Clipboard API is not supported in this browser',
+};
+
+const interpolate = (template: string, vars: Record<string, string>) =>
+  template.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ''));
+
+const escapeHtml = (s: string) =>
+  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+   .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
 export interface ConvertPageOptions {
   /** Target format is fixed for this page (used by /{from}-to-{to}). */
@@ -15,6 +54,8 @@ export interface ConvertPageOptions {
   readUrlParams?: boolean;
   /** Default target format when neither presetTo nor URL params resolve. */
   defaultTo?: string;
+  /** i18n labels (defaults to English). */
+  labels?: ConvertLabels;
 }
 
 /** Read `<meta name="x-preset-to" content="...">` if present — lets the same
@@ -33,6 +74,16 @@ const formatSize = (b: number) =>
   b < 1024 * 1024 ? (b / 1024).toFixed(1) + ' KB' : (b / 1024 / 1024).toFixed(2) + ' MB';
 
 export function initConvertPage(opts: ConvertPageOptions = {}) {
+  const labels = opts.labels ?? DEFAULT_LABELS;
+  setClipboardLabels({
+    notSupported: labels.clipboardNotSupported,
+    canvasError: labels.canvasError,
+    pngFailed: labels.pngFailed,
+    copying: labels.copying,
+    copied: labels.copied,
+    copyFailed: labels.copyFailed,
+  });
+
   const uploadZone = document.getElementById('upload-zone');
   const fileInput = document.getElementById('file-input') as HTMLInputElement | null;
   const options = document.getElementById('options');
@@ -150,7 +201,7 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
           options?.classList.add('hidden');
           uploadZone?.classList.remove('hidden');
           results?.classList.add('hidden');
-          if (detectedFormatSpan) detectedFormatSpan.textContent = '自动检测';
+          if (detectedFormatSpan) detectedFormatSpan.textContent = labels.autoDetect;
         }
       });
     });
@@ -159,9 +210,9 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
   let resultsList: any[] = [];
 
   convertBtn?.addEventListener('click', async () => {
-    if (!imageConverter) { alert('加载中，请稍后再试'); return; }
+    if (!imageConverter) { alert(labels.loading); return; }
     const origText = convertBtn.textContent;
-    convertBtn.textContent = '处理中...';
+    convertBtn.textContent = labels.processing;
     convertBtn.disabled = true;
 
     resultsList.forEach(r => r.url && URL.revokeObjectURL(r.url));
@@ -183,7 +234,7 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
     if (results) {
       results.innerHTML = resultsList.map((item, idx) => item.error ? `
         <div class="flex items-center gap-3 p-3 bg-red-50 border border-red-100 rounded-lg">
-          <span class="text-red-500 text-sm">转换失败：${item.originalName}</span>
+          <span class="text-red-500 text-sm">${escapeHtml(interpolate(labels.convertFailedTemplate, { name: item.originalName }))}</span>
         </div>
       ` : `
         <div class="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg">
@@ -193,11 +244,11 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
             </svg>
           </div>
           <div class="flex-1 min-w-0">
-            <p class="text-sm text-[#171717] truncate">${item.newName}</p>
+            <p class="text-sm text-[#171717] truncate">${escapeHtml(item.newName)}</p>
             <p class="text-xs text-gray-400">${formatSize(item.size)}</p>
           </div>
-          <button data-copy-idx="${idx}" class="px-3 py-1.5 border border-gray-200 text-gray-600 text-sm rounded hover:border-[#171717] hover:text-[#171717]">复制</button>
-          <a href="${item.url}" download="${item.newName}" class="px-3 py-1.5 bg-[#171717] text-white text-sm rounded hover:bg-gray-800">下载</a>
+          <button data-copy-idx="${idx}" class="px-3 py-1.5 border border-gray-200 text-gray-600 text-sm rounded hover:border-[#171717] hover:text-[#171717]">${escapeHtml(labels.copyBtn)}</button>
+          <a href="${item.url}" download="${escapeHtml(item.newName)}" class="px-3 py-1.5 bg-[#171717] text-white text-sm rounded hover:bg-gray-800">${escapeHtml(labels.downloadBtn)}</a>
         </div>
       `).join('');
       results.classList.remove('hidden');
@@ -208,7 +259,7 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
       });
     }
 
-    convertBtn.textContent = origText ?? '开始转换';
+    convertBtn.textContent = origText ?? labels.startConvert;
     convertBtn.disabled = false;
   });
 }

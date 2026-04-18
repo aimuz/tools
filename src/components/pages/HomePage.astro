@@ -30,10 +30,26 @@ const websiteSchema = {
     'query-input': 'required name=search_term_string',
   },
 };
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: `${t.common.siteName} — ${t.pages.home.heroHeading}`,
+  inLanguage: locale,
+  numberOfItems: quickActions.length,
+  itemListElement: quickActions.map((action, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: action.name,
+    url: `https://wizgo.xyz${action.href}`,
+    description: action.description,
+  })),
+};
 ---
 
 <Layout title={t.pages.home.title} description={t.pages.home.description} locale={locale}>
   <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} slot="head" />
   <Header locale={locale} />
 
   <main class="flex-1">

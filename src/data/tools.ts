@@ -57,6 +57,7 @@ const QUICK_ACTION_ORDER: QuickActionMeta[] = [
   { id: 'any-compress', href: '/compress' },
   { id: 'watermark', href: '/watermark', isNew: true },
   { id: 'text-watermark', href: '/text-watermark', isNew: true },
+  { id: 'mp4-to-mp3', href: '/mp4-to-mp3', isNew: true },
 ];
 
 type CategoryToolMeta = {
@@ -87,6 +88,12 @@ const CATEGORY_ORDER: { id: CategoryKey; tools: CategoryToolMeta[] }[] = [
       { id: 'url-encode', href: '/url-encode', isNew: true },
       { id: 'color', href: '/color', isNew: true },
       { id: 'qrcode', href: '/qrcode', isNew: true },
+    ],
+  },
+  {
+    id: 'media',
+    tools: [
+      { id: 'mp4-to-mp3', href: '/mp4-to-mp3', isNew: true },
     ],
   },
 ];

@@ -33,6 +33,8 @@ export const ja = {
       imageTooSmallLsb: '画像が小さすぎます。透かしを埋め込めません（最低約 32×32 ピクセル必要）',
       clipboardNotSupported: 'このブラウザはクリップボード API に対応していません',
       pngGenerationFailed: 'PNG 生成に失敗しました',
+      audioDecodeFailed: '音声をデコードできませんでした。別のファイルを試すか、Chrome / Firefox を使用してください',
+      audioEncodeFailed: '音声のエンコードに失敗しました',
     },
   },
   nav: {
@@ -174,6 +176,11 @@ export const ja = {
         'photo watermark', 'text watermark', 'image watermark',
       ],
     },
+    'mp4-to-mp3': {
+      name: 'MP4 から MP3',
+      description: '動画から音声を抽出 · 128-320 kbps',
+      tags: ['mp4 から mp3', '動画から mp3', '音声抽出', '動画 音声', 'mp3 変換', 'mp4 to mp3'],
+    },
   },
   toolCategories: {
     image: {
@@ -199,6 +206,13 @@ export const ja = {
         'url-encode': { name: 'URL エンコード/デコード', description: 'URL 特殊文字の処理' },
         color: { name: 'カラー変換', description: 'HEX、RGB、HSL の相互変換' },
         qrcode: { name: 'QR コード生成', description: 'テキスト/リンクから QR コードを生成' },
+      },
+    },
+    media: {
+      name: 'メディアツール',
+      description: '音声と動画の変換',
+      tools: {
+        'mp4-to-mp3': { name: 'MP4 から MP3', description: '動画ファイルから音声を抽出' },
       },
     },
   },
@@ -904,6 +918,56 @@ export const ja = {
       copiedBtn: 'コピーしました',
       outputPlaceholder: '整形された JSON がここに表示されます',
       formatError: 'JSON 形式エラー、入力を確認してください',
+    },
+    mp4ToMp3: {
+      title: 'MP4 を MP3 に：無料オンライン動画→音声 | WizGo',
+      description:
+        '動画から音声だけ取り出して MP3 で保存。無料、すぐ使える、ブラウザで完結。アップロード・登録・インストールは不要です。',
+      h1: '動画を MP3 に',
+      subheading: '動画の音声だけ取り出します · あなたのデバイスで完結 · ファイルは送信されません',
+      schema: {
+        name: 'MP4 を MP3 に変換',
+        description: '無料オンラインで MP4 動画から音声を抽出して MP3 として保存 — ブラウザ内で動作、アップロード不要。',
+      },
+      upload: {
+        drag: '動画をここにドロップ',
+        orClick: 'またはクリックしてファイルを選択（MP4、MOV、M4A、WebM）',
+        sizeHint: '最大 500MB · 1 ファイルずつ',
+      },
+      options: {
+        bitrateLabel: '音質：',
+        k128: '標準 · 128k',
+        k192: 'おすすめ · 192k',
+        k256: '高音質 · 256k',
+        k320: '最高 · 320k',
+        start: 'MP3 を作る',
+      },
+      progress: {
+        preparing: '準備中…',
+        decoding: '音声を読み取り中…',
+        encodingTemplate: '変換中 · {pct}%',
+        done: '完了！',
+      },
+      errors: {
+        tooLargeTemplate: 'ファイルが大きすぎます。最大 500MB です（あなたのは {size}）',
+        decodeFailedSafari: 'Safari がこのファイルを読み取れませんでした。Safari を更新するか、Chrome / Firefox でお試しください。',
+        decodeFailedGeneric: 'このファイル内の音声を読み取れませんでした。中の形式が一般的ではない可能性があります。',
+      },
+      result: {
+        ready: 'MP3 ができました — 試聴またはダウンロードできます',
+        downloadBtn: 'ダウンロード',
+        sizeTemplate: 'サイズ：{size}',
+      },
+      faq: {
+        heading: 'よくある質問',
+        items: [
+          { q: '動画はサーバーに送られますか？', a: 'いいえ。すべてブラウザ内で行われます。ファイルはあなたのパソコンから出ません。' },
+          { q: 'どんな動画が使えますか？', a: '一般的な動画はほぼ使えます：MP4、iPhone の MOV、M4A 音声、WebM。ファイルが使えないときは、中の音声形式が珍しいだけです。' },
+          { q: 'Safari で失敗するのはなぜ？', a: '古い Safari は一部の MP4 内の音声を読めません。Safari を最新にするか、Chrome / Firefox / Edge をご利用ください。' },
+          { q: 'サイズ制限はありますか？', a: 'はい、1 ファイル 500MB までです。それ以上は特にスマホでブラウザがフリーズすることがあります。' },
+          { q: '複数同時に変換できますか？', a: '今のところできません。1 つずつお願いします。' },
+        ],
+      },
     },
   },
 } satisfies Translations;

@@ -28,7 +28,8 @@ export type QuickActionKey =
   | 'any-convert'
   | 'any-compress'
   | 'watermark'
-  | 'text-watermark';
+  | 'text-watermark'
+  | 'mp4-to-mp3';
 
 export type CategoryToolKey =
   | 'compress'
@@ -43,9 +44,10 @@ export type CategoryToolKey =
   | 'uuid'
   | 'url-encode'
   | 'color'
-  | 'qrcode';
+  | 'qrcode'
+  | 'mp4-to-mp3';
 
-export type CategoryKey = 'image' | 'code';
+export type CategoryKey = 'image' | 'code' | 'media';
 
 export type NavItemKey =
   | 'compress'
@@ -104,6 +106,8 @@ export type ScriptLabels = {
   imageTooSmallLsb: string;
   clipboardNotSupported: string;
   pngGenerationFailed: string;
+  audioDecodeFailed: string;
+  audioEncodeFailed: string;
 };
 
 export type Translations = {
@@ -608,6 +612,37 @@ export type Translations = {
       };
       steps: { heading: string; itemsHtml: string[] };
       faq: { heading: string; items: { q: string; aHtml: string }[] };
+    };
+    mp4ToMp3: {
+      title: string;
+      description: string;
+      h1: string;
+      subheading: string;
+      schema: { name: string; description: string };
+      upload: { drag: string; orClick: string; sizeHint: string };
+      options: {
+        bitrateLabel: string;
+        k128: string;
+        k192: string;
+        k256: string;
+        k320: string;
+        start: string;
+      };
+      progress: { preparing: string; decoding: string; encodingTemplate: string; done: string };
+      errors: {
+        tooLargeTemplate: string;
+        decodeFailedSafari: string;
+        decodeFailedGeneric: string;
+      };
+      result: {
+        ready: string;
+        downloadBtn: string;
+        sizeTemplate: string;
+      };
+      faq: {
+        heading: string;
+        items: { q: string; a: string }[];
+      };
     };
   };
 };

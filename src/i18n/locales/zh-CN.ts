@@ -33,6 +33,8 @@ export const zhCN = {
       imageTooSmallLsb: '图片太小，无法嵌入水印（至少需要约 32×32 像素）',
       clipboardNotSupported: '当前浏览器不支持剪贴板 API',
       pngGenerationFailed: 'PNG 生成失败',
+      audioDecodeFailed: '无法解码音频，请尝试其他文件或使用 Chrome / Firefox',
+      audioEncodeFailed: '音频编码失败',
     },
   },
   nav: {
@@ -175,6 +177,11 @@ export const zhCN = {
         '照片水印', 'text watermark', 'image watermark', 'photo watermark',
       ],
     },
+    'mp4-to-mp3': {
+      name: 'MP4 转 MP3',
+      description: '从视频中提取音频 · 128-320 kbps',
+      tags: ['mp4转mp3', '视频转mp3', '提取音频', '视频转音频', 'mp3', '音频提取', 'mp4 to mp3'],
+    },
   },
   toolCategories: {
     image: {
@@ -200,6 +207,13 @@ export const zhCN = {
         'url-encode': { name: 'URL 编解码', description: 'URL 特殊字符编码解码' },
         color: { name: '颜色转换', description: '十六进制、RGB、HSL 色值互转' },
         qrcode: { name: '二维码生成', description: '文本/链接生成二维码' },
+      },
+    },
+    media: {
+      name: '音视频工具',
+      description: '音频和视频转换',
+      tools: {
+        'mp4-to-mp3': { name: 'MP4 转 MP3', description: '从视频文件提取音频' },
       },
     },
   },
@@ -905,6 +919,56 @@ export const zhCN = {
       copiedBtn: '已复制',
       outputPlaceholder: '格式化后的 JSON 将显示在这里',
       formatError: 'JSON 格式错误，请检查输入',
+    },
+    mp4ToMp3: {
+      title: 'MP4 转 MP3：免费在线提取视频音频 | WizGo',
+      description:
+        '把视频里的声音提取出来，保存成 MP3。免费、即时、在浏览器里完成，不用上传、不用注册、不用安装。',
+      h1: '视频转 MP3',
+      subheading: '把视频里的声音提取出来 · 在你的电脑上完成 · 文件不上传',
+      schema: {
+        name: 'MP4 转 MP3 转换器',
+        description: '免费在线把 MP4 视频中的音频提取并保存为 MP3，浏览器本地处理，文件不会上传。',
+      },
+      upload: {
+        drag: '把视频拖到这里',
+        orClick: '或点击选择文件（MP4、MOV、M4A、WebM）',
+        sizeHint: '最大 500MB · 一次一个',
+      },
+      options: {
+        bitrateLabel: '音质：',
+        k128: '标准 · 128k',
+        k192: '推荐 · 192k',
+        k256: '高 · 256k',
+        k320: '最高 · 320k',
+        start: '生成 MP3',
+      },
+      progress: {
+        preparing: '准备中…',
+        decoding: '正在读取音频…',
+        encodingTemplate: '正在转换 · {pct}%',
+        done: '完成！',
+      },
+      errors: {
+        tooLargeTemplate: '文件太大了，最多 500MB（你的有 {size}）',
+        decodeFailedSafari: 'Safari 读取这个文件失败。请升级 Safari，或用 Chrome、Firefox 试试。',
+        decodeFailedGeneric: '读不出这个文件里的声音，里面的格式可能比较少见。',
+      },
+      result: {
+        ready: 'MP3 已经做好了，可以试听或下载',
+        downloadBtn: '下载',
+        sizeTemplate: '大小：{size}',
+      },
+      faq: {
+        heading: '常见问题',
+        items: [
+          { q: '我的视频会被上传到服务器吗？', a: '不会。整个过程都在你浏览器里完成，文件不会离开你的电脑。' },
+          { q: '支持哪些视频？', a: '常见的视频都可以：手机/电脑里的 MP4、iPhone 拍摄的 MOV、M4A 音频，还有 WebM。如果某个文件不行，说明里面的音频格式比较少见。' },
+          { q: '为什么 Safari 上有时候会失败？', a: '老版本的 Safari 读不出某些 MP4 里的声音。把 Safari 升到新版，或者改用 Chrome、Firefox、Edge。' },
+          { q: '有大小限制吗？', a: '有，单个文件最大 500MB。再大可能让浏览器卡死，尤其在手机上。' },
+          { q: '可以一次转好几个吗？', a: '暂时还不行，目前一次只能转一个。' },
+        ],
+      },
     },
   },
 } satisfies Translations;

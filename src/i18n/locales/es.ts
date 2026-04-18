@@ -34,6 +34,8 @@ export const es = {
       imageTooSmallLsb: 'Imagen demasiado pequeña — se requieren al menos ~32×32 px para insertar marca de agua',
       clipboardNotSupported: 'El navegador no soporta la API del portapapeles',
       pngGenerationFailed: 'Error al generar PNG',
+      audioDecodeFailed: 'No se pudo decodificar el audio. Prueba otro archivo o usa Chrome / Firefox',
+      audioEncodeFailed: 'Error al codificar el audio',
     },
   },
   nav: {
@@ -175,6 +177,11 @@ export const es = {
         'marca anti-fraude',
       ],
     },
+    'mp4-to-mp3': {
+      name: 'MP4 a MP3',
+      description: 'Extrae audio de vídeo · 128-320 kbps',
+      tags: ['mp4 a mp3', 'vídeo a mp3', 'extraer audio', 'audio de vídeo', 'convertidor mp3', 'mp4 to mp3'],
+    },
   },
   toolCategories: {
     image: {
@@ -200,6 +207,13 @@ export const es = {
         'url-encode': { name: 'Codificar/Decodificar URL', description: 'Caracteres especiales de URL' },
         color: { name: 'Conversor de Color', description: 'Conversiones HEX, RGB, HSL' },
         qrcode: { name: 'Generador de QR', description: 'Genera códigos QR desde texto/enlaces' },
+      },
+    },
+    media: {
+      name: 'Herramientas multimedia',
+      description: 'Conversión de audio y vídeo',
+      tools: {
+        'mp4-to-mp3': { name: 'MP4 a MP3', description: 'Extrae el audio de un vídeo' },
       },
     },
   },
@@ -906,6 +920,56 @@ export const es = {
       copiedBtn: 'Copiado',
       outputPlaceholder: 'El JSON formateado aparecerá aquí',
       formatError: 'JSON inválido — revisa tu entrada',
+    },
+    mp4ToMp3: {
+      title: 'MP4 a MP3: extrae audio de vídeos gratis | WizGo',
+      description:
+        'Saca el audio de un vídeo y guárdalo como MP3. Gratis, al instante, en tu navegador. Sin subidas, sin registro, sin instalar nada.',
+      h1: 'Vídeo a MP3',
+      subheading: 'Extrae el sonido de cualquier vídeo · en tu dispositivo · nada se sube a internet',
+      schema: {
+        name: 'Convertidor MP4 a MP3',
+        description: 'Herramienta gratuita online para extraer el audio de vídeos MP4 y guardarlo como MP3 — funciona en tu navegador, sin subidas.',
+      },
+      upload: {
+        drag: 'Suelta un vídeo aquí',
+        orClick: 'o haz clic para elegir un archivo (MP4, MOV, M4A, WebM)',
+        sizeHint: 'Hasta 500MB · un archivo a la vez',
+      },
+      options: {
+        bitrateLabel: 'Calidad del audio:',
+        k128: 'Estándar · 128k',
+        k192: 'Recomendada · 192k',
+        k256: 'Alta · 256k',
+        k320: 'Máxima · 320k',
+        start: 'Obtener MP3',
+      },
+      progress: {
+        preparing: 'Preparando...',
+        decoding: 'Leyendo el audio...',
+        encodingTemplate: 'Convirtiendo · {pct}%',
+        done: '¡Listo!',
+      },
+      errors: {
+        tooLargeTemplate: 'Ese archivo es demasiado grande. El límite es 500MB (el tuyo pesa {size}).',
+        decodeFailedSafari: 'Safari no pudo leer este archivo. Actualiza Safari, o pruébalo en Chrome o Firefox.',
+        decodeFailedGeneric: 'No se pudo leer el audio de este archivo. El formato de dentro puede ser poco común.',
+      },
+      result: {
+        ready: 'Tu MP3 está listo — escúchalo o descárgalo',
+        downloadBtn: 'Descargar',
+        sizeTemplate: 'Tamaño: {size}',
+      },
+      faq: {
+        heading: 'Preguntas frecuentes',
+        items: [
+          { q: '¿Se sube mi vídeo a algún sitio?', a: 'No. Todo ocurre aquí mismo, en tu navegador. El archivo nunca sale de tu ordenador.' },
+          { q: '¿Qué tipo de vídeos puedo usar?', a: 'Casi cualquier vídeo del día a día: MP4 (el más común), MOV de iPhone, audios M4A y WebM. Si un archivo no funciona, su audio interno tiene un formato poco frecuente.' },
+          { q: '¿Por qué a veces falla en Safari?', a: 'Las versiones antiguas de Safari no leen el audio de algunos MP4. Actualiza Safari, o abre la página en Chrome, Firefox o Edge.' },
+          { q: '¿Hay un límite de tamaño?', a: 'Sí: 500MB por archivo. Más allá de eso el navegador puede colgarse, sobre todo en el móvil.' },
+          { q: '¿Puedo convertir varios vídeos a la vez?', a: 'Aún no. De momento, uno por uno.' },
+        ],
+      },
     },
   },
 } satisfies Translations;

@@ -34,6 +34,8 @@ export const en = {
       imageTooSmallLsb: 'Image too small — at least ~32×32 px required to embed a watermark',
       clipboardNotSupported: 'Clipboard API is not supported in this browser',
       pngGenerationFailed: 'PNG generation failed',
+      audioDecodeFailed: 'Could not decode audio. Try another file or use Chrome/Firefox.',
+      audioEncodeFailed: 'Audio encoding failed',
     },
   },
   nav: {
@@ -175,6 +177,11 @@ export const en = {
         'anti-theft watermark',
       ],
     },
+    'mp4-to-mp3': {
+      name: 'MP4 to MP3',
+      description: 'Extract audio from video · 128-320 kbps',
+      tags: ['mp4 to mp3', 'video to mp3', 'extract audio', 'mp4 audio', 'mp3 converter', 'audio extractor'],
+    },
   },
   toolCategories: {
     image: {
@@ -200,6 +207,13 @@ export const en = {
         'url-encode': { name: 'URL Encode/Decode', description: 'URL special character encoding' },
         color: { name: 'Color Converter', description: 'HEX, RGB, HSL conversions' },
         qrcode: { name: 'QR Code Generator', description: 'Generate QR codes from text/links' },
+      },
+    },
+    media: {
+      name: 'Media Tools',
+      description: 'Audio and video conversion',
+      tools: {
+        'mp4-to-mp3': { name: 'MP4 to MP3', description: 'Extract audio from video files' },
       },
     },
   },
@@ -906,6 +920,56 @@ export const en = {
       copiedBtn: 'Copied',
       outputPlaceholder: 'Formatted JSON will appear here',
       formatError: 'Invalid JSON — please check your input',
+    },
+    mp4ToMp3: {
+      title: 'MP4 to MP3: Free Online Video to Audio | WizGo',
+      description:
+        'Pull the audio out of a video and save it as MP3 — free, instant, in your browser. No uploads, no sign-up, no install.',
+      h1: 'Video to MP3',
+      subheading: 'Get the audio out of any video · works on your device · nothing leaves your computer',
+      schema: {
+        name: 'MP4 to MP3 Converter',
+        description: 'Free online tool to extract audio from MP4 videos and save as MP3 — runs in your browser, no uploads.',
+      },
+      upload: {
+        drag: 'Drop a video here',
+        orClick: 'or click to choose a file (MP4, MOV, M4A, WebM)',
+        sizeHint: 'Up to 500MB · one file at a time',
+      },
+      options: {
+        bitrateLabel: 'Audio quality:',
+        k128: 'Standard · 128k',
+        k192: 'Recommended · 192k',
+        k256: 'High · 256k',
+        k320: 'Best · 320k',
+        start: 'Get MP3',
+      },
+      progress: {
+        preparing: 'Getting ready...',
+        decoding: 'Reading the audio...',
+        encodingTemplate: 'Converting · {pct}%',
+        done: 'Done!',
+      },
+      errors: {
+        tooLargeTemplate: 'That file is too big. Max size is 500MB (yours is {size}).',
+        decodeFailedSafari: 'Safari could not read this file. Please update Safari, or try it in Chrome or Firefox.',
+        decodeFailedGeneric: 'Could not read the audio in this file. The format inside might be unusual.',
+      },
+      result: {
+        ready: 'Your MP3 is ready — preview or download below',
+        downloadBtn: 'Download',
+        sizeTemplate: 'Size: {size}',
+      },
+      faq: {
+        heading: 'Common questions',
+        items: [
+          { q: 'Will my video be uploaded somewhere?', a: 'No. Everything happens right here in your browser. The file never leaves your computer.' },
+          { q: 'What kinds of videos work?', a: 'Most everyday videos — MP4 (the most common), MOV from iPhone, M4A audio, and WebM. If a file does not work, the audio inside is in an unusual format.' },
+          { q: 'Why does it sometimes fail on Safari?', a: 'Older Safari can not read the audio in some MP4 files. Update Safari, or open the page in Chrome, Firefox or Edge.' },
+          { q: 'Is there a size limit?', a: 'Yes — 500MB per file. Anything bigger can freeze your browser, especially on a phone.' },
+          { q: 'Can I convert several videos at once?', a: 'Not yet. For now, do them one by one.' },
+        ],
+      },
     },
   },
 } satisfies Translations;

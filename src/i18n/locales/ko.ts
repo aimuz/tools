@@ -33,6 +33,8 @@ export const ko = {
       imageTooSmallLsb: '이미지가 너무 작아 워터마크를 삽입할 수 없습니다 (최소 약 32×32 픽셀 필요)',
       clipboardNotSupported: '이 브라우저는 클립보드 API를 지원하지 않습니다',
       pngGenerationFailed: 'PNG 생성 실패',
+      audioDecodeFailed: '오디오를 디코딩할 수 없습니다. 다른 파일을 시도하거나 Chrome / Firefox를 사용하세요',
+      audioEncodeFailed: '오디오 인코딩 실패',
     },
   },
   nav: {
@@ -174,6 +176,11 @@ export const ko = {
         'photo watermark', 'text watermark', 'image watermark',
       ],
     },
+    'mp4-to-mp3': {
+      name: 'MP4를 MP3로',
+      description: '동영상에서 오디오 추출 · 128-320 kbps',
+      tags: ['mp4 mp3 변환', '동영상 mp3', '오디오 추출', '비디오 오디오', 'mp3 변환', 'mp4 to mp3'],
+    },
   },
   toolCategories: {
     image: {
@@ -199,6 +206,13 @@ export const ko = {
         'url-encode': { name: 'URL 인코딩/디코딩', description: 'URL 특수 문자 처리' },
         color: { name: '색상 변환', description: 'HEX, RGB, HSL 색상값 상호 변환' },
         qrcode: { name: 'QR 코드 생성', description: '텍스트/링크로 QR 코드 생성' },
+      },
+    },
+    media: {
+      name: '미디어 도구',
+      description: '오디오 및 비디오 변환',
+      tools: {
+        'mp4-to-mp3': { name: 'MP4를 MP3로', description: '비디오 파일에서 오디오 추출' },
       },
     },
   },
@@ -904,6 +918,56 @@ export const ko = {
       copiedBtn: '복사됨',
       outputPlaceholder: '포맷팅된 JSON이 여기에 표시됩니다',
       formatError: 'JSON 형식 오류, 입력을 확인하세요',
+    },
+    mp4ToMp3: {
+      title: 'MP4를 MP3로: 무료 온라인 영상→오디오 | WizGo',
+      description:
+        '영상에서 소리만 뽑아 MP3로 저장하세요. 무료, 즉시, 브라우저에서 처리. 업로드, 가입, 설치 모두 필요 없습니다.',
+      h1: '영상에서 MP3 추출',
+      subheading: '영상의 소리를 뽑아냅니다 · 내 기기에서 처리 · 파일은 어디에도 올라가지 않습니다',
+      schema: {
+        name: 'MP4 → MP3 변환',
+        description: '무료 온라인 도구 — MP4 영상에서 오디오를 추출해 MP3로 저장. 브라우저에서 동작, 업로드 없음.',
+      },
+      upload: {
+        drag: '영상을 여기에 놓아주세요',
+        orClick: '또는 클릭해서 파일 선택 (MP4, MOV, M4A, WebM)',
+        sizeHint: '최대 500MB · 한 번에 한 개',
+      },
+      options: {
+        bitrateLabel: '음질:',
+        k128: '표준 · 128k',
+        k192: '권장 · 192k',
+        k256: '고음질 · 256k',
+        k320: '최고 · 320k',
+        start: 'MP3 만들기',
+      },
+      progress: {
+        preparing: '준비 중...',
+        decoding: '오디오 읽는 중...',
+        encodingTemplate: '변환 중 · {pct}%',
+        done: '완료!',
+      },
+      errors: {
+        tooLargeTemplate: '파일이 너무 큽니다. 최대 500MB까지만 가능합니다 (현재 {size})',
+        decodeFailedSafari: 'Safari가 이 파일을 읽지 못했습니다. Safari를 업데이트하거나 Chrome, Firefox로 시도해 보세요.',
+        decodeFailedGeneric: '이 파일 안의 소리를 읽지 못했습니다. 안의 형식이 흔치 않을 수 있어요.',
+      },
+      result: {
+        ready: 'MP3가 준비됐어요 — 미리듣기 또는 다운로드 가능',
+        downloadBtn: '다운로드',
+        sizeTemplate: '크기: {size}',
+      },
+      faq: {
+        heading: '자주 묻는 질문',
+        items: [
+          { q: '제 영상이 서버로 올라가나요?', a: '아니요. 모든 처리는 브라우저 안에서 끝납니다. 파일은 컴퓨터를 벗어나지 않아요.' },
+          { q: '어떤 영상이 되나요?', a: '흔한 영상은 거의 다 됩니다: MP4, 아이폰 MOV, M4A 오디오, WebM. 안 되면 안에 있는 오디오 형식이 좀 특이한 경우입니다.' },
+          { q: 'Safari에서 가끔 실패하는 이유는?', a: '구버전 Safari는 일부 MP4의 소리를 읽지 못해요. Safari를 최신으로 업데이트하거나, Chrome / Firefox / Edge로 열어보세요.' },
+          { q: '용량 제한이 있나요?', a: '네, 한 파일에 500MB까지요. 더 크면 특히 휴대폰에서 브라우저가 멈출 수 있어요.' },
+          { q: '여러 개를 한 번에 변환할 수 있나요?', a: '아직은 안 돼요. 지금은 한 번에 하나씩만 가능합니다.' },
+        ],
+      },
     },
   },
 } satisfies Translations;

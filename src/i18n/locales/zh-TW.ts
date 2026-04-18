@@ -33,6 +33,8 @@ export const zhTW = {
       imageTooSmallLsb: '圖片太小，無法嵌入浮水印（至少需要約 32×32 像素）',
       clipboardNotSupported: '此瀏覽器不支援剪貼簿 API',
       pngGenerationFailed: 'PNG 產生失敗',
+      audioDecodeFailed: '無法解碼音訊，請嘗試其他檔案或使用 Chrome / Firefox',
+      audioEncodeFailed: '音訊編碼失敗',
     },
   },
   nav: {
@@ -175,6 +177,11 @@ export const zhTW = {
         '照片浮水印', 'text watermark', 'image watermark', 'photo watermark',
       ],
     },
+    'mp4-to-mp3': {
+      name: 'MP4 轉 MP3',
+      description: '從影片中擷取音訊 · 128-320 kbps',
+      tags: ['mp4轉mp3', '影片轉mp3', '擷取音訊', '影片轉音訊', 'mp3', '音訊擷取', 'mp4 to mp3'],
+    },
   },
   toolCategories: {
     image: {
@@ -200,6 +207,13 @@ export const zhTW = {
         'url-encode': { name: 'URL 編解碼', description: 'URL 特殊字元編碼解碼' },
         color: { name: '色彩轉換', description: '十六進位、RGB、HSL 色彩值互轉' },
         qrcode: { name: 'QR Code 產生', description: '文字/連結產生 QR Code' },
+      },
+    },
+    media: {
+      name: '影音工具',
+      description: '音訊與影片轉換',
+      tools: {
+        'mp4-to-mp3': { name: 'MP4 轉 MP3', description: '從影片檔案擷取音訊' },
       },
     },
   },
@@ -905,6 +919,56 @@ export const zhTW = {
       copiedBtn: '已複製',
       outputPlaceholder: '格式化後的 JSON 將顯示在這裡',
       formatError: 'JSON 格式錯誤，請檢查輸入',
+    },
+    mp4ToMp3: {
+      title: 'MP4 轉 MP3：免費線上擷取影片音訊 | WizGo',
+      description:
+        '把影片裡的聲音擷取出來，存成 MP3。免費、即時、在瀏覽器中完成，不用上傳、不用註冊、不用安裝。',
+      h1: '影片轉 MP3',
+      subheading: '把影片裡的聲音擷取出來 · 在你的電腦上完成 · 檔案不會上傳',
+      schema: {
+        name: 'MP4 轉 MP3 轉換器',
+        description: '免費線上把 MP4 影片中的音訊擷取並儲存為 MP3，瀏覽器本地處理，檔案不會上傳。',
+      },
+      upload: {
+        drag: '把影片拖到這裡',
+        orClick: '或點擊選擇檔案（MP4、MOV、M4A、WebM）',
+        sizeHint: '最大 500MB · 一次一個',
+      },
+      options: {
+        bitrateLabel: '音質：',
+        k128: '標準 · 128k',
+        k192: '推薦 · 192k',
+        k256: '高 · 256k',
+        k320: '最高 · 320k',
+        start: '產生 MP3',
+      },
+      progress: {
+        preparing: '準備中…',
+        decoding: '正在讀取音訊…',
+        encodingTemplate: '正在轉換 · {pct}%',
+        done: '完成！',
+      },
+      errors: {
+        tooLargeTemplate: '檔案太大了，最大 500MB（你的有 {size}）',
+        decodeFailedSafari: 'Safari 讀取此檔案失敗。請升級 Safari，或用 Chrome、Firefox 試試。',
+        decodeFailedGeneric: '讀不出這個檔案裡的聲音，裡面的格式可能比較少見。',
+      },
+      result: {
+        ready: 'MP3 已經做好了，可以試聽或下載',
+        downloadBtn: '下載',
+        sizeTemplate: '大小：{size}',
+      },
+      faq: {
+        heading: '常見問題',
+        items: [
+          { q: '我的影片會被上傳到伺服器嗎？', a: '不會。整個過程都在你瀏覽器裡完成，檔案不會離開你的電腦。' },
+          { q: '支援哪些影片？', a: '常見的影片都可以：手機/電腦的 MP4、iPhone 拍的 MOV、M4A 音訊，還有 WebM。如果某個檔案不行，表示裡面的音訊格式比較少見。' },
+          { q: '為什麼 Safari 有時會失敗？', a: '舊版 Safari 讀不出某些 MP4 裡的聲音。把 Safari 升到新版，或者改用 Chrome、Firefox、Edge。' },
+          { q: '有大小限制嗎？', a: '有，單檔最大 500MB。再大可能讓瀏覽器卡死，特別是在手機上。' },
+          { q: '可以一次轉好幾個嗎？', a: '暫時還不行，目前一次只能轉一個。' },
+        ],
+      },
     },
   },
 } satisfies Translations;

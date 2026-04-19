@@ -8,7 +8,7 @@ package-lock.json
 
 rust-wasm/target
 rust-wasm/pkg
-src/wasm/rust-image
+src/wasm/rust
 src/wasm/rust-image-converter.js
 
 public

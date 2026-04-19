@@ -3,7 +3,7 @@
 #
 # For each crate in rust-wasm/crates/<dir>:
 #   - wasm-pack build → rust-wasm/pkg/<dir>/
-#   - copy .js glue + .d.ts + .wasm → src/wasm/rust-image/<dir>/
+#   - copy .js glue + .d.ts + .wasm → src/wasm/rust/<dir>/
 #
 # .wasm lives next to the JS glue so workers can import it via Vite's `?url`
 # suffix. Vite then emits the binary into /_astro/ with a content hash, which
@@ -16,7 +16,7 @@ cd "$(dirname "$0")/.."
 
 ROOT="$(pwd)"
 PKG_ROOT="$ROOT/rust-wasm/pkg"
-DEST_ROOT="$ROOT/src/wasm/rust-image"
+DEST_ROOT="$ROOT/src/wasm/rust"
 
 if ! command -v wasm-pack >/dev/null 2>&1; then
   echo "ERROR: wasm-pack not installed. See https://rustwasm.github.io/wasm-pack/installer/" >&2

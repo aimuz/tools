@@ -14,17 +14,17 @@ export {}; // mark as module so worker-scope vars don't leak into sibling worker
 //   out: { id, ok: true, result } | { id, ok: false, error }
 // Uint8Array results are transferred back (zero-copy).
 
-type ImageMod = typeof import('./rust-image/image/image_tools.js');
+type ImageMod = typeof import('./rust/image/image_tools.js');
 
 // `?url` hands Vite a content-hashed URL for the wasm binary, which lets the
 // edge cache it with immutable headers without stranding users on old builds.
-import imageWasmUrl from './rust-image/image/image_tools_bg.wasm?url';
+import imageWasmUrl from './rust/image/image_tools_bg.wasm?url';
 
 let modPromise: Promise<ImageMod> | null = null;
 const getMod = (): Promise<ImageMod> => {
   if (!modPromise) {
     modPromise = (async () => {
-      const m = await import('./rust-image/image/image_tools.js');
+      const m = await import('./rust/image/image_tools.js');
       await m.default(imageWasmUrl);
       return m;
     })();

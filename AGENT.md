@@ -62,7 +62,7 @@
 
 - `.editorconfig`
 - `.prettierrc.json`：唯一覆盖 `singleQuote: true`，其余走官方默认
-- `.prettierignore`：排除 `dist/`、`node_modules/`、`rust-wasm/{target,pkg}/`、`src/wasm/rust-image/`（wasm-pack 生成物）、lockfiles
+- `.prettierignore`：排除 `dist/`、`node_modules/`、`rust-wasm/{target,pkg}/`、`src/wasm/rust/`（wasm-pack 生成物）、lockfiles
 - `rust-wasm/rustfmt.toml`
 
 ### 日常命令
@@ -77,7 +77,7 @@ bun run format:check  # 只检查不改动，CI 用这个
 1. 提交前本地跑一遍 `bun run format`，不要让 CI 当格式检查工人。
 2. 大规模格式化调整（改 Prettier 规则、升级版本等）**单独起一个 `chore: format` commit**，不要混进业务 PR。
 3. `prettier-plugin-astro` 对复杂 Astro 文件偶尔需要跑第二次才能幂等收敛——如果 `format:check` 在刚 `format` 之后还报错，再跑一次 `bun run format` 即可。
-4. **不要手动格式化** `src/wasm/rust-image/` 下的文件，它们是 `wasm-pack` 的生成产物，改了会被下次 `bun run build:wasm` 覆盖。
+4. **不要手动格式化** `src/wasm/rust/` 下的文件，它们是 `wasm-pack` 的生成产物，改了会被下次 `bun run build:wasm` 覆盖。
 
 ### CI 守门
 

@@ -7,15 +7,15 @@ export {};
 // between chunks. When done we post a single Uint8Array (transferable) that
 // the main thread wraps into a Blob.
 
-import mp3WasmUrl from './rust-image/mp3/mp3_encode_bg.wasm?url';
+import mp3WasmUrl from './rust/mp3/mp3_encode_bg.wasm?url';
 
-type Mp3Mod = typeof import('./rust-image/mp3/mp3_encode.js');
+type Mp3Mod = typeof import('./rust/mp3/mp3_encode.js');
 
 let modPromise: Promise<Mp3Mod> | null = null;
 const getMod = (): Promise<Mp3Mod> => {
   if (!modPromise) {
     modPromise = (async () => {
-      const m = await import('./rust-image/mp3/mp3_encode.js');
+      const m = await import('./rust/mp3/mp3_encode.js');
       await m.default(mp3WasmUrl);
       return m;
     })();

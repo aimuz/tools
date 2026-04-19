@@ -186,7 +186,7 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
     }
     files = imgs.map(file => ({
       file,
-      id: Math.random().toString(36).slice(2, 11),
+      id: crypto.randomUUID(),
       originalUrl: URL.createObjectURL(file),
     }));
     renderFileList();

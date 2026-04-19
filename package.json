@@ -6,10 +6,12 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build:wasm": "bash scripts/build-wasm.sh",
+    "build": "bun run build:wasm && astro build",
+    "build:web": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "astro build && wrangler deploy"
+    "deploy": "bun run build && wrangler deploy"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.2.1",

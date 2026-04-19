@@ -123,7 +123,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "image-converter"
+name = "image-tools"
 version = "0.1.0"
 dependencies = [
  "console_error_panic_hook",
@@ -134,6 +134,7 @@ dependencies = [
  "lodepng",
  "rexif",
  "wasm-bindgen",
+ "wizgo-core",
 ]
 
 [[package]]
@@ -352,10 +353,29 @@ dependencies = [
 ]
 
 [[package]]
+name = "watermark"
+version = "0.1.0"
+dependencies = [
+ "console_error_panic_hook",
+ "js-sys",
+ "wasm-bindgen",
+]
+
+[[package]]
 name = "weezl"
 version = "0.1.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a28ac98ddc8b9274cb41bb4d9d4d5c425b6020c50c46f25559911905610b4a88"
+
+[[package]]
+name = "wizgo-core"
+version = "0.1.0"
+dependencies = [
+ "console_error_panic_hook",
+ "image",
+ "jpeg-encoder",
+ "lodepng",
+]
 
 [[package]]
 name = "zune-core"

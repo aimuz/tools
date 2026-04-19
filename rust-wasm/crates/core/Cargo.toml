@@ -1,0 +1,14 @@
+[package]
+name = "wizgo-core"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+image = { workspace = true, features = ["png", "jpeg", "webp"] }
+jpeg-encoder = "0.6"
+lodepng = { version = "3.10", default-features = false }
+console_error_panic_hook = { workspace = true, optional = true }
+
+[features]
+default = []
+panic-hook = ["dep:console_error_panic_hook"]

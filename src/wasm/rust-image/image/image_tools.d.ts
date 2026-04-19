@@ -1,9 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-/**
- * Compression options
- */
 export class CompressOptions {
     free(): void;
     [Symbol.dispose](): void;
@@ -15,29 +12,14 @@ export class CompressOptions {
  */
 export function compress_image(input: Uint8Array, options: CompressOptions): Uint8Array;
 
-/**
- * Batch compress multiple images
- */
 export function compress_image_batch(inputs: any[], options: CompressOptions): any[];
 
-/**
- * Convert image from one format to another
- */
 export function convert_image(input: Uint8Array, output_format: string, quality: number): Uint8Array;
 
-/**
- * Get detailed image info including EXIF data
- */
 export function get_detailed_image_info(input: Uint8Array): any;
 
-/**
- * Get image info
- */
 export function get_image_info(input: Uint8Array): any;
 
-/**
- * Resize image
- */
 export function resize_image(input: Uint8Array, width: number, height: number): Uint8Array;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
@@ -45,22 +27,18 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 export interface InitOutput {
     readonly memory: WebAssembly.Memory;
     readonly __wbg_compressoptions_free: (a: number, b: number) => void;
-    readonly compress_image: (a: number, b: number, c: number) => [number, number, number, number];
-    readonly compress_image_batch: (a: number, b: number, c: number) => [number, number, number, number];
+    readonly compress_image: (a: number, b: number, c: number, d: number) => void;
+    readonly compress_image_batch: (a: number, b: number, c: number, d: number) => void;
     readonly compressoptions_new: (a: number, b: number, c: number, d: number) => number;
-    readonly convert_image: (a: number, b: number, c: number, d: number, e: number) => [number, number, number, number];
-    readonly get_detailed_image_info: (a: number, b: number) => [number, number, number];
-    readonly get_image_info: (a: number, b: number) => [number, number, number];
-    readonly resize_image: (a: number, b: number, c: number, d: number) => [number, number, number, number];
-    readonly __wbindgen_free: (a: number, b: number, c: number) => void;
-    readonly __wbindgen_exn_store: (a: number) => void;
-    readonly __externref_table_alloc: () => number;
-    readonly __wbindgen_externrefs: WebAssembly.Table;
-    readonly __wbindgen_malloc: (a: number, b: number) => number;
-    readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
-    readonly __externref_table_dealloc: (a: number) => void;
-    readonly __externref_drop_slice: (a: number, b: number) => void;
-    readonly __wbindgen_start: () => void;
+    readonly convert_image: (a: number, b: number, c: number, d: number, e: number, f: number) => void;
+    readonly get_detailed_image_info: (a: number, b: number, c: number) => void;
+    readonly get_image_info: (a: number, b: number, c: number) => void;
+    readonly resize_image: (a: number, b: number, c: number, d: number, e: number) => void;
+    readonly __wbindgen_export: (a: number) => void;
+    readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
+    readonly __wbindgen_export2: (a: number, b: number) => number;
+    readonly __wbindgen_export3: (a: number, b: number, c: number) => void;
+    readonly __wbindgen_export4: (a: number, b: number, c: number, d: number) => number;
 }
 
 export type SyncInitInput = BufferSource | WebAssembly.Module;

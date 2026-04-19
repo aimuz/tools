@@ -1,0 +1,29 @@
+[package]
+name = "image-tools"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+
+# One crate covers both compress and convert because they share the entire
+# image-decoder stack (~500 KB of png/jpeg/webp readers). Splitting them gave
+# only ~25% per-page savings — see twiggy analysis in the plan. Truly
+# independent features (mp3, etc.) still get their own crate.
+[dependencies]
+wasm-bindgen.workspace = true
+js-sys.workspace = true
+image = { workspace = true, features = ["png", "jpeg", "bmp", "gif", "webp"] }
+imagequant = { version = "4.3", default-features = false }
+lodepng = { version = "3.10", default-features = false }
+jpeg-encoder = "0.6"
+rexif = "0.7"
+wizgo-core = { path = "../core" }
+console_error_panic_hook = { workspace = true, optional = true }
+
+[features]
+default = []
+debug-panics = ["dep:console_error_panic_hook", "wizgo-core/panic-hook"]
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false

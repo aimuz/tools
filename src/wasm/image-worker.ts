@@ -1,18 +1,27 @@
 /// <reference lib="webworker" />
-// WASM image processing worker — owns the Rust module so the main thread
-// never blocks on compress/convert calls. Protocol:
+export {}; // mark as module so worker-scope vars don't leak into sibling workers
+
+// WASM image processing worker — owns the Rust image-tools module so the main
+// thread never blocks on compress/convert calls.
+//
+// Compress and convert share ~500 KB of image-decoder code, so splitting them
+// across two wasm modules only saved ~25% per-page and cost ~500 KB for users
+// who hit both tools. One merged wasm is the honest call. Audio (mp3) etc.
+// stay in their own wasm because they don't share deps with image work.
+//
+// Protocol:
 //   in:  { id, op, args }
 //   out: { id, ok: true, result } | { id, ok: false, error }
 // Uint8Array results are transferred back (zero-copy).
 
-type WasmMod = typeof import('./rust-image/image_converter.js');
+type ImageMod = typeof import('./rust-image/image/image_tools.js');
 
-let modPromise: Promise<WasmMod> | null = null;
-const getMod = (): Promise<WasmMod> => {
+let modPromise: Promise<ImageMod> | null = null;
+const getMod = (): Promise<ImageMod> => {
   if (!modPromise) {
     modPromise = (async () => {
-      const m = await import('./rust-image/image_converter.js');
-      await m.default('/rust-image/image_converter_bg.wasm');
+      const m = await import('./rust-image/image/image_tools.js');
+      await m.default('/rust-image/image/image_tools_bg.wasm');
       return m;
     })();
   }

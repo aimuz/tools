@@ -1,0 +1,22 @@
+[package]
+name = "watermark"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+
+# Pure-math crate: the caller hands us RGBA bytes (decoded by the browser's
+# Canvas API) and we return mutated RGBA bytes. Zero image-decoder deps →
+# wasm stays tiny (~60-80 KB) and independent of the image-tools crate.
+[dependencies]
+wasm-bindgen.workspace = true
+js-sys.workspace = true
+console_error_panic_hook = { workspace = true, optional = true }
+
+[features]
+default = []
+debug-panics = ["dep:console_error_panic_hook"]
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false

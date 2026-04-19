@@ -1,4 +1,3 @@
-import { dct8, idct8 } from './dct8';
 import { bindCopyButton, canvasToPngBlob, setClipboardLabels } from './clipboard';
 import {
   drawImageData,
@@ -7,6 +6,7 @@ import {
   setZoneFilled,
   wireDropzone,
 } from './dropzone';
+import { embedWatermark, extractWatermark, lsbCapacity } from '../wasm/watermark-bridge';
 
 export interface WatermarkLabels {
   parseImageError: string;
@@ -42,298 +42,27 @@ const DEFAULT_LABELS: WatermarkLabels = {
   clipboardNotSupported: 'Clipboard API is not supported in this browser',
 };
 
-class WatermarkError extends Error {
-  constructor(public code: string, public context?: Record<string, number | string>) {
-    super(code);
-  }
-}
-
 const interpolate = (template: string, vars: Record<string, string | number>) =>
   template.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ''));
 
-// Header layout (9 bytes, little-endian where relevant):
-//   0..3  magic       "WZGL" for LSB, "WZGD" for DCT
-//   4     flags       reserved (0)
-//   5..8  payloadLen  uint32 LE, UTF-8 byte count
-// Both algorithms share this format; only the magic and carrier differ.
-
-const MAGIC_LSB = [0x57, 0x5a, 0x47, 0x4c]; // "WZGL"
-const MAGIC_DCT = [0x57, 0x5a, 0x47, 0x44]; // "WZGD"
-const HEADER_LEN = 9;
-
-// Separation between the two middle-frequency coefficients chosen to survive
-// JPEG re-encoding at Q >= 75. JPEG luminance quantization at (2,3)/(3,2) is
-// ~14-24 at Q=50, so a 30-unit gap leaves headroom after PNG round-trip noise.
-const DCT_MARGIN = 30;
-const C1_IDX = 2 * 8 + 3; // coef[2][3]
-const C2_IDX = 3 * 8 + 2; // coef[3][2]
-
 type Mode = 'embed' | 'extract';
 
-// ---------- Header helpers ----------
-
-function buildHeader(magic: number[], len: number): Uint8Array {
-  const h = new Uint8Array(HEADER_LEN);
-  h[0] = magic[0]; h[1] = magic[1]; h[2] = magic[2]; h[3] = magic[3];
-  h[4] = 0;
-  h[5] = len & 0xff;
-  h[6] = (len >> 8) & 0xff;
-  h[7] = (len >> 16) & 0xff;
-  h[8] = (len >>> 24) & 0xff;
-  return h;
-}
-
-function magicMatches(bytes: Uint8Array, magic: number[]): boolean {
-  return bytes[0] === magic[0] && bytes[1] === magic[1]
-    && bytes[2] === magic[2] && bytes[3] === magic[3];
-}
-
-function readLen(bytes: Uint8Array): number {
-  return (bytes[5] | (bytes[6] << 8) | (bytes[7] << 16) | (bytes[8] << 24)) >>> 0;
-}
-
-// ---------- LSB ----------
-
-function lsbCapacity(w: number, h: number): number {
-  return Math.floor((w * h * 3) / 8) - HEADER_LEN;
-}
-
-function lsbEmbed(img: ImageData, text: string): ImageData {
-  const payload = new TextEncoder().encode(text);
-  const cap = lsbCapacity(img.width, img.height);
-  if (payload.length > cap) {
-    throw new WatermarkError('CAPACITY_EXCEEDED', { cap, len: payload.length });
+// Rust error codes: map back to localised messages.
+function translateError(raw: string, labels: WatermarkLabels): string {
+  if (raw.startsWith('CAPACITY_EXCEEDED:')) {
+    const [, cap, len] = raw.split(':');
+    return interpolate(labels.capacityErrorTemplate, { cap: Number(cap), len: Number(len) });
   }
-  const header = buildHeader(MAGIC_LSB, payload.length);
-  const total = new Uint8Array(header.length + payload.length);
-  total.set(header, 0);
-  total.set(payload, header.length);
-
-  const data = new Uint8ClampedArray(img.data);
-  const totalBits = total.length * 8;
-  let bitIdx = 0;
-  let i = 0;
-  while (i < data.length && bitIdx < totalBits) {
-    if (i % 4 !== 3) {
-      const bit = (total[bitIdx >> 3] >> (7 - (bitIdx & 7))) & 1;
-      data[i] = (data[i] & 0xfe) | bit;
-      bitIdx++;
-    }
-    i++;
-  }
-  return new ImageData(data, img.width, img.height);
-}
-
-function lsbExtract(img: ImageData): string {
-  const data = img.data;
-  const header = new Uint8Array(HEADER_LEN);
-  let bitIdx = 0;
-  let i = 0;
-  while (i < data.length && bitIdx < HEADER_LEN * 8) {
-    if (i % 4 !== 3) {
-      const bit = data[i] & 1;
-      header[bitIdx >> 3] |= bit << (7 - (bitIdx & 7));
-      bitIdx++;
-    }
-    i++;
-  }
-  if (!magicMatches(header, MAGIC_LSB)) throw new Error('NO_WATERMARK');
-  const len = readLen(header);
-  const cap = lsbCapacity(img.width, img.height);
-  if (len > cap) throw new Error('NO_WATERMARK');
-
-  const payload = new Uint8Array(len);
-  let payBit = 0;
-  const payBits = len * 8;
-  while (i < data.length && payBit < payBits) {
-    if (i % 4 !== 3) {
-      const bit = data[i] & 1;
-      payload[payBit >> 3] |= bit << (7 - (payBit & 7));
-      payBit++;
-    }
-    i++;
-  }
-  return new TextDecoder('utf-8', { fatal: false }).decode(payload);
-}
-
-// ---------- DCT ----------
-
-function dctCapacity(w: number, h: number): number {
-  const blocks = Math.floor(w / 8) * Math.floor(h / 8);
-  return Math.floor(blocks / 8) - HEADER_LEN;
-}
-
-function rgbToY(data: Uint8ClampedArray, pixels: number): Float64Array {
-  const Y = new Float64Array(pixels);
-  for (let i = 0, p = 0; p < pixels; i += 4, p++) {
-    Y[p] = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
-  }
-  return Y;
-}
-
-function loadBlock(block: Float64Array, Y: Float64Array, w: number, bx: number, by: number): void {
-  for (let y = 0; y < 8; y++) {
-    const src = (by * 8 + y) * w + bx * 8;
-    const dst = y * 8;
-    for (let x = 0; x < 8; x++) block[dst + x] = Y[src + x];
+  switch (raw) {
+    case 'IMAGE_TOO_SMALL_DCT': return labels.imageTooSmallDct;
+    case 'IMAGE_TOO_SMALL_LSB': return labels.imageTooSmallLsb;
+    case 'NO_WATERMARK': return labels.noWatermark;
+    default: return raw;
   }
 }
-
-function storeBlock(block: Float64Array, Y: Float64Array, w: number, bx: number, by: number): void {
-  for (let y = 0; y < 8; y++) {
-    const dst = (by * 8 + y) * w + bx * 8;
-    const src = y * 8;
-    for (let x = 0; x < 8; x++) Y[dst + x] = block[src + x];
-  }
-}
-
-function dctEmbed(img: ImageData, text: string): ImageData {
-  const payload = new TextEncoder().encode(text);
-  const cap = dctCapacity(img.width, img.height);
-  if (cap <= 0) {
-    throw new WatermarkError('IMAGE_TOO_SMALL_DCT');
-  }
-  if (payload.length > cap) {
-    throw new WatermarkError('CAPACITY_EXCEEDED', { cap, len: payload.length });
-  }
-
-  const header = buildHeader(MAGIC_DCT, payload.length);
-  const total = new Uint8Array(header.length + payload.length);
-  total.set(header, 0);
-  total.set(payload, header.length);
-
-  const w = img.width;
-  const h = img.height;
-  const pixels = w * h;
-  const origY = rgbToY(img.data, pixels);
-  const Y = new Float64Array(origY); // working copy — DCT mutates this
-
-  const bw = Math.floor(w / 8);
-  const bh = Math.floor(h / 8);
-  const totalBits = total.length * 8;
-  const block = new Float64Array(64);
-  const coef = new Float64Array(64);
-  const spatial = new Float64Array(64);
-
-  let bitIdx = 0;
-  for (let blockIdx = 0; blockIdx < bw * bh && bitIdx < totalBits; blockIdx++, bitIdx++) {
-    const by = Math.floor(blockIdx / bw);
-    const bx = blockIdx % bw;
-    loadBlock(block, Y, w, bx, by);
-    dct8(block, coef);
-
-    const bit = (total[bitIdx >> 3] >> (7 - (bitIdx & 7))) & 1;
-    const c1 = coef[C1_IDX];
-    const c2 = coef[C2_IDX];
-    if (bit === 1) {
-      if (c1 - c2 < DCT_MARGIN) {
-        const avg = (c1 + c2) / 2;
-        coef[C1_IDX] = avg + DCT_MARGIN / 2;
-        coef[C2_IDX] = avg - DCT_MARGIN / 2;
-      }
-    } else {
-      if (c2 - c1 < DCT_MARGIN) {
-        const avg = (c1 + c2) / 2;
-        coef[C1_IDX] = avg - DCT_MARGIN / 2;
-        coef[C2_IDX] = avg + DCT_MARGIN / 2;
-      }
-    }
-
-    idct8(coef, spatial);
-    storeBlock(spatial, Y, w, bx, by);
-  }
-
-  // Keep original Cb/Cr by applying dY equally to R/G/B (dR=dG=dB=dY leaves
-  // the chroma differences intact).
-  const out = new Uint8ClampedArray(img.data);
-  for (let p = 0, i = 0; p < pixels; p++, i += 4) {
-    const dY = Y[p] - origY[p];
-    out[i] = clamp255(img.data[i] + dY);
-    out[i + 1] = clamp255(img.data[i + 1] + dY);
-    out[i + 2] = clamp255(img.data[i + 2] + dY);
-    out[i + 3] = img.data[i + 3];
-  }
-  return new ImageData(out, w, h);
-}
-
-function clamp255(v: number): number {
-  v = Math.round(v);
-  return v < 0 ? 0 : v > 255 ? 255 : v;
-}
-
-function dctExtract(img: ImageData): string {
-  const w = img.width;
-  const h = img.height;
-  const Y = rgbToY(img.data, w * h);
-  const bw = Math.floor(w / 8);
-  const bh = Math.floor(h / 8);
-  const totalBlocks = bw * bh;
-  const block = new Float64Array(64);
-  const coef = new Float64Array(64);
-
-  const readBits = (count: number, startBlock: number): { bytes: Uint8Array; nextBlock: number } => {
-    const bytes = new Uint8Array(Math.ceil(count / 8));
-    let bi = 0;
-    let blockIdx = startBlock;
-    while (bi < count && blockIdx < totalBlocks) {
-      const by = Math.floor(blockIdx / bw);
-      const bx = blockIdx % bw;
-      loadBlock(block, Y, w, bx, by);
-      dct8(block, coef);
-      const bit = coef[C1_IDX] > coef[C2_IDX] ? 1 : 0;
-      bytes[bi >> 3] |= bit << (7 - (bi & 7));
-      bi++;
-      blockIdx++;
-    }
-    return { bytes, nextBlock: blockIdx };
-  };
-
-  const { bytes: hdr, nextBlock } = readBits(HEADER_LEN * 8, 0);
-  if (!magicMatches(hdr, MAGIC_DCT)) throw new Error('NO_WATERMARK');
-  const len = readLen(hdr);
-  const cap = dctCapacity(w, h);
-  if (len > cap || len < 0) throw new Error('NO_WATERMARK');
-
-  const { bytes: payload } = readBits(len * 8, nextBlock);
-  return new TextDecoder('utf-8', { fatal: false }).decode(payload.slice(0, len));
-}
-
-// ---------- Combined ----------
-
-// Embed the same text with both algorithms. DCT runs first (perturbs RGB by a
-// small delta to shift middle-frequency Y coefficients); LSB then flips the
-// low bit of each RGB byte — a ±1 shift that is below the DCT coefficient
-// margin, so DCT extraction on the final image still works. Effect: PNG
-// readers find both signals; JPG re-encoding destroys LSB but DCT survives.
-function embedBoth(img: ImageData, text: string): ImageData {
-  const payload = new TextEncoder().encode(text);
-  const lsbCap = lsbCapacity(img.width, img.height);
-  if (lsbCap <= 0) {
-    throw new WatermarkError('IMAGE_TOO_SMALL_LSB');
-  }
-  if (payload.length > lsbCap) {
-    throw new WatermarkError('CAPACITY_EXCEEDED', { cap: lsbCap, len: payload.length });
-  }
-  const dctCap = dctCapacity(img.width, img.height);
-  let out = img;
-  if (dctCap > 0 && payload.length <= dctCap) {
-    out = dctEmbed(out, text);
-  }
-  out = lsbEmbed(out, text);
-  return out;
-}
-
-function extractAny(img: ImageData): string {
-  try {
-    return dctExtract(img);
-  } catch { /* try LSB next */ }
-  return lsbExtract(img);
-}
-
-// ---------- UI glue ----------
 
 function capacityText(w: number, h: number, template: string, locale: string): string {
-  const cap = Math.max(0, lsbCapacity(w, h));
+  const cap = lsbCapacity(w, h);
   const approxChars = Math.floor(cap / 3);
   const fmt = (n: number) => n.toLocaleString(locale);
   return interpolate(template, { bytes: fmt(cap), chars: fmt(approxChars) });
@@ -346,25 +75,6 @@ function isJpeg(file: File): boolean {
 export interface WatermarkInitOptions {
   labels?: WatermarkLabels;
   locale?: string;
-}
-
-function translateError(e: unknown, labels: WatermarkLabels): string {
-  if (e instanceof WatermarkError) {
-    switch (e.code) {
-      case 'CAPACITY_EXCEEDED':
-        return interpolate(labels.capacityErrorTemplate, e.context ?? {});
-      case 'IMAGE_TOO_SMALL_DCT':
-        return labels.imageTooSmallDct;
-      case 'IMAGE_TOO_SMALL_LSB':
-        return labels.imageTooSmallLsb;
-      case 'NO_WATERMARK':
-        return labels.noWatermark;
-    }
-  }
-  if (e && typeof e === 'object' && 'message' in e && (e as { message?: string }).message === 'NO_WATERMARK') {
-    return labels.noWatermark;
-  }
-  return (e instanceof Error ? e.message : String(e));
 }
 
 export function initWatermarkPage(opts: WatermarkInitOptions = {}): void {
@@ -381,11 +91,9 @@ export function initWatermarkPage(opts: WatermarkInitOptions = {}): void {
 
   const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
 
-  // Tab panels + buttons
   const tabBtns = document.querySelectorAll<HTMLButtonElement>('.tab-btn');
   const panels = document.querySelectorAll<HTMLElement>('[data-panel]');
 
-  // Embed controls
   const embedDropzone = $<HTMLLabelElement>('embed-dropzone');
   const embedFile = $<HTMLInputElement>('embed-file');
   const embedPreview = $<HTMLCanvasElement>('embed-preview');
@@ -399,7 +107,6 @@ export function initWatermarkPage(opts: WatermarkInitOptions = {}): void {
   const embedDownload = $<HTMLAnchorElement>('embed-download');
   const embedCopy = $<HTMLButtonElement>('embed-copy');
 
-  // Extract controls
   const extractDropzone = $<HTMLLabelElement>('extract-dropzone');
   const extractFile = $<HTMLInputElement>('extract-file');
   const extractPreview = $<HTMLCanvasElement>('extract-preview');
@@ -408,7 +115,6 @@ export function initWatermarkPage(opts: WatermarkInitOptions = {}): void {
   const extractOut = $<HTMLTextAreaElement>('extract-text');
   const extractCopy = $<HTMLButtonElement>('extract-copy');
 
-  // Status
   const errBox = $('err');
 
   let mode: Mode = 'embed';
@@ -416,13 +122,8 @@ export function initWatermarkPage(opts: WatermarkInitOptions = {}): void {
   let extractImg: ImageData | null = null;
   let embedBlobUrl: string | null = null;
 
-  const showErr = (msg: string) => {
-    errBox.textContent = msg;
-    errBox.classList.remove('hidden');
-  };
-  const clearStatus = () => {
-    errBox.classList.add('hidden');
-  };
+  const showErr = (msg: string) => { errBox.textContent = msg; errBox.classList.remove('hidden'); };
+  const clearStatus = () => { errBox.classList.add('hidden'); };
 
   const refreshCapacity = () => {
     if (embedImg) {
@@ -481,15 +182,22 @@ export function initWatermarkPage(opts: WatermarkInitOptions = {}): void {
     if (!text) { showErr(labels.needText); return; }
     embedRun.disabled = true;
     try {
-      const out = embedBoth(embedImg, text);
-      drawImageData(embedOut, out);
+      // Transfer needs a fresh copy so embedImg (used for re-embeds) survives.
+      const rgba = new Uint8Array(embedImg.data);
+      const outBytes = await embedWatermark(rgba, embedImg.width, embedImg.height, text);
+      // Copy into a plain Uint8ClampedArray — ImageData's constructor requires
+      // an ArrayBuffer-backed array, not a SharedArrayBuffer-compatible one.
+      const clamped = new Uint8ClampedArray(outBytes);
+      const outData = new ImageData(clamped, embedImg.width, embedImg.height);
+      drawImageData(embedOut, outData);
       const blob = await canvasToPngBlob(embedOut);
       if (embedBlobUrl) URL.revokeObjectURL(embedBlobUrl);
       embedBlobUrl = URL.createObjectURL(blob);
       embedDownload.href = embedBlobUrl;
       embedResult.classList.remove('hidden');
     } catch (e) {
-      showErr(translateError(e, labels));
+      const raw = e instanceof Error ? e.message : String(e);
+      showErr(translateError(raw, labels));
     } finally {
       embedRun.disabled = false;
     }
@@ -502,15 +210,17 @@ export function initWatermarkPage(opts: WatermarkInitOptions = {}): void {
     extractImg = img;
   }));
 
-  extractRun.addEventListener('click', () => {
+  extractRun.addEventListener('click', async () => {
     clearStatus();
     if (!extractImg) { showErr(labels.needImageFirst); return; }
     extractRun.disabled = true;
     try {
-      extractOut.value = extractAny(extractImg);
+      const rgba = new Uint8Array(extractImg.data);
+      extractOut.value = await extractWatermark(rgba, extractImg.width, extractImg.height);
     } catch (e) {
       extractOut.value = '';
-      showErr(translateError(e, labels));
+      const raw = e instanceof Error ? e.message : String(e);
+      showErr(translateError(raw, labels));
     } finally {
       extractRun.disabled = false;
     }
@@ -524,6 +234,5 @@ export function initWatermarkPage(opts: WatermarkInitOptions = {}): void {
     setTimeout(() => { extractCopy.textContent = orig; }, 1200);
   });
 
-  // Initial state
   setMode('embed');
 }

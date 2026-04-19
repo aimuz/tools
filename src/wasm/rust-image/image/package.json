@@ -1,0 +1,15 @@
+{
+  "name": "image-tools",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "image_tools_bg.wasm",
+    "image_tools.js",
+    "image_tools.d.ts"
+  ],
+  "main": "image_tools.js",
+  "types": "image_tools.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

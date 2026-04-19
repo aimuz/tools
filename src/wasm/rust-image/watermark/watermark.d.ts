@@ -1,19 +1,10 @@
 /* tslint:disable */
 /* eslint-disable */
 
-/**
- * Embed `text` into an RGBA image using LSB + DCT (maximum robustness).
- */
-export function embed_watermark(rgba: Uint8Array, width: number, height: number, text: string): Uint8Array;
+export function embed_watermark(rgba: Uint8Array, _width: number, _height: number, text: string): Uint8Array;
 
-/**
- * Extract text embedded via `embed_watermark`. Tries DCT first, then LSB.
- */
 export function extract_watermark(rgba: Uint8Array, width: number, height: number): string;
 
-/**
- * LSB payload capacity in bytes (useful for UI hints).
- */
 export function lsb_capacity(width: number, height: number): number;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;

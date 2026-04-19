@@ -1,28 +1,22 @@
 /* @ts-self-types="./watermark.d.ts" */
 
 /**
- * Embed `text` into an RGBA image using LSB + DCT (maximum robustness).
  * @param {Uint8Array} rgba
- * @param {number} width
- * @param {number} height
+ * @param {number} _width
+ * @param {number} _height
  * @param {string} text
  * @returns {Uint8Array}
  */
-export function embed_watermark(rgba, width, height, text) {
+export function embed_watermark(rgba, _width, _height, text) {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
         const ptr0 = passArray8ToWasm0(rgba, wasm.__wbindgen_export);
         const len0 = WASM_VECTOR_LEN;
         const ptr1 = passStringToWasm0(text, wasm.__wbindgen_export, wasm.__wbindgen_export2);
         const len1 = WASM_VECTOR_LEN;
-        wasm.embed_watermark(retptr, ptr0, len0, width, height, ptr1, len1);
+        wasm.embed_watermark(retptr, ptr0, len0, _width, _height, ptr1, len1);
         var r0 = getDataViewMemory0().getInt32(retptr + 4 * 0, true);
         var r1 = getDataViewMemory0().getInt32(retptr + 4 * 1, true);
-        var r2 = getDataViewMemory0().getInt32(retptr + 4 * 2, true);
-        var r3 = getDataViewMemory0().getInt32(retptr + 4 * 3, true);
-        if (r3) {
-            throw takeObject(r2);
-        }
         var v3 = getArrayU8FromWasm0(r0, r1).slice();
         wasm.__wbindgen_export3(r0, r1 * 1, 1);
         return v3;
@@ -32,15 +26,14 @@ export function embed_watermark(rgba, width, height, text) {
 }
 
 /**
- * Extract text embedded via `embed_watermark`. Tries DCT first, then LSB.
  * @param {Uint8Array} rgba
  * @param {number} width
  * @param {number} height
  * @returns {string}
  */
 export function extract_watermark(rgba, width, height) {
-    let deferred3_0;
-    let deferred3_1;
+    let deferred2_0;
+    let deferred2_1;
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
         const ptr0 = passArray8ToWasm0(rgba, wasm.__wbindgen_export);
@@ -48,25 +41,16 @@ export function extract_watermark(rgba, width, height) {
         wasm.extract_watermark(retptr, ptr0, len0, width, height);
         var r0 = getDataViewMemory0().getInt32(retptr + 4 * 0, true);
         var r1 = getDataViewMemory0().getInt32(retptr + 4 * 1, true);
-        var r2 = getDataViewMemory0().getInt32(retptr + 4 * 2, true);
-        var r3 = getDataViewMemory0().getInt32(retptr + 4 * 3, true);
-        var ptr2 = r0;
-        var len2 = r1;
-        if (r3) {
-            ptr2 = 0; len2 = 0;
-            throw takeObject(r2);
-        }
-        deferred3_0 = ptr2;
-        deferred3_1 = len2;
-        return getStringFromWasm0(ptr2, len2);
+        deferred2_0 = r0;
+        deferred2_1 = r1;
+        return getStringFromWasm0(r0, r1);
     } finally {
         wasm.__wbindgen_add_to_stack_pointer(16);
-        wasm.__wbindgen_export3(deferred3_0, deferred3_1, 1);
+        wasm.__wbindgen_export3(deferred2_0, deferred2_1, 1);
     }
 }
 
 /**
- * LSB payload capacity in bytes (useful for UI hints).
  * @param {number} width
  * @param {number} height
  * @returns {number}
@@ -78,31 +62,11 @@ export function lsb_capacity(width, height) {
 function __wbg_get_imports() {
     const import0 = {
         __proto__: null,
-        __wbindgen_cast_0000000000000001: function(arg0, arg1) {
-            // Cast intrinsic for `Ref(String) -> Externref`.
-            const ret = getStringFromWasm0(arg0, arg1);
-            return addHeapObject(ret);
-        },
     };
     return {
         __proto__: null,
         "./watermark_bg.js": import0,
     };
-}
-
-function addHeapObject(obj) {
-    if (heap_next === heap.length) heap.push(heap.length + 1);
-    const idx = heap_next;
-    heap_next = heap[idx];
-
-    heap[idx] = obj;
-    return idx;
-}
-
-function dropObject(idx) {
-    if (idx < 1028) return;
-    heap[idx] = heap_next;
-    heap_next = idx;
 }
 
 function getArrayU8FromWasm0(ptr, len) {
@@ -130,13 +94,6 @@ function getUint8ArrayMemory0() {
     }
     return cachedUint8ArrayMemory0;
 }
-
-function getObject(idx) { return heap[idx]; }
-
-let heap = new Array(1024).fill(undefined);
-heap.push(undefined, null, true, false);
-
-let heap_next = heap.length;
 
 function passArray8ToWasm0(arg, malloc) {
     const ptr = malloc(arg.length * 1, 1) >>> 0;
@@ -180,12 +137,6 @@ function passStringToWasm0(arg, malloc, realloc) {
 
     WASM_VECTOR_LEN = offset;
     return ptr;
-}
-
-function takeObject(idx) {
-    const ret = getObject(idx);
-    dropObject(idx);
-    return ret;
 }
 
 let cachedTextDecoder = new TextDecoder('utf-8', { ignoreBOM: true, fatal: true });

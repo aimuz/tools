@@ -30,10 +30,10 @@ build_crate() {
   local crate_name="$2"    # wasm-pack output stem (dashes replaced with underscores)
 
   echo "==> building $crate_dir"
-  RUSTUP_TOOLCHAIN=nightly wasm-pack build "rust-wasm/crates/$crate_dir" \
+  wasm-pack build "rust-wasm/crates/$crate_dir" \
     --target web \
     --out-dir "$PKG_ROOT/$crate_dir" \
-    --release -- -Z build-std=std,panic_abort -Z build-std-features=optimize_for_size
+    --release
 
   local dest="$DEST_ROOT/$crate_dir"
   rm -rf "$dest"

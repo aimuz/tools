@@ -1,5 +1,0 @@
-[build]
-rustflags = [
-    "-C", "target-feature=+bulk-memory,+mutable-globals,+sign-ext,+reference-types",
-    "-Z", "unstable-options"
-]

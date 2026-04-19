@@ -1,5 +1,8 @@
 use wasm_bindgen::prelude::*;
 
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+
 const MAGIC_LSB: [u8; 4] = [b'W', b'L', b'S', b'B'];
 const HEADER_LEN: usize = 9; // 4 magic + 1 version + 4 len
 

@@ -30,10 +30,10 @@ build_crate() {
   local crate_name="$2"    # wasm-pack output stem (dashes replaced with underscores)
 
   echo "==> building $crate_dir"
-  wasm-pack build "rust-wasm/crates/$crate_dir" \
+  RUSTUP_TOOLCHAIN=nightly wasm-pack build "rust-wasm/crates/$crate_dir" \
     --target web \
     --out-dir "$PKG_ROOT/$crate_dir" \
-    --release
+    --release -- -Z build-std=std,panic_abort -Z build-std-features=optimize_for_size
 
   local dest="$DEST_ROOT/$crate_dir"
   rm -rf "$dest"
@@ -56,7 +56,8 @@ build_crate() {
       --enable-nontrapping-float-to-int \
       --enable-reference-types \
       --enable-sign-ext \
-      --enable-mutable-globals
+      --enable-mutable-globals \
+      --enable-simd
   else
     cp "$wasm_in" "$wasm_out"
   fi

@@ -13,11 +13,9 @@
   Link: </sitemap-index.xml>; rel="sitemap"; type="application/xml"
 
 # Astro hashed build artefacts are content-addressed — safe to cache forever.
+# Includes the Rust WASM modules: workers import them via `?url`, so Vite
+# emits them into /_astro/ with a content hash.
 /_astro/*
-  Cache-Control: public, max-age=31536000, immutable
-
-# Rust WASM module served from /rust-image/* is hash-invariant within a release.
-/rust-image/*
   Cache-Control: public, max-age=31536000, immutable
 
 # Fallback long-cache for any raw .woff2 (fonts are normally bundled into /_astro/).

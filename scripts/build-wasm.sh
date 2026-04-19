@@ -1,29 +1,29 @@
 #!/usr/bin/env bash
-# Build the per-feature wasm crates and deploy artifacts into the app.
+# Build the per-feature wasm crates and stage them for Vite's asset pipeline.
 #
 # For each crate in rust-wasm/crates/<dir>:
 #   - wasm-pack build → rust-wasm/pkg/<dir>/
-#   - copy JS glue + .d.ts         → src/wasm/rust-image/<dir>/     (bundled by vite)
-#   - copy .wasm binary            → public/rust-image/<dir>/       (served statically)
+#   - copy .js glue + .d.ts + .wasm → src/wasm/rust-image/<dir>/
 #
-# Worker references these as:
-#   import('./rust-image/<dir>/<crate_name>.js')
-#   default('/rust-image/<dir>/<crate_name>_bg.wasm')
+# .wasm lives next to the JS glue so workers can import it via Vite's `?url`
+# suffix. Vite then emits the binary into /_astro/ with a content hash, which
+# lets us serve it with `Cache-Control: immutable` safely. Never put the .wasm
+# in public/ — the filename there is stable across deploys, so `immutable`
+# would strand users on old builds.
 
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
 ROOT="$(pwd)"
 PKG_ROOT="$ROOT/rust-wasm/pkg"
-JS_ROOT="$ROOT/src/wasm/rust-image"
-WASM_ROOT="$ROOT/public/rust-image"
+DEST_ROOT="$ROOT/src/wasm/rust-image"
 
 if ! command -v wasm-pack >/dev/null 2>&1; then
   echo "ERROR: wasm-pack not installed. See https://rustwasm.github.io/wasm-pack/installer/" >&2
   exit 1
 fi
 
-mkdir -p "$JS_ROOT" "$WASM_ROOT"
+mkdir -p "$DEST_ROOT"
 
 build_crate() {
   local crate_dir="$1"     # subdir under rust-wasm/crates
@@ -35,22 +35,20 @@ build_crate() {
     --out-dir "$PKG_ROOT/$crate_dir" \
     --release
 
-  local js_dest="$JS_ROOT/$crate_dir"
-  rm -rf "$js_dest"
-  mkdir -p "$js_dest"
+  local dest="$DEST_ROOT/$crate_dir"
+  rm -rf "$dest"
+  mkdir -p "$dest"
+
   cp "$PKG_ROOT/$crate_dir/${crate_name}.js" \
      "$PKG_ROOT/$crate_dir/${crate_name}.d.ts" \
      "$PKG_ROOT/$crate_dir/${crate_name}_bg.wasm.d.ts" \
      "$PKG_ROOT/$crate_dir/package.json" \
-     "$js_dest/"
+     "$dest/"
 
-  local wasm_dest="$WASM_ROOT/$crate_dir"
-  rm -rf "$wasm_dest"
-  mkdir -p "$wasm_dest"
   local wasm_in="$PKG_ROOT/$crate_dir/${crate_name}_bg.wasm"
-  local wasm_out="$wasm_dest/${crate_name}_bg.wasm"
-  # If a modern system wasm-opt is on PATH, use it for -Oz shrink with the
-  # newer feature flags enabled. Otherwise just copy.
+  local wasm_out="$dest/${crate_name}_bg.wasm"
+  # System wasm-opt is newer than wasm-pack's bundled one and speaks the wasm
+  # features current Rust emits (bulk-memory, nontrapping-fptoi, etc.).
   if command -v wasm-opt >/dev/null 2>&1; then
     wasm-opt "$wasm_in" -o "$wasm_out" \
       -Oz \
@@ -69,4 +67,4 @@ build_crate watermark watermark
 
 echo ""
 echo "==> wasm sizes"
-ls -lah "$WASM_ROOT"/*/*.wasm | awk '{printf "  %-60s %s\n", $NF, $5}'
+ls -lah "$DEST_ROOT"/*/*.wasm | awk '{printf "  %-70s %s\n", $NF, $5}'

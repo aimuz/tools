@@ -11,12 +11,16 @@ export {}; // mark as module so worker-scope vars don't leak into sibling worker
 
 type WatermarkMod = typeof import('./rust-image/watermark/watermark.js');
 
+// `?url` hands Vite a content-hashed URL for the wasm binary — see
+// image-worker.ts for the rationale.
+import watermarkWasmUrl from './rust-image/watermark/watermark_bg.wasm?url';
+
 let modPromise: Promise<WatermarkMod> | null = null;
 const getMod = (): Promise<WatermarkMod> => {
   if (!modPromise) {
     modPromise = (async () => {
       const m = await import('./rust-image/watermark/watermark.js');
-      await m.default('/rust-image/watermark/watermark_bg.wasm');
+      await m.default(watermarkWasmUrl);
       return m;
     })();
   }

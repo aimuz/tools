@@ -32,6 +32,7 @@ const NAV_HREFS: Record<NavItemKey, string> = {
   qrcode: '/qrcode',
   hash: '/hash',
   'mp4-to-mp3': '/mp4-to-mp3',
+  'compress-mp3': '/compress-mp3',
 };
 
 const IMAGE_ORDER: NavItemKey[] = [
@@ -58,7 +59,7 @@ const DEV_ORDER: NavItemKey[] = [
   'hash',
 ];
 
-const MEDIA_ORDER: NavItemKey[] = ['mp4-to-mp3'];
+const MEDIA_ORDER: NavItemKey[] = ['mp4-to-mp3', 'compress-mp3'];
 
 type RenderedItem = { key: NavItemKey; name: string; desc: string; href: string };
 

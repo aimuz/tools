@@ -29,11 +29,16 @@ const schema = {
 ---
 
 <Layout title={ts.title} description={ts.description} locale={locale}>
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+    slot="head"
+  />
   <Header locale={locale} />
 
   <main class="flex-1 py-10">
-    <div class="max-w-[960px] mx-auto px-6"
+    <div
+      class="max-w-[960px] mx-auto px-6"
       data-locale={locale}
       data-i18n-pause={ts.currentTime.pauseBtn}
       data-i18n-resume={ts.currentTime.resumeBtn}
@@ -54,52 +59,104 @@ const schema = {
 
       <section class="mb-8 p-5 bg-white border border-gray-200 rounded-xl">
         <div class="flex items-center justify-between mb-4">
-          <span class="text-sm font-medium text-[#171717]">{ts.currentTime.label}</span>
-          <button id="pause-btn" class="text-xs text-gray-400 hover:text-[#171717]" data-running="1">{ts.currentTime.pauseBtn}</button>
+          <span class="text-sm font-medium text-[#171717]"
+            >{ts.currentTime.label}</span
+          >
+          <button
+            id="pause-btn"
+            class="text-xs text-gray-400 hover:text-[#171717]"
+            data-running="1">{ts.currentTime.pauseBtn}</button
+          >
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div class="row">
             <span class="text-xs text-gray-400">{ts.currentTime.unixSec}</span>
             <div class="flex items-center gap-2">
-              <code id="now-sec" class="flex-1 font-mono text-lg text-[#171717] tabular-nums">—</code>
-              <button class="copy-btn text-xs text-gray-400 hover:text-[#171717]" data-target="now-sec">{ts.copyBtn}</button>
+              <code
+                id="now-sec"
+                class="flex-1 font-mono text-lg text-[#171717] tabular-nums"
+                >—</code
+              >
+              <button
+                class="copy-btn text-xs text-gray-400 hover:text-[#171717]"
+                data-target="now-sec">{ts.copyBtn}</button
+              >
             </div>
           </div>
           <div class="row">
             <span class="text-xs text-gray-400">{ts.currentTime.unixMs}</span>
             <div class="flex items-center gap-2">
-              <code id="now-ms" class="flex-1 font-mono text-lg text-[#171717] tabular-nums">—</code>
-              <button class="copy-btn text-xs text-gray-400 hover:text-[#171717]" data-target="now-ms">{ts.copyBtn}</button>
+              <code
+                id="now-ms"
+                class="flex-1 font-mono text-lg text-[#171717] tabular-nums"
+                >—</code
+              >
+              <button
+                class="copy-btn text-xs text-gray-400 hover:text-[#171717]"
+                data-target="now-ms">{ts.copyBtn}</button
+              >
             </div>
           </div>
           <div class="row">
-            <span class="text-xs text-gray-400">{ts.currentTime.localTime}</span>
+            <span class="text-xs text-gray-400">{ts.currentTime.localTime}</span
+            >
             <div class="flex items-center gap-2">
-              <code id="now-local" class="flex-1 font-mono text-sm text-[#171717]">—</code>
-              <button class="copy-btn text-xs text-gray-400 hover:text-[#171717]" data-target="now-local">{ts.copyBtn}</button>
+              <code
+                id="now-local"
+                class="flex-1 font-mono text-sm text-[#171717]">—</code
+              >
+              <button
+                class="copy-btn text-xs text-gray-400 hover:text-[#171717]"
+                data-target="now-local">{ts.copyBtn}</button
+              >
             </div>
           </div>
           <div class="row">
             <span class="text-xs text-gray-400">{ts.currentTime.isoUtc}</span>
             <div class="flex items-center gap-2">
-              <code id="now-iso" class="flex-1 font-mono text-sm text-[#171717]">—</code>
-              <button class="copy-btn text-xs text-gray-400 hover:text-[#171717]" data-target="now-iso">{ts.copyBtn}</button>
+              <code id="now-iso" class="flex-1 font-mono text-sm text-[#171717]"
+                >—</code
+              >
+              <button
+                class="copy-btn text-xs text-gray-400 hover:text-[#171717]"
+                data-target="now-iso">{ts.copyBtn}</button
+              >
             </div>
           </div>
         </div>
-        <p id="tz-info" class="text-xs text-gray-400 mt-3">{ts.currentTime.tzPlaceholder}</p>
+        <p id="tz-info" class="text-xs text-gray-400 mt-3">
+          {ts.currentTime.tzPlaceholder}
+        </p>
       </section>
 
       <div class="grid md:grid-cols-2 gap-6">
         <section>
           <div class="flex justify-between items-center mb-2">
-            <span class="text-sm font-medium text-[#171717]">{ts.t2d.label}</span>
-            <button id="fill-now-ts" class="text-xs text-gray-400 hover:text-[#171717]">{ts.t2d.fillNowBtn}</button>
+            <span class="text-sm font-medium text-[#171717]"
+              >{ts.t2d.label}</span
+            >
+            <button
+              id="fill-now-ts"
+              class="text-xs text-gray-400 hover:text-[#171717]"
+              >{ts.t2d.fillNowBtn}</button
+            >
           </div>
           <div class="flex gap-2 mb-2">
-            <button data-unit="auto" class="unit-btn px-3 py-1 text-xs rounded-full border border-gray-200 bg-[#171717] text-white">{ts.t2d.units.auto}</button>
-            <button data-unit="s" class="unit-btn px-3 py-1 text-xs rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]">{ts.t2d.units.sec}</button>
-            <button data-unit="ms" class="unit-btn px-3 py-1 text-xs rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]">{ts.t2d.units.ms}</button>
+            <button
+              data-unit="auto"
+              class="unit-btn px-3 py-1 text-xs rounded-full border border-gray-200 bg-[#171717] text-white"
+              >{ts.t2d.units.auto}</button
+            >
+            <button
+              data-unit="s"
+              class="unit-btn px-3 py-1 text-xs rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]"
+              >{ts.t2d.units.sec}</button
+            >
+            <button
+              data-unit="ms"
+              class="unit-btn px-3 py-1 text-xs rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]"
+              >{ts.t2d.units.ms}</button
+            >
           </div>
           <input
             id="ts-input"
@@ -109,18 +166,66 @@ const schema = {
             class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717]"
           />
           <div class="mt-4 space-y-2">
-            <div class="row-out"><span class="text-xs text-gray-400">{ts.t2d.outputs.local}</span><div class="flex items-center gap-2"><code id="t2d-local" class="flex-1 font-mono text-sm text-[#171717] break-all">—</code><button class="copy-btn text-xs text-gray-400 hover:text-[#171717]" data-target="t2d-local">{ts.copyBtn}</button></div></div>
-            <div class="row-out"><span class="text-xs text-gray-400">{ts.t2d.outputs.utc}</span><div class="flex items-center gap-2"><code id="t2d-utc" class="flex-1 font-mono text-sm text-[#171717] break-all">—</code><button class="copy-btn text-xs text-gray-400 hover:text-[#171717]" data-target="t2d-utc">{ts.copyBtn}</button></div></div>
-            <div class="row-out"><span class="text-xs text-gray-400">{ts.t2d.outputs.iso}</span><div class="flex items-center gap-2"><code id="t2d-iso" class="flex-1 font-mono text-sm text-[#171717] break-all">—</code><button class="copy-btn text-xs text-gray-400 hover:text-[#171717]" data-target="t2d-iso">{ts.copyBtn}</button></div></div>
-            <div class="row-out"><span class="text-xs text-gray-400">{ts.t2d.outputs.relative}</span><code id="t2d-rel" class="font-mono text-sm text-[#171717]">—</code></div>
+            <div class="row-out">
+              <span class="text-xs text-gray-400">{ts.t2d.outputs.local}</span
+              ><div class="flex items-center gap-2">
+                <code
+                  id="t2d-local"
+                  class="flex-1 font-mono text-sm text-[#171717] break-all"
+                  >—</code
+                ><button
+                  class="copy-btn text-xs text-gray-400 hover:text-[#171717]"
+                  data-target="t2d-local">{ts.copyBtn}</button
+                >
+              </div>
+            </div>
+            <div class="row-out">
+              <span class="text-xs text-gray-400">{ts.t2d.outputs.utc}</span
+              ><div class="flex items-center gap-2">
+                <code
+                  id="t2d-utc"
+                  class="flex-1 font-mono text-sm text-[#171717] break-all"
+                  >—</code
+                ><button
+                  class="copy-btn text-xs text-gray-400 hover:text-[#171717]"
+                  data-target="t2d-utc">{ts.copyBtn}</button
+                >
+              </div>
+            </div>
+            <div class="row-out">
+              <span class="text-xs text-gray-400">{ts.t2d.outputs.iso}</span
+              ><div class="flex items-center gap-2">
+                <code
+                  id="t2d-iso"
+                  class="flex-1 font-mono text-sm text-[#171717] break-all"
+                  >—</code
+                ><button
+                  class="copy-btn text-xs text-gray-400 hover:text-[#171717]"
+                  data-target="t2d-iso">{ts.copyBtn}</button
+                >
+              </div>
+            </div>
+            <div class="row-out">
+              <span class="text-xs text-gray-400"
+                >{ts.t2d.outputs.relative}</span
+              ><code id="t2d-rel" class="font-mono text-sm text-[#171717]"
+                >—</code
+              >
+            </div>
           </div>
           <p id="t2d-err" class="hidden mt-3 text-xs text-red-500"></p>
         </section>
 
         <section>
           <div class="flex justify-between items-center mb-2">
-            <span class="text-sm font-medium text-[#171717]">{ts.d2t.label}</span>
-            <button id="fill-now-date" class="text-xs text-gray-400 hover:text-[#171717]">{ts.d2t.fillNowBtn}</button>
+            <span class="text-sm font-medium text-[#171717]"
+              >{ts.d2t.label}</span
+            >
+            <button
+              id="fill-now-date"
+              class="text-xs text-gray-400 hover:text-[#171717]"
+              >{ts.d2t.fillNowBtn}</button
+            >
           </div>
           <div class="grid grid-cols-2 gap-2">
             <input
@@ -137,9 +242,46 @@ const schema = {
             />
           </div>
           <div class="mt-4 space-y-2">
-            <div class="row-out"><span class="text-xs text-gray-400">{ts.d2t.outputs.sec}</span><div class="flex items-center gap-2"><code id="d2t-sec" class="flex-1 font-mono text-sm text-[#171717] tabular-nums">—</code><button class="copy-btn text-xs text-gray-400 hover:text-[#171717]" data-target="d2t-sec">{ts.copyBtn}</button></div></div>
-            <div class="row-out"><span class="text-xs text-gray-400">{ts.d2t.outputs.ms}</span><div class="flex items-center gap-2"><code id="d2t-ms" class="flex-1 font-mono text-sm text-[#171717] tabular-nums">—</code><button class="copy-btn text-xs text-gray-400 hover:text-[#171717]" data-target="d2t-ms">{ts.copyBtn}</button></div></div>
-            <div class="row-out"><span class="text-xs text-gray-400">{ts.d2t.outputs.iso}</span><div class="flex items-center gap-2"><code id="d2t-iso" class="flex-1 font-mono text-sm text-[#171717] break-all">—</code><button class="copy-btn text-xs text-gray-400 hover:text-[#171717]" data-target="d2t-iso">{ts.copyBtn}</button></div></div>
+            <div class="row-out">
+              <span class="text-xs text-gray-400">{ts.d2t.outputs.sec}</span
+              ><div class="flex items-center gap-2">
+                <code
+                  id="d2t-sec"
+                  class="flex-1 font-mono text-sm text-[#171717] tabular-nums"
+                  >—</code
+                ><button
+                  class="copy-btn text-xs text-gray-400 hover:text-[#171717]"
+                  data-target="d2t-sec">{ts.copyBtn}</button
+                >
+              </div>
+            </div>
+            <div class="row-out">
+              <span class="text-xs text-gray-400">{ts.d2t.outputs.ms}</span><div
+                class="flex items-center gap-2"
+              >
+                <code
+                  id="d2t-ms"
+                  class="flex-1 font-mono text-sm text-[#171717] tabular-nums"
+                  >—</code
+                ><button
+                  class="copy-btn text-xs text-gray-400 hover:text-[#171717]"
+                  data-target="d2t-ms">{ts.copyBtn}</button
+                >
+              </div>
+            </div>
+            <div class="row-out">
+              <span class="text-xs text-gray-400">{ts.d2t.outputs.iso}</span
+              ><div class="flex items-center gap-2">
+                <code
+                  id="d2t-iso"
+                  class="flex-1 font-mono text-sm text-[#171717] break-all"
+                  >—</code
+                ><button
+                  class="copy-btn text-xs text-gray-400 hover:text-[#171717]"
+                  data-target="d2t-iso">{ts.copyBtn}</button
+                >
+              </div>
+            </div>
           </div>
           <p id="d2t-err" class="hidden mt-3 text-xs text-red-500"></p>
         </section>
@@ -155,7 +297,8 @@ const schema = {
 <script>
   const root = document.querySelector<HTMLElement>('main .max-w-\\[960px\\]')!;
   const D = root.dataset;
-  const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+  const $ = <T extends HTMLElement = HTMLElement>(id: string) =>
+    document.getElementById(id) as T;
   const pad = (n: number, len = 2) => n.toString().padStart(len, '0');
 
   const PAGE_LOCALE = D.locale ?? 'en';
@@ -207,7 +350,10 @@ const schema = {
   const tzH = pad(Math.floor(Math.abs(tzOffsetMin) / 60));
   const tzM = pad(Math.abs(tzOffsetMin) % 60);
   tzInfo.textContent = (D.i18nTzTemplate ?? '{tz} UTC{sign}{h}:{m}')
-    .replace('{tz}', tz).replace('{sign}', tzSign).replace('{h}', tzH).replace('{m}', tzM);
+    .replace('{tz}', tz)
+    .replace('{sign}', tzSign)
+    .replace('{h}', tzH)
+    .replace('{m}', tzM);
 
   renderNow();
   let tickId: number | undefined = window.setInterval(renderNow, 1000);
@@ -236,23 +382,39 @@ const schema = {
   let unit: 'auto' | 's' | 'ms' = 'auto';
 
   const resetT2d = (err?: string) => {
-    [t2dLocal, t2dUtc, t2dIso, t2dRel].forEach(el => el.textContent = '—');
-    if (err) { t2dErr.textContent = err; t2dErr.classList.remove('hidden'); }
-    else { t2dErr.classList.add('hidden'); }
+    [t2dLocal, t2dUtc, t2dIso, t2dRel].forEach((el) => (el.textContent = '—'));
+    if (err) {
+      t2dErr.textContent = err;
+      t2dErr.classList.remove('hidden');
+    } else {
+      t2dErr.classList.add('hidden');
+    }
   };
 
   const convertTimestamp = () => {
     const raw = tsInput.value.trim();
-    if (!raw) { resetT2d(); return; }
-    if (!/^-?\d+(\.\d+)?$/.test(raw)) { resetT2d(D.i18nErrNan ?? 'NaN'); return; }
+    if (!raw) {
+      resetT2d();
+      return;
+    }
+    if (!/^-?\d+(\.\d+)?$/.test(raw)) {
+      resetT2d(D.i18nErrNan ?? 'NaN');
+      return;
+    }
     const n = Number(raw);
-    if (!Number.isFinite(n)) { resetT2d(D.i18nErrOor ?? 'OOR'); return; }
+    if (!Number.isFinite(n)) {
+      resetT2d(D.i18nErrOor ?? 'OOR');
+      return;
+    }
     let ms: number;
     if (unit === 's') ms = n * 1000;
     else if (unit === 'ms') ms = n;
     else ms = Math.abs(n) >= 1e12 ? n : n * 1000;
     const d = new Date(ms);
-    if (isNaN(d.getTime())) { resetT2d(D.i18nErrInvalid ?? 'Invalid'); return; }
+    if (isNaN(d.getTime())) {
+      resetT2d(D.i18nErrInvalid ?? 'Invalid');
+      return;
+    }
     t2dErr.classList.add('hidden');
     t2dLocal.textContent = fmtLocal(d);
     t2dUtc.textContent = fmtUtc(d);
@@ -261,16 +423,18 @@ const schema = {
   };
 
   tsInput.addEventListener('input', convertTimestamp);
-  unitBtns.forEach(btn => btn.addEventListener('click', () => {
-    unit = btn.dataset.unit as typeof unit;
-    unitBtns.forEach(b => {
-      const active = b === btn;
-      b.classList.toggle('bg-[#171717]', active);
-      b.classList.toggle('text-white', active);
-      b.classList.toggle('text-gray-600', !active);
-    });
-    convertTimestamp();
-  }));
+  unitBtns.forEach((btn) =>
+    btn.addEventListener('click', () => {
+      unit = btn.dataset.unit as typeof unit;
+      unitBtns.forEach((b) => {
+        const active = b === btn;
+        b.classList.toggle('bg-[#171717]', active);
+        b.classList.toggle('text-white', active);
+        b.classList.toggle('text-gray-600', !active);
+      });
+      convertTimestamp();
+    }),
+  );
 
   $('fill-now-ts').addEventListener('click', () => {
     tsInput.value = Math.floor(Date.now() / 1000).toString();
@@ -285,9 +449,13 @@ const schema = {
   const d2tErr = $('d2t-err');
 
   const resetD2t = (err?: string) => {
-    [d2tSec, d2tMs, d2tIso].forEach(el => el.textContent = '—');
-    if (err) { d2tErr.textContent = err; d2tErr.classList.remove('hidden'); }
-    else { d2tErr.classList.add('hidden'); }
+    [d2tSec, d2tMs, d2tIso].forEach((el) => (el.textContent = '—'));
+    if (err) {
+      d2tErr.textContent = err;
+      d2tErr.classList.remove('hidden');
+    } else {
+      d2tErr.classList.add('hidden');
+    }
   };
 
   const renderDate = (d: Date) => {
@@ -298,31 +466,43 @@ const schema = {
   };
 
   dateLocal.addEventListener('input', () => {
-    if (!dateLocal.value) { resetD2t(); return; }
+    if (!dateLocal.value) {
+      resetD2t();
+      return;
+    }
     const d = new Date(dateLocal.value);
-    if (isNaN(d.getTime())) { resetD2t(D.i18nErrInvalidDate ?? 'Invalid date'); return; }
+    if (isNaN(d.getTime())) {
+      resetD2t(D.i18nErrInvalidDate ?? 'Invalid date');
+      return;
+    }
     dateStr.value = '';
     renderDate(d);
   });
 
   dateStr.addEventListener('input', () => {
     const raw = dateStr.value.trim();
-    if (!raw) { resetD2t(); return; }
+    if (!raw) {
+      resetD2t();
+      return;
+    }
     const d = new Date(raw);
-    if (isNaN(d.getTime())) { resetD2t(D.i18nErrUnparseable ?? 'Unparseable'); return; }
+    if (isNaN(d.getTime())) {
+      resetD2t(D.i18nErrUnparseable ?? 'Unparseable');
+      return;
+    }
     dateLocal.value = '';
     renderDate(d);
   });
 
   $('fill-now-date').addEventListener('click', () => {
     const now = new Date();
-    const v = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+    const v = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
     dateLocal.value = v;
     dateStr.value = '';
     renderDate(now);
   });
 
-  document.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach(btn => {
+  document.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach((btn) => {
     btn.addEventListener('click', async () => {
       const target = btn.dataset.target!;
       const text = document.getElementById(target)?.textContent?.trim();
@@ -331,7 +511,9 @@ const schema = {
         await navigator.clipboard.writeText(text);
         const orig = btn.textContent;
         btn.textContent = D.i18nCopied ?? 'Copied';
-        setTimeout(() => { btn.textContent = orig; }, 1200);
+        setTimeout(() => {
+          btn.textContent = orig;
+        }, 1200);
       } catch {}
     });
   });

@@ -51,8 +51,12 @@ const interpolate = (template: string, vars: Record<string, string>) =>
   template.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ''));
 
 const escapeHtml = (s: string) =>
-  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-   .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 
 export interface ConvertPageOptions {
   /** Target format is fixed for this page (used by /{from}-to-{to}). */
@@ -68,17 +72,25 @@ export interface ConvertPageOptions {
 /** Read `<meta name="x-preset-to" content="...">` if present — lets the same
  * shared module serve both /convert and /{from}-to-{to} without `define:vars`. */
 function readPresetFromMeta(): string | undefined {
-  const el = document.querySelector<HTMLMetaElement>('meta[name="x-preset-to"]');
+  const el = document.querySelector<HTMLMetaElement>(
+    'meta[name="x-preset-to"]',
+  );
   return el?.content || undefined;
 }
 
 const MIME: Record<string, string> = {
-  png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg',
-  bmp: 'image/bmp', gif: 'image/gif', webp: 'image/webp',
+  png: 'image/png',
+  jpg: 'image/jpeg',
+  jpeg: 'image/jpeg',
+  bmp: 'image/bmp',
+  gif: 'image/gif',
+  webp: 'image/webp',
 };
 
 const formatSize = (b: number) =>
-  b < 1024 * 1024 ? (b / 1024).toFixed(1) + ' KB' : (b / 1024 / 1024).toFixed(2) + ' MB';
+  b < 1024 * 1024
+    ? (b / 1024).toFixed(1) + ' KB'
+    : (b / 1024 / 1024).toFixed(2) + ' MB';
 
 export function initConvertPage(opts: ConvertPageOptions = {}) {
   const labels = opts.labels ?? DEFAULT_LABELS;
@@ -97,13 +109,19 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
   });
 
   const uploadZone = document.getElementById('upload-zone');
-  const fileInput = document.getElementById('file-input') as HTMLInputElement | null;
+  const fileInput = document.getElementById(
+    'file-input',
+  ) as HTMLInputElement | null;
   const options = document.getElementById('options');
   const fileList = document.getElementById('file-list');
-  const convertBtn = document.getElementById('convert-btn') as HTMLButtonElement | null;
+  const convertBtn = document.getElementById(
+    'convert-btn',
+  ) as HTMLButtonElement | null;
   const results = document.getElementById('results');
-  const formatBtns = document.querySelectorAll<HTMLButtonElement>('.format-btn');
-  const qualityBtns = document.querySelectorAll<HTMLButtonElement>('.quality-btn');
+  const formatBtns =
+    document.querySelectorAll<HTMLButtonElement>('.format-btn');
+  const qualityBtns =
+    document.querySelectorAll<HTMLButtonElement>('.quality-btn');
   const qualityOption = document.getElementById('quality-option');
   const detectedFormatSpan = document.getElementById('detected-format');
 
@@ -115,11 +133,11 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
   let targetFormat = presetTo ?? opts.defaultTo ?? 'jpg';
   let quality = 90;
 
-  getImageConverter().then(c => (imageConverter = c));
+  getImageConverter().then((c) => (imageConverter = c));
 
   const applyTargetFormat = (fmt: string) => {
     targetFormat = fmt;
-    formatBtns.forEach(b => {
+    formatBtns.forEach((b) => {
       const active = b.dataset.format === fmt;
       b.classList.toggle('bg-[#171717]', active);
       b.classList.toggle('text-white', active);
@@ -133,8 +151,10 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
     // honor quality-option visibility for JPG.
     qualityOption?.classList.toggle('hidden', presetTo !== 'jpg');
   } else {
-    formatBtns.forEach(btn => {
-      btn.addEventListener('click', () => applyTargetFormat(btn.dataset.format!));
+    formatBtns.forEach((btn) => {
+      btn.addEventListener('click', () =>
+        applyTargetFormat(btn.dataset.format!),
+      );
     });
     if (opts.readUrlParams) {
       const urlTo = new URLSearchParams(location.search).get('to');
@@ -145,9 +165,9 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
     }
   }
 
-  qualityBtns.forEach(btn => {
+  qualityBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-      qualityBtns.forEach(b => {
+      qualityBtns.forEach((b) => {
         b.classList.remove('bg-[#171717]', 'text-white');
         b.classList.add('text-gray-600');
       });
@@ -175,16 +195,19 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
   });
 
   async function handleFiles(newFiles: File[]) {
-    files.forEach(f => URL.revokeObjectURL(f.originalUrl));
-    const imgs = newFiles.filter(f => f.type.startsWith('image/'));
+    files.forEach((f) => URL.revokeObjectURL(f.originalUrl));
+    const imgs = newFiles.filter((f) => f.type.startsWith('image/'));
     if (imgs.length > 0 && imageConverter && detectedFormatSpan) {
       try {
         const buf = new Uint8Array(await imgs[0].arrayBuffer());
         const info = await imageConverter.getImageInfo(buf);
-        if (info.format) detectedFormatSpan.textContent = info.format.toUpperCase();
-      } catch (e) { console.error('Failed to detect format:', e); }
+        if (info.format)
+          detectedFormatSpan.textContent = info.format.toUpperCase();
+      } catch (e) {
+        console.error('Failed to detect format:', e);
+      }
     }
-    files = imgs.map(file => ({
+    files = imgs.map((file) => ({
       file,
       id: Math.random().toString(36).slice(2, 11),
       originalUrl: URL.createObjectURL(file),
@@ -196,7 +219,9 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
 
   function renderFileList() {
     if (!fileList) return;
-    fileList.innerHTML = files.map(({ file, id, originalUrl }) => `
+    fileList.innerHTML = files
+      .map(
+        ({ file, id, originalUrl }) => `
       <div class="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg">
         <img src="${originalUrl}" alt="" class="w-10 h-10 object-cover rounded bg-gray-100 border border-gray-200" />
         <div class="flex-1 min-w-0">
@@ -205,41 +230,60 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
         </div>
         <button data-remove="${id}" class="text-gray-400 hover:text-red-500">✕</button>
       </div>
-    `).join('');
-    fileList.querySelectorAll<HTMLButtonElement>('[data-remove]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const removed = files.find(f => f.id === btn.dataset.remove);
-        if (removed) URL.revokeObjectURL(removed.originalUrl);
-        files = files.filter(f => f.id !== btn.dataset.remove);
-        renderFileList();
-        if (files.length === 0) {
-          options?.classList.add('hidden');
-          uploadZone?.classList.remove('hidden');
-          results?.classList.add('hidden');
-          if (detectedFormatSpan) detectedFormatSpan.textContent = labels.autoDetect;
-        }
+    `,
+      )
+      .join('');
+    fileList
+      .querySelectorAll<HTMLButtonElement>('[data-remove]')
+      .forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const removed = files.find((f) => f.id === btn.dataset.remove);
+          if (removed) URL.revokeObjectURL(removed.originalUrl);
+          files = files.filter((f) => f.id !== btn.dataset.remove);
+          renderFileList();
+          if (files.length === 0) {
+            options?.classList.add('hidden');
+            uploadZone?.classList.remove('hidden');
+            results?.classList.add('hidden');
+            if (detectedFormatSpan)
+              detectedFormatSpan.textContent = labels.autoDetect;
+          }
+        });
       });
-    });
   }
 
   let resultsList: any[] = [];
 
   convertBtn?.addEventListener('click', async () => {
-    if (!imageConverter) { alert(labels.loading); return; }
+    if (!imageConverter) {
+      alert(labels.loading);
+      return;
+    }
     const origText = convertBtn.textContent;
     convertBtn.textContent = labels.processing;
     convertBtn.disabled = true;
 
-    resultsList.forEach(r => r.url && URL.revokeObjectURL(r.url));
+    resultsList.forEach((r) => r.url && URL.revokeObjectURL(r.url));
     resultsList = [];
     for (const { file, originalUrl } of files) {
       try {
         const buf = new Uint8Array(await file.arrayBuffer());
-        const out = await imageConverter.convertImage(buf, targetFormat, quality);
+        const out = await imageConverter.convertImage(
+          buf,
+          targetFormat,
+          quality,
+        );
         const mime = MIME[targetFormat] || 'image/png';
         const blob = new Blob([out], { type: mime });
         const newName = file.name.replace(/\.[^/.]+$/, '') + '.' + targetFormat;
-        resultsList.push({ newName, url: URL.createObjectURL(blob), originalUrl, blob, mime, size: blob.size });
+        resultsList.push({
+          newName,
+          url: URL.createObjectURL(blob),
+          originalUrl,
+          blob,
+          mime,
+          size: blob.size,
+        });
       } catch (err) {
         console.error(err);
         resultsList.push({ originalName: file.name, error: true });
@@ -247,11 +291,15 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
     }
 
     if (results) {
-      results.innerHTML = resultsList.map((item, idx) => item.error ? `
+      results.innerHTML = resultsList
+        .map((item, idx) =>
+          item.error
+            ? `
         <div class="flex items-center gap-3 p-3 bg-red-50 border border-red-100 rounded-lg">
           <span class="text-red-500 text-sm">${escapeHtml(interpolate(labels.convertFailedTemplate, { name: item.originalName }))}</span>
         </div>
-      ` : `
+      `
+            : `
         <div class="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg">
           <button type="button" data-compare-idx="${idx}" class="flex items-center gap-1 rounded hover:ring-2 hover:ring-[#171717]/20 transition-all" title="${escapeHtml(labels.compareBtn)}" aria-label="${escapeHtml(labels.compareBtn)}">
             ${thumbPairHtml(item.originalUrl, item.url)}
@@ -263,20 +311,28 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
           <button data-copy-idx="${idx}" class="px-3 py-1.5 border border-gray-200 text-gray-600 text-sm rounded hover:border-[#171717] hover:text-[#171717]">${escapeHtml(labels.copyBtn)}</button>
           <a href="${item.url}" download="${escapeHtml(item.newName)}" class="px-3 py-1.5 bg-[#171717] text-white text-sm rounded hover:bg-gray-800">${escapeHtml(labels.downloadBtn)}</a>
         </div>
-      `).join('');
+      `,
+        )
+        .join('');
       results.classList.remove('hidden');
 
-      results.querySelectorAll<HTMLButtonElement>('[data-copy-idx]').forEach(btn => {
-        const item = resultsList[Number(btn.dataset.copyIdx)];
-        if (item && !item.error) bindCopyButton(btn, () => ({ blob: item.blob, mime: item.mime }));
-      });
-
-      results.querySelectorAll<HTMLButtonElement>('[data-compare-idx]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const item = resultsList[Number(btn.dataset.compareIdx)];
-          if (item && !item.error) openCompare(item.originalUrl, item.url, item.newName);
+      results
+        .querySelectorAll<HTMLButtonElement>('[data-copy-idx]')
+        .forEach((btn) => {
+          const item = resultsList[Number(btn.dataset.copyIdx)];
+          if (item && !item.error)
+            bindCopyButton(btn, () => ({ blob: item.blob, mime: item.mime }));
         });
-      });
+
+      results
+        .querySelectorAll<HTMLButtonElement>('[data-compare-idx]')
+        .forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const item = resultsList[Number(btn.dataset.compareIdx)];
+            if (item && !item.error)
+              openCompare(item.originalUrl, item.url, item.newName);
+          });
+        });
     }
 
     convertBtn.textContent = origText ?? labels.startConvert;

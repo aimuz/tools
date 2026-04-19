@@ -29,11 +29,16 @@ const schema = {
 ---
 
 <Layout title={ci.title} description={ci.description} locale={locale}>
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+    slot="head"
+  />
   <Header locale={locale} />
 
   <main class="flex-1 py-8">
-    <div class="max-w-[900px] mx-auto px-6"
+    <div
+      class="max-w-[900px] mx-auto px-6"
       data-i18n-render-error={ci.renderError}
     >
       <div class="text-center mb-8">
@@ -42,7 +47,10 @@ const schema = {
       </div>
 
       <div class="flex flex-wrap gap-3 mb-6">
-        <select id="language-select" class="px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#171717]">
+        <select
+          id="language-select"
+          class="px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#171717]"
+        >
           <option value="javascript">JavaScript</option>
           <option value="typescript">TypeScript</option>
           <option value="python">Python</option>
@@ -56,46 +64,94 @@ const schema = {
           <option value="bash">Bash</option>
         </select>
 
-        <select id="theme-select" class="px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#171717]">
+        <select
+          id="theme-select"
+          class="px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#171717]"
+        >
           <option value="onedark">One Dark</option>
           <option value="dracula">Dracula</option>
           <option value="github">GitHub</option>
         </select>
 
-        <button id="format-btn" class="px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:border-[#171717] hover:text-[#171717] transition-colors flex items-center gap-2">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        <button
+          id="format-btn"
+          class="px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:border-[#171717] hover:text-[#171717] transition-colors flex items-center gap-2"
+        >
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"></path>
           </svg>
           {ci.formatBtn}
         </button>
 
-        <button id="sample-btn" class="px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:border-[#171717] hover:text-[#171717] transition-colors">
+        <button
+          id="sample-btn"
+          class="px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:border-[#171717] hover:text-[#171717] transition-colors"
+        >
           {ci.sampleBtn}
         </button>
 
-        <button id="copy-btn" class="ml-auto px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:border-[#171717] hover:text-[#171717] transition-colors flex items-center gap-2">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+        <button
+          id="copy-btn"
+          class="ml-auto px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:border-[#171717] hover:text-[#171717] transition-colors flex items-center gap-2"
+        >
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+            ></path>
           </svg>
           {ci.copyBtn}
         </button>
 
-        <button id="download-btn" class="px-4 py-2 bg-[#171717] text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors flex items-center gap-2">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+        <button
+          id="download-btn"
+          class="px-4 py-2 bg-[#171717] text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors flex items-center gap-2"
+        >
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+            ></path>
           </svg>
           {ci.downloadBtn}
         </button>
       </div>
 
       <div id="editor-container" class="rounded-xl overflow-hidden shadow-2xl">
-        <div class="flex items-center justify-between px-4 py-3 bg-[#21252b] border-b border-[#3e4451]">
+        <div
+          class="flex items-center justify-between px-4 py-3 bg-[#21252b] border-b border-[#3e4451]"
+        >
           <div class="flex items-center gap-2">
             <div class="w-3 h-3 rounded-full bg-[#ff5f57]"></div>
             <div class="w-3 h-3 rounded-full bg-[#febc2e]"></div>
             <div class="w-3 h-3 rounded-full bg-[#28c840]"></div>
           </div>
-          <span id="filename" class="text-sm text-[#9da5b4] font-mono">main.js</span>
+          <span id="filename" class="text-sm text-[#9da5b4] font-mono"
+            >main.js</span
+          >
           <div class="w-16"></div>
         </div>
 
@@ -106,14 +162,13 @@ const schema = {
             style="color: transparent; caret-color: #abb2bf; padding: 20px 24px; font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Fira Code', Consolas, monospace; font-size: 14px; line-height: 1.6; white-space: pre; tab-size: 2; min-height: 320px; field-sizing: content;"
             placeholder={ci.placeholder}
             spellcheck="false"
-            rows="1"
-          ></textarea>
+            rows="1"></textarea>
 
           <pre
             id="highlight-layer"
             class="absolute inset-0 w-full m-0 pointer-events-none overflow-hidden z-10 bg-transparent"
-            style="padding: 20px 24px; font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Fira Code', Consolas, monospace; font-size: 14px; line-height: 1.6; white-space: pre; tab-size: 2;"
-          ></pre>
+            style="padding: 20px 24px; font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Fira Code', Consolas, monospace; font-size: 14px; line-height: 1.6; white-space: pre; tab-size: 2;">
+          </pre>
         </div>
       </div>
 
@@ -135,42 +190,48 @@ const schema = {
 
   const languages: Record<string, any> = {
     javascript: {
-      keywords: /\b(const|let|var|function|return|if|else|for|while|class|import|export|from|async|await|new|this|try|catch|throw|typeof|instanceof|in|of)\b/g,
+      keywords:
+        /\b(const|let|var|function|return|if|else|for|while|class|import|export|from|async|await|new|this|try|catch|throw|typeof|instanceof|in|of)\b/g,
       strings: /(['"`])(?:(?!\1)[^\\]|\\.)*\1/g,
       comments: /\/\/.*$/gm,
       numbers: /\b\d+(\.\d+)?\b/g,
       functions: /\b[a-zA-Z_$][a-zA-Z0-9_$]*(?=\()/g,
     },
     typescript: {
-      keywords: /\b(const|let|var|function|return|if|else|for|while|class|import|export|from|async|await|new|this|try|catch|throw|interface|type|extends|implements|readonly|private|public|protected)\b/g,
+      keywords:
+        /\b(const|let|var|function|return|if|else|for|while|class|import|export|from|async|await|new|this|try|catch|throw|interface|type|extends|implements|readonly|private|public|protected)\b/g,
       strings: /(['"`])(?:(?!\1)[^\\]|\\.)*\1/g,
       comments: /\/\/.*$/gm,
       numbers: /\b\d+(\.\d+)?\b/g,
       functions: /\b[a-zA-Z_$][a-zA-Z0-9_$]*(?=\()/g,
     },
     python: {
-      keywords: /\b(def|class|return|if|else|elif|for|while|import|from|as|try|except|raise|with|lambda|None|True|False|and|or|not|in|is)\b/g,
+      keywords:
+        /\b(def|class|return|if|else|elif|for|while|import|from|as|try|except|raise|with|lambda|None|True|False|and|or|not|in|is)\b/g,
       strings: /(['"""'''"])(?:(?!\1)[^\\]|\\.)*\1/g,
       comments: /#.*$/gm,
       numbers: /\b\d+(\.\d+)?\b/g,
       functions: /\b[a-zA-Z_][a-zA-Z0-9_]*(?=\()/g,
     },
     java: {
-      keywords: /\b(public|private|protected|class|interface|extends|implements|return|if|else|for|while|import|package|static|final|void|int|String|boolean|new|this|try|catch)\b/g,
+      keywords:
+        /\b(public|private|protected|class|interface|extends|implements|return|if|else|for|while|import|package|static|final|void|int|String|boolean|new|this|try|catch)\b/g,
       strings: /"(?:[^"\\]|\\.)*"/g,
       comments: /\/\/.*$/gm,
       numbers: /\b\d+(\.\d+)?\b/g,
       functions: /\b[a-zA-Z_$][a-zA-Z0-9_$]*(?=\()/g,
     },
     go: {
-      keywords: /\b(package|import|func|return|if|else|for|range|var|const|type|struct|interface|map|chan|go|defer|make|new)\b/g,
+      keywords:
+        /\b(package|import|func|return|if|else|for|range|var|const|type|struct|interface|map|chan|go|defer|make|new)\b/g,
       strings: /`(?:[^`])*`|"(?:[^"\\]|\\.)*"/g,
       comments: /\/\/.*$/gm,
       numbers: /\b\d+(\.\d+)?\b/g,
       functions: /\b[a-zA-Z_][a-zA-Z0-9_]*(?=\()/g,
     },
     rust: {
-      keywords: /\b(fn|let|mut|const|return|if|else|for|while|match|impl|struct|enum|trait|use|mod|pub|crate|where|loop|async|await)\b/g,
+      keywords:
+        /\b(fn|let|mut|const|return|if|else|for|while|match|impl|struct|enum|trait|use|mod|pub|crate|where|loop|async|await)\b/g,
       strings: /"(?:[^"\\]|\\.)*"|b"(?:[^"\\]|\\.)*"/g,
       comments: /\/\/.*$/gm,
       numbers: /\b\d+(\.\d+)?\b/g,
@@ -183,7 +244,8 @@ const schema = {
       strings: /"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'/g,
       comments: /\/\*[\s\S]*?\*\//g,
       numbers: /\b\d+(\.\d+)?(px|em|rem|%|vh|vw|s|ms|deg)?\b/g,
-      keywords: /\b(color|background|font|margin|padding|border|display|position|width|height|flex|grid|none|auto|absolute|relative|fixed|center)\b/g,
+      keywords:
+        /\b(color|background|font|margin|padding|border|display|position|width|height|flex|grid|none|auto|absolute|relative|fixed|center)\b/g,
     },
     html: {
       tags: /&lt;\/?[\w-]+/g,
@@ -198,13 +260,15 @@ const schema = {
       booleans: /\b(true|false|null)\b/g,
     },
     sql: {
-      keywords: /\b(SELECT|INSERT|UPDATE|DELETE|FROM|WHERE|JOIN|LEFT|RIGHT|INNER|OUTER|ON|GROUP|ORDER|BY|HAVING|LIMIT|OFFSET|AND|OR|NOT|NULL|AS|CREATE|TABLE|VALUES|INDEX|PRIMARY|KEY|FOREIGN|REFERENCES)\b/gi,
+      keywords:
+        /\b(SELECT|INSERT|UPDATE|DELETE|FROM|WHERE|JOIN|LEFT|RIGHT|INNER|OUTER|ON|GROUP|ORDER|BY|HAVING|LIMIT|OFFSET|AND|OR|NOT|NULL|AS|CREATE|TABLE|VALUES|INDEX|PRIMARY|KEY|FOREIGN|REFERENCES)\b/gi,
       strings: /'(?:[^'\\]|\\.)*'/g,
       numbers: /\b\d+(\.\d+)?\b/g,
       functions: /\b(COUNT|SUM|AVG|MIN|MAX|DISTINCT)\b/gi,
     },
     bash: {
-      keywords: /\b(if|then|else|elif|fi|for|while|do|done|case|esac|function|return|exit|echo|export|source|cd|ls|pwd|cat|grep|awk|sed)\b/g,
+      keywords:
+        /\b(if|then|else|elif|fi|for|while|do|done|case|esac|function|return|exit|echo|export|source|cd|ls|pwd|cat|grep|awk|sed)\b/g,
       strings: /"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'/g,
       comments: /#.*$/gm,
       variables: /\$\w+|\$\{[^}]*\}/g,
@@ -212,25 +276,81 @@ const schema = {
   };
 
   const themes: Record<string, any> = {
-    onedark: { bg: '#282c34', headerBg: '#21252b', border: '#3e4451', text: '#abb2bf', keyword: '#c678dd', string: '#98c379', comment: '#5c6370', number: '#d19a66', function: '#61afef', variable: '#e06c75', tag: '#e06c75', attr: '#d19a66', filename: '#9da5b4' },
-    dracula: { bg: '#282a36', headerBg: '#21222c', border: '#44475a', text: '#f8f8f2', keyword: '#ff79c6', string: '#f1fa8c', comment: '#6272a4', number: '#bd93f9', function: '#50fa7b', variable: '#f8f8f2', tag: '#ff79c6', attr: '#50fa7b', filename: '#6272a4' },
-    github: { bg: '#ffffff', headerBg: '#f6f8fa', border: '#d1d5da', text: '#24292e', keyword: '#d73a49', string: '#032f62', comment: '#6a737d', number: '#005cc5', function: '#6f42c1', variable: '#e36209', tag: '#22863a', attr: '#6f42c1', filename: '#586069' },
+    onedark: {
+      bg: '#282c34',
+      headerBg: '#21252b',
+      border: '#3e4451',
+      text: '#abb2bf',
+      keyword: '#c678dd',
+      string: '#98c379',
+      comment: '#5c6370',
+      number: '#d19a66',
+      function: '#61afef',
+      variable: '#e06c75',
+      tag: '#e06c75',
+      attr: '#d19a66',
+      filename: '#9da5b4',
+    },
+    dracula: {
+      bg: '#282a36',
+      headerBg: '#21222c',
+      border: '#44475a',
+      text: '#f8f8f2',
+      keyword: '#ff79c6',
+      string: '#f1fa8c',
+      comment: '#6272a4',
+      number: '#bd93f9',
+      function: '#50fa7b',
+      variable: '#f8f8f2',
+      tag: '#ff79c6',
+      attr: '#50fa7b',
+      filename: '#6272a4',
+    },
+    github: {
+      bg: '#ffffff',
+      headerBg: '#f6f8fa',
+      border: '#d1d5da',
+      text: '#24292e',
+      keyword: '#d73a49',
+      string: '#032f62',
+      comment: '#6a737d',
+      number: '#005cc5',
+      function: '#6f42c1',
+      variable: '#e36209',
+      tag: '#22863a',
+      attr: '#6f42c1',
+      filename: '#586069',
+    },
   };
 
   const fileExtensions: Record<string, string> = {
-    javascript: 'js', typescript: 'ts', python: 'py', java: 'java',
-    go: 'go', rust: 'rs', css: 'css', html: 'html',
-    json: 'json', sql: 'sql', bash: 'sh',
+    javascript: 'js',
+    typescript: 'ts',
+    python: 'py',
+    java: 'java',
+    go: 'go',
+    rust: 'rs',
+    css: 'css',
+    html: 'html',
+    json: 'json',
+    sql: 'sql',
+    bash: 'sh',
   };
 
-  const codeInput = document.getElementById('code-input') as HTMLTextAreaElement | null;
+  const codeInput = document.getElementById(
+    'code-input',
+  ) as HTMLTextAreaElement | null;
   const highlightLayer = document.getElementById('highlight-layer');
   const filename = document.getElementById('filename');
   const editorContainer = document.getElementById('editor-container');
   const formatBtn = document.getElementById('format-btn');
   const canvas = document.createElement('canvas');
-  const languageSelect = document.getElementById('language-select') as HTMLSelectElement | null;
-  const themeSelect = document.getElementById('theme-select') as HTMLSelectElement | null;
+  const languageSelect = document.getElementById(
+    'language-select',
+  ) as HTMLSelectElement | null;
+  const themeSelect = document.getElementById(
+    'theme-select',
+  ) as HTMLSelectElement | null;
   const downloadBtn = document.getElementById('download-btn');
   const sampleBtn = document.getElementById('sample-btn');
 
@@ -249,12 +369,17 @@ const schema = {
   };
 
   function escapeHtml(text: string) {
-    return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    return text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
   }
 
   function highlightCode(code: string, language: string, theme: any) {
     const lang = languages[language];
-    if (!lang) return `<span style="color:${theme.text}">${escapeHtml(code)}</span>`;
+    if (!lang)
+      return `<span style="color:${theme.text}">${escapeHtml(code)}</span>`;
     const lines = code.split('\n');
     let html = '';
     lines.forEach((line) => {
@@ -299,7 +424,9 @@ const schema = {
 
   function applyTheme(theme: any) {
     if (editorContainer) editorContainer.style.backgroundColor = theme.bg;
-    const header = editorContainer?.querySelector('div:first-child') as HTMLElement | null;
+    const header = editorContainer?.querySelector(
+      'div:first-child',
+    ) as HTMLElement | null;
     if (header) {
       header.style.backgroundColor = theme.headerBg;
       header.style.borderColor = theme.border;
@@ -317,7 +444,8 @@ const schema = {
     const themeName = themeSelect?.value || 'onedark';
     const theme = themes[themeName];
     applyTheme(theme);
-    if (highlightLayer) highlightLayer.innerHTML = highlightCode(code, language, theme);
+    if (highlightLayer)
+      highlightLayer.innerHTML = highlightCode(code, language, theme);
     const ext = fileExtensions[language] || 'txt';
     if (filename) filename.textContent = `main.${ext}`;
     syncHeight();
@@ -331,7 +459,8 @@ const schema = {
   }
 
   function syncHeight() {
-    if (highlightLayer && codeInput) highlightLayer.style.height = codeInput.offsetHeight + 'px';
+    if (highlightLayer && codeInput)
+      highlightLayer.style.height = codeInput.offsetHeight + 'px';
   }
 
   function autoResize() {
@@ -342,7 +471,10 @@ const schema = {
     syncHeight();
   }
 
-  codeInput?.addEventListener('input', () => { autoResize(); render(); });
+  codeInput?.addEventListener('input', () => {
+    autoResize();
+    render();
+  });
   codeInput?.addEventListener('scroll', syncScroll, { passive: true });
   languageSelect?.addEventListener('change', render);
   themeSelect?.addEventListener('change', render);
@@ -352,8 +484,16 @@ const schema = {
     if (language === 'sql') {
       try {
         const { format } = await import('sql-formatter');
-        return format(code, { language: 'sql', indent: '  ', keywordCase: 'upper', linesBetweenQueries: 1 });
-      } catch (error) { console.error('SQL format error:', error); return code; }
+        return format(code, {
+          language: 'sql',
+          indent: '  ',
+          keywordCase: 'upper',
+          linesBetweenQueries: 1,
+        });
+      } catch (error) {
+        console.error('SQL format error:', error);
+        return code;
+      }
     }
     const supportedLangs = ['javascript', 'typescript', 'json', 'css', 'html'];
     if (!supportedLangs.includes(language)) return code;
@@ -364,18 +504,38 @@ const schema = {
       const prettier = (window as any).prettier;
       let parser = 'babel';
       switch (language) {
-        case 'javascript': parser = 'babel'; break;
-        case 'typescript': parser = 'typescript'; break;
-        case 'json': parser = 'json'; break;
-        case 'css': parser = 'css'; break;
-        case 'html': parser = 'html'; break;
+        case 'javascript':
+          parser = 'babel';
+          break;
+        case 'typescript':
+          parser = 'typescript';
+          break;
+        case 'json':
+          parser = 'json';
+          break;
+        case 'css':
+          parser = 'css';
+          break;
+        case 'html':
+          parser = 'html';
+          break;
       }
       return prettier.format(code, {
-        parser, tabWidth: 2, useTabs: false, semi: true, singleQuote: true,
-        trailingComma: 'es5', printWidth: 80, bracketSpacing: true,
-        arrowParens: 'avoid', endOfLine: 'lf',
+        parser,
+        tabWidth: 2,
+        useTabs: false,
+        semi: true,
+        singleQuote: true,
+        trailingComma: 'es5',
+        printWidth: 80,
+        bracketSpacing: true,
+        arrowParens: 'avoid',
+        endOfLine: 'lf',
       });
-    } catch (error) { console.error('Prettier format error:', error); return code; }
+    } catch (error) {
+      console.error('Prettier format error:', error);
+      return code;
+    }
   }
 
   function loadScript(src: string) {
@@ -421,9 +581,12 @@ const schema = {
     const headerHeight = 46;
     const buttonRadius = 6;
     const lines = code.split('\n');
-    const maxLineLength = Math.max(...lines.map(l => l.length), 30);
+    const maxLineLength = Math.max(...lines.map((l) => l.length), 30);
     const contentWidth = Math.max(480, maxLineLength * 9 + padding.x * 2);
-    const contentHeight = Math.max(200, lines.length * lineHeight + padding.y * 2);
+    const contentHeight = Math.max(
+      200,
+      lines.length * lineHeight + padding.y * 2,
+    );
     const width = contentWidth;
     const height = headerHeight + contentHeight;
     canvas.width = width * 2;
@@ -448,7 +611,8 @@ const schema = {
       ctx.fill();
     });
     ctx.fillStyle = theme.filename;
-    ctx.font = '13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+    ctx.font =
+      '13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     const ext = fileExtensions[language] || 'txt';
@@ -517,9 +681,12 @@ const schema = {
     link.click();
   });
 
-  const copyBtn = document.getElementById('copy-btn') as HTMLButtonElement | null;
+  const copyBtn = document.getElementById(
+    'copy-btn',
+  ) as HTMLButtonElement | null;
   if (copyBtn) {
-    const { bindCopyButton, canvasToPngBlob } = await import('../../scripts/clipboard');
+    const { bindCopyButton, canvasToPngBlob } =
+      await import('../../scripts/clipboard');
     bindCopyButton(copyBtn, () => ({
       blob: (async () => {
         const c = await renderExportCanvas();

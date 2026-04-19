@@ -33,7 +33,8 @@ const {
 const t = useTranslations(locale);
 const description = Astro.props.description ?? t.common.siteTagline;
 
-const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://wizgo.xyz';
+const siteUrl =
+  Astro.site?.toString().replace(/\/$/, '') ?? 'https://wizgo.xyz';
 const localePath = '/' + stripLocaleFromPath(Astro.url.pathname);
 const canonicalUrl = canonical ?? absoluteUrl(locale, localePath, siteUrl);
 const socialImage = ogImage ?? `${siteUrl}/favicon.svg`;
@@ -41,22 +42,30 @@ const hreflangEntries = buildHreflangEntries(localePath, siteUrl);
 const ogLocaleValue = ogLocale(locale);
 const ogAlternates = alternateOgLocales(locale);
 
-const manifestHref = locale === DEFAULT_LOCALE ? '/manifest.webmanifest' : `/${locale}/manifest.webmanifest`;
+const manifestHref =
+  locale === DEFAULT_LOCALE
+    ? '/manifest.webmanifest'
+    : `/${locale}/manifest.webmanifest`;
 ---
 
 <!doctype html>
 <html lang={locale}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#171717" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    {hreflangEntries.map((entry) => (
-      <link rel="alternate" hreflang={entry.hreflang} href={entry.href} />
-    ))}
+    {
+      hreflangEntries.map((entry) => (
+        <link rel="alternate" hreflang={entry.hreflang} href={entry.href} />
+      ))
+    }
 
     <!-- PWA -->
     <link rel="manifest" href={manifestHref} />
@@ -70,9 +79,11 @@ const manifestHref = locale === DEFAULT_LOCALE ? '/manifest.webmanifest' : `/${l
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={socialImage} />
     <meta property="og:locale" content={ogLocaleValue} />
-    {ogAlternates.map((alt) => (
-      <meta property="og:locale:alternate" content={alt} />
-    ))}
+    {
+      ogAlternates.map((alt) => (
+        <meta property="og:locale:alternate" content={alt} />
+      ))
+    }
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />

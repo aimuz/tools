@@ -80,11 +80,26 @@ export type CompressFormat = 'png' | 'jpg' | 'webp';
 export type ConvertFormat = 'png' | 'jpg' | 'webp' | 'gif' | 'bmp';
 
 export type ConvertPairKey =
-  | 'png-jpg' | 'png-webp' | 'png-gif' | 'png-bmp'
-  | 'jpg-png' | 'jpg-webp' | 'jpg-gif' | 'jpg-bmp'
-  | 'webp-png' | 'webp-jpg' | 'webp-gif' | 'webp-bmp'
-  | 'gif-png' | 'gif-jpg' | 'gif-webp' | 'gif-bmp'
-  | 'bmp-png' | 'bmp-jpg' | 'bmp-webp' | 'bmp-gif';
+  | 'png-jpg'
+  | 'png-webp'
+  | 'png-gif'
+  | 'png-bmp'
+  | 'jpg-png'
+  | 'jpg-webp'
+  | 'jpg-gif'
+  | 'jpg-bmp'
+  | 'webp-png'
+  | 'webp-jpg'
+  | 'webp-gif'
+  | 'webp-bmp'
+  | 'gif-png'
+  | 'gif-jpg'
+  | 'gif-webp'
+  | 'gif-bmp'
+  | 'bmp-png'
+  | 'bmp-jpg'
+  | 'bmp-webp'
+  | 'bmp-gif';
 
 export type FormatPitch = {
   headline: string;
@@ -154,7 +169,9 @@ export type Translations = {
     {
       name: string;
       description: string;
-      tools: Partial<Record<CategoryToolKey, { name: string; description: string }>>;
+      tools: Partial<
+        Record<CategoryToolKey, { name: string; description: string }>
+      >;
     }
   >;
   notFound: {
@@ -243,7 +260,13 @@ export type Translations = {
       subheading: string;
       schema: { name: string; description: string; browserReq: string };
       upload: { drag: string; orClick: string; sizeHint: string };
-      options: { strength: string; smart: string; light: string; strong: string; start: string };
+      options: {
+        strength: string;
+        smart: string;
+        light: string;
+        strong: string;
+        start: string;
+      };
     };
     convert: {
       title: string;
@@ -276,8 +299,16 @@ export type Translations = {
         frontend: { title: string; body: string };
         pwa: { title: string; body: string };
       };
-      privacy: { heading: string; intro: string; items: [string, string, string] };
-      limits: { heading: string; intro: string; items: [string, string, string] };
+      privacy: {
+        heading: string;
+        intro: string;
+        items: [string, string, string];
+      };
+      limits: {
+        heading: string;
+        intro: string;
+        items: [string, string, string];
+      };
       credits: {
         heading: string;
         intro: string;
@@ -387,9 +418,17 @@ export type Translations = {
       errors: { encode: string; decode: string };
       examples: {
         heading: string;
-        labels: { chinese: string; space: string; ampersand: string; equals: string };
+        labels: {
+          chinese: string;
+          space: string;
+          ampersand: string;
+          equals: string;
+        };
       };
-      useCases: { heading: string; items: [string, string, string, string, string] };
+      useCases: {
+        heading: string;
+        items: [string, string, string, string, string];
+      };
     };
     qrcode: {
       title: string;
@@ -616,7 +655,15 @@ export type Translations = {
       sizeLabel: string;
       colorLabel: string;
       boldLabel: string;
-      swatches: { red: string; white: string; lightGray: string; midGray: string; darkGray: string; charcoal: string; black: string };
+      swatches: {
+        red: string;
+        white: string;
+        lightGray: string;
+        midGray: string;
+        darkGray: string;
+        charcoal: string;
+        black: string;
+      };
       customColorTitle: string;
       opacityLabel: string;
       rotationLabel: string;
@@ -687,7 +734,12 @@ export type Translations = {
         k320: string;
         start: string;
       };
-      progress: { preparing: string; decoding: string; encodingTemplate: string; done: string };
+      progress: {
+        preparing: string;
+        decoding: string;
+        encodingTemplate: string;
+        done: string;
+      };
       errors: {
         tooLargeTemplate: string;
         decodeFailedSafari: string;
@@ -718,7 +770,12 @@ export type Translations = {
         k192: string;
         start: string;
       };
-      progress: { preparing: string; decoding: string; encodingTemplate: string; done: string };
+      progress: {
+        preparing: string;
+        decoding: string;
+        encodingTemplate: string;
+        done: string;
+      };
       errors: {
         tooLargeTemplate: string;
         decodeFailedSafari: string;

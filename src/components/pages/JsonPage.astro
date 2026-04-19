@@ -29,7 +29,11 @@ const schema = {
 ---
 
 <Layout title={j.title} description={j.description} locale={locale}>
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+    slot="head"
+  />
   <Header locale={locale} />
 
   <main class="flex-1 py-12">
@@ -43,16 +47,27 @@ const schema = {
         <div class="flex justify-between items-center mb-2">
           <span class="text-sm text-gray-500">{j.inputLabel}</span>
           <div class="flex gap-2">
-            <button id="format-btn" class="px-3 py-1.5 text-sm bg-[#171717] text-white rounded hover:bg-gray-800">{j.formatBtn}</button>
-            <button id="minify-btn" class="px-3 py-1.5 text-sm border border-gray-200 text-gray-600 rounded hover:border-[#171717]">{j.minifyBtn}</button>
-            <button id="clear-btn" class="px-3 py-1.5 text-sm text-gray-400 hover:text-red-500">{j.clearBtn}</button>
+            <button
+              id="format-btn"
+              class="px-3 py-1.5 text-sm bg-[#171717] text-white rounded hover:bg-gray-800"
+              >{j.formatBtn}</button
+            >
+            <button
+              id="minify-btn"
+              class="px-3 py-1.5 text-sm border border-gray-200 text-gray-600 rounded hover:border-[#171717]"
+              >{j.minifyBtn}</button
+            >
+            <button
+              id="clear-btn"
+              class="px-3 py-1.5 text-sm text-gray-400 hover:text-red-500"
+              >{j.clearBtn}</button
+            >
           </div>
         </div>
         <textarea
           id="json-input"
           class="w-full h-64 p-4 bg-white border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717] resize-none"
-          placeholder={j.inputPlaceholder}
-        ></textarea>
+          placeholder={j.inputPlaceholder}></textarea>
       </div>
 
       <div>
@@ -62,22 +77,22 @@ const schema = {
             id="copy-btn"
             class="text-sm text-gray-400 hover:text-[#171717]"
             data-i18n-copy={j.copyBtn}
-            data-i18n-copied={j.copiedBtn}
-          >{j.copyBtn}</button>
+            data-i18n-copied={j.copiedBtn}>{j.copyBtn}</button
+          >
         </div>
         <textarea
           id="json-output"
           readonly
           class="w-full h-64 p-4 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm resize-none"
-          placeholder={j.outputPlaceholder}
-        ></textarea>
+          placeholder={j.outputPlaceholder}></textarea>
       </div>
 
       <div
         id="error-msg"
         class="hidden mt-4 p-3 bg-red-50 border border-red-100 rounded-lg text-red-500 text-sm"
         data-i18n-format-error={j.formatError}
-      ></div>
+      >
+      </div>
     </div>
   </main>
 

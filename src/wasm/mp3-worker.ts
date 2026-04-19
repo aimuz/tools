@@ -63,10 +63,9 @@ self.addEventListener('message', async (ev: MessageEvent<Req>) => {
 
     // Concatenate into a single transferable ArrayBuffer.
     const bytes = concat(chunks);
-    (self as unknown as Worker).postMessage(
-      { type: 'done', bytes },
-      [bytes.buffer],
-    );
+    (self as unknown as Worker).postMessage({ type: 'done', bytes }, [
+      bytes.buffer,
+    ]);
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     (self as unknown as Worker).postMessage({ type: 'error', msg });

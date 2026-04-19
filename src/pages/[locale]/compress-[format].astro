@@ -11,7 +11,10 @@ export const getStaticPaths = () => {
   );
 };
 
-const { locale, format } = Astro.params as { locale: string; format: CompressFormat };
+const { locale, format } = Astro.params as {
+  locale: string;
+  format: CompressFormat;
+};
 if (!isLocale(locale)) {
   throw new Error(`Invalid locale: ${locale}`);
 }

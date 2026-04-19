@@ -3,7 +3,8 @@ import type { Translations } from '../schema';
 export const zhCN = {
   common: {
     siteName: 'WizGo',
-    siteTagline: 'WizGo 是免费在线工具箱：图片压缩、格式转换、JWT、时间戳等开发者日常工具，纯浏览器本地处理不上传。',
+    siteTagline:
+      'WizGo 是免费在线工具箱：图片压缩、格式转换、JWT、时间戳等开发者日常工具，纯浏览器本地处理不上传。',
     aboutLink: '关于',
     menuButtonAria: '菜单',
     languageSwitcherAria: '切换语言',
@@ -28,7 +29,8 @@ export const zhCN = {
       needText: '请输入要嵌入的文本',
       noWatermark: '未检测到水印',
       capacityHintTemplate: '可嵌入 {bytes} 字节 · 约 {chars} 个汉字',
-      capacityErrorTemplate: '图片容量不足，最多可嵌入 {cap} 字节（当前文本 {len} 字节）',
+      capacityErrorTemplate:
+        '图片容量不足，最多可嵌入 {cap} 字节（当前文本 {len} 字节）',
       imageTooSmallDct: '图片太小，DCT 算法至少需要 128×128 像素',
       imageTooSmallLsb: '图片太小，无法嵌入水印（至少需要约 32×32 像素）',
       clipboardNotSupported: '当前浏览器不支持剪贴板 API',
@@ -46,12 +48,18 @@ export const zhCN = {
       items: {
         compress: { name: '图片压缩', desc: 'PNG / JPG / WebP 智能压缩' },
         convert: { name: '图片格式转换', desc: 'PNG JPG WebP GIF BMP 互转' },
-        'png-to-jpg': { name: 'PNG 转 JPG', desc: '透明背景白色填充 · 体积更小' },
+        'png-to-jpg': {
+          name: 'PNG 转 JPG',
+          desc: '透明背景白色填充 · 体积更小',
+        },
         'jpg-to-png': { name: 'JPG 转 PNG', desc: '无损保存 · 支持透明度' },
         'png-to-webp': { name: 'PNG 转 WebP', desc: '保留透明 · 更小体积' },
         'jpg-to-webp': { name: 'JPG 转 WebP', desc: '同画质再压缩 25-35%' },
         watermark: { name: '图片隐藏水印', desc: '嵌入 / 提取隐藏文字' },
-        'text-watermark': { name: '图片文字水印', desc: '仅供备案使用 · 防盗水印' },
+        'text-watermark': {
+          name: '图片文字水印',
+          desc: '仅供备案使用 · 防盗水印',
+        },
       },
     },
     dev: {
@@ -66,14 +74,20 @@ export const zhCN = {
         'url-encode': { name: 'URL 编解码', desc: 'URL 特殊字符编码解码' },
         color: { name: '颜色转换', desc: '十六进制、RGB、HSL 互转' },
         qrcode: { name: '二维码生成', desc: '文本 / 链接生成二维码' },
-        hash: { name: '哈希值生成', desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 校验' },
+        hash: {
+          name: '哈希值生成',
+          desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 校验',
+        },
       },
     },
     media: {
       label: '媒体工具',
       items: {
         'mp4-to-mp3': { name: 'MP4 转 MP3', desc: '从视频文件提取音频' },
-        'compress-mp3': { name: 'MP3 压缩', desc: '降低比特率减小 MP3 文件体积' },
+        'compress-mp3': {
+          name: 'MP3 压缩',
+          desc: '降低比特率减小 MP3 文件体积',
+        },
       },
     },
   },
@@ -146,7 +160,14 @@ export const zhCN = {
     base64: {
       name: 'Base64 编解码',
       description: '文本/文件与 Base64 互转',
-      tags: ['Base64', '编码', '解码', '文件转换', 'base64 encode', 'base64 decode'],
+      tags: [
+        'Base64',
+        '编码',
+        '解码',
+        '文件转换',
+        'base64 encode',
+        'base64 decode',
+      ],
     },
     uuid: {
       name: 'UUID 生成器',
@@ -156,12 +177,27 @@ export const zhCN = {
     'url-encode': {
       name: 'URL 编解码',
       description: 'URL 特殊字符编码解码',
-      tags: ['URL编码', 'URL解码', 'encodeURIComponent', '百分号编码', 'url encode'],
+      tags: [
+        'URL编码',
+        'URL解码',
+        'encodeURIComponent',
+        '百分号编码',
+        'url encode',
+      ],
     },
     color: {
       name: '颜色转换',
       description: '十六进制、RGB、HSL 色值互转',
-      tags: ['颜色', '色值', '颜色转换', 'RGB', 'HEX', 'HSL', 'color picker', '取色器'],
+      tags: [
+        '颜色',
+        '色值',
+        '颜色转换',
+        'RGB',
+        'HEX',
+        'HSL',
+        'color picker',
+        '取色器',
+      ],
     },
     qrcode: {
       name: '二维码生成',
@@ -171,7 +207,16 @@ export const zhCN = {
     'any-convert': {
       name: '图片转换',
       description: 'PNG JPG WebP 格式互转',
-      tags: ['图片转换', '图片格式转换', 'PNG转JPG', 'JPG转PNG', 'WebP', 'HEIC', 'BMP', 'GIF'],
+      tags: [
+        '图片转换',
+        '图片格式转换',
+        'PNG转JPG',
+        'JPG转PNG',
+        'WebP',
+        'HEIC',
+        'BMP',
+        'GIF',
+      ],
     },
     'any-compress': {
       name: '图片压缩',
@@ -187,26 +232,66 @@ export const zhCN = {
       name: '图片文字水印',
       description: '身份证 / 备案 / 防盗水印',
       tags: [
-        '文字水印', '图片水印', '图片加水印', '在线加水印', '身份证水印',
-        '身份证加水印', '证件水印', '营业执照水印', '合同水印', '备案水印',
-        'ICP备案水印', '防盗水印', '版权水印', '仅供备案使用', '仅供xx使用',
-        '照片水印', 'text watermark', 'image watermark', 'photo watermark',
+        '文字水印',
+        '图片水印',
+        '图片加水印',
+        '在线加水印',
+        '身份证水印',
+        '身份证加水印',
+        '证件水印',
+        '营业执照水印',
+        '合同水印',
+        '备案水印',
+        'ICP备案水印',
+        '防盗水印',
+        '版权水印',
+        '仅供备案使用',
+        '仅供xx使用',
+        '照片水印',
+        'text watermark',
+        'image watermark',
+        'photo watermark',
       ],
     },
     'mp4-to-mp3': {
       name: 'MP4 转 MP3',
       description: '从视频中提取音频 · 128-320 kbps',
-      tags: ['mp4转mp3', '视频转mp3', '提取音频', '视频转音频', 'mp3', '音频提取', 'mp4 to mp3'],
+      tags: [
+        'mp4转mp3',
+        '视频转mp3',
+        '提取音频',
+        '视频转音频',
+        'mp3',
+        '音频提取',
+        'mp4 to mp3',
+      ],
     },
     'compress-mp3': {
       name: 'MP3 压缩',
       description: '减小 MP3 文件体积 · 降低比特率',
-      tags: ['MP3 压缩', '压缩 MP3', '减小 MP3 体积', 'MP3 瘦身', '音频压缩', 'MP3 比特率'],
+      tags: [
+        'MP3 压缩',
+        '压缩 MP3',
+        '减小 MP3 体积',
+        'MP3 瘦身',
+        '音频压缩',
+        'MP3 比特率',
+      ],
     },
     hash: {
       name: '哈希值生成',
       description: '一键生成 SHA-1 / SHA-256 / SHA-384 / SHA-512',
-      tags: ['哈希', 'hash', 'sha256', 'sha-256', 'sha512', '校验值', '文件校验', 'checksum', '散列'],
+      tags: [
+        '哈希',
+        'hash',
+        'sha256',
+        'sha-256',
+        'sha512',
+        '校验值',
+        '文件校验',
+        'checksum',
+        '散列',
+      ],
     },
   },
   toolCategories: {
@@ -215,22 +300,34 @@ export const zhCN = {
       description: '图片压缩、格式转换',
       tools: {
         compress: { name: '图片压缩', description: '压缩图片大小，保持画质' },
-        convert: { name: '图片格式转换', description: 'PNG JPG WebP GIF BMP 互转' },
+        convert: {
+          name: '图片格式转换',
+          description: 'PNG JPG WebP GIF BMP 互转',
+        },
         watermark: { name: '图片隐藏水印', description: '嵌入 / 提取隐藏文字' },
-        'text-watermark': { name: '图片文字水印', description: '备案 / 防盗水印' },
+        'text-watermark': {
+          name: '图片文字水印',
+          description: '备案 / 防盗水印',
+        },
       },
     },
     code: {
       name: '代码工具',
       description: '开发者工具',
       tools: {
-        'code-image': { name: '代码转图片', description: '把代码生成精美的分享图片' },
+        'code-image': {
+          name: '代码转图片',
+          description: '把代码生成精美的分享图片',
+        },
         json: { name: 'JSON', description: 'JSON 格式化' },
         jwt: { name: 'JWT', description: '生成 / 解析 / 验签' },
         timestamp: { name: '时间戳', description: 'Unix 时间戳转换' },
         base64: { name: 'Base64', description: '文本/文件编解码' },
         uuid: { name: 'UUID', description: '批量生成唯一标识符' },
-        'url-encode': { name: 'URL 编解码', description: 'URL 特殊字符编码解码' },
+        'url-encode': {
+          name: 'URL 编解码',
+          description: 'URL 特殊字符编码解码',
+        },
         color: { name: '颜色转换', description: '十六进制、RGB、HSL 色值互转' },
         qrcode: { name: '二维码生成', description: '文本/链接生成二维码' },
         hash: { name: '哈希值生成', description: '文本和文件的 SHA 校验值' },
@@ -254,7 +351,8 @@ export const zhCN = {
   manifest: {
     name: 'WizGo',
     shortName: 'WizGo',
-    description: '免费在线工具箱：图片压缩、格式转换、JWT、时间戳等，本地处理不上传',
+    description:
+      '免费在线工具箱：图片压缩、格式转换、JWT、时间戳等，本地处理不上传',
   },
   pages: {
     home: {
@@ -327,26 +425,37 @@ export const zhCN = {
       descriptionTemplate:
         '{fromLabel} 转 {toLabel} 在线工具。{hintWithSpace}纯浏览器本地处理不上传。',
       h1Template: '{fromLabel} 转 {toLabel}',
-      fallbackHintTemplate: '把 {fromFull} 图片在线转换为 {toFull} 格式 · 本地处理不上传',
+      fallbackHintTemplate:
+        '把 {fromFull} 图片在线转换为 {toFull} 格式 · 本地处理不上传',
       pairHints: {
-        'png-jpg': '透明背景会被白色填充，文件通常可缩小 40-80%，适合网页、邮件、微信分享。',
-        'png-webp': 'WebP 保留透明度的同时比 PNG 小 25-50%，现代浏览器普遍支持。',
+        'png-jpg':
+          '透明背景会被白色填充，文件通常可缩小 40-80%，适合网页、邮件、微信分享。',
+        'png-webp':
+          'WebP 保留透明度的同时比 PNG 小 25-50%，现代浏览器普遍支持。',
         'png-gif': '把 PNG 转成 GIF，用于发送到只支持 GIF 的老旧平台。',
         'png-bmp': '把 PNG 转成无损未压缩的 BMP，常用于兼容老旧 Windows 程序。',
-        'jpg-png': 'JPG 转 PNG 可无损保存并获得透明度支持，适合 logo 底图抠图前处理。',
-        'jpg-webp': 'JPG 转 WebP 可再压缩 25-35%，视觉几乎无差，适合图片量大的网站。',
+        'jpg-png':
+          'JPG 转 PNG 可无损保存并获得透明度支持，适合 logo 底图抠图前处理。',
+        'jpg-webp':
+          'JPG 转 WebP 可再压缩 25-35%，视觉几乎无差，适合图片量大的网站。',
         'jpg-gif': 'JPG 转 GIF，常用于把照片变成可发送到老旧聊天平台的格式。',
-        'jpg-bmp': 'JPG 转 BMP 会得到一个无损但体积巨大的位图，用于打印或特殊程序输入。',
-        'webp-png': 'WebP 不被某些软件支持时，转回 PNG 是最安全的兜底选择，完整保留透明度。',
-        'webp-jpg': '需要发图到不支持 WebP 的老平台（微博、公众号、论坛等）时，转 JPG 最稳妥。',
+        'jpg-bmp':
+          'JPG 转 BMP 会得到一个无损但体积巨大的位图，用于打印或特殊程序输入。',
+        'webp-png':
+          'WebP 不被某些软件支持时，转回 PNG 是最安全的兜底选择，完整保留透明度。',
+        'webp-jpg':
+          '需要发图到不支持 WebP 的老平台（微博、公众号、论坛等）时，转 JPG 最稳妥。',
         'webp-gif': 'WebP 转 GIF，兼容老旧浏览器或只支持 GIF 的聊天平台。',
         'webp-bmp': 'WebP 转 BMP，用于特定的图形程序或打印流程。',
         'gif-png': 'GIF 转 PNG 保留透明度，画质更清晰（仅转换首帧）。',
-        'gif-jpg': 'GIF 转 JPG 体积更小，但会丢透明度、只保留首帧，适合分享用途。',
+        'gif-jpg':
+          'GIF 转 JPG 体积更小，但会丢透明度、只保留首帧，适合分享用途。',
         'gif-webp': 'GIF 转 WebP 静态图可以进一步压缩，保留透明度。',
         'gif-bmp': 'GIF 转 BMP，仅保留首帧，适用于图形程序批量处理。',
-        'bmp-png': 'BMP 转 PNG 可以无损大幅缩小体积（通常减小 70%+），适合归档。',
-        'bmp-jpg': 'BMP 转 JPG 压缩率最高，适合有大量扫描件、截图需要分享时使用。',
+        'bmp-png':
+          'BMP 转 PNG 可以无损大幅缩小体积（通常减小 70%+），适合归档。',
+        'bmp-jpg':
+          'BMP 转 JPG 压缩率最高，适合有大量扫描件、截图需要分享时使用。',
         'bmp-webp': 'BMP 转 WebP 可获得最高压缩率，现代浏览器普遍支持。',
         'bmp-gif': 'BMP 转 GIF，用于兼容只支持 GIF 的老旧聊天或论坛平台。',
       },
@@ -368,7 +477,8 @@ export const zhCN = {
         more: '更多格式',
       },
       schema: {
-        descriptionTemplate: '把 {fromFull} 图片在线转换为 {toFull} 格式，本地处理不上传。',
+        descriptionTemplate:
+          '把 {fromFull} 图片在线转换为 {toFull} 格式，本地处理不上传。',
       },
     },
     compress: {
@@ -379,7 +489,8 @@ export const zhCN = {
       subheading: 'PNG、JPG、WebP 在线无损压缩 · 本地处理不上传 · 支持批量',
       schema: {
         name: '图片压缩',
-        description: '免费在线图片压缩工具，支持 PNG、JPG、WebP 格式，本地处理不上传',
+        description:
+          '免费在线图片压缩工具，支持 PNG、JPG、WebP 格式，本地处理不上传',
         browserReq: '需要支持 WebAssembly 的现代浏览器',
       },
       upload: {
@@ -428,8 +539,10 @@ export const zhCN = {
       h1: '关于 WizGo',
       schema: {
         name: '关于 WizGo',
-        description: 'WizGo 的技术栈与隐私政策：所有工具在浏览器本地运行，文件不上传。',
-        orgDescription: '免费在线工具箱，图片压缩、格式转换、JWT、时间戳等，纯浏览器本地处理不上传。',
+        description:
+          'WizGo 的技术栈与隐私政策：所有工具在浏览器本地运行，文件不上传。',
+        orgDescription:
+          '免费在线工具箱，图片压缩、格式转换、JWT、时间戳等，纯浏览器本地处理不上传。',
       },
       intro:
         'WizGo 是一套免费、安全、快速的在线工具箱。我们坚信用户的数据隐私至关重要，因此所有工具都在你的浏览器中本地完成处理，文件和数据不会上传到任何服务器。',
@@ -437,13 +550,11 @@ export const zhCN = {
         heading: '技术栈',
         image: {
           title: '图片处理',
-          body:
-            'Rust 编写的 WebAssembly 模块，集成 imagequant 调色板量化与 jpeg-encoder 优化管线，支持 PNG、JPEG、WebP、GIF、BMP 等格式',
+          body: 'Rust 编写的 WebAssembly 模块，集成 imagequant 调色板量化与 jpeg-encoder 优化管线，支持 PNG、JPEG、WebP、GIF、BMP 等格式',
         },
         crypto: {
           title: '加密与签名',
-          body:
-            'JWT 解码、签发与验签全部走浏览器原生 WebCrypto，支持 HS、RS、ES 系列算法，零第三方依赖',
+          body: 'JWT 解码、签发与验签全部走浏览器原生 WebCrypto，支持 HS、RS、ES 系列算法，零第三方依赖',
         },
         frontend: {
           title: '前端框架',
@@ -476,11 +587,31 @@ export const zhCN = {
         heading: '开源库致谢',
         intro: 'WizGo 构建过程中使用了以下优秀的开源库：',
         items: [
-          { label: 'imagequant', href: 'https://github.com/ImageOptim/libimagequant', desc: 'PNG 调色板量化' },
-          { label: 'lodepng-rust', href: 'https://github.com/kornelski/lodepng-rust', desc: '纯 Rust PNG 编码' },
-          { label: 'jpeg-encoder', href: 'https://github.com/vstroebel/jpeg-encoder', desc: 'Rust JPEG 编码' },
-          { label: 'Astro', href: 'https://astro.build', desc: '现代静态站点生成器' },
-          { label: 'Geist', href: 'https://vercel.com/font', desc: 'Vercel 设计字体' },
+          {
+            label: 'imagequant',
+            href: 'https://github.com/ImageOptim/libimagequant',
+            desc: 'PNG 调色板量化',
+          },
+          {
+            label: 'lodepng-rust',
+            href: 'https://github.com/kornelski/lodepng-rust',
+            desc: '纯 Rust PNG 编码',
+          },
+          {
+            label: 'jpeg-encoder',
+            href: 'https://github.com/vstroebel/jpeg-encoder',
+            desc: 'Rust JPEG 编码',
+          },
+          {
+            label: 'Astro',
+            href: 'https://astro.build',
+            desc: '现代静态站点生成器',
+          },
+          {
+            label: 'Geist',
+            href: 'https://vercel.com/font',
+            desc: 'Vercel 设计字体',
+          },
         ],
       },
     },
@@ -531,7 +662,8 @@ export const zhCN = {
       description:
         '免费在线 UUID 生成器，支持批量生成、多种格式（标准/无横线/大写）、一键复制。使用密码学安全随机数生成，浏览器本地处理不上传。',
       h1: 'UUID 生成器',
-      subheading: '批量生成唯一标识符 · 标准格式 / 无横线 / 大写 · 本地生成不上传',
+      subheading:
+        '批量生成唯一标识符 · 标准格式 / 无横线 / 大写 · 本地生成不上传',
       schema: {
         name: 'UUID 生成器',
         description: '在线批量生成 UUID 唯一标识符，支持多种格式',
@@ -549,8 +681,7 @@ export const zhCN = {
       copiedBtn: '已复制',
       info: {
         heading: '关于 UUID',
-        body:
-          'UUID（通用唯一标识符）是一种 128 位的标识符，通常表示为 32 个十六进制数字，分为 5 组。本工具使用浏览器内置的加密安全随机数生成器（crypto.getRandomValues）生成 UUID v4 版本，确保生成的标识符具有极高的唯一性，适合用于数据库主键、会话标识、API 密钥等场景。',
+        body: 'UUID（通用唯一标识符）是一种 128 位的标识符，通常表示为 32 个十六进制数字，分为 5 组。本工具使用浏览器内置的加密安全随机数生成器（crypto.getRandomValues）生成 UUID v4 版本，确保生成的标识符具有极高的唯一性，适合用于数据库主键、会话标识、API 密钥等场景。',
       },
     },
     urlEncode: {
@@ -570,7 +701,8 @@ export const zhCN = {
         component: '完整编码（推荐）',
         uri: '保留 URL 字符',
         componentHint: '完整编码：编码所有特殊字符，适合作为 URL 参数值',
-        uriHint: '保留 URL 字符：不编码 : / ? # & = 等 URL 保留字符，适合编码完整 URL',
+        uriHint:
+          '保留 URL 字符：不编码 : / ? # & = 等 URL 保留字符，适合编码完整 URL',
       },
       labels: {
         inputEncode: '输入文本',
@@ -612,7 +744,8 @@ export const zhCN = {
       description:
         '免费在线二维码生成器，支持文本、URL、联系人生成二维码。自定义尺寸、颜色，可下载 PNG/SVG 格式。纯浏览器本地生成不上传。',
       h1: '二维码生成',
-      subheading: '文本/链接生成二维码 · 自定义样式 · 下载 PNG/SVG · 本地生成不上传',
+      subheading:
+        '文本/链接生成二维码 · 自定义样式 · 下载 PNG/SVG · 本地生成不上传',
       schema: {
         name: '二维码生成器',
         description: '在线生成二维码，支持自定义尺寸和颜色',
@@ -645,7 +778,8 @@ export const zhCN = {
       emptyContent: '请输入内容',
       downloadPng: '下载 PNG',
       downloadSvg: '下载 SVG',
-      infoTemplate: '内容长度：{chars} 字符 / {bytes} 字节 · 尺寸：{size}x{size}px',
+      infoTemplate:
+        '内容长度：{chars} 字符 / {bytes} 字节 · 尺寸：{size}x{size}px',
       examples: {
         heading: '使用示例',
         url: '网址：',
@@ -680,20 +814,33 @@ export const zhCN = {
         fillNowBtn: '填入当前',
         units: { auto: '自动', sec: '秒', ms: '毫秒' },
         placeholder: '如：1516239022 或 1516239022000',
-        errors: { nan: '必须是数字', oor: '数字超出范围', invalid: '无效的时间戳' },
-        outputs: { local: '本地时间', utc: 'UTC 时间', iso: 'ISO 8601', relative: '相对时间' },
+        errors: {
+          nan: '必须是数字',
+          oor: '数字超出范围',
+          invalid: '无效的时间戳',
+        },
+        outputs: {
+          local: '本地时间',
+          utc: 'UTC 时间',
+          iso: 'ISO 8601',
+          relative: '相对时间',
+        },
       },
       d2t: {
         label: '日期 → 时间戳',
         fillNowBtn: '填入当前',
         isoPlaceholder: '或粘贴 ISO 字符串：2024-01-18T03:30:22Z',
-        errors: { invalidDate: '日期无效', unparseable: '无法解析的日期字符串' },
+        errors: {
+          invalidDate: '日期无效',
+          unparseable: '无法解析的日期字符串',
+        },
         outputs: { sec: 'Unix 秒', ms: 'Unix 毫秒', iso: 'ISO 8601 (UTC)' },
       },
       copyBtn: '复制',
       copiedBtn: '已复制',
       justNow: '刚刚',
-      footerHint: 'Unix 纪元：1970-01-01 00:00:00 UTC · 秒级时间戳 10 位 · 毫秒级 13 位',
+      footerHint:
+        'Unix 纪元：1970-01-01 00:00:00 UTC · 秒级时间戳 10 位 · 毫秒级 13 位',
     },
     color: {
       title: '颜色转换 - 在线 HEX/RGB/HSL 色值转换工具 | WizGo',
@@ -713,9 +860,18 @@ export const zhCN = {
       copiedBtn: '已复制',
       quickColorsLabel: '常用颜色',
       colorNames: {
-        black: '黑色', red: '红色', orange: '橙色', amber: '琥珀色',
-        yellowGreen: '黄绿色', green: '绿色', cyan: '青色', blue: '蓝色',
-        indigo: '靛蓝色', purple: '紫色', pink: '粉色', white: '白色',
+        black: '黑色',
+        red: '红色',
+        orange: '橙色',
+        amber: '琥珀色',
+        yellowGreen: '黄绿色',
+        green: '绿色',
+        cyan: '青色',
+        blue: '蓝色',
+        indigo: '靛蓝色',
+        purple: '紫色',
+        pink: '粉色',
+        white: '白色',
       },
       randomBtn: '随机颜色',
     },
@@ -743,7 +899,8 @@ export const zhCN = {
       description:
         '免费在线 Base64 编解码工具，支持文本与 Base64 互转、文件上传转 Base64、Base64 下载为文件。图片、文本、二进制文件均可处理，浏览器本地处理不上传。',
       h1: 'Base64 编解码',
-      subheading: '文本/文件与 Base64 互转 · 支持图片、文本、二进制文件 · 本地处理不上传',
+      subheading:
+        '文本/文件与 Base64 互转 · 支持图片、文本、二进制文件 · 本地处理不上传',
       schema: {
         name: 'Base64 编解码',
         description: '文本/文件与 Base64 互转工具，支持图片、文本、二进制文件',
@@ -792,10 +949,12 @@ export const zhCN = {
       description:
         '在线 JSON Web Token 工具，解码 header/payload、验证签名、生成新 token。支持 HS256/384/512、RS256/384/512、ES256/384 算法，浏览器本地运算不上传。',
       h1: 'JWT 解码/生成/验签',
-      subheading: 'JSON Web Token 在线工具 · HS256 RS256 ES256 · 本地运算不上传',
+      subheading:
+        'JSON Web Token 在线工具 · HS256 RS256 ES256 · 本地运算不上传',
       schema: {
         name: 'JWT 解码/生成/验签',
-        description: 'JSON Web Token 在线工具，支持 HS/RS/ES 系列算法，本地运算',
+        description:
+          'JSON Web Token 在线工具，支持 HS/RS/ES 系列算法，本地运算',
       },
       algoLabel: '签名算法',
       encodedLabel: 'Encoded · 完整 Token',
@@ -823,8 +982,10 @@ export const zhCN = {
       },
       pubkeyLabel: 'Public Key（PEM，用于验签）',
       privkeyLabel: 'Private Key（PEM，用于签发）',
-      pubkeyPlaceholder: '-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----',
-      privkeyPlaceholder: '-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----',
+      pubkeyPlaceholder:
+        '-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----',
+      privkeyPlaceholder:
+        '-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----',
       errors: {
         pemEmpty: 'PEM 内容为空',
         jwtFormat: 'JWT 格式错误：应为 header.payload.signature',
@@ -840,10 +1001,16 @@ export const zhCN = {
       description:
         '给图片加"仅供xx使用"文字水印：身份证、营业执照、合同、网站备案防冒用。平铺/居中/右下角排列。本地处理不上传照片。',
       h1: '图片文字水印',
-      subheading: '在图片上添加"仅供备案使用"等文字水印 · 防盗、溯源 · 本地处理不上传',
+      subheading:
+        '在图片上添加"仅供备案使用"等文字水印 · 防盗、溯源 · 本地处理不上传',
       schema: {
         name: '图片文字水印',
-        alternateNames: ['身份证加水印', '证件水印', '备案水印工具', '图片加文字水印'],
+        alternateNames: [
+          '身份证加水印',
+          '证件水印',
+          '备案水印工具',
+          '图片加文字水印',
+        ],
         description:
           '在图片上添加可见的文字水印，用于身份证防冒用、证件复印件、网站备案、版权防盗等场景。支持平铺、居中、右下角三种排列，纯浏览器本地处理不上传。',
         featureList: [
@@ -860,19 +1027,52 @@ export const zhCN = {
         description: '三步给图片添加"仅供xx使用"文字水印，防止证件被冒用',
         toolName: '浏览器（Chrome / Safari / Edge）',
         steps: [
-          { name: '上传图片', text: '点击上传区或直接拖拽图片进来，支持 PNG / JPG / WebP，图片只在本机处理不会上传服务器。' },
-          { name: '输入水印文字', text: '例如"仅供 xx 银行房贷办理使用"、"仅供 xxx.com 网站备案使用"等。建议写明具体用途和接收方名称。' },
-          { name: '调整样式并下载', text: '选择平铺（防裁剪）、调整颜色字号透明度和旋转角度，点击下载 PNG。' },
+          {
+            name: '上传图片',
+            text: '点击上传区或直接拖拽图片进来，支持 PNG / JPG / WebP，图片只在本机处理不会上传服务器。',
+          },
+          {
+            name: '输入水印文字',
+            text: '例如"仅供 xx 银行房贷办理使用"、"仅供 xxx.com 网站备案使用"等。建议写明具体用途和接收方名称。',
+          },
+          {
+            name: '调整样式并下载',
+            text: '选择平铺（防裁剪）、调整颜色字号透明度和旋转角度，点击下载 PNG。',
+          },
         ],
       },
       faqSchema: {
         items: [
-          { question: '给身份证加水印合法吗？', answer: '合法，且被广泛推荐。在身份证复印件 / 扫描件上标注"仅供 xx 使用"的文字水印，是防止证件被挪作他用的有效手段，公安部、央行、银保监会等均有过相关提示。' },
-          { question: '水印文字应该写什么？', answer: '建议包含「用途 + 接收方 + 日期」三要素，例如"仅供 xx 银行 2026 年房贷办理使用"。越具体越不容易被滥用。' },
-          { question: '水印加在哪里最安全？', answer: '平铺模式最安全——文字斜向铺满整张图，无法通过裁剪去除；右下角等角落水印容易被直接裁掉。建议身份证等重要证件用平铺+半透明灰。' },
-          { question: '图片会被上传到服务器吗？', answer: '不会。本工具所有处理都在你的浏览器本地完成（Canvas 2D），图片文件和水印文字从不离开你的设备，服务器只提供静态页面。' },
-          { question: '水印能被 PS 去掉吗？', answer: '文字水印本质上是可见的像素改动，专业用户用 PS 可以擦除，但耗时且会留下痕迹。对于普通盗用场景（微信转发、被其他网站复用），文字水印的威慑力已经足够。如果需要抗擦除的"隐形签名"，可以用我们的图片隐藏水印工具。' },
-          { question: '水印后的图片保存成 JPG 还是 PNG？', answer: '本工具导出 PNG（无损，水印边缘最清晰）。如果文件太大，可以用"PNG 压缩"工具进一步减小体积。' },
+          {
+            question: '给身份证加水印合法吗？',
+            answer:
+              '合法，且被广泛推荐。在身份证复印件 / 扫描件上标注"仅供 xx 使用"的文字水印，是防止证件被挪作他用的有效手段，公安部、央行、银保监会等均有过相关提示。',
+          },
+          {
+            question: '水印文字应该写什么？',
+            answer:
+              '建议包含「用途 + 接收方 + 日期」三要素，例如"仅供 xx 银行 2026 年房贷办理使用"。越具体越不容易被滥用。',
+          },
+          {
+            question: '水印加在哪里最安全？',
+            answer:
+              '平铺模式最安全——文字斜向铺满整张图，无法通过裁剪去除；右下角等角落水印容易被直接裁掉。建议身份证等重要证件用平铺+半透明灰。',
+          },
+          {
+            question: '图片会被上传到服务器吗？',
+            answer:
+              '不会。本工具所有处理都在你的浏览器本地完成（Canvas 2D），图片文件和水印文字从不离开你的设备，服务器只提供静态页面。',
+          },
+          {
+            question: '水印能被 PS 去掉吗？',
+            answer:
+              '文字水印本质上是可见的像素改动，专业用户用 PS 可以擦除，但耗时且会留下痕迹。对于普通盗用场景（微信转发、被其他网站复用），文字水印的威慑力已经足够。如果需要抗擦除的"隐形签名"，可以用我们的图片隐藏水印工具。',
+          },
+          {
+            question: '水印后的图片保存成 JPG 还是 PNG？',
+            answer:
+              '本工具导出 PNG（无损，水印边缘最清晰）。如果文件太大，可以用"PNG 压缩"工具进一步减小体积。',
+          },
         ],
       },
       imageLabel: '图片',
@@ -886,8 +1086,13 @@ export const zhCN = {
       colorLabel: '颜色',
       boldLabel: '加粗',
       swatches: {
-        red: '备案红', white: '白', lightGray: '浅灰', midGray: '中灰',
-        darkGray: '深灰', charcoal: '炭灰', black: '黑',
+        red: '备案红',
+        white: '白',
+        lightGray: '浅灰',
+        midGray: '中灰',
+        darkGray: '深灰',
+        charcoal: '炭灰',
+        black: '黑',
       },
       customColorTitle: '自定义颜色',
       opacityLabel: '透明度',
@@ -900,10 +1105,26 @@ export const zhCN = {
       useCases: {
         heading: '常见用途',
         items: [
-          { title: '身份证加水印 · 防冒用', bodyHtml: '办理银行业务、租房、工作入职时经常要提交身份证复印件。加上"仅供 xx 银行 2026 年房贷办理使用"一类的文字水印，可以避免身份证信息被挪作贷款、开卡等其它用途，降低冒名风险。建议用<strong>平铺模式</strong>，透明度 30–50%。' },
-          { title: '营业执照 / 合同 / 证件水印', bodyHtml: '公司营业执照、开户许可证、合同扫描件提交给合作方时，加上"仅供 xx 用途"水印可以限制被复用。同样适用于学位证、驾照、护照等证件的电子副本。' },
-          { title: '网站备案水印', bodyHtml: 'ICP 备案材料里，主体身份证件和法人授权书都需要在图片上加水印。常见格式："仅供 xxx.com 网站 ICP 备案使用"，红色平铺是阿里云 / 腾讯云 / 华为云备案推荐样式。' },
-          { title: '防盗图 / 版权保护', bodyHtml: '摄影作品、产品图、插画发布到社交平台前加上作者署名或站点域名，可以显著降低被直接盗用的概率。版权标用<strong>右下角</strong>低调；防盗用<strong>平铺</strong>强覆盖。' },
+          {
+            title: '身份证加水印 · 防冒用',
+            bodyHtml:
+              '办理银行业务、租房、工作入职时经常要提交身份证复印件。加上"仅供 xx 银行 2026 年房贷办理使用"一类的文字水印，可以避免身份证信息被挪作贷款、开卡等其它用途，降低冒名风险。建议用<strong>平铺模式</strong>，透明度 30–50%。',
+          },
+          {
+            title: '营业执照 / 合同 / 证件水印',
+            bodyHtml:
+              '公司营业执照、开户许可证、合同扫描件提交给合作方时，加上"仅供 xx 用途"水印可以限制被复用。同样适用于学位证、驾照、护照等证件的电子副本。',
+          },
+          {
+            title: '网站备案水印',
+            bodyHtml:
+              'ICP 备案材料里，主体身份证件和法人授权书都需要在图片上加水印。常见格式："仅供 xxx.com 网站 ICP 备案使用"，红色平铺是阿里云 / 腾讯云 / 华为云备案推荐样式。',
+          },
+          {
+            title: '防盗图 / 版权保护',
+            bodyHtml:
+              '摄影作品、产品图、插画发布到社交平台前加上作者署名或站点域名，可以显著降低被直接盗用的概率。版权标用<strong>右下角</strong>低调；防盗用<strong>平铺</strong>强覆盖。',
+          },
         ],
       },
       steps: {
@@ -918,12 +1139,36 @@ export const zhCN = {
       faq: {
         heading: '常见问题',
         items: [
-          { q: '给身份证加水印合法吗？', aHtml: '合法，且被广泛推荐。在身份证复印件 / 扫描件上标注"仅供 xx 使用"的文字水印，是防止证件被挪作他用的有效手段，公安部、央行、银保监会都有过相关提示。' },
-          { q: '水印文字应该写什么？', aHtml: '建议包含「用途 + 接收方 + 日期」三要素，例如"仅供 xx 银行 2026 年房贷办理使用"。越具体越不容易被滥用。如果是网站备案，写"仅供 yourdomain.com 网站 ICP 备案使用"。' },
-          { q: '水印加在哪里最安全？', aHtml: '平铺模式最安全——文字斜向铺满整张图，无法通过裁剪去除。右下角等角落水印容易被直接裁掉。身份证、银行卡等重要证件建议平铺 + 半透明灰，既安全又不影响识别。' },
-          { q: '图片会被上传到服务器吗？', aHtml: '不会。本工具所有处理都在你的浏览器本地完成（Canvas 2D 直接绘制像素），图片文件和水印文字从不离开你的设备。可以断网后继续使用。' },
-          { q: '水印能被 PS 去掉吗？', aHtml: '文字水印本质上是可见的像素改动，专业用户用 PS 可以擦除，但耗时且会留下痕迹。对于普通盗用场景（微信转发、被其他网站复用），文字水印的威慑力已经足够。如果需要抗擦除的"隐形签名"，可以用我们的<a href="/watermark" class="text-[#0072f5] hover:underline">图片隐藏水印</a>工具。' },
-          { q: '水印后的图片太大怎么办？', aHtml: '本工具导出 PNG（无损，水印边缘最清晰）。如果文件太大影响上传或发送，可以用<a href="/compress-png" class="text-[#0072f5] hover:underline">PNG 压缩</a>进一步减小体积，或用<a href="/png-to-jpg" class="text-[#0072f5] hover:underline">PNG 转 JPG</a>换成更小的格式。' },
+          {
+            q: '给身份证加水印合法吗？',
+            aHtml:
+              '合法，且被广泛推荐。在身份证复印件 / 扫描件上标注"仅供 xx 使用"的文字水印，是防止证件被挪作他用的有效手段，公安部、央行、银保监会都有过相关提示。',
+          },
+          {
+            q: '水印文字应该写什么？',
+            aHtml:
+              '建议包含「用途 + 接收方 + 日期」三要素，例如"仅供 xx 银行 2026 年房贷办理使用"。越具体越不容易被滥用。如果是网站备案，写"仅供 yourdomain.com 网站 ICP 备案使用"。',
+          },
+          {
+            q: '水印加在哪里最安全？',
+            aHtml:
+              '平铺模式最安全——文字斜向铺满整张图，无法通过裁剪去除。右下角等角落水印容易被直接裁掉。身份证、银行卡等重要证件建议平铺 + 半透明灰，既安全又不影响识别。',
+          },
+          {
+            q: '图片会被上传到服务器吗？',
+            aHtml:
+              '不会。本工具所有处理都在你的浏览器本地完成（Canvas 2D 直接绘制像素），图片文件和水印文字从不离开你的设备。可以断网后继续使用。',
+          },
+          {
+            q: '水印能被 PS 去掉吗？',
+            aHtml:
+              '文字水印本质上是可见的像素改动，专业用户用 PS 可以擦除，但耗时且会留下痕迹。对于普通盗用场景（微信转发、被其他网站复用），文字水印的威慑力已经足够。如果需要抗擦除的"隐形签名"，可以用我们的<a href="/watermark" class="text-[#0072f5] hover:underline">图片隐藏水印</a>工具。',
+          },
+          {
+            q: '水印后的图片太大怎么办？',
+            aHtml:
+              '本工具导出 PNG（无损，水印边缘最清晰）。如果文件太大影响上传或发送，可以用<a href="/compress-png" class="text-[#0072f5] hover:underline">PNG 压缩</a>进一步减小体积，或用<a href="/png-to-jpg" class="text-[#0072f5] hover:underline">PNG 转 JPG</a>换成更小的格式。',
+          },
         ],
       },
     },
@@ -950,12 +1195,15 @@ export const zhCN = {
     },
     hash: {
       title: '哈希值生成器：SHA-256、SHA-512 在线计算 | WizGo',
-      description: '在浏览器中为文本和文件生成 SHA-1、SHA-256、SHA-384、SHA-512 哈希值。校验下载完整性，数据全程本地处理，不上传。',
+      description:
+        '在浏览器中为文本和文件生成 SHA-1、SHA-256、SHA-384、SHA-512 哈希值。校验下载完整性，数据全程本地处理，不上传。',
       h1: '哈希值生成器',
-      subheading: '校验文件完整性或对任意文本计算哈希 · SHA-1 / SHA-256 / SHA-384 / SHA-512 · 纯浏览器本地运算',
+      subheading:
+        '校验文件完整性或对任意文本计算哈希 · SHA-1 / SHA-256 / SHA-384 / SHA-512 · 纯浏览器本地运算',
       schema: {
         name: '哈希值生成器',
-        description: '免费在线工具，为文本或文件一次性生成 SHA-1、SHA-256、SHA-384、SHA-512 哈希值，全部在浏览器本地计算。',
+        description:
+          '免费在线工具，为文本或文件一次性生成 SHA-1、SHA-256、SHA-384、SHA-512 哈希值，全部在浏览器本地计算。',
       },
       tabs: { text: '文本', file: '文件' },
       input: {
@@ -1007,7 +1255,8 @@ export const zhCN = {
       subheading: '把视频里的声音提取出来 · 在你的电脑上完成 · 文件不上传',
       schema: {
         name: 'MP4 转 MP3 转换器',
-        description: '免费在线把 MP4 视频中的音频提取并保存为 MP3，浏览器本地处理，文件不会上传。',
+        description:
+          '免费在线把 MP4 视频中的音频提取并保存为 MP3，浏览器本地处理，文件不会上传。',
       },
       upload: {
         drag: '把视频拖到这里',
@@ -1030,7 +1279,8 @@ export const zhCN = {
       },
       errors: {
         tooLargeTemplate: '文件太大了，最多 500MB（你的有 {size}）',
-        decodeFailedSafari: 'Safari 读取这个文件失败。请升级 Safari，或用 Chrome、Firefox 试试。',
+        decodeFailedSafari:
+          'Safari 读取这个文件失败。请升级 Safari，或用 Chrome、Firefox 试试。',
         decodeFailedGeneric: '读不出这个文件里的声音，里面的格式可能比较少见。',
       },
       result: {
@@ -1041,10 +1291,22 @@ export const zhCN = {
       faq: {
         heading: '常见问题',
         items: [
-          { q: '我的视频会被上传到服务器吗？', a: '不会。整个过程都在你浏览器里完成，文件不会离开你的电脑。' },
-          { q: '支持哪些视频？', a: '常见的视频都可以：手机/电脑里的 MP4、iPhone 拍摄的 MOV、M4A 音频，还有 WebM。如果某个文件不行，说明里面的音频格式比较少见。' },
-          { q: '为什么 Safari 上有时候会失败？', a: '老版本的 Safari 读不出某些 MP4 里的声音。把 Safari 升到新版，或者改用 Chrome、Firefox、Edge。' },
-          { q: '有大小限制吗？', a: '有，单个文件最大 500MB。再大可能让浏览器卡死，尤其在手机上。' },
+          {
+            q: '我的视频会被上传到服务器吗？',
+            a: '不会。整个过程都在你浏览器里完成，文件不会离开你的电脑。',
+          },
+          {
+            q: '支持哪些视频？',
+            a: '常见的视频都可以：手机/电脑里的 MP4、iPhone 拍摄的 MOV、M4A 音频，还有 WebM。如果某个文件不行，说明里面的音频格式比较少见。',
+          },
+          {
+            q: '为什么 Safari 上有时候会失败？',
+            a: '老版本的 Safari 读不出某些 MP4 里的声音。把 Safari 升到新版，或者改用 Chrome、Firefox、Edge。',
+          },
+          {
+            q: '有大小限制吗？',
+            a: '有，单个文件最大 500MB。再大可能让浏览器卡死，尤其在手机上。',
+          },
           { q: '可以一次转好几个吗？', a: '暂时还不行，目前一次只能转一个。' },
         ],
       },
@@ -1057,7 +1319,8 @@ export const zhCN = {
       subheading: '降低比特率压缩 MP3 · 本地处理 · 文件不离开你的设备',
       schema: {
         name: 'MP3 压缩工具',
-        description: '免费在线工具，通过降低比特率压缩 MP3 文件。浏览器内 WebAssembly 运行。',
+        description:
+          '免费在线工具，通过降低比特率压缩 MP3 文件。浏览器内 WebAssembly 运行。',
       },
       upload: {
         drag: '拖入音频文件',
@@ -1093,11 +1356,26 @@ export const zhCN = {
       faq: {
         heading: '常见问题',
         items: [
-          { q: 'MP3 能压缩多少？', a: '取决于原始比特率。320kbps 压到 128kbps 大约省 60%；192kbps 压到 96kbps 大约省 50%。' },
-          { q: '会损失音质吗？', a: '会，但多少取决于目标比特率。128kbps 对多数音乐接近原声，96kbps 对流媒体够用，64kbps 仅建议用于语音。' },
-          { q: '音频会上传吗？', a: '不会。一切在你的浏览器里用 WebAssembly 处理，文件不离开设备。' },
-          { q: '可以压 WAV、FLAC 吗？', a: '可以。任何浏览器能解码的音频格式（WAV、FLAC、M4A、OGG）都会被转成 MP3。' },
-          { q: '文件大小上限？', a: '每个文件 500MB。超大文件可能卡浏览器，尤其是手机。' },
+          {
+            q: 'MP3 能压缩多少？',
+            a: '取决于原始比特率。320kbps 压到 128kbps 大约省 60%；192kbps 压到 96kbps 大约省 50%。',
+          },
+          {
+            q: '会损失音质吗？',
+            a: '会，但多少取决于目标比特率。128kbps 对多数音乐接近原声，96kbps 对流媒体够用，64kbps 仅建议用于语音。',
+          },
+          {
+            q: '音频会上传吗？',
+            a: '不会。一切在你的浏览器里用 WebAssembly 处理，文件不离开设备。',
+          },
+          {
+            q: '可以压 WAV、FLAC 吗？',
+            a: '可以。任何浏览器能解码的音频格式（WAV、FLAC、M4A、OGG）都会被转成 MP3。',
+          },
+          {
+            q: '文件大小上限？',
+            a: '每个文件 500MB。超大文件可能卡浏览器，尤其是手机。',
+          },
         ],
       },
     },

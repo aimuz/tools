@@ -36,7 +36,11 @@ fn m_matrix() -> &'static [[f64; 8]; 8] {
     M.get_or_init(|| {
         let mut m = [[0.0; 8]; 8];
         for k in 0..8 {
-            let ck = if k == 0 { 1.0 / std::f64::consts::SQRT_2 } else { 1.0 };
+            let ck = if k == 0 {
+                1.0 / std::f64::consts::SQRT_2
+            } else {
+                1.0
+            };
             for n in 0..8 {
                 m[k][n] = 0.5
                     * ck

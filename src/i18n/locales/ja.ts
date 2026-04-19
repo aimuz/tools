@@ -3,7 +3,8 @@ import type { Translations } from '../schema';
 export const ja = {
   common: {
     siteName: 'WizGo',
-    siteTagline: 'WizGo は無料のオンラインツールボックス：画像圧縮・形式変換・JWT・タイムスタンプなど、開発者の日常ツール。すべてブラウザ内処理でアップロード不要。',
+    siteTagline:
+      'WizGo は無料のオンラインツールボックス：画像圧縮・形式変換・JWT・タイムスタンプなど、開発者の日常ツール。すべてブラウザ内処理でアップロード不要。',
     aboutLink: '概要',
     menuButtonAria: 'メニュー',
     languageSwitcherAria: '言語を切り替え',
@@ -28,12 +29,17 @@ export const ja = {
       needText: '埋め込むテキストを入力してください',
       noWatermark: '透かしが検出されません',
       capacityHintTemplate: '埋め込み可能 {bytes} バイト · 約 {chars} 文字',
-      capacityErrorTemplate: '画像容量が不足しています。最大 {cap} バイト（現在 {len} バイト）',
-      imageTooSmallDct: '画像が小さすぎます。DCT アルゴリズムには最低 128×128 ピクセルが必要です',
-      imageTooSmallLsb: '画像が小さすぎます。透かしを埋め込めません（最低約 32×32 ピクセル必要）',
-      clipboardNotSupported: 'このブラウザはクリップボード API に対応していません',
+      capacityErrorTemplate:
+        '画像容量が不足しています。最大 {cap} バイト（現在 {len} バイト）',
+      imageTooSmallDct:
+        '画像が小さすぎます。DCT アルゴリズムには最低 128×128 ピクセルが必要です',
+      imageTooSmallLsb:
+        '画像が小さすぎます。透かしを埋め込めません（最低約 32×32 ピクセル必要）',
+      clipboardNotSupported:
+        'このブラウザはクリップボード API に対応していません',
       pngGenerationFailed: 'PNG 生成に失敗しました',
-      audioDecodeFailed: '音声をデコードできませんでした。別のファイルを試すか、Chrome / Firefox を使用してください',
+      audioDecodeFailed:
+        '音声をデコードできませんでした。別のファイルを試すか、Chrome / Firefox を使用してください',
       audioEncodeFailed: '音声のエンコードに失敗しました',
       compareBtn: '比較',
       compareBefore: 'オリジナル',
@@ -45,35 +51,65 @@ export const ja = {
       label: '画像ツール',
       items: {
         compress: { name: '画像圧縮', desc: 'PNG / JPG / WebP スマート圧縮' },
-        convert: { name: '画像形式変換', desc: 'PNG JPG WebP GIF BMP 相互変換' },
-        'png-to-jpg': { name: 'PNG → JPG', desc: '透明背景を白で塗りつぶし · より小さく' },
+        convert: {
+          name: '画像形式変換',
+          desc: 'PNG JPG WebP GIF BMP 相互変換',
+        },
+        'png-to-jpg': {
+          name: 'PNG → JPG',
+          desc: '透明背景を白で塗りつぶし · より小さく',
+        },
         'jpg-to-png': { name: 'JPG → PNG', desc: 'ロスレス保存 · 透明度対応' },
         'png-to-webp': { name: 'PNG → WebP', desc: '透明保持 · より小さく' },
         'jpg-to-webp': { name: 'JPG → WebP', desc: '同画質で 25-35% 縮小' },
         watermark: { name: '画像隠し透かし', desc: 'テキスト埋め込み / 抽出' },
-        'text-watermark': { name: '画像テキスト透かし', desc: '提出用 · 盗用防止透かし' },
+        'text-watermark': {
+          name: '画像テキスト透かし',
+          desc: '提出用 · 盗用防止透かし',
+        },
       },
     },
     dev: {
       label: '開発者ツール',
       items: {
         jwt: { name: 'JWT デコード/検証', desc: '解析・生成・署名検証' },
-        timestamp: { name: 'タイムスタンプ変換', desc: 'Unix タイムスタンプと日付を相互変換' },
+        timestamp: {
+          name: 'タイムスタンプ変換',
+          desc: 'Unix タイムスタンプと日付を相互変換',
+        },
         json: { name: 'JSON フォーマッタ', desc: '整形 / 圧縮 / 検証' },
         'code-image': { name: 'コード画像化', desc: 'コードをシェア画像に' },
-        base64: { name: 'Base64 エンコード/デコード', desc: 'テキスト・ファイルのエンコード/デコード' },
+        base64: {
+          name: 'Base64 エンコード/デコード',
+          desc: 'テキスト・ファイルのエンコード/デコード',
+        },
         uuid: { name: 'UUID 生成', desc: '一意な識別子を一括生成' },
-        'url-encode': { name: 'URL エンコード/デコード', desc: 'URL 特殊文字のエンコード/デコード' },
+        'url-encode': {
+          name: 'URL エンコード/デコード',
+          desc: 'URL 特殊文字のエンコード/デコード',
+        },
         color: { name: 'カラー変換', desc: 'HEX・RGB・HSL 相互変換' },
-        qrcode: { name: 'QR コード生成', desc: 'テキスト / リンクから QR コード' },
-        hash: { name: 'ハッシュ値生成', desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 チェックサム' },
+        qrcode: {
+          name: 'QR コード生成',
+          desc: 'テキスト / リンクから QR コード',
+        },
+        hash: {
+          name: 'ハッシュ値生成',
+          desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 チェックサム',
+        },
       },
     },
     media: {
       label: 'メディアツール',
       items: {
-        'mp4-to-mp3': { name: 'MP4 から MP3', desc: '動画ファイルから音声を抽出' },
-        'compress-mp3': { name: 'MP3 圧縮', desc: 'ビットレートを下げて MP3 を小さく' },
+        'mp4-to-mp3': {
+          name: 'MP4 から MP3',
+          desc: '動画ファイルから音声を抽出',
+        },
+        'compress-mp3': {
+          name: 'MP3 圧縮',
+          desc: 'ビットレートを下げて MP3 を小さく',
+        },
       },
     },
   },
@@ -141,12 +177,27 @@ export const ja = {
     json: {
       name: 'JSON フォーマッタ',
       description: 'JSON 整形・圧縮・検証',
-      tags: ['JSON', 'フォーマット', '整形', '圧縮', '検証', 'format', 'parser'],
+      tags: [
+        'JSON',
+        'フォーマット',
+        '整形',
+        '圧縮',
+        '検証',
+        'format',
+        'parser',
+      ],
     },
     base64: {
       name: 'Base64 エンコード/デコード',
       description: 'テキスト/ファイルと Base64 を相互変換',
-      tags: ['Base64', 'エンコード', 'デコード', 'ファイル', 'base64 encode', 'base64 decode'],
+      tags: [
+        'Base64',
+        'エンコード',
+        'デコード',
+        'ファイル',
+        'base64 encode',
+        'base64 decode',
+      ],
     },
     uuid: {
       name: 'UUID ジェネレーター',
@@ -156,12 +207,27 @@ export const ja = {
     'url-encode': {
       name: 'URL エンコード/デコード',
       description: 'URL の特殊文字を処理',
-      tags: ['URL エンコード', 'URL デコード', 'encodeURIComponent', 'パーセントエンコード', 'url encode'],
+      tags: [
+        'URL エンコード',
+        'URL デコード',
+        'encodeURIComponent',
+        'パーセントエンコード',
+        'url encode',
+      ],
     },
     color: {
       name: 'カラー変換',
       description: 'HEX、RGB、HSL の相互変換',
-      tags: ['カラー', '色', 'カラー変換', 'RGB', 'HEX', 'HSL', 'color picker', 'カラーピッカー'],
+      tags: [
+        'カラー',
+        '色',
+        'カラー変換',
+        'RGB',
+        'HEX',
+        'HSL',
+        'color picker',
+        'カラーピッカー',
+      ],
     },
     qrcode: {
       name: 'QR コード生成',
@@ -171,7 +237,16 @@ export const ja = {
     'any-convert': {
       name: '画像変換',
       description: 'PNG JPG WebP 形式の相互変換',
-      tags: ['画像変換', '画像形式変換', 'PNG to JPG', 'JPG to PNG', 'WebP', 'HEIC', 'BMP', 'GIF'],
+      tags: [
+        '画像変換',
+        '画像形式変換',
+        'PNG to JPG',
+        'JPG to PNG',
+        'WebP',
+        'HEIC',
+        'BMP',
+        'GIF',
+      ],
     },
     'any-compress': {
       name: '画像圧縮',
@@ -181,31 +256,70 @@ export const ja = {
     watermark: {
       name: '画像隠し透かし',
       description: '隠しテキストの埋め込み/抽出',
-      tags: ['隠し透かし', 'ステガノグラフィ', 'watermark', 'steganography', 'LSB', 'DCT'],
+      tags: [
+        '隠し透かし',
+        'ステガノグラフィ',
+        'watermark',
+        'steganography',
+        'LSB',
+        'DCT',
+      ],
     },
     'text-watermark': {
       name: '画像テキスト透かし',
       description: '身分証 / 提出用 / 盗用防止透かし',
       tags: [
-        'テキスト透かし', '画像透かし', '画像に透かし', 'オンライン透かし', '身分証透かし',
-        '本人確認書類透かし', '証明書透かし', '契約書透かし', '盗用防止透かし', '著作権透かし',
-        'photo watermark', 'text watermark', 'image watermark',
+        'テキスト透かし',
+        '画像透かし',
+        '画像に透かし',
+        'オンライン透かし',
+        '身分証透かし',
+        '本人確認書類透かし',
+        '証明書透かし',
+        '契約書透かし',
+        '盗用防止透かし',
+        '著作権透かし',
+        'photo watermark',
+        'text watermark',
+        'image watermark',
       ],
     },
     'mp4-to-mp3': {
       name: 'MP4 から MP3',
       description: '動画から音声を抽出 · 128-320 kbps',
-      tags: ['mp4 から mp3', '動画から mp3', '音声抽出', '動画 音声', 'mp3 変換', 'mp4 to mp3'],
+      tags: [
+        'mp4 から mp3',
+        '動画から mp3',
+        '音声抽出',
+        '動画 音声',
+        'mp3 変換',
+        'mp4 to mp3',
+      ],
     },
     'compress-mp3': {
       name: 'MP3 圧縮',
       description: 'MP3 を小さくする · ビットレートを下げる',
-      tags: ['MP3 圧縮', 'MP3 サイズ削減', 'MP3 ダイエット', '音声圧縮', 'MP3 ビットレート'],
+      tags: [
+        'MP3 圧縮',
+        'MP3 サイズ削減',
+        'MP3 ダイエット',
+        '音声圧縮',
+        'MP3 ビットレート',
+      ],
     },
     hash: {
       name: 'ハッシュ値生成',
       description: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 をワンクリックで生成',
-      tags: ['ハッシュ', 'hash', 'sha256', 'sha-256', 'sha512', 'チェックサム', 'ファイル検証', 'checksum'],
+      tags: [
+        'ハッシュ',
+        'hash',
+        'sha256',
+        'sha-256',
+        'sha512',
+        'チェックサム',
+        'ファイル検証',
+        'checksum',
+      ],
     },
   },
   toolCategories: {
@@ -213,34 +327,70 @@ export const ja = {
       name: '画像ツール',
       description: '画像圧縮、形式変換',
       tools: {
-        compress: { name: '画像圧縮', description: '画質を保ちながら画像サイズを圧縮' },
-        convert: { name: '画像形式変換', description: 'PNG JPG WebP GIF BMP 相互変換' },
-        watermark: { name: '画像隠し透かし', description: 'テキスト埋め込み / 抽出' },
-        'text-watermark': { name: '画像テキスト透かし', description: '提出用 / 盗用防止透かし' },
+        compress: {
+          name: '画像圧縮',
+          description: '画質を保ちながら画像サイズを圧縮',
+        },
+        convert: {
+          name: '画像形式変換',
+          description: 'PNG JPG WebP GIF BMP 相互変換',
+        },
+        watermark: {
+          name: '画像隠し透かし',
+          description: 'テキスト埋め込み / 抽出',
+        },
+        'text-watermark': {
+          name: '画像テキスト透かし',
+          description: '提出用 / 盗用防止透かし',
+        },
       },
     },
     code: {
       name: '開発者ツール',
       description: '開発者向けユーティリティ',
       tools: {
-        'code-image': { name: 'コード画像化', description: 'コードを美しいシェア画像に変換' },
+        'code-image': {
+          name: 'コード画像化',
+          description: 'コードを美しいシェア画像に変換',
+        },
         json: { name: 'JSON', description: 'JSON フォーマット' },
         jwt: { name: 'JWT', description: '生成 / 解析 / 検証' },
-        timestamp: { name: 'タイムスタンプ', description: 'Unix タイムスタンプ変換' },
-        base64: { name: 'Base64', description: 'テキスト/ファイルのエンコード/デコード' },
+        timestamp: {
+          name: 'タイムスタンプ',
+          description: 'Unix タイムスタンプ変換',
+        },
+        base64: {
+          name: 'Base64',
+          description: 'テキスト/ファイルのエンコード/デコード',
+        },
         uuid: { name: 'UUID', description: '一意識別子を一括生成' },
-        'url-encode': { name: 'URL エンコード/デコード', description: 'URL 特殊文字の処理' },
+        'url-encode': {
+          name: 'URL エンコード/デコード',
+          description: 'URL 特殊文字の処理',
+        },
         color: { name: 'カラー変換', description: 'HEX、RGB、HSL の相互変換' },
-        qrcode: { name: 'QR コード生成', description: 'テキスト/リンクから QR コードを生成' },
-        hash: { name: 'ハッシュ値生成', description: 'テキストとファイルの SHA チェックサム' },
+        qrcode: {
+          name: 'QR コード生成',
+          description: 'テキスト/リンクから QR コードを生成',
+        },
+        hash: {
+          name: 'ハッシュ値生成',
+          description: 'テキストとファイルの SHA チェックサム',
+        },
       },
     },
     media: {
       name: 'メディアツール',
       description: '音声と動画の変換',
       tools: {
-        'mp4-to-mp3': { name: 'MP4 から MP3', description: '動画ファイルから音声を抽出' },
-        'compress-mp3': { name: 'MP3 圧縮', description: 'MP3 ファイルサイズを削減' },
+        'mp4-to-mp3': {
+          name: 'MP4 から MP3',
+          description: '動画ファイルから音声を抽出',
+        },
+        'compress-mp3': {
+          name: 'MP3 圧縮',
+          description: 'MP3 ファイルサイズを削減',
+        },
       },
     },
   },
@@ -253,7 +403,8 @@ export const ja = {
   manifest: {
     name: 'WizGo',
     shortName: 'WizGo',
-    description: '無料のオンラインツールボックス：画像圧縮、形式変換、JWT、タイムスタンプなど。すべてブラウザ内処理',
+    description:
+      '無料のオンラインツールボックス：画像圧縮、形式変換、JWT、タイムスタンプなど。すべてブラウザ内処理',
   },
   pages: {
     home: {
@@ -261,7 +412,8 @@ export const ja = {
       description:
         'ブラウザ内で動く無料ツール集：画像圧縮、形式変換、JWT デコード、タイムスタンプ、JSON 整形、コード画像化。アップロード不要、インストール不要。',
       heroHeading: '無料オンラインツールボックス',
-      heroSubheading: '画像圧縮、形式変換、JWT、タイムスタンプ · ブラウザ内で処理',
+      heroSubheading:
+        '画像圧縮、形式変換、JWT、タイムスタンプ · ブラウザ内で処理',
       searchPlaceholder: 'ツールを検索（例：PNG 圧縮、to JPG）...',
       emptyState: '該当するツールが見つかりません',
       features: {
@@ -326,16 +478,20 @@ export const ja = {
       descriptionTemplate:
         '{fromLabel} → {toLabel} をブラウザ内で変換。{hintWithSpace}アップロード不要。',
       h1Template: '{fromLabel} → {toLabel}',
-      fallbackHintTemplate: '{fromFull} 画像をオンラインで {toFull} 形式に変換 · ブラウザ内処理',
+      fallbackHintTemplate:
+        '{fromFull} 画像をオンラインで {toFull} 形式に変換 · ブラウザ内処理',
       pairHints: {
-        'png-jpg': '透明背景は白で塗りつぶされ、通常 40-80% 縮小。Web・メール共有に最適。',
-        'png-webp': 'WebP は透明度を保ちつつ PNG より 25-50% 小さく、モダンブラウザで広くサポート。',
+        'png-jpg':
+          '透明背景は白で塗りつぶされ、通常 40-80% 縮小。Web・メール共有に最適。',
+        'png-webp':
+          'WebP は透明度を保ちつつ PNG より 25-50% 小さく、モダンブラウザで広くサポート。',
         'png-gif': 'GIF のみ対応する古いプラットフォーム向け。',
         'png-bmp': 'ロスレスの非圧縮 BMP、古い Windows プログラムとの互換用。',
         'jpg-png': 'ロスレス保存と透明度サポート、ロゴの背景処理に最適。',
         'jpg-webp': '25-35% 縮小、視覚的にほぼ無差。画像が多いサイトに最適。',
         'jpg-gif': '写真を古いチャットプラットフォーム対応形式に。',
-        'jpg-bmp': 'ロスレスだが巨大なビットマップ。印刷や特殊プログラム入力用。',
+        'jpg-bmp':
+          'ロスレスだが巨大なビットマップ。印刷や特殊プログラム入力用。',
         'webp-png': 'WebP 非対応時の安全な選択。透明度を完全保持。',
         'webp-jpg': 'WebP 非対応の古いプラットフォーム向け、最も確実。',
         'webp-gif': '古いブラウザや GIF のみ対応のチャット向け。',
@@ -367,7 +523,8 @@ export const ja = {
         more: '他の形式',
       },
       schema: {
-        descriptionTemplate: '{fromFull} 画像をオンラインで {toFull} 形式に変換、ブラウザ内処理。',
+        descriptionTemplate:
+          '{fromFull} 画像をオンラインで {toFull} 形式に変換、ブラウザ内処理。',
       },
     },
     compress: {
@@ -375,10 +532,12 @@ export const ja = {
       description:
         '無料オンライン画像圧縮ツール。PNG、JPG、JPEG、WebP、GIF などの一般的な形式をサポート、画質を保ちながらファイルサイズを大幅縮小。すべてブラウザ内処理、バッチ圧縮対応。',
       h1: '画像圧縮',
-      subheading: 'PNG・JPG・WebP オンラインロスレス圧縮 · ブラウザ内処理 · バッチ対応',
+      subheading:
+        'PNG・JPG・WebP オンラインロスレス圧縮 · ブラウザ内処理 · バッチ対応',
       schema: {
         name: '画像圧縮',
-        description: '無料オンライン画像圧縮ツール、PNG・JPG・WebP 形式対応、ブラウザ内処理',
+        description:
+          '無料オンライン画像圧縮ツール、PNG・JPG・WebP 形式対応、ブラウザ内処理',
         browserReq: 'WebAssembly 対応のモダンブラウザ',
       },
       upload: {
@@ -399,10 +558,12 @@ export const ja = {
       description:
         '無料オンライン画像形式変換ツール。PNG、JPG、JPEG、WebP、GIF、BMP などの一般的な形式の相互変換に対応。すべてブラウザ内処理、安全・高速・インストール不要。',
       h1: '画像形式変換',
-      subheading: 'PNG・JPG・WebP・GIF・BMP オンライン相互変換 · ブラウザ内処理',
+      subheading:
+        'PNG・JPG・WebP・GIF・BMP オンライン相互変換 · ブラウザ内処理',
       schema: {
         name: '画像形式変換',
-        description: 'PNG・JPG・WebP・GIF・BMP のオンライン相互変換、ブラウザ内処理',
+        description:
+          'PNG・JPG・WebP・GIF・BMP のオンライン相互変換、ブラウザ内処理',
       },
       upload: {
         drag: '画像をここにドロップ',
@@ -427,8 +588,10 @@ export const ja = {
       h1: 'WizGo について',
       schema: {
         name: 'WizGo について',
-        description: 'WizGo の技術スタックとプライバシーポリシー：すべてのツールはブラウザ内で動作、ファイルアップロードなし。',
-        orgDescription: '無料のオンラインツールボックス。画像圧縮、形式変換、JWT、タイムスタンプなど、すべてブラウザ内で処理。',
+        description:
+          'WizGo の技術スタックとプライバシーポリシー：すべてのツールはブラウザ内で動作、ファイルアップロードなし。',
+        orgDescription:
+          '無料のオンラインツールボックス。画像圧縮、形式変換、JWT、タイムスタンプなど、すべてブラウザ内で処理。',
       },
       intro:
         'WizGo は無料・安全・高速のオンラインツールボックスです。ユーザーのデータプライバシーは最重要であると確信しており、すべてのツールはあなたのブラウザ内で完結します。ファイルやデータがサーバーにアップロードされることはありません。',
@@ -436,13 +599,11 @@ export const ja = {
         heading: '技術スタック',
         image: {
           title: '画像処理',
-          body:
-            'Rust で書かれた WebAssembly モジュール。imagequant パレット量子化と jpeg-encoder 最適化パイプラインを統合、PNG・JPEG・WebP・GIF・BMP などに対応',
+          body: 'Rust で書かれた WebAssembly モジュール。imagequant パレット量子化と jpeg-encoder 最適化パイプラインを統合、PNG・JPEG・WebP・GIF・BMP などに対応',
         },
         crypto: {
           title: '暗号と署名',
-          body:
-            'JWT デコード・発行・検証はブラウザネイティブの WebCrypto。HS、RS、ES 系のアルゴリズムに対応、サードパーティ依存ゼロ',
+          body: 'JWT デコード・発行・検証はブラウザネイティブの WebCrypto。HS、RS、ES 系のアルゴリズムに対応、サードパーティ依存ゼロ',
         },
         frontend: {
           title: 'フロントエンドフレームワーク',
@@ -455,7 +616,8 @@ export const ja = {
       },
       privacy: {
         heading: 'プライバシーポリシー',
-        intro: 'WizGo はピュアフロントエンドアーキテクチャを採用、すべてのファイル処理はあなたのブラウザ内で完結します：',
+        intro:
+          'WizGo はピュアフロントエンドアーキテクチャを採用、すべてのファイル処理はあなたのブラウザ内で完結します：',
         items: [
           'ファイルはサーバーにアップロードされません',
           '個人データは一切収集しません',
@@ -464,7 +626,8 @@ export const ja = {
       },
       limits: {
         heading: '制限事項',
-        intro: 'ブラウザ環境の制約により、WizGo には以下の利用上の制約があります：',
+        intro:
+          'ブラウザ環境の制約により、WizGo には以下の利用上の制約があります：',
         items: [
           '画像ファイルは 100MB 以内を推奨',
           '大きなファイルは処理に時間がかかる場合があります',
@@ -473,13 +636,34 @@ export const ja = {
       },
       credits: {
         heading: 'OSS への謝辞',
-        intro: 'WizGo の構築には以下の優れたオープンソースライブラリを使用しています：',
+        intro:
+          'WizGo の構築には以下の優れたオープンソースライブラリを使用しています：',
         items: [
-          { label: 'imagequant', href: 'https://github.com/ImageOptim/libimagequant', desc: 'PNG パレット量子化' },
-          { label: 'lodepng-rust', href: 'https://github.com/kornelski/lodepng-rust', desc: '純 Rust の PNG エンコーディング' },
-          { label: 'jpeg-encoder', href: 'https://github.com/vstroebel/jpeg-encoder', desc: 'Rust の JPEG エンコーダー' },
-          { label: 'Astro', href: 'https://astro.build', desc: 'モダンな静的サイトジェネレーター' },
-          { label: 'Geist', href: 'https://vercel.com/font', desc: 'Vercel のデザインフォント' },
+          {
+            label: 'imagequant',
+            href: 'https://github.com/ImageOptim/libimagequant',
+            desc: 'PNG パレット量子化',
+          },
+          {
+            label: 'lodepng-rust',
+            href: 'https://github.com/kornelski/lodepng-rust',
+            desc: '純 Rust の PNG エンコーディング',
+          },
+          {
+            label: 'jpeg-encoder',
+            href: 'https://github.com/vstroebel/jpeg-encoder',
+            desc: 'Rust の JPEG エンコーダー',
+          },
+          {
+            label: 'Astro',
+            href: 'https://astro.build',
+            desc: 'モダンな静的サイトジェネレーター',
+          },
+          {
+            label: 'Geist',
+            href: 'https://vercel.com/font',
+            desc: 'Vercel のデザインフォント',
+          },
         ],
       },
     },
@@ -488,7 +672,8 @@ export const ja = {
       description:
         '画像のピクセルにテキストを埋め込み、または画像から透かしを抽出。LSB と DCT の 2 アルゴリズム対応。すべてブラウザ内処理。',
       h1: '画像隠し透かし',
-      subheading: 'テキストを画像のピクセルに隠す、または画像から抽出 · ブラウザ内処理',
+      subheading:
+        'テキストを画像のピクセルに隠す、または画像から抽出 · ブラウザ内処理',
       schema: {
         name: '画像隠し透かし',
         description:
@@ -530,7 +715,8 @@ export const ja = {
       description:
         '無料オンライン UUID ジェネレーター。一括生成、複数フォーマット（標準/ハイフンなし/大文字）、ワンクリックコピーに対応。暗号学的に安全な乱数を使用、ブラウザ内処理。',
       h1: 'UUID ジェネレーター',
-      subheading: '一意識別子を一括生成 · 標準 / ハイフンなし / 大文字 · ブラウザ内生成',
+      subheading:
+        '一意識別子を一括生成 · 標準 / ハイフンなし / 大文字 · ブラウザ内生成',
       schema: {
         name: 'UUID ジェネレーター',
         description: 'オンラインで UUID を一括生成、複数フォーマット対応',
@@ -548,8 +734,7 @@ export const ja = {
       copiedBtn: 'コピーしました',
       info: {
         heading: 'UUID について',
-        body:
-          'UUID（汎用一意識別子）は 128 ビットの識別子で、通常 32 桁の 16 進数を 5 グループに分けて表記します。本ツールはブラウザ内蔵の暗号学的に安全な乱数生成器（crypto.getRandomValues）を使用し UUID v4 を生成、極めて高い一意性を保証。データベース主キー、セッション ID、API キーなどに最適。',
+        body: 'UUID（汎用一意識別子）は 128 ビットの識別子で、通常 32 桁の 16 進数を 5 グループに分けて表記します。本ツールはブラウザ内蔵の暗号学的に安全な乱数生成器（crypto.getRandomValues）を使用し UUID v4 を生成、極めて高い一意性を保証。データベース主キー、セッション ID、API キーなどに最適。',
       },
     },
     urlEncode: {
@@ -557,7 +742,8 @@ export const ja = {
       description:
         '無料オンライン URL エンコード/デコードツール。日本語や特殊文字のエンコード、バッチ処理、encodeURI と encodeURIComponent モード切り替えに対応。ブラウザ内処理。',
       h1: 'URL エンコード/デコード',
-      subheading: 'URL 特殊文字のエンコード/デコード · 日本語対応 · バッチ処理 · ブラウザ内処理',
+      subheading:
+        'URL 特殊文字のエンコード/デコード · 日本語対応 · バッチ処理 · ブラウザ内処理',
       schema: {
         name: 'URL エンコード/デコード',
         description: 'URL エンコード/デコードツール、日本語と特殊文字に対応',
@@ -568,8 +754,10 @@ export const ja = {
         label: 'エンコードモード',
         component: '完全エンコード（推奨）',
         uri: 'URL 文字を保持',
-        componentHint: '完全エンコード：すべての特殊文字をエンコード、URL パラメーター値に最適',
-        uriHint: 'URL 文字を保持： : / ? # & = などの URL 予約文字をエンコードしない、完全な URL のエンコードに最適',
+        componentHint:
+          '完全エンコード：すべての特殊文字をエンコード、URL パラメーター値に最適',
+        uriHint:
+          'URL 文字を保持： : / ? # & = などの URL 予約文字をエンコードしない、完全な URL のエンコードに最適',
       },
       labels: {
         inputEncode: 'テキストを入力',
@@ -593,7 +781,12 @@ export const ja = {
       },
       examples: {
         heading: 'エンコード例',
-        labels: { chinese: '日本語', space: 'スペース', ampersand: '&', equals: '=' },
+        labels: {
+          chinese: '日本語',
+          space: 'スペース',
+          ampersand: '&',
+          equals: '=',
+        },
       },
       useCases: {
         heading: '利用シーン',
@@ -611,10 +804,12 @@ export const ja = {
       description:
         '無料オンライン QR コードジェネレーター。テキスト、URL、連絡先から QR コードを生成。サイズ・色のカスタマイズ、PNG/SVG ダウンロードに対応。すべてブラウザ内生成。',
       h1: 'QR コード生成',
-      subheading: 'テキスト/リンクから QR コード · スタイルカスタマイズ · PNG/SVG ダウンロード · ブラウザ内生成',
+      subheading:
+        'テキスト/リンクから QR コード · スタイルカスタマイズ · PNG/SVG ダウンロード · ブラウザ内生成',
       schema: {
         name: 'QR コードジェネレーター',
-        description: 'オンラインで QR コードを生成、サイズと色のカスタマイズに対応',
+        description:
+          'オンラインで QR コードを生成、サイズと色のカスタマイズに対応',
       },
       content: {
         label: 'コンテンツ',
@@ -644,7 +839,8 @@ export const ja = {
       emptyContent: 'コンテンツを入力してください',
       downloadPng: 'PNG をダウンロード',
       downloadSvg: 'SVG をダウンロード',
-      infoTemplate: 'コンテンツ長：{chars} 文字 / {bytes} バイト · サイズ：{size}x{size}px',
+      infoTemplate:
+        'コンテンツ長：{chars} 文字 / {bytes} バイト · サイズ：{size}x{size}px',
       examples: {
         heading: '例',
         url: 'URL：',
@@ -658,10 +854,12 @@ export const ja = {
       description:
         '無料 Unix タイムスタンプ ⇄ 日付変換。秒/ミリ秒、UTC/ローカル、ISO 8601 対応。現在のタイムスタンプをリアルタイム表示、ワンクリックコピー。',
       h1: 'タイムスタンプ変換',
-      subheading: 'Unix タイムスタンプと日付の相互変換 · 秒 / ミリ秒 / ISO 8601 対応',
+      subheading:
+        'Unix タイムスタンプと日付の相互変換 · 秒 / ミリ秒 / ISO 8601 対応',
       schema: {
         name: 'Unix タイムスタンプ変換',
-        description: 'Unix タイムスタンプと日付の相互変換ツール、秒/ミリ秒、UTC/ローカルタイムゾーン対応',
+        description:
+          'Unix タイムスタンプと日付の相互変換ツール、秒/ミリ秒、UTC/ローカルタイムゾーン対応',
       },
       currentTime: {
         label: '現在時刻',
@@ -679,30 +877,45 @@ export const ja = {
         fillNowBtn: '現在を入力',
         units: { auto: '自動', sec: '秒', ms: 'ミリ秒' },
         placeholder: '例：1516239022 または 1516239022000',
-        errors: { nan: '数値である必要があります', oor: '数値が範囲外です', invalid: '無効なタイムスタンプ' },
-        outputs: { local: 'ローカル時刻', utc: 'UTC 時刻', iso: 'ISO 8601', relative: '相対時刻' },
+        errors: {
+          nan: '数値である必要があります',
+          oor: '数値が範囲外です',
+          invalid: '無効なタイムスタンプ',
+        },
+        outputs: {
+          local: 'ローカル時刻',
+          utc: 'UTC 時刻',
+          iso: 'ISO 8601',
+          relative: '相対時刻',
+        },
       },
       d2t: {
         label: '日付 → タイムスタンプ',
         fillNowBtn: '現在を入力',
         isoPlaceholder: 'または ISO 文字列を貼り付け：2024-01-18T03:30:22Z',
-        errors: { invalidDate: '日付が無効です', unparseable: '日付文字列を解析できません' },
+        errors: {
+          invalidDate: '日付が無効です',
+          unparseable: '日付文字列を解析できません',
+        },
         outputs: { sec: 'Unix 秒', ms: 'Unix ミリ秒', iso: 'ISO 8601 (UTC)' },
       },
       copyBtn: 'コピー',
       copiedBtn: 'コピーしました',
       justNow: 'たった今',
-      footerHint: 'Unix エポック：1970-01-01 00:00:00 UTC · 秒タイムスタンプは 10 桁、ミリ秒は 13 桁',
+      footerHint:
+        'Unix エポック：1970-01-01 00:00:00 UTC · 秒タイムスタンプは 10 桁、ミリ秒は 13 桁',
     },
     color: {
       title: 'カラー変換 - オンライン HEX/RGB/HSL カラー値変換ツール | WizGo',
       description:
         '無料オンラインカラー変換ツール。16 進カラー値、RGB 値、HSL カラーの相互変換に対応。リアルタイムプレビュー、ワンクリックコピー、デザイナーや開発者に最適。ブラウザ内処理。',
       h1: 'カラー変換',
-      subheading: '16 進、RGB、HSL カラー値の相互変換 · リアルタイムプレビュー · ブラウザ内処理',
+      subheading:
+        '16 進、RGB、HSL カラー値の相互変換 · リアルタイムプレビュー · ブラウザ内処理',
       schema: {
         name: 'カラー変換',
-        description: 'HEX、RGB、HSL カラー値相互変換ツール、リアルタイムプレビュー',
+        description:
+          'HEX、RGB、HSL カラー値相互変換ツール、リアルタイムプレビュー',
       },
       pickerHint: 'クリックで色を選択',
       hex: { label: '16 進カラー値' },
@@ -712,9 +925,18 @@ export const ja = {
       copiedBtn: 'コピーしました',
       quickColorsLabel: 'よく使う色',
       colorNames: {
-        black: '黒', red: '赤', orange: 'オレンジ', amber: 'アンバー',
-        yellowGreen: '黄緑', green: '緑', cyan: 'シアン', blue: '青',
-        indigo: 'インディゴ', purple: '紫', pink: 'ピンク', white: '白',
+        black: '黒',
+        red: '赤',
+        orange: 'オレンジ',
+        amber: 'アンバー',
+        yellowGreen: '黄緑',
+        green: '緑',
+        cyan: 'シアン',
+        blue: '青',
+        indigo: 'インディゴ',
+        purple: '紫',
+        pink: 'ピンク',
+        white: '白',
       },
       randomBtn: 'ランダムカラー',
     },
@@ -734,7 +956,8 @@ export const ja = {
       copyBtn: '画像をコピー',
       downloadBtn: '画像をダウンロード',
       tipPrefix: 'ヒント：',
-      tipBody: '多言語のシンタックスハイライトに対応、コードはリアルタイムでレンダリングされ、入力するだけで効果が見られます。',
+      tipBody:
+        '多言語のシンタックスハイライトに対応、コードはリアルタイムでレンダリングされ、入力するだけで効果が見られます。',
       renderError: 'レンダリング失敗',
     },
     base64: {
@@ -742,10 +965,12 @@ export const ja = {
       description:
         '無料 Base64 エンコード/デコード。テキストと Base64 の相互変換、画像プレビュー、バイナリダウンロード対応。ブラウザ内処理。',
       h1: 'Base64 エンコード/デコード',
-      subheading: 'テキスト/ファイルと Base64 の相互変換 · 画像、テキスト、バイナリ対応 · ブラウザ内処理',
+      subheading:
+        'テキスト/ファイルと Base64 の相互変換 · 画像、テキスト、バイナリ対応 · ブラウザ内処理',
       schema: {
         name: 'Base64 エンコード/デコード',
-        description: 'テキスト/ファイルと Base64 の相互変換ツール、画像、テキスト、バイナリ対応',
+        description:
+          'テキスト/ファイルと Base64 の相互変換ツール、画像、テキスト、バイナリ対応',
       },
       tabs: { encode: 'エンコード', decode: 'デコード' },
       labels: {
@@ -791,10 +1016,12 @@ export const ja = {
       description:
         'オンライン JSON Web Token ツール。header/payload のデコード、署名検証、新しい token の生成。HS256/384/512、RS256/384/512、ES256/384 アルゴリズム対応、ブラウザ内処理。',
       h1: 'JWT デコード/生成/検証',
-      subheading: 'JSON Web Token オンラインツール · HS256 RS256 ES256 · ブラウザ内処理',
+      subheading:
+        'JSON Web Token オンラインツール · HS256 RS256 ES256 · ブラウザ内処理',
       schema: {
         name: 'JWT デコード/生成/検証',
-        description: 'JSON Web Token オンラインツール、HS/RS/ES 系アルゴリズム対応、ブラウザ内処理',
+        description:
+          'JSON Web Token オンラインツール、HS/RS/ES 系アルゴリズム対応、ブラウザ内処理',
       },
       algoLabel: '署名アルゴリズム',
       encodedLabel: 'Encoded · 完全な Token',
@@ -810,7 +1037,8 @@ export const ja = {
         needPubkey: '署名検証には public key を貼り付けてください',
         needSecretForSign: '署名生成には secret を入力してください',
         needPrivkeyForSign: '署名生成には private key を貼り付けてください',
-        signedNoVerify: '署名済 · 検証には public key/secret を貼り付けてください',
+        signedNoVerify:
+          '署名済 · 検証には public key/secret を貼り付けてください',
         failTemplate: '検証失敗：{msg}',
       },
       headerLabel: 'Header',
@@ -822,11 +1050,14 @@ export const ja = {
       },
       pubkeyLabel: 'Public Key（PEM、検証用）',
       privkeyLabel: 'Private Key（PEM、署名用）',
-      pubkeyPlaceholder: '-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----',
-      privkeyPlaceholder: '-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----',
+      pubkeyPlaceholder:
+        '-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----',
+      privkeyPlaceholder:
+        '-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----',
       errors: {
         pemEmpty: 'PEM の内容が空です',
-        jwtFormat: 'JWT 形式エラー：header.payload.signature である必要があります',
+        jwtFormat:
+          'JWT 形式エラー：header.payload.signature である必要があります',
         headerB64: 'Header の base64 が無効です',
         payloadB64: 'Payload の base64 が無効です',
         headerJson: 'Header が有効な JSON ではありません',
@@ -839,10 +1070,16 @@ export const ja = {
       description:
         '画像にテキスト透かしを追加：身分証・契約書・ICP 提出に「○○のみ使用」を付与。タイル/中央/右下配置、色・サイズ調整可能。ブラウザ内処理。',
       h1: '画像テキスト透かし',
-      subheading: '画像に「ICP 提出専用」などのテキスト透かしを追加 · 盗用防止、出所追跡 · ブラウザ内処理',
+      subheading:
+        '画像に「ICP 提出専用」などのテキスト透かしを追加 · 盗用防止、出所追跡 · ブラウザ内処理',
       schema: {
         name: '画像テキスト透かし',
-        alternateNames: ['身分証透かし', '証明書透かし', '提出用透かしツール', '画像テキスト透かし'],
+        alternateNames: [
+          '身分証透かし',
+          '証明書透かし',
+          '提出用透かしツール',
+          '画像テキスト透かし',
+        ],
         description:
           '画像に可視のテキスト透かしを追加。身分証の不正使用防止、証明書コピー、ICP 提出、著作権防護などに使用。タイル、中央、右下の 3 種類の配置に対応、すべてブラウザ内処理。',
         featureList: [
@@ -856,22 +1093,56 @@ export const ja = {
       },
       howToSchema: {
         name: '画像（身分証 / 証明書）にテキスト透かしを追加する方法',
-        description: '3 ステップで「○○のみ使用」のテキスト透かしを追加し、証明書の不正使用を防止',
+        description:
+          '3 ステップで「○○のみ使用」のテキスト透かしを追加し、証明書の不正使用を防止',
         toolName: 'ブラウザ（Chrome / Safari / Edge）',
         steps: [
-          { name: '画像をアップロード', text: 'アップロード領域をクリックするか画像を直接ドラッグ。PNG / JPG / WebP 対応、画像はローカル処理されサーバーにアップロードされません。' },
-          { name: '透かしテキストを入力', text: '例：「○○銀行 2026 年住宅ローン申請のみ使用」「○○.com サイト ICP 提出のみ使用」など。具体的な用途と相手先を明記してください。' },
-          { name: 'スタイル調整とダウンロード', text: 'タイル（裁断防止）を選択、色・サイズ・透明度・回転角度を調整し、PNG ダウンロードをクリック。' },
+          {
+            name: '画像をアップロード',
+            text: 'アップロード領域をクリックするか画像を直接ドラッグ。PNG / JPG / WebP 対応、画像はローカル処理されサーバーにアップロードされません。',
+          },
+          {
+            name: '透かしテキストを入力',
+            text: '例：「○○銀行 2026 年住宅ローン申請のみ使用」「○○.com サイト ICP 提出のみ使用」など。具体的な用途と相手先を明記してください。',
+          },
+          {
+            name: 'スタイル調整とダウンロード',
+            text: 'タイル（裁断防止）を選択、色・サイズ・透明度・回転角度を調整し、PNG ダウンロードをクリック。',
+          },
         ],
       },
       faqSchema: {
         items: [
-          { question: '身分証に透かしを入れるのは合法ですか？', answer: '合法であり、広く推奨されています。身分証コピー / スキャンに「○○専用」のテキスト透かしを追加することは、証明書が他用途に流用されるのを防ぐ有効な手段です。' },
-          { question: '透かしテキストには何を書くべき？', answer: '「用途 + 相手先 + 日付」の 3 要素を含めることを推奨。例：「○○銀行 2026 年住宅ローン申請のみ使用」。具体的なほど悪用されにくくなります。' },
-          { question: '透かしはどこに入れると最も安全？', answer: 'タイルモードが最も安全です——テキストを画像全体に斜めに敷き詰め、裁断で除去できません。右下などの隅の透かしは直接裁断されやすいです。身分証など重要な証明書はタイル + 半透明グレーを推奨。' },
-          { question: '画像はサーバーにアップロードされますか？', answer: 'いいえ。本ツールのすべての処理はあなたのブラウザ内で完結します（Canvas 2D）。画像ファイルや透かしテキストはあなたのデバイスから出ることはなく、サーバーは静的ページのみ提供します。' },
-          { question: '透かしは PS で消せる？', answer: 'テキスト透かしは可視のピクセル変更のため、熟練者は PS で消去可能ですが、時間がかかり痕跡が残ります。一般的な盗用シーンでは、テキスト透かしの抑止力で十分です。消去耐性のある「不可視署名」が必要な場合は、画像隠し透かしツールをご利用ください。' },
-          { question: '透かし入り画像は JPG と PNG のどちらで保存？', answer: '本ツールは PNG をエクスポート（ロスレス、透かしの輪郭が最も鮮明）。ファイルが大きすぎる場合は「PNG 圧縮」ツールで更にサイズを縮小できます。' },
+          {
+            question: '身分証に透かしを入れるのは合法ですか？',
+            answer:
+              '合法であり、広く推奨されています。身分証コピー / スキャンに「○○専用」のテキスト透かしを追加することは、証明書が他用途に流用されるのを防ぐ有効な手段です。',
+          },
+          {
+            question: '透かしテキストには何を書くべき？',
+            answer:
+              '「用途 + 相手先 + 日付」の 3 要素を含めることを推奨。例：「○○銀行 2026 年住宅ローン申請のみ使用」。具体的なほど悪用されにくくなります。',
+          },
+          {
+            question: '透かしはどこに入れると最も安全？',
+            answer:
+              'タイルモードが最も安全です——テキストを画像全体に斜めに敷き詰め、裁断で除去できません。右下などの隅の透かしは直接裁断されやすいです。身分証など重要な証明書はタイル + 半透明グレーを推奨。',
+          },
+          {
+            question: '画像はサーバーにアップロードされますか？',
+            answer:
+              'いいえ。本ツールのすべての処理はあなたのブラウザ内で完結します（Canvas 2D）。画像ファイルや透かしテキストはあなたのデバイスから出ることはなく、サーバーは静的ページのみ提供します。',
+          },
+          {
+            question: '透かしは PS で消せる？',
+            answer:
+              'テキスト透かしは可視のピクセル変更のため、熟練者は PS で消去可能ですが、時間がかかり痕跡が残ります。一般的な盗用シーンでは、テキスト透かしの抑止力で十分です。消去耐性のある「不可視署名」が必要な場合は、画像隠し透かしツールをご利用ください。',
+          },
+          {
+            question: '透かし入り画像は JPG と PNG のどちらで保存？',
+            answer:
+              '本ツールは PNG をエクスポート（ロスレス、透かしの輪郭が最も鮮明）。ファイルが大きすぎる場合は「PNG 圧縮」ツールで更にサイズを縮小できます。',
+          },
         ],
       },
       imageLabel: '画像',
@@ -885,8 +1156,13 @@ export const ja = {
       colorLabel: '色',
       boldLabel: '太字',
       swatches: {
-        red: '提出用赤', white: '白', lightGray: '薄灰', midGray: '中灰',
-        darkGray: '濃灰', charcoal: '炭灰', black: '黒',
+        red: '提出用赤',
+        white: '白',
+        lightGray: '薄灰',
+        midGray: '中灰',
+        darkGray: '濃灰',
+        charcoal: '炭灰',
+        black: '黒',
       },
       customColorTitle: 'カスタムカラー',
       opacityLabel: '透明度',
@@ -899,10 +1175,26 @@ export const ja = {
       useCases: {
         heading: 'よくある用途',
         items: [
-          { title: '身分証透かし · 不正使用防止', bodyHtml: '銀行手続き、賃貸、入社時に身分証コピーの提出が頻繁にあります。「○○銀行 2026 年住宅ローン申請のみ使用」のようなテキスト透かしを追加することで、身分証情報がローンや口座開設など他用途に流用されるのを防ぎ、なりすましリスクを低減。<strong>タイルモード</strong>、透明度 30–50% を推奨。' },
-          { title: '登記簿 / 契約書 / 証明書の透かし', bodyHtml: '会社の登記簿、口座開設許可、契約書スキャンを取引先に提出する際、「○○用途のみ」の透かしを追加することで再利用を制限できます。学位証、運転免許、パスポートなどの電子コピーにも同様。' },
-          { title: 'サイト ICP 提出透かし', bodyHtml: 'ICP 提出資料には、主体身分証明書と法人委任状に画像透かしが必要です。一般的な形式：「○○.com サイト ICP 提出のみ使用」、赤色のタイルがクラウドサービスの提出推奨スタイルです。' },
-          { title: '盗用防止 / 著作権保護', bodyHtml: '写真、商品画像、イラストを SNS 公開前に作者署名やドメインを追加することで、直接盗用される確率を大幅に下げられます。著作権マークは<strong>右下</strong>で控えめに、盗用防止は<strong>タイル</strong>で強くカバー。' },
+          {
+            title: '身分証透かし · 不正使用防止',
+            bodyHtml:
+              '銀行手続き、賃貸、入社時に身分証コピーの提出が頻繁にあります。「○○銀行 2026 年住宅ローン申請のみ使用」のようなテキスト透かしを追加することで、身分証情報がローンや口座開設など他用途に流用されるのを防ぎ、なりすましリスクを低減。<strong>タイルモード</strong>、透明度 30–50% を推奨。',
+          },
+          {
+            title: '登記簿 / 契約書 / 証明書の透かし',
+            bodyHtml:
+              '会社の登記簿、口座開設許可、契約書スキャンを取引先に提出する際、「○○用途のみ」の透かしを追加することで再利用を制限できます。学位証、運転免許、パスポートなどの電子コピーにも同様。',
+          },
+          {
+            title: 'サイト ICP 提出透かし',
+            bodyHtml:
+              'ICP 提出資料には、主体身分証明書と法人委任状に画像透かしが必要です。一般的な形式：「○○.com サイト ICP 提出のみ使用」、赤色のタイルがクラウドサービスの提出推奨スタイルです。',
+          },
+          {
+            title: '盗用防止 / 著作権保護',
+            bodyHtml:
+              '写真、商品画像、イラストを SNS 公開前に作者署名やドメインを追加することで、直接盗用される確率を大幅に下げられます。著作権マークは<strong>右下</strong>で控えめに、盗用防止は<strong>タイル</strong>で強くカバー。',
+          },
         ],
       },
       steps: {
@@ -917,12 +1209,36 @@ export const ja = {
       faq: {
         heading: 'よくある質問',
         items: [
-          { q: '身分証に透かしを入れるのは合法？', aHtml: '合法であり、広く推奨されています。身分証コピー / スキャンに「○○専用」のテキスト透かしを追加することは、証明書が他用途に流用されるのを防ぐ有効な手段です。' },
-          { q: '透かしテキストには何を書くべき？', aHtml: '「用途 + 相手先 + 日付」の 3 要素を含めることを推奨。例：「○○銀行 2026 年住宅ローン申請のみ使用」。サイト提出なら「yourdomain.com サイト ICP 提出のみ使用」。' },
-          { q: '透かしはどこに入れると最も安全？', aHtml: 'タイルモードが最も安全です——テキストを画像全体に斜めに敷き詰め、裁断で除去できません。右下などの隅の透かしは直接裁断されやすいです。身分証、銀行カードなど重要な証明書はタイル + 半透明グレーを推奨。安全かつ視認性も保てます。' },
-          { q: '画像はサーバーにアップロードされる？', aHtml: 'いいえ。本ツールのすべての処理はあなたのブラウザ内で完結します（Canvas 2D で直接ピクセルを描画）。画像ファイルや透かしテキストはあなたのデバイスから出ません。オフラインでも継続使用可能。' },
-          { q: '透かしは PS で消せる？', aHtml: 'テキスト透かしは可視のピクセル変更のため、熟練者は PS で消去可能ですが、時間がかかり痕跡が残ります。一般的な盗用シーンでは、テキスト透かしの抑止力で十分です。消去耐性のある「不可視署名」が必要な場合は、<a href="/ja/watermark" class="text-[#0072f5] hover:underline">画像隠し透かし</a>ツールをご利用ください。' },
-          { q: '透かし入り画像が大きすぎる場合は？', aHtml: '本ツールは PNG をエクスポート（ロスレス、透かしの輪郭が最も鮮明）。アップロードや送信に支障があるほど大きい場合は、<a href="/ja/compress-png" class="text-[#0072f5] hover:underline">PNG 圧縮</a>でサイズを縮小、または<a href="/ja/png-to-jpg" class="text-[#0072f5] hover:underline">PNG → JPG</a>で更に小さい形式に変換できます。' },
+          {
+            q: '身分証に透かしを入れるのは合法？',
+            aHtml:
+              '合法であり、広く推奨されています。身分証コピー / スキャンに「○○専用」のテキスト透かしを追加することは、証明書が他用途に流用されるのを防ぐ有効な手段です。',
+          },
+          {
+            q: '透かしテキストには何を書くべき？',
+            aHtml:
+              '「用途 + 相手先 + 日付」の 3 要素を含めることを推奨。例：「○○銀行 2026 年住宅ローン申請のみ使用」。サイト提出なら「yourdomain.com サイト ICP 提出のみ使用」。',
+          },
+          {
+            q: '透かしはどこに入れると最も安全？',
+            aHtml:
+              'タイルモードが最も安全です——テキストを画像全体に斜めに敷き詰め、裁断で除去できません。右下などの隅の透かしは直接裁断されやすいです。身分証、銀行カードなど重要な証明書はタイル + 半透明グレーを推奨。安全かつ視認性も保てます。',
+          },
+          {
+            q: '画像はサーバーにアップロードされる？',
+            aHtml:
+              'いいえ。本ツールのすべての処理はあなたのブラウザ内で完結します（Canvas 2D で直接ピクセルを描画）。画像ファイルや透かしテキストはあなたのデバイスから出ません。オフラインでも継続使用可能。',
+          },
+          {
+            q: '透かしは PS で消せる？',
+            aHtml:
+              'テキスト透かしは可視のピクセル変更のため、熟練者は PS で消去可能ですが、時間がかかり痕跡が残ります。一般的な盗用シーンでは、テキスト透かしの抑止力で十分です。消去耐性のある「不可視署名」が必要な場合は、<a href="/ja/watermark" class="text-[#0072f5] hover:underline">画像隠し透かし</a>ツールをご利用ください。',
+          },
+          {
+            q: '透かし入り画像が大きすぎる場合は？',
+            aHtml:
+              '本ツールは PNG をエクスポート（ロスレス、透かしの輪郭が最も鮮明）。アップロードや送信に支障があるほど大きい場合は、<a href="/ja/compress-png" class="text-[#0072f5] hover:underline">PNG 圧縮</a>でサイズを縮小、または<a href="/ja/png-to-jpg" class="text-[#0072f5] hover:underline">PNG → JPG</a>で更に小さい形式に変換できます。',
+          },
         ],
       },
     },
@@ -952,10 +1268,12 @@ export const ja = {
       description:
         'テキストやファイルの SHA-1、SHA-256、SHA-384、SHA-512 ハッシュをブラウザで生成。ダウンロードの整合性チェックに。データはあなたのデバイスから出ません。',
       h1: 'ハッシュ値生成',
-      subheading: 'ファイルの整合性チェックやテキストのハッシュ化 · SHA-1 / SHA-256 / SHA-384 / SHA-512 · ブラウザ内で完結',
+      subheading:
+        'ファイルの整合性チェックやテキストのハッシュ化 · SHA-1 / SHA-256 / SHA-384 / SHA-512 · ブラウザ内で完結',
       schema: {
         name: 'ハッシュ値生成',
-        description: 'テキストやファイルの SHA-1、SHA-256、SHA-384、SHA-512 ハッシュをブラウザ内で計算する無料オンラインツール。',
+        description:
+          'テキストやファイルの SHA-1、SHA-256、SHA-384、SHA-512 ハッシュをブラウザ内で計算する無料オンラインツール。',
       },
       tabs: { text: 'テキスト', file: 'ファイル' },
       input: {
@@ -985,9 +1303,11 @@ export const ja = {
         sha512: 'SHA-512',
       },
       errors: {
-        tooLargeTemplate: 'ファイルが大きすぎます（{size}）。最大 2GB まで対応しています。',
+        tooLargeTemplate:
+          'ファイルが大きすぎます（{size}）。最大 2GB まで対応しています。',
         readFailed: 'ファイルを読み込めませんでした。もう一度お試しください。',
-        hashFailed: '計算に失敗しました。ブラウザがこのアルゴリズムに対応していない可能性があります。',
+        hashFailed:
+          '計算に失敗しました。ブラウザがこのアルゴリズムに対応していない可能性があります。',
       },
       tips: {
         heading: 'ハッシュ値について',
@@ -1004,10 +1324,12 @@ export const ja = {
       description:
         '動画から音声だけ取り出して MP3 で保存。無料、すぐ使える、ブラウザで完結。アップロード・登録・インストールは不要です。',
       h1: '動画を MP3 に',
-      subheading: '動画の音声だけ取り出します · あなたのデバイスで完結 · ファイルは送信されません',
+      subheading:
+        '動画の音声だけ取り出します · あなたのデバイスで完結 · ファイルは送信されません',
       schema: {
         name: 'MP4 を MP3 に変換',
-        description: '無料オンラインで MP4 動画から音声を抽出して MP3 として保存 — ブラウザ内で動作、アップロード不要。',
+        description:
+          '無料オンラインで MP4 動画から音声を抽出して MP3 として保存 — ブラウザ内で動作、アップロード不要。',
       },
       upload: {
         drag: '動画をここにドロップ',
@@ -1029,9 +1351,12 @@ export const ja = {
         done: '完了！',
       },
       errors: {
-        tooLargeTemplate: 'ファイルが大きすぎます。最大 500MB です（あなたのは {size}）',
-        decodeFailedSafari: 'Safari がこのファイルを読み取れませんでした。Safari を更新するか、Chrome / Firefox でお試しください。',
-        decodeFailedGeneric: 'このファイル内の音声を読み取れませんでした。中の形式が一般的ではない可能性があります。',
+        tooLargeTemplate:
+          'ファイルが大きすぎます。最大 500MB です（あなたのは {size}）',
+        decodeFailedSafari:
+          'Safari がこのファイルを読み取れませんでした。Safari を更新するか、Chrome / Firefox でお試しください。',
+        decodeFailedGeneric:
+          'このファイル内の音声を読み取れませんでした。中の形式が一般的ではない可能性があります。',
       },
       result: {
         ready: 'MP3 ができました — 試聴またはダウンロードできます',
@@ -1041,11 +1366,26 @@ export const ja = {
       faq: {
         heading: 'よくある質問',
         items: [
-          { q: '動画はサーバーに送られますか？', a: 'いいえ。すべてブラウザ内で行われます。ファイルはあなたのパソコンから出ません。' },
-          { q: 'どんな動画が使えますか？', a: '一般的な動画はほぼ使えます：MP4、iPhone の MOV、M4A 音声、WebM。ファイルが使えないときは、中の音声形式が珍しいだけです。' },
-          { q: 'Safari で失敗するのはなぜ？', a: '古い Safari は一部の MP4 内の音声を読めません。Safari を最新にするか、Chrome / Firefox / Edge をご利用ください。' },
-          { q: 'サイズ制限はありますか？', a: 'はい、1 ファイル 500MB までです。それ以上は特にスマホでブラウザがフリーズすることがあります。' },
-          { q: '複数同時に変換できますか？', a: '今のところできません。1 つずつお願いします。' },
+          {
+            q: '動画はサーバーに送られますか？',
+            a: 'いいえ。すべてブラウザ内で行われます。ファイルはあなたのパソコンから出ません。',
+          },
+          {
+            q: 'どんな動画が使えますか？',
+            a: '一般的な動画はほぼ使えます：MP4、iPhone の MOV、M4A 音声、WebM。ファイルが使えないときは、中の音声形式が珍しいだけです。',
+          },
+          {
+            q: 'Safari で失敗するのはなぜ？',
+            a: '古い Safari は一部の MP4 内の音声を読めません。Safari を最新にするか、Chrome / Firefox / Edge をご利用ください。',
+          },
+          {
+            q: 'サイズ制限はありますか？',
+            a: 'はい、1 ファイル 500MB までです。それ以上は特にスマホでブラウザがフリーズすることがあります。',
+          },
+          {
+            q: '複数同時に変換できますか？',
+            a: '今のところできません。1 つずつお願いします。',
+          },
         ],
       },
     },
@@ -1054,10 +1394,12 @@ export const ja = {
       description:
         'ビットレートを下げて MP3 ファイルを圧縮 · 無料・即時・ブラウザ内完結。アップロード不要・登録不要。',
       h1: 'MP3 圧縮',
-      subheading: 'ビットレートを下げて MP3 を圧縮 · ローカル処理 · ファイルはデバイスから出ない',
+      subheading:
+        'ビットレートを下げて MP3 を圧縮 · ローカル処理 · ファイルはデバイスから出ない',
       schema: {
         name: 'MP3 圧縮ツール',
-        description: 'ビットレートを下げて MP3 ファイルを圧縮する無料オンラインツール。ブラウザ内 WebAssembly で動作。',
+        description:
+          'ビットレートを下げて MP3 ファイルを圧縮する無料オンラインツール。ブラウザ内 WebAssembly で動作。',
       },
       upload: {
         drag: '音声ファイルをドロップ',
@@ -1093,11 +1435,26 @@ export const ja = {
       faq: {
         heading: 'よくある質問',
         items: [
-          { q: 'どれくらい小さくなりますか？', a: '元のビットレートによります。320kbps を 128kbps にすると約 60% 削減、192kbps を 96kbps にすると約 50% 削減します。' },
-          { q: '音質は落ちますか？', a: 'はい、目標ビットレート次第です。128kbps は多くの音楽でほぼ原音、96kbps はストリーミング向け、64kbps は音声録音専用です。' },
-          { q: '音声はアップロードされますか？', a: 'いいえ。すべてブラウザ内の WebAssembly で処理されます。ファイルはデバイスから出ません。' },
-          { q: 'WAV や FLAC も使えますか？', a: 'はい。ブラウザがデコードできる任意の形式（WAV、FLAC、M4A、OGG）を指定のビットレートで MP3 に変換します。' },
-          { q: '最大ファイルサイズは？', a: '1 ファイル 500MB。大きすぎるとブラウザがフリーズする可能性があります（特にスマホで）。' },
+          {
+            q: 'どれくらい小さくなりますか？',
+            a: '元のビットレートによります。320kbps を 128kbps にすると約 60% 削減、192kbps を 96kbps にすると約 50% 削減します。',
+          },
+          {
+            q: '音質は落ちますか？',
+            a: 'はい、目標ビットレート次第です。128kbps は多くの音楽でほぼ原音、96kbps はストリーミング向け、64kbps は音声録音専用です。',
+          },
+          {
+            q: '音声はアップロードされますか？',
+            a: 'いいえ。すべてブラウザ内の WebAssembly で処理されます。ファイルはデバイスから出ません。',
+          },
+          {
+            q: 'WAV や FLAC も使えますか？',
+            a: 'はい。ブラウザがデコードできる任意の形式（WAV、FLAC、M4A、OGG）を指定のビットレートで MP3 に変換します。',
+          },
+          {
+            q: '最大ファイルサイズは？',
+            a: '1 ファイル 500MB。大きすぎるとブラウザがフリーズする可能性があります（特にスマホで）。',
+          },
         ],
       },
     },

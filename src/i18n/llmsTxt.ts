@@ -4,20 +4,35 @@ import { absoluteUrl } from './seo';
 import { getQuickActions } from '../data/tools';
 import type { QuickActionKey } from './schema';
 
-
 const IMAGE_TOOL_IDS: QuickActionKey[] = [
-  'png-compress', 'jpg-compress', 'webp-compress',
-  'png-to-jpg', 'jpg-to-png', 'png-to-webp', 'jpg-to-webp', 'webp-to-png', 'webp-to-jpg',
-  'any-convert', 'any-compress', 'watermark', 'text-watermark',
+  'png-compress',
+  'jpg-compress',
+  'webp-compress',
+  'png-to-jpg',
+  'jpg-to-png',
+  'png-to-webp',
+  'jpg-to-webp',
+  'webp-to-png',
+  'webp-to-jpg',
+  'any-convert',
+  'any-compress',
+  'watermark',
+  'text-watermark',
 ];
 
 const DEV_TOOL_IDS: QuickActionKey[] = [
-  'jwt', 'timestamp', 'json', 'base64', 'uuid', 'url-encode', 'color', 'qrcode', 'code-image',
+  'jwt',
+  'timestamp',
+  'json',
+  'base64',
+  'uuid',
+  'url-encode',
+  'color',
+  'qrcode',
+  'code-image',
 ];
 
-const MEDIA_TOOL_IDS: QuickActionKey[] = [
-  'mp4-to-mp3',
-];
+const MEDIA_TOOL_IDS: QuickActionKey[] = ['mp4-to-mp3'];
 
 export function buildLlmsTxt(locale: Locale): string {
   const t = useTranslations(locale);
@@ -77,17 +92,25 @@ export function buildLlmsFullTxt(locale: Locale): string {
   };
 
   const formatNotes: Partial<Record<QuickActionKey, string>> = {
-    'png-compress': 'Uses imagequant palette quantization (Rust WASM). Screenshots/icons typically shrink 60-80%, photos 20-30%, virtually no visible quality loss.',
-    'jpg-compress': 'Files typically shrink 30-45%. Automatically strips EXIF metadata (location, device model) for privacy.',
-    'webp-compress': 'Lossless WebP optimization. Returns the original file if it is already optimal — guarantees the smallest available output.',
+    'png-compress':
+      'Uses imagequant palette quantization (Rust WASM). Screenshots/icons typically shrink 60-80%, photos 20-30%, virtually no visible quality loss.',
+    'jpg-compress':
+      'Files typically shrink 30-45%. Automatically strips EXIF metadata (location, device model) for privacy.',
+    'webp-compress':
+      'Lossless WebP optimization. Returns the original file if it is already optimal — guarantees the smallest available output.',
     jwt: 'Decode/sign/verify JWT with HS256/384/512, RS256/384/512, ES256/384. Uses browser-native WebCrypto, zero third-party dependencies.',
-    watermark: 'Two algorithms: LSB (high capacity) + DCT (survives JPG re-compression). Embeds invisible text into pixel data.',
-    'text-watermark': 'Adds visible "for X use only" text watermark. Tile / center / corner layouts. Used for ID cards, contracts, ICP filings.',
-    'mp4-to-mp3': 'Extracts audio from MP4/MOV/M4A/WebM and re-encodes as MP3 at 128/192/256/320 kbps. Decoding via Web Audio, encoding via JS lamejs — runs entirely in the browser, no uploads, single file up to 500 MB.',
+    watermark:
+      'Two algorithms: LSB (high capacity) + DCT (survives JPG re-compression). Embeds invisible text into pixel data.',
+    'text-watermark':
+      'Adds visible "for X use only" text watermark. Tile / center / corner layouts. Used for ID cards, contracts, ICP filings.',
+    'mp4-to-mp3':
+      'Extracts audio from MP4/MOV/M4A/WebM and re-encodes as MP3 at 128/192/256/320 kbps. Decoding via Web Audio, encoding via JS lamejs — runs entirely in the browser, no uploads, single file up to 500 MB.',
   };
 
   const allIds = [...IMAGE_TOOL_IDS, ...DEV_TOOL_IDS, ...MEDIA_TOOL_IDS];
-  const blocks = allIds.map((id) => renderToolBlock(id, formatNotes[id])).join('');
+  const blocks = allIds
+    .map((id) => renderToolBlock(id, formatNotes[id]))
+    .join('');
 
   return `# ${t.common.siteName} — Full Tool Reference
 

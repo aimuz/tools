@@ -61,7 +61,12 @@ const DEV_ORDER: NavItemKey[] = [
 
 const MEDIA_ORDER: NavItemKey[] = ['mp4-to-mp3', 'compress-mp3'];
 
-type RenderedItem = { key: NavItemKey; name: string; desc: string; href: string };
+type RenderedItem = {
+  key: NavItemKey;
+  name: string;
+  desc: string;
+  href: string;
+};
 
 function buildItems(
   group: typeof t.nav.image | typeof t.nav.dev | typeof t.nav.media,
@@ -82,57 +87,91 @@ function buildItems(
 }
 
 const menu = [
-  { id: 'image', label: t.nav.image.label, items: buildItems(t.nav.image, IMAGE_ORDER) },
-  { id: 'dev', label: t.nav.dev.label, items: buildItems(t.nav.dev, DEV_ORDER) },
-  { id: 'media', label: t.nav.media.label, items: buildItems(t.nav.media, MEDIA_ORDER) },
+  {
+    id: 'image',
+    label: t.nav.image.label,
+    items: buildItems(t.nav.image, IMAGE_ORDER),
+  },
+  {
+    id: 'dev',
+    label: t.nav.dev.label,
+    items: buildItems(t.nav.dev, DEV_ORDER),
+  },
+  {
+    id: 'media',
+    label: t.nav.media.label,
+    items: buildItems(t.nav.media, MEDIA_ORDER),
+  },
 ];
 
 const homeHref = localizedPath(locale, '/');
 const aboutHref = localizedPath(locale, '/about');
 ---
 
-<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-  <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
+<header
+  class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100"
+>
+  <div
+    class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between"
+  >
     <!-- Logo -->
     <a href={homeHref} class="flex items-center gap-2 group">
-      <span class="text-xl font-semibold text-[#171717] tracking-tight">{t.common.siteName}</span>
+      <span class="text-xl font-semibold text-[#171717] tracking-tight"
+        >{t.common.siteName}</span
+      >
     </a>
 
     <!-- Desktop nav -->
     <nav class="hidden md:flex items-center gap-1" id="desktop-nav">
-      {menu.map((group) => (
-        <div class="relative" data-dropdown={group.id}>
-          <button
-            type="button"
-            class="dropdown-trigger flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#171717] hover:bg-gray-50 rounded-md transition-colors"
-            data-target={group.id}
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            {group.label}
-            <svg data-chevron class="w-3.5 h-3.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div
-            class="dropdown-panel hidden absolute right-0 mt-2 w-80 bg-white border border-gray-200 rounded-xl shadow-lg p-2"
-            data-panel={group.id}
-            role="menu"
-          >
-            {group.items.map((item) => (
-              <a
-                href={item.href}
-                role="menuitem"
-                class="block px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors group"
+      {
+        menu.map((group) => (
+          <div class="relative" data-dropdown={group.id}>
+            <button
+              type="button"
+              class="dropdown-trigger flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#171717] hover:bg-gray-50 rounded-md transition-colors"
+              data-target={group.id}
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              {group.label}
+              <svg
+                data-chevron
+                class="w-3.5 h-3.5 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                <p class="text-sm font-medium text-[#171717]">{item.name}</p>
-                <p class="text-xs text-gray-400 mt-0.5">{item.desc}</p>
-              </a>
-            ))}
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            <div
+              class="dropdown-panel hidden absolute right-0 mt-2 w-80 bg-white border border-gray-200 rounded-xl shadow-lg p-2"
+              data-panel={group.id}
+              role="menu"
+            >
+              {group.items.map((item) => (
+                <a
+                  href={item.href}
+                  role="menuitem"
+                  class="block px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors group"
+                >
+                  <p class="text-sm font-medium text-[#171717]">{item.name}</p>
+                  <p class="text-xs text-gray-400 mt-0.5">{item.desc}</p>
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
-      <a href={aboutHref} class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#171717] hover:bg-gray-50 rounded-md transition-colors">
+        ))
+      }
+      <a
+        href={aboutHref}
+        class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#171717] hover:bg-gray-50 rounded-md transition-colors"
+      >
         {t.common.aboutLink}
       </a>
       <LanguageSwitcher locale={locale} />
@@ -146,34 +185,64 @@ const aboutHref = localizedPath(locale, '/about');
       aria-expanded="false"
       aria-controls="mobile-menu"
     >
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      <svg
+        class="w-5 h-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
     </button>
   </div>
 
   <!-- Mobile drawer -->
-  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white max-h-[75vh] overflow-y-auto">
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden border-t border-gray-100 bg-white max-h-[75vh] overflow-y-auto"
+  >
     <div class="px-4 py-3 space-y-2">
-      {menu.map((group) => (
-        <details class="group border border-gray-100 rounded-lg">
-          <summary class="list-none flex items-center justify-between px-4 py-3 cursor-pointer text-sm font-medium text-[#171717]">
-            {group.label}
-            <svg class="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </summary>
-          <div class="px-2 pb-2 space-y-1">
-            {group.items.map((item) => (
-              <a href={item.href} class="block px-3 py-2.5 rounded hover:bg-gray-50">
-                <p class="text-sm font-medium text-[#171717]">{item.name}</p>
-                <p class="text-xs text-gray-400 mt-0.5">{item.desc}</p>
-              </a>
-            ))}
-          </div>
-        </details>
-      ))}
-      <a href={aboutHref} class="block px-4 py-3 text-sm font-medium text-[#171717] border border-gray-100 rounded-lg hover:bg-gray-50">
+      {
+        menu.map((group) => (
+          <details class="group border border-gray-100 rounded-lg">
+            <summary class="list-none flex items-center justify-between px-4 py-3 cursor-pointer text-sm font-medium text-[#171717]">
+              {group.label}
+              <svg
+                class="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </summary>
+            <div class="px-2 pb-2 space-y-1">
+              {group.items.map((item) => (
+                <a
+                  href={item.href}
+                  class="block px-3 py-2.5 rounded hover:bg-gray-50"
+                >
+                  <p class="text-sm font-medium text-[#171717]">{item.name}</p>
+                  <p class="text-xs text-gray-400 mt-0.5">{item.desc}</p>
+                </a>
+              ))}
+            </div>
+          </details>
+        ))
+      }
+      <a
+        href={aboutHref}
+        class="block px-4 py-3 text-sm font-medium text-[#171717] border border-gray-100 rounded-lg hover:bg-gray-50"
+      >
         {t.common.aboutLink}
       </a>
       <div class="px-4 py-3 border border-gray-100 rounded-lg">
@@ -184,22 +253,25 @@ const aboutHref = localizedPath(locale, '/about');
 </header>
 
 <script>
-  const triggers = document.querySelectorAll<HTMLButtonElement>('.dropdown-trigger');
+  const triggers =
+    document.querySelectorAll<HTMLButtonElement>('.dropdown-trigger');
   const panels = document.querySelectorAll<HTMLElement>('.dropdown-panel');
 
   const closeAll = (except?: string) => {
-    triggers.forEach(t => {
+    triggers.forEach((t) => {
       if (t.dataset.target !== except) {
         t.setAttribute('aria-expanded', 'false');
-        t.querySelector<SVGElement>('svg[data-chevron]')?.classList.remove('rotate-180');
+        t.querySelector<SVGElement>('svg[data-chevron]')?.classList.remove(
+          'rotate-180',
+        );
       }
     });
-    panels.forEach(p => {
+    panels.forEach((p) => {
       if (p.dataset.panel !== except) p.classList.add('hidden');
     });
   };
 
-  triggers.forEach(trigger => {
+  triggers.forEach((trigger) => {
     trigger.addEventListener('click', (e) => {
       e.stopPropagation();
       const id = trigger.dataset.target!;
@@ -209,14 +281,18 @@ const aboutHref = localizedPath(locale, '/about');
       if (!isOpen) {
         panel?.classList.remove('hidden');
         trigger.setAttribute('aria-expanded', 'true');
-        trigger.querySelector<SVGElement>('svg[data-chevron]')?.classList.add('rotate-180');
+        trigger
+          .querySelector<SVGElement>('svg[data-chevron]')
+          ?.classList.add('rotate-180');
       }
     });
   });
 
   document.addEventListener('click', (e) => {
     const target = e.target as Node;
-    const insideDropdown = Array.from(document.querySelectorAll('[data-dropdown]')).some(el => el.contains(target));
+    const insideDropdown = Array.from(
+      document.querySelectorAll('[data-dropdown]'),
+    ).some((el) => el.contains(target));
     if (!insideDropdown) closeAll();
   });
 

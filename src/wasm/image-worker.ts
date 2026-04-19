@@ -51,7 +51,11 @@ interface Req {
   args: unknown[];
 }
 
-function chooseSmartQuality(format: string, originalSize: number, targetSizeKB: number | null) {
+function chooseSmartQuality(
+  format: string,
+  originalSize: number,
+  targetSizeKB: number | null,
+) {
   if (targetSizeKB) {
     const r = (targetSizeKB * 1024) / originalSize;
     if (r < 0.1) return 50;
@@ -61,11 +65,15 @@ function chooseSmartQuality(format: string, originalSize: number, targetSizeKB: 
     return 90;
   }
   switch (format) {
-    case 'png':  return 80;
+    case 'png':
+      return 80;
     case 'jpeg':
-    case 'jpg':  return 75;
-    case 'webp': return 80;
-    default:     return 80;
+    case 'jpg':
+      return 75;
+    case 'webp':
+      return 80;
+    default:
+      return 80;
   }
 }
 
@@ -86,14 +94,22 @@ self.addEventListener('message', async (ev: MessageEvent<Req>) => {
         break;
 
       case 'resizeImage': {
-        const out = m.resize_image(args[0] as Uint8Array, args[1] as number, args[2] as number);
+        const out = m.resize_image(
+          args[0] as Uint8Array,
+          args[1] as number,
+          args[2] as number,
+        );
         transfer.push(out.buffer);
         result = out;
         break;
       }
 
       case 'convertImage': {
-        const out = m.convert_image(args[0] as Uint8Array, args[1] as string, args[2] as number);
+        const out = m.convert_image(
+          args[0] as Uint8Array,
+          args[1] as string,
+          args[2] as number,
+        );
         transfer.push(out.buffer);
         result = out;
         break;
@@ -101,7 +117,12 @@ self.addEventListener('message', async (ev: MessageEvent<Req>) => {
 
       case 'compressImage': {
         const [input, opts] = args as [Uint8Array, CompressOpts];
-        const co = new m.CompressOptions(opts.quality, opts.maxWidth, opts.maxHeight, opts.keepAspectRatio);
+        const co = new m.CompressOptions(
+          opts.quality,
+          opts.maxWidth,
+          opts.maxHeight,
+          opts.keepAspectRatio,
+        );
         const out = m.compress_image(input, co);
         transfer.push(out.buffer);
         result = out;
@@ -110,7 +131,11 @@ self.addEventListener('message', async (ev: MessageEvent<Req>) => {
 
       case 'smartCompress': {
         const [input, targetSizeKB] = args as [Uint8Array, number | null];
-        const info = m.get_image_info(input) as { width: number; height: number; format: string };
+        const info = m.get_image_info(input) as {
+          width: number;
+          height: number;
+          format: string;
+        };
         const originalSize = input.length;
         const format = (info.format || 'unknown').toLowerCase();
         const quality = chooseSmartQuality(format, originalSize, targetSizeKB);
@@ -118,12 +143,23 @@ self.addEventListener('message', async (ev: MessageEvent<Req>) => {
         const maxH = maxW;
         const co = new m.CompressOptions(quality, maxW, maxH, true);
         const compressed = m.compress_image(input, co);
-        const ratioPct = ((originalSize - compressed.length) / originalSize) * 100;
+        const ratioPct =
+          ((originalSize - compressed.length) / originalSize) * 100;
         if (ratioPct < 0) {
           // Rust layer already returns original bytes in this case; just report no gain.
-          result = { data: compressed, originalSize, compressedSize: originalSize, compressionRatio: 0 };
+          result = {
+            data: compressed,
+            originalSize,
+            compressedSize: originalSize,
+            compressionRatio: 0,
+          };
         } else {
-          result = { data: compressed, originalSize, compressedSize: compressed.length, compressionRatio: +ratioPct.toFixed(1) };
+          result = {
+            data: compressed,
+            originalSize,
+            compressedSize: compressed.length,
+            compressionRatio: +ratioPct.toFixed(1),
+          };
         }
         transfer.push(compressed.buffer);
         break;

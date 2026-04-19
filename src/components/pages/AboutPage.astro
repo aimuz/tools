@@ -30,76 +30,105 @@ const schema = {
     url: homeUrl,
     logo: 'https://wizgo.xyz/favicon.svg',
     description: a.schema.orgDescription,
-    sameAs: [
-      'https://github.com/aimuz/tools',
-    ],
+    sameAs: ['https://github.com/aimuz/tools'],
   },
 };
 ---
 
 <Layout title={a.title} description={a.description} locale={locale}>
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+    slot="head"
+  />
   <Header locale={locale} />
 
   <main class="flex-1 py-16">
     <Container>
       <div class="max-w-3xl mx-auto">
-        <h1 class="text-[40px] font-semibold text-vercel-black tracking-tight-2.4 mb-8">
+        <h1
+          class="text-[40px] font-semibold text-vercel-black tracking-tight-2.4 mb-8"
+        >
           {a.h1}
         </h1>
 
         <div class="prose prose-lg max-w-none">
           <p class="text-gray-600 leading-body-relaxed mb-6">{a.intro}</p>
 
-          <h2 class="text-2xl font-semibold text-vercel-black tracking-tight-0.96 mt-12 mb-4">
+          <h2
+            class="text-2xl font-semibold text-vercel-black tracking-tight-0.96 mt-12 mb-4"
+          >
             {a.techStack.heading}
           </h2>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
             <div class="p-6 rounded-comfortable bg-gray-50">
-              <h3 class="font-semibold text-vercel-black mb-2">{a.techStack.image.title}</h3>
+              <h3 class="font-semibold text-vercel-black mb-2">
+                {a.techStack.image.title}
+              </h3>
               <p class="text-sm text-gray-600">{a.techStack.image.body}</p>
             </div>
             <div class="p-6 rounded-comfortable bg-gray-50">
-              <h3 class="font-semibold text-vercel-black mb-2">{a.techStack.crypto.title}</h3>
+              <h3 class="font-semibold text-vercel-black mb-2">
+                {a.techStack.crypto.title}
+              </h3>
               <p class="text-sm text-gray-600">{a.techStack.crypto.body}</p>
             </div>
             <div class="p-6 rounded-comfortable bg-gray-50">
-              <h3 class="font-semibold text-vercel-black mb-2">{a.techStack.frontend.title}</h3>
+              <h3 class="font-semibold text-vercel-black mb-2">
+                {a.techStack.frontend.title}
+              </h3>
               <p class="text-sm text-gray-600">{a.techStack.frontend.body}</p>
             </div>
             <div class="p-6 rounded-comfortable bg-gray-50">
-              <h3 class="font-semibold text-vercel-black mb-2">{a.techStack.pwa.title}</h3>
+              <h3 class="font-semibold text-vercel-black mb-2">
+                {a.techStack.pwa.title}
+              </h3>
               <p class="text-sm text-gray-600">{a.techStack.pwa.body}</p>
             </div>
           </div>
 
-          <h2 class="text-2xl font-semibold text-vercel-black tracking-tight-0.96 mt-12 mb-4">
+          <h2
+            class="text-2xl font-semibold text-vercel-black tracking-tight-0.96 mt-12 mb-4"
+          >
             {a.privacy.heading}
           </h2>
-          <p class="text-gray-600 leading-body-relaxed mb-4">{a.privacy.intro}</p>
+          <p class="text-gray-600 leading-body-relaxed mb-4">
+            {a.privacy.intro}
+          </p>
           <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6">
             {a.privacy.items.map((item) => <li>{item}</li>)}
           </ul>
 
-          <h2 class="text-2xl font-semibold text-vercel-black tracking-tight-0.96 mt-12 mb-4">
+          <h2
+            class="text-2xl font-semibold text-vercel-black tracking-tight-0.96 mt-12 mb-4"
+          >
             {a.limits.heading}
           </h2>
-          <p class="text-gray-600 leading-body-relaxed mb-4">{a.limits.intro}</p>
+          <p class="text-gray-600 leading-body-relaxed mb-4">
+            {a.limits.intro}
+          </p>
           <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6">
             {a.limits.items.map((item) => <li>{item}</li>)}
           </ul>
 
-          <h2 class="text-2xl font-semibold text-vercel-black tracking-tight-0.96 mt-12 mb-4">
+          <h2
+            class="text-2xl font-semibold text-vercel-black tracking-tight-0.96 mt-12 mb-4"
+          >
             {a.credits.heading}
           </h2>
           <p class="text-gray-600 leading-body-relaxed">{a.credits.intro}</p>
           <ul class="list-disc list-inside text-gray-600 space-y-2 mt-4">
-            {a.credits.items.map((item) => (
-              <li>
-                <a href={item.href} class="text-link-blue hover:underline">{item.label}</a> - {item.desc}
-              </li>
-            ))}
+            {
+              a.credits.items.map((item) => (
+                <li>
+                  <a href={item.href} class="text-link-blue hover:underline">
+                    {item.label}
+                  </a>{' '}
+                  - {item.desc}
+                </li>
+              ))
+            }
           </ul>
         </div>
       </div>

@@ -2,7 +2,13 @@ import type { APIRoute } from 'astro';
 import { useTranslations } from '../../i18n';
 import { isLocale, type Locale } from '../../i18n/config';
 
-export const getStaticPaths = () => [{ params: { locale: 'en' } }, { params: { locale: 'zh-TW' } }, { params: { locale: 'ja' } }, { params: { locale: 'ko' } }, { params: { locale: 'es' } }];
+export const getStaticPaths = () => [
+  { params: { locale: 'en' } },
+  { params: { locale: 'zh-TW' } },
+  { params: { locale: 'ja' } },
+  { params: { locale: 'ko' } },
+  { params: { locale: 'es' } },
+];
 
 export const GET: APIRoute = ({ params }) => {
   const raw = params.locale;
@@ -22,9 +28,7 @@ export const GET: APIRoute = ({ params }) => {
     start_url: `/${locale}/`,
     scope: `/${locale}/`,
     lang: locale,
-    icons: [
-      { src: '/favicon.svg', sizes: 'any', type: 'image/svg+xml' },
-    ],
+    icons: [{ src: '/favicon.svg', sizes: 'any', type: 'image/svg+xml' }],
   };
 
   return new Response(JSON.stringify(manifest, null, 2), {

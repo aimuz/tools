@@ -56,8 +56,16 @@ const faqSchema = {
 ---
 
 <Layout title={c.title} description={c.description} locale={locale}>
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+    slot="head"
+  />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(faqSchema)}
+    slot="head"
+  />
   <Header locale={locale} />
 
   <main class="flex-1 py-12">
@@ -71,8 +79,18 @@ const faqSchema = {
         id="upload-zone"
         class="relative w-full min-h-[240px] rounded-xl border-2 border-dashed border-gray-300 hover:border-[#171717] transition-colors bg-white flex flex-col items-center justify-center gap-3 cursor-pointer mb-6"
       >
-        <svg class="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19a3 3 0 11-6 0 3 3 0 016 0zm12-3a3 3 0 11-6 0 3 3 0 016 0z"></path>
+        <svg
+          class="w-12 h-12 text-gray-300"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M9 19V6l12-3v13M9 19a3 3 0 11-6 0 3 3 0 016 0zm12-3a3 3 0 11-6 0 3 3 0 016 0z"
+          ></path>
         </svg>
         <div class="text-center">
           <p class="text-base text-[#171717]">{c.upload.drag}</p>
@@ -92,20 +110,39 @@ const faqSchema = {
       <div id="options" class="mb-6 hidden">
         <p class="text-sm text-gray-500 mb-2">{c.options.bitrateLabel}</p>
         <div class="flex flex-wrap gap-2 mb-6">
-          <button class="bitrate-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" data-bitrate="128">{c.options.k128}</button>
-          <button class="bitrate-btn px-4 py-2 text-sm rounded-full border border-gray-200 bg-[#171717] text-white" data-bitrate="192">{c.options.k192}</button>
-          <button class="bitrate-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" data-bitrate="256">{c.options.k256}</button>
-          <button class="bitrate-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" data-bitrate="320">{c.options.k320}</button>
+          <button
+            class="bitrate-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]"
+            data-bitrate="128">{c.options.k128}</button
+          >
+          <button
+            class="bitrate-btn px-4 py-2 text-sm rounded-full border border-gray-200 bg-[#171717] text-white"
+            data-bitrate="192">{c.options.k192}</button
+          >
+          <button
+            class="bitrate-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]"
+            data-bitrate="256">{c.options.k256}</button
+          >
+          <button
+            class="bitrate-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]"
+            data-bitrate="320">{c.options.k320}</button
+          >
         </div>
 
-        <button id="convert-btn" class="w-full py-3 bg-[#171717] text-white rounded-lg font-medium hover:bg-gray-800 transition-colors">
+        <button
+          id="convert-btn"
+          class="w-full py-3 bg-[#171717] text-white rounded-lg font-medium hover:bg-gray-800 transition-colors"
+        >
           {c.options.start}
         </button>
       </div>
 
       <div id="progress" class="hidden mb-6">
         <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
-          <div class="progress-fill h-full bg-[#171717] transition-all" style="width: 0%"></div>
+          <div
+            class="progress-fill h-full bg-[#171717] transition-all"
+            style="width: 0%"
+          >
+          </div>
         </div>
         <p id="progress-label" class="text-xs text-gray-500 mt-2"></p>
       </div>
@@ -113,14 +150,22 @@ const faqSchema = {
       <div id="results" class="space-y-3 hidden"></div>
 
       <section class="mt-12">
-        <h2 class="text-xl font-semibold text-[#171717] mb-4">{c.faq.heading}</h2>
+        <h2 class="text-xl font-semibold text-[#171717] mb-4">
+          {c.faq.heading}
+        </h2>
         <div class="space-y-4">
-          {c.faq.items.map((item) => (
-            <details class="border border-gray-200 rounded-lg p-4">
-              <summary class="cursor-pointer text-sm font-medium text-[#171717]">{item.q}</summary>
-              <p class="text-sm text-gray-600 mt-2 leading-relaxed">{item.a}</p>
-            </details>
-          ))}
+          {
+            c.faq.items.map((item) => (
+              <details class="border border-gray-200 rounded-lg p-4">
+                <summary class="cursor-pointer text-sm font-medium text-[#171717]">
+                  {item.q}
+                </summary>
+                <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+                  {item.a}
+                </p>
+              </details>
+            ))
+          }
         </div>
       </section>
     </div>
@@ -129,10 +174,16 @@ const faqSchema = {
   <Footer />
 </Layout>
 
-<script type="application/json" id="mp4-to-mp3-labels" set:html={JSON.stringify(labels)}></script>
+<script
+  type="application/json"
+  id="mp4-to-mp3-labels"
+  set:html={JSON.stringify(labels)}
+/>
 <script>
   import { initMp4ToMp3Page } from '../../scripts/mp4-to-mp3';
   const labelsEl = document.getElementById('mp4-to-mp3-labels');
-  const labels = labelsEl ? JSON.parse(labelsEl.textContent ?? '{}') : undefined;
+  const labels = labelsEl
+    ? JSON.parse(labelsEl.textContent ?? '{}')
+    : undefined;
   initMp4ToMp3Page({ labels });
 </script>

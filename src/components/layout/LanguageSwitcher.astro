@@ -28,69 +28,113 @@ const links = LOCALES.map((target) => {
   };
 });
 
-const globePath = 'M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129';
+const globePath =
+  'M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129';
 ---
 
-{variant === 'dropdown' ? (
-  <div class="relative" data-dropdown="lang">
-    <button
-      type="button"
-      class="dropdown-trigger flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#171717] hover:bg-gray-50 rounded-md transition-colors"
-      data-target="lang"
-      aria-haspopup="true"
-      aria-expanded="false"
-      aria-label={t.common.languageSwitcherAria}
-    >
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={globePath}></path>
-      </svg>
-      <span>{LOCALE_LABELS[locale]}</span>
-      <svg data-chevron class="w-3.5 h-3.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-      </svg>
-    </button>
-    <div
-      class="dropdown-panel hidden absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-xl shadow-lg p-1.5"
-      data-panel="lang"
-      role="menu"
-    >
-      {links.map((l) => (
-        <a
-          href={l.href}
-          hreflang={l.target}
-          role="menuitem"
-          aria-current={l.isActive ? 'true' : undefined}
-          class={l.cls}
+{
+  variant === 'dropdown' ? (
+    <div class="relative" data-dropdown="lang">
+      <button
+        type="button"
+        class="dropdown-trigger flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#171717] hover:bg-gray-50 rounded-md transition-colors"
+        data-target="lang"
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-label={t.common.languageSwitcherAria}
+      >
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
         >
-          {l.label}
-        </a>
-      ))}
-    </div>
-  </div>
-) : (
-  <details class="group">
-    <summary class="list-none flex items-center justify-between cursor-pointer text-sm font-medium text-[#171717]">
-      <span class="flex items-center gap-2">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={globePath}></path>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d={globePath}
+          />
         </svg>
-        {LOCALE_LABELS[locale]}
-      </span>
-      <svg class="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-      </svg>
-    </summary>
-    <div class="mt-2 space-y-1">
-      {links.map((l) => (
-        <a
-          href={l.href}
-          hreflang={l.target}
-          aria-current={l.isActive ? 'true' : undefined}
-          class={l.cls}
+        <span>{LOCALE_LABELS[locale]}</span>
+        <svg
+          data-chevron
+          class="w-3.5 h-3.5 transition-transform"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
         >
-          {l.label}
-        </a>
-      ))}
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </button>
+      <div
+        class="dropdown-panel hidden absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-xl shadow-lg p-1.5"
+        data-panel="lang"
+        role="menu"
+      >
+        {links.map((l) => (
+          <a
+            href={l.href}
+            hreflang={l.target}
+            role="menuitem"
+            aria-current={l.isActive ? 'true' : undefined}
+            class={l.cls}
+          >
+            {l.label}
+          </a>
+        ))}
+      </div>
     </div>
-  </details>
-)}
+  ) : (
+    <details class="group">
+      <summary class="list-none flex items-center justify-between cursor-pointer text-sm font-medium text-[#171717]">
+        <span class="flex items-center gap-2">
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d={globePath}
+            />
+          </svg>
+          {LOCALE_LABELS[locale]}
+        </span>
+        <svg
+          class="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </summary>
+      <div class="mt-2 space-y-1">
+        {links.map((l) => (
+          <a
+            href={l.href}
+            hreflang={l.target}
+            aria-current={l.isActive ? 'true' : undefined}
+            class={l.cls}
+          >
+            {l.label}
+          </a>
+        ))}
+      </div>
+    </details>
+  )
+}

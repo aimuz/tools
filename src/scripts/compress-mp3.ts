@@ -38,7 +38,8 @@ const DEFAULT_LABELS: CompressMp3Labels = {
   sizeTemplate: 'Size: {size}',
   reductionTemplate: 'Saved {pct}% · {before} → {after}',
   tooLargeTemplate: 'File too large — max 500MB (current {size})',
-  decodeFailedSafari: 'Could not decode this file. Try Chrome / Firefox or upgrade Safari.',
+  decodeFailedSafari:
+    'Could not decode this file. Try Chrome / Firefox or upgrade Safari.',
   decodeFailedGeneric: 'Could not decode the audio in this file.',
   audioEncodeFailed: 'Audio encoding failed',
 };
@@ -47,11 +48,17 @@ const interpolate = (template: string, vars: Record<string, string | number>) =>
   template.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ''));
 
 const escapeHtml = (s: string) =>
-  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-   .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 
 const formatSize = (b: number) =>
-  b < 1024 * 1024 ? (b / 1024).toFixed(1) + ' KB' : (b / 1024 / 1024).toFixed(2) + ' MB';
+  b < 1024 * 1024
+    ? (b / 1024).toFixed(1) + ' KB'
+    : (b / 1024 / 1024).toFixed(2) + ' MB';
 
 const stripExt = (name: string) => name.replace(/\.[^.]+$/, '');
 
@@ -69,18 +76,27 @@ export interface CompressMp3Options {
 }
 
 export function initCompressMp3Page(opts: CompressMp3Options = {}) {
-  const labels: CompressMp3Labels = { ...DEFAULT_LABELS, ...(opts.labels ?? {}) };
+  const labels: CompressMp3Labels = {
+    ...DEFAULT_LABELS,
+    ...(opts.labels ?? {}),
+  };
 
   const uploadZone = document.getElementById('upload-zone');
-  const fileInput = document.getElementById('file-input') as HTMLInputElement | null;
+  const fileInput = document.getElementById(
+    'file-input',
+  ) as HTMLInputElement | null;
   const options = document.getElementById('options');
   const fileList = document.getElementById('file-list');
-  const convertBtn = document.getElementById('convert-btn') as HTMLButtonElement | null;
+  const convertBtn = document.getElementById(
+    'convert-btn',
+  ) as HTMLButtonElement | null;
   const results = document.getElementById('results');
   const progress = document.getElementById('progress');
-  const progressFill = progress?.querySelector<HTMLElement>('.progress-fill') ?? null;
+  const progressFill =
+    progress?.querySelector<HTMLElement>('.progress-fill') ?? null;
   const progressLabel = document.getElementById('progress-label');
-  const bitrateBtns = document.querySelectorAll<HTMLButtonElement>('.bitrate-btn');
+  const bitrateBtns =
+    document.querySelectorAll<HTMLButtonElement>('.bitrate-btn');
 
   let currentFile: File | null = null;
   let bitrate: Bitrate = 128;
@@ -135,7 +151,9 @@ export function initCompressMp3Page(opts: CompressMp3Options = {}) {
 
   function acceptFile(file: File) {
     if (file.size > MAX_BYTES) {
-      showError(interpolate(labels.tooLargeTemplate, { size: formatSize(file.size) }));
+      showError(
+        interpolate(labels.tooLargeTemplate, { size: formatSize(file.size) }),
+      );
       return;
     }
     currentFile = file;
@@ -176,7 +194,8 @@ export function initCompressMp3Page(opts: CompressMp3Options = {}) {
   function setProgress(pct: number, label: string) {
     if (!progress) return;
     progress.classList.remove('hidden');
-    if (progressFill) progressFill.style.width = `${Math.min(100, Math.max(0, pct))}%`;
+    if (progressFill)
+      progressFill.style.width = `${Math.min(100, Math.max(0, pct))}%`;
     if (progressLabel) progressLabel.textContent = label;
   }
 
@@ -199,7 +218,7 @@ export function initCompressMp3Page(opts: CompressMp3Options = {}) {
   }
 
   async function compress(audio: AudioBuffer, kbps: Bitrate): Promise<Blob> {
-    const channels = (Math.min(2, audio.numberOfChannels) as 1 | 2);
+    const channels = Math.min(2, audio.numberOfChannels) as 1 | 2;
     const sampleRate = audio.sampleRate;
     const left = floatToInt16(audio.getChannelData(0));
     const right = channels === 2 ? floatToInt16(audio.getChannelData(1)) : null;
@@ -210,7 +229,8 @@ export function initCompressMp3Page(opts: CompressMp3Options = {}) {
       kbps,
       left,
       right,
-      onProgress: (pct) => setProgress(pct, interpolate(labels.encodingTemplate, { pct })),
+      onProgress: (pct) =>
+        setProgress(pct, interpolate(labels.encodingTemplate, { pct })),
     });
     setProgress(100, labels.done);
     return blob;
@@ -267,11 +287,19 @@ export function initCompressMp3Page(opts: CompressMp3Options = {}) {
       renderResult(currentFile, blob);
     } catch (err) {
       console.error(err);
-      const msg = err instanceof DOMException || (err instanceof Error && /decode/i.test(err.message))
-        ? labels.decodeFailedGeneric
-        : labels.audioEncodeFailed;
-      const isSafari = /safari/i.test(navigator.userAgent) && !/chrome|chromium|crios/i.test(navigator.userAgent);
-      showError(isSafari && msg === labels.decodeFailedGeneric ? labels.decodeFailedSafari : msg);
+      const msg =
+        err instanceof DOMException ||
+        (err instanceof Error && /decode/i.test(err.message))
+          ? labels.decodeFailedGeneric
+          : labels.audioEncodeFailed;
+      const isSafari =
+        /safari/i.test(navigator.userAgent) &&
+        !/chrome|chromium|crios/i.test(navigator.userAgent);
+      showError(
+        isSafari && msg === labels.decodeFailedGeneric
+          ? labels.decodeFailedSafari
+          : msg,
+      );
     } finally {
       hideProgress();
       convertBtn.textContent = origText ?? labels.startBtn;

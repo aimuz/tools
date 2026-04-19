@@ -20,13 +20,18 @@ export function useTranslations(locale: Locale = DEFAULT_LOCALE): Translations {
   return TABLES[locale];
 }
 
-export function getLocaleFromParams(params: Record<string, string | undefined>): Locale {
+export function getLocaleFromParams(
+  params: Record<string, string | undefined>,
+): Locale {
   const raw = params.locale;
   if (raw && raw in TABLES) return raw as Locale;
   return DEFAULT_LOCALE;
 }
 
-export function interpolate(template: string, vars: Record<string, string | number>): string {
+export function interpolate(
+  template: string,
+  vars: Record<string, string | number>,
+): string {
   return template.replace(/\{(\w+)\}/g, (_, key) => {
     const v = vars[key];
     return v === undefined ? '' : String(v);

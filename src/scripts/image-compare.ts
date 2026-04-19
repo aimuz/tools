@@ -23,7 +23,11 @@ export function getCompareLabels(): CompareLabels {
 }
 
 const escapeAttr = (s: string) =>
-  s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  s
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
 
 export function thumbPairHtml(beforeUrl: string, afterUrl: string): string {
   const beforeAlt = escapeAttr(labels.before);
@@ -103,7 +107,10 @@ function ensureLightbox() {
     if (!stage) return;
     const rect = stage.getBoundingClientRect();
     if (rect.width === 0) return;
-    const pct = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
+    const pct = Math.max(
+      0,
+      Math.min(100, ((clientX - rect.left) / rect.width) * 100),
+    );
     stage.style.setProperty('--split', pct + '%');
   };
 

@@ -51,7 +51,11 @@ const schema = {
 ---
 
 <Layout title={c.title} description={c.description} locale={locale}>
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+    slot="head"
+  />
   <Header locale={locale} />
 
   <main class="flex-1 py-12">
@@ -65,26 +69,54 @@ const schema = {
         id="upload-zone"
         class="relative w-full min-h-[240px] rounded-xl border-2 border-dashed border-gray-300 hover:border-[#171717] transition-colors bg-white flex flex-col items-center justify-center gap-3 cursor-pointer mb-6"
       >
-        <svg class="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+        <svg
+          class="w-12 h-12 text-gray-300"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+          ></path>
         </svg>
         <div class="text-center">
           <p class="text-base text-[#171717]">{c.upload.drag}</p>
           <p class="text-sm text-gray-400 mt-1">{c.upload.orClick}</p>
         </div>
         <p class="text-xs text-gray-400">{c.upload.sizeHint}</p>
-        <input type="file" id="file-input" class="hidden" accept="image/*" multiple />
+        <input
+          type="file"
+          id="file-input"
+          class="hidden"
+          accept="image/*"
+          multiple
+        />
       </div>
 
       <div id="options" class="mb-6 hidden">
         <p class="text-sm text-gray-500 mb-2">{c.options.strength}</p>
         <div class="flex gap-2 mb-6">
-          <button class="mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 bg-[#171717] text-white" data-mode="smart">{c.options.smart}</button>
-          <button class="mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" data-mode="light">{c.options.light}</button>
-          <button class="mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" data-mode="strong">{c.options.strong}</button>
+          <button
+            class="mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 bg-[#171717] text-white"
+            data-mode="smart">{c.options.smart}</button
+          >
+          <button
+            class="mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]"
+            data-mode="light">{c.options.light}</button
+          >
+          <button
+            class="mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]"
+            data-mode="strong">{c.options.strong}</button
+          >
         </div>
 
-        <button id="compress-btn" class="w-full py-3 bg-[#171717] text-white rounded-lg font-medium hover:bg-gray-800 transition-colors">
+        <button
+          id="compress-btn"
+          class="w-full py-3 bg-[#171717] text-white rounded-lg font-medium hover:bg-gray-800 transition-colors"
+        >
           {c.options.start}
         </button>
       </div>
@@ -97,10 +129,16 @@ const schema = {
   <Footer />
 </Layout>
 
-<script type="application/json" id="compress-labels" set:html={JSON.stringify(compressLabels)}></script>
+<script
+  type="application/json"
+  id="compress-labels"
+  set:html={JSON.stringify(compressLabels)}
+/>
 <script>
   import { initCompressPage } from '../../scripts/compress-page';
   const labelsEl = document.getElementById('compress-labels');
-  const labels = labelsEl ? JSON.parse(labelsEl.textContent ?? '{}') : undefined;
+  const labels = labelsEl
+    ? JSON.parse(labelsEl.textContent ?? '{}')
+    : undefined;
   initCompressPage({ readUrlParams: true, labels });
 </script>

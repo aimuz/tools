@@ -29,11 +29,16 @@ const schema = {
 ---
 
 <Layout title={q.title} description={q.description} locale={locale}>
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+    slot="head"
+  />
   <Header locale={locale} />
 
   <main class="flex-1 py-10">
-    <div class="max-w-[960px] mx-auto px-6"
+    <div
+      class="max-w-[960px] mx-auto px-6"
       data-i18n-empty={q.previewEmpty}
       data-i18n-generating={q.generating}
       data-i18n-error={q.generateError}
@@ -48,71 +53,140 @@ const schema = {
       <div class="grid md:grid-cols-2 gap-6">
         <section class="space-y-4">
           <div class="p-4 bg-white border border-gray-200 rounded-xl">
-            <label class="block text-sm font-medium text-[#171717] mb-2">{q.content.label}</label>
+            <label class="block text-sm font-medium text-[#171717] mb-2"
+              >{q.content.label}</label
+            >
             <textarea
               id="qr-input"
               class="w-full h-24 p-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#171717] resize-none"
-              placeholder={q.content.placeholder}
-            ></textarea>
+              placeholder={q.content.placeholder}></textarea>
             <p class="text-xs text-gray-400 mt-2">{q.content.hint}</p>
           </div>
 
           <div class="p-4 bg-white border border-gray-200 rounded-xl">
-            <label class="block text-sm font-medium text-[#171717] mb-2">{q.size}</label>
+            <label class="block text-sm font-medium text-[#171717] mb-2"
+              >{q.size}</label
+            >
             <div class="flex flex-wrap gap-2">
-              <button data-size="128" class="size-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]">128px</button>
-              <button data-size="256" class="size-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 bg-[#171717] text-white">256px</button>
-              <button data-size="512" class="size-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]">512px</button>
-              <button data-size="1024" class="size-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]">1024px</button>
+              <button
+                data-size="128"
+                class="size-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]"
+                >128px</button
+              >
+              <button
+                data-size="256"
+                class="size-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 bg-[#171717] text-white"
+                >256px</button
+              >
+              <button
+                data-size="512"
+                class="size-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]"
+                >512px</button
+              >
+              <button
+                data-size="1024"
+                class="size-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]"
+                >1024px</button
+              >
             </div>
           </div>
 
           <div class="p-4 bg-white border border-gray-200 rounded-xl">
-            <label class="block text-sm font-medium text-[#171717] mb-2">{q.colors.label}</label>
+            <label class="block text-sm font-medium text-[#171717] mb-2"
+              >{q.colors.label}</label
+            >
             <div class="flex gap-4">
               <div class="flex items-center gap-2">
-                <input type="color" id="color-dark" value="#000000" class="w-10 h-10 rounded-lg cursor-pointer border-0 p-0" />
+                <input
+                  type="color"
+                  id="color-dark"
+                  value="#000000"
+                  class="w-10 h-10 rounded-lg cursor-pointer border-0 p-0"
+                />
                 <span class="text-xs text-gray-500">{q.colors.foreground}</span>
               </div>
               <div class="flex items-center gap-2">
-                <input type="color" id="color-light" value="#FFFFFF" class="w-10 h-10 rounded-lg cursor-pointer border-0 p-0" />
+                <input
+                  type="color"
+                  id="color-light"
+                  value="#FFFFFF"
+                  class="w-10 h-10 rounded-lg cursor-pointer border-0 p-0"
+                />
                 <span class="text-xs text-gray-500">{q.colors.background}</span>
               </div>
             </div>
           </div>
 
           <div class="p-4 bg-white border border-gray-200 rounded-xl">
-            <label class="block text-sm font-medium text-[#171717] mb-2">{q.ec.label}</label>
+            <label class="block text-sm font-medium text-[#171717] mb-2"
+              >{q.ec.label}</label
+            >
             <div class="flex flex-wrap gap-2">
-              <button data-level="L" class="level-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" title={q.ec.lowTitle}>{q.ec.low}</button>
-              <button data-level="M" class="level-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 bg-[#171717] text-white" title={q.ec.mediumTitle}>{q.ec.medium}</button>
-              <button data-level="Q" class="level-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" title={q.ec.quartileTitle}>{q.ec.quartile}</button>
-              <button data-level="H" class="level-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" title={q.ec.highTitle}>{q.ec.high}</button>
+              <button
+                data-level="L"
+                class="level-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]"
+                title={q.ec.lowTitle}>{q.ec.low}</button
+              >
+              <button
+                data-level="M"
+                class="level-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 bg-[#171717] text-white"
+                title={q.ec.mediumTitle}>{q.ec.medium}</button
+              >
+              <button
+                data-level="Q"
+                class="level-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]"
+                title={q.ec.quartileTitle}>{q.ec.quartile}</button
+              >
+              <button
+                data-level="H"
+                class="level-btn px-3 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]"
+                title={q.ec.highTitle}>{q.ec.high}</button
+              >
             </div>
             <p class="text-xs text-gray-400 mt-2">{q.ec.hint}</p>
           </div>
 
           <div class="flex gap-3">
-            <button id="generate-btn" class="flex-1 px-4 py-2 bg-[#171717] text-white text-sm rounded-lg hover:bg-gray-800 transition-colors">
+            <button
+              id="generate-btn"
+              class="flex-1 px-4 py-2 bg-[#171717] text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+            >
               {q.generateBtn}
             </button>
-            <button id="reset-btn" class="px-4 py-2 border border-gray-200 text-gray-600 text-sm rounded-lg hover:border-[#171717] transition-colors">
+            <button
+              id="reset-btn"
+              class="px-4 py-2 border border-gray-200 text-gray-600 text-sm rounded-lg hover:border-[#171717] transition-colors"
+            >
               {q.resetBtn}
             </button>
           </div>
         </section>
 
         <section>
-          <div class="p-6 bg-white border border-gray-200 rounded-xl min-h-[400px] flex flex-col">
+          <div
+            class="p-6 bg-white border border-gray-200 rounded-xl min-h-[400px] flex flex-col"
+          >
             <div class="flex justify-between items-center mb-4">
-              <span class="text-sm font-medium text-[#171717]">{q.preview}</span>
+              <span class="text-sm font-medium text-[#171717]">{q.preview}</span
+              >
               <div class="flex gap-2">
-                <button id="download-png" class="text-xs text-gray-400 hover:text-[#171717]" disabled>{q.downloadPng}</button>
-                <button id="download-svg" class="text-xs text-gray-400 hover:text-[#171717]" disabled>{q.downloadSvg}</button>
+                <button
+                  id="download-png"
+                  class="text-xs text-gray-400 hover:text-[#171717]"
+                  disabled>{q.downloadPng}</button
+                >
+                <button
+                  id="download-svg"
+                  class="text-xs text-gray-400 hover:text-[#171717]"
+                  disabled>{q.downloadSvg}</button
+                >
               </div>
             </div>
 
-            <div id="qr-container" class="flex-1 flex items-center justify-center bg-gray-50 rounded-lg">
+            <div
+              id="qr-container"
+              class="flex-1 flex items-center justify-center bg-gray-50 rounded-lg"
+            >
               <p class="text-gray-400 text-sm">{q.previewEmpty}</p>
             </div>
 
@@ -122,7 +196,9 @@ const schema = {
       </div>
 
       <div class="mt-8 p-4 bg-gray-50 border border-gray-200 rounded-xl">
-        <h3 class="text-sm font-medium text-[#171717] mb-2">{q.examples.heading}</h3>
+        <h3 class="text-sm font-medium text-[#171717] mb-2">
+          {q.examples.heading}
+        </h3>
         <div class="grid sm:grid-cols-2 gap-3 text-xs text-gray-500">
           <div>
             <span class="font-medium">{q.examples.url}</span>
@@ -130,7 +206,9 @@ const schema = {
           </div>
           <div>
             <span class="font-medium">{q.examples.email}</span>
-            <code class="bg-white px-2 py-1 rounded">mailto:hello@example.com</code>
+            <code class="bg-white px-2 py-1 rounded"
+              >mailto:hello@example.com</code
+            >
           </div>
           <div>
             <span class="font-medium">{q.examples.phone}</span>
@@ -138,7 +216,9 @@ const schema = {
           </div>
           <div>
             <span class="font-medium">{q.examples.wifi}</span>
-            <code class="bg-white px-2 py-1 rounded">WIFI:T:WPA;S:network;P:password;;</code>
+            <code class="bg-white px-2 py-1 rounded"
+              >WIFI:T:WPA;S:network;P:password;;</code
+            >
           </div>
         </div>
       </div>
@@ -154,7 +234,8 @@ const schema = {
 
   const root = document.querySelector<HTMLElement>('main .max-w-\\[960px\\]')!;
   const D = root.dataset;
-  const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+  const $ = <T extends HTMLElement = HTMLElement>(id: string) =>
+    document.getElementById(id) as T;
 
   const qrInput = $<HTMLTextAreaElement>('qr-input');
   const qrContainer = $('qr-container');
@@ -204,14 +285,16 @@ const schema = {
   };
 
   const interpolateInfo = (vars: Record<string, string | number>) => {
-    return (D.i18nInfoTemplate ?? '').replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ''));
+    return (D.i18nInfoTemplate ?? '').replace(/\{(\w+)\}/g, (_, k) =>
+      String(vars[k] ?? ''),
+    );
   };
 
   const sizeBtns = document.querySelectorAll<HTMLButtonElement>('.size-btn');
-  sizeBtns.forEach(btn => {
+  sizeBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       currentSize = parseInt(btn.dataset.size!);
-      sizeBtns.forEach(b => {
+      sizeBtns.forEach((b) => {
         const active = b === btn;
         b.classList.toggle('bg-[#171717]', active);
         b.classList.toggle('text-white', active);
@@ -221,10 +304,10 @@ const schema = {
   });
 
   const levelBtns = document.querySelectorAll<HTMLButtonElement>('.level-btn');
-  levelBtns.forEach(btn => {
+  levelBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       currentLevel = btn.dataset.level as 'L' | 'M' | 'Q' | 'H';
-      levelBtns.forEach(b => {
+      levelBtns.forEach((b) => {
         const active = b === btn;
         b.classList.toggle('bg-[#171717]', active);
         b.classList.toggle('text-white', active);
@@ -290,13 +373,13 @@ const schema = {
     colorDark.value = '#000000';
     colorLight.value = '#FFFFFF';
 
-    sizeBtns.forEach(b => {
+    sizeBtns.forEach((b) => {
       const active = b.dataset.size === '256';
       b.classList.toggle('bg-[#171717]', active);
       b.classList.toggle('text-white', active);
       b.classList.toggle('text-gray-600', !active);
     });
-    levelBtns.forEach(b => {
+    levelBtns.forEach((b) => {
       const active = b.dataset.level === 'M';
       b.classList.toggle('bg-[#171717]', active);
       b.classList.toggle('text-white', active);

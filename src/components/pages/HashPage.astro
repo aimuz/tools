@@ -27,7 +27,10 @@ const schema = {
   url: pageUrl,
 };
 
-const algorithms: { id: 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512'; label: string }[] = [
+const algorithms: {
+  id: 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512';
+  label: string;
+}[] = [
   { id: 'SHA-1', label: h.algorithms.sha1 },
   { id: 'SHA-256', label: h.algorithms.sha256 },
   { id: 'SHA-384', label: h.algorithms.sha384 },
@@ -36,7 +39,11 @@ const algorithms: { id: 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512'; label: stri
 ---
 
 <Layout title={h.title} description={h.description} locale={locale}>
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+    slot="head"
+  />
   <Header locale={locale} />
 
   <main class="flex-1 py-10">
@@ -57,27 +64,46 @@ const algorithms: { id: 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512'; label: stri
 
       <div class="flex justify-center mb-6">
         <div class="inline-flex p-1 bg-gray-100 rounded-lg">
-          <button data-tab="text" class="tab-btn px-4 py-2 text-sm rounded-md bg-white text-[#171717] shadow-sm transition-all">{h.tabs.text}</button>
-          <button data-tab="file" class="tab-btn px-4 py-2 text-sm rounded-md text-gray-500 hover:text-[#171717] transition-all">{h.tabs.file}</button>
+          <button
+            data-tab="text"
+            class="tab-btn px-4 py-2 text-sm rounded-md bg-white text-[#171717] shadow-sm transition-all"
+            >{h.tabs.text}</button
+          >
+          <button
+            data-tab="file"
+            class="tab-btn px-4 py-2 text-sm rounded-md text-gray-500 hover:text-[#171717] transition-all"
+            >{h.tabs.file}</button
+          >
         </div>
       </div>
 
       <section id="text-panel" class="mb-6">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-sm font-medium text-[#171717]">{h.input.textLabel}</span>
-          <button id="clear-text-btn" class="text-xs text-gray-400 hover:text-red-500">{h.input.clearBtn}</button>
+          <span class="text-sm font-medium text-[#171717]"
+            >{h.input.textLabel}</span
+          >
+          <button
+            id="clear-text-btn"
+            class="text-xs text-gray-400 hover:text-red-500"
+            >{h.input.clearBtn}</button
+          >
         </div>
         <textarea
           id="text-input"
           class="w-full h-40 p-4 bg-white border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717] resize-none"
-          placeholder={h.input.textPlaceholder}
-        ></textarea>
+          placeholder={h.input.textPlaceholder}></textarea>
       </section>
 
       <section id="file-panel" class="mb-6 hidden">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-sm font-medium text-[#171717]">{h.input.fileLabel}</span>
-          <button id="clear-file-btn" class="hidden text-xs text-gray-400 hover:text-red-500">{h.input.clearBtn}</button>
+          <span class="text-sm font-medium text-[#171717]"
+            >{h.input.fileLabel}</span
+          >
+          <button
+            id="clear-file-btn"
+            class="hidden text-xs text-gray-400 hover:text-red-500"
+            >{h.input.clearBtn}</button
+          >
         </div>
 
         <label
@@ -85,58 +111,106 @@ const algorithms: { id: 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512'; label: stri
           class="block p-8 bg-white border-2 border-dashed border-gray-200 rounded-lg text-center cursor-pointer hover:border-[#171717] transition-colors"
         >
           <input id="file-input" type="file" class="hidden" />
-          <svg class="w-10 h-10 mx-auto mb-3 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+          <svg
+            class="w-10 h-10 mx-auto mb-3 text-gray-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+            ></path>
           </svg>
           <p class="text-sm text-[#171717]">{h.input.fileDrop}</p>
           <p class="text-xs text-gray-400 mt-1">{h.input.fileHint}</p>
         </label>
 
-        <div id="file-info" class="hidden mt-3 p-3 bg-gray-50 border border-gray-200 rounded-lg flex items-center justify-between">
+        <div
+          id="file-info"
+          class="hidden mt-3 p-3 bg-gray-50 border border-gray-200 rounded-lg flex items-center justify-between"
+        >
           <div class="flex items-center gap-2 min-w-0">
-            <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            <svg
+              class="w-4 h-4 text-gray-400 flex-shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              ></path>
             </svg>
             <span id="file-name" class="text-sm text-[#171717] truncate"></span>
           </div>
-          <span id="file-size" class="text-xs text-gray-400 ml-3 flex-shrink-0"></span>
+          <span id="file-size" class="text-xs text-gray-400 ml-3 flex-shrink-0"
+          ></span>
         </div>
 
         <p class="text-xs text-gray-400 mt-2">{h.input.fileSizeHint}</p>
       </section>
 
-      <div id="error-msg" class="hidden mb-5 p-3 bg-red-50 border border-red-100 rounded-lg text-red-500 text-sm"></div>
+      <div
+        id="error-msg"
+        class="hidden mb-5 p-3 bg-red-50 border border-red-100 rounded-lg text-red-500 text-sm"
+      >
+      </div>
 
       <section>
         <div class="flex justify-between items-center mb-3">
-          <span class="text-sm font-medium text-[#171717]">{h.output.label}</span>
+          <span class="text-sm font-medium text-[#171717]"
+            >{h.output.label}</span
+          >
           <div class="flex items-center gap-2">
             <span class="text-xs text-gray-400">{h.output.formatLabel}</span>
             <div class="inline-flex p-0.5 bg-gray-100 rounded-md">
-              <button data-fmt="hex" class="fmt-btn px-3 py-1 text-xs rounded bg-white text-[#171717] shadow-sm">{h.output.hex}</button>
-              <button data-fmt="base64" class="fmt-btn px-3 py-1 text-xs rounded text-gray-500 hover:text-[#171717]">{h.output.base64}</button>
+              <button
+                data-fmt="hex"
+                class="fmt-btn px-3 py-1 text-xs rounded bg-white text-[#171717] shadow-sm"
+                >{h.output.hex}</button
+              >
+              <button
+                data-fmt="base64"
+                class="fmt-btn px-3 py-1 text-xs rounded text-gray-500 hover:text-[#171717]"
+                >{h.output.base64}</button
+              >
             </div>
           </div>
         </div>
 
         <div id="results" class="space-y-2">
-          {algorithms.map((a) => (
-            <div
-              class="hash-row p-3 bg-white border border-gray-200 rounded-lg"
-              data-algo={a.id}
-            >
-              <div class="flex items-center justify-between mb-1.5">
-                <span class="text-xs font-medium text-[#171717]">{a.label}</span>
-                <button class="copy-btn text-xs text-gray-400 hover:text-[#171717] opacity-0 transition-opacity">{h.output.copyBtn}</button>
+          {
+            algorithms.map((a) => (
+              <div
+                class="hash-row p-3 bg-white border border-gray-200 rounded-lg"
+                data-algo={a.id}
+              >
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-xs font-medium text-[#171717]">
+                    {a.label}
+                  </span>
+                  <button class="copy-btn text-xs text-gray-400 hover:text-[#171717] opacity-0 transition-opacity">
+                    {h.output.copyBtn}
+                  </button>
+                </div>
+                <code class="hash-value block font-mono text-xs text-gray-400 break-all">
+                  {h.output.empty}
+                </code>
               </div>
-              <code class="hash-value block font-mono text-xs text-gray-400 break-all">{h.output.empty}</code>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </section>
 
       <div class="mt-8 p-4 bg-gray-50 border border-gray-200 rounded-xl">
-        <h3 class="text-sm font-medium text-[#171717] mb-2">{h.tips.heading}</h3>
+        <h3 class="text-sm font-medium text-[#171717] mb-2">
+          {h.tips.heading}
+        </h3>
         <ul class="text-xs text-gray-500 space-y-1 list-disc list-inside">
           {h.tips.items.map((item) => <li>{item}</li>)}
         </ul>
@@ -150,7 +224,8 @@ const algorithms: { id: 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512'; label: stri
 <script>
   const root = document.querySelector<HTMLElement>('main .max-w-\\[900px\\]')!;
   const D = root.dataset;
-  const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+  const $ = <T extends HTMLElement = HTMLElement>(id: string) =>
+    document.getElementById(id) as T;
 
   const MAX_FILE_SIZE = 2 * 1024 * 1024 * 1024;
   const ALGOS = ['SHA-1', 'SHA-256', 'SHA-384', 'SHA-512'] as const;
@@ -188,7 +263,8 @@ const algorithms: { id: 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512'; label: stri
   const formatSize = (bytes: number) => {
     if (bytes < 1024) return bytes + ' B';
     if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
-    if (bytes < 1024 * 1024 * 1024) return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    if (bytes < 1024 * 1024 * 1024)
+      return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
     return (bytes / (1024 * 1024 * 1024)).toFixed(2) + ' GB';
   };
 
@@ -202,7 +278,9 @@ const algorithms: { id: 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512'; label: stri
   const hideError = () => errorMsg.classList.add('hidden');
 
   const toHex = (buf: ArrayBuffer) =>
-    Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, '0')).join('');
+    Array.from(new Uint8Array(buf))
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
 
   const toBase64 = (buf: ArrayBuffer) => {
     const bytes = new Uint8Array(buf);
@@ -212,7 +290,9 @@ const algorithms: { id: 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512'; label: stri
   };
 
   const render = (algo: Algo, text: string, active: boolean) => {
-    const row = document.querySelector<HTMLElement>(`.hash-row[data-algo="${algo}"]`)!;
+    const row = document.querySelector<HTMLElement>(
+      `.hash-row[data-algo="${algo}"]`,
+    )!;
     const value = row.querySelector<HTMLElement>('.hash-value')!;
     const btn = row.querySelector<HTMLButtonElement>('.copy-btn')!;
     value.textContent = text;
@@ -249,7 +329,11 @@ const algorithms: { id: 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512'; label: stri
     const data = new TextEncoder().encode(text);
     try {
       const results = await Promise.all(
-        ALGOS.map((a) => crypto.subtle.digest(a, data as unknown as ArrayBuffer).then((b) => [a, b] as const)),
+        ALGOS.map((a) =>
+          crypto.subtle
+            .digest(a, data as unknown as ArrayBuffer)
+            .then((b) => [a, b] as const),
+        ),
       );
       if (token !== computeToken) return;
       for (const [a, b] of results) rawHashes.set(a, b);
@@ -268,7 +352,9 @@ const algorithms: { id: 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512'; label: stri
     try {
       const buf = await file.arrayBuffer();
       const results = await Promise.all(
-        ALGOS.map((a) => crypto.subtle.digest(a, buf).then((b) => [a, b] as const)),
+        ALGOS.map((a) =>
+          crypto.subtle.digest(a, buf).then((b) => [a, b] as const),
+        ),
       );
       if (token !== computeToken) return;
       for (const [a, b] of results) rawHashes.set(a, b);
@@ -302,7 +388,8 @@ const algorithms: { id: 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512'; label: stri
     }
   };
 
-  const modeFromHash = (): 'text' | 'file' => (location.hash === '#file' ? 'file' : 'text');
+  const modeFromHash = (): 'text' | 'file' =>
+    location.hash === '#file' ? 'file' : 'text';
 
   const setFmt = (f: 'hex' | 'base64') => {
     fmt = f;
@@ -329,10 +416,20 @@ const algorithms: { id: 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512'; label: stri
     digestFile(file);
   };
 
-  tabBtns.forEach((btn) => btn.addEventListener('click', () => setMode(btn.dataset.tab as 'text' | 'file')));
-  window.addEventListener('hashchange', () => setMode(modeFromHash(), { updateHash: false }));
+  tabBtns.forEach((btn) =>
+    btn.addEventListener('click', () =>
+      setMode(btn.dataset.tab as 'text' | 'file'),
+    ),
+  );
+  window.addEventListener('hashchange', () =>
+    setMode(modeFromHash(), { updateHash: false }),
+  );
   setMode(modeFromHash(), { updateHash: false });
-  fmtBtns.forEach((btn) => btn.addEventListener('click', () => setFmt(btn.dataset.fmt as 'hex' | 'base64')));
+  fmtBtns.forEach((btn) =>
+    btn.addEventListener('click', () =>
+      setFmt(btn.dataset.fmt as 'hex' | 'base64'),
+    ),
+  );
 
   let debounce: ReturnType<typeof setTimeout> | null = null;
   textInput.addEventListener('input', () => {
@@ -355,7 +452,9 @@ const algorithms: { id: 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512'; label: stri
     e.preventDefault();
     fileDrop.classList.add('border-[#171717]');
   });
-  fileDrop.addEventListener('dragleave', () => fileDrop.classList.remove('border-[#171717]'));
+  fileDrop.addEventListener('dragleave', () =>
+    fileDrop.classList.remove('border-[#171717]'),
+  );
   fileDrop.addEventListener('drop', (e) => {
     e.preventDefault();
     fileDrop.classList.remove('border-[#171717]');
@@ -375,7 +474,8 @@ const algorithms: { id: 'SHA-1' | 'SHA-256' | 'SHA-384' | 'SHA-512'; label: stri
   rows.forEach((row) => {
     const btn = row.querySelector<HTMLButtonElement>('.copy-btn')!;
     btn.addEventListener('click', async () => {
-      const value = row.querySelector<HTMLElement>('.hash-value')?.textContent ?? '';
+      const value =
+        row.querySelector<HTMLElement>('.hash-value')?.textContent ?? '';
       if (!value || value === EMPTY || value === COMPUTING) return;
       try {
         await navigator.clipboard.writeText(value);

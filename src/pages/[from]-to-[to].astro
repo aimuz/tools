@@ -14,7 +14,13 @@ export const getStaticPaths = () => {
 };
 
 const { from, to } = Astro.params as { from: ConvertFormat; to: ConvertFormat };
-const FORMATS: readonly ConvertFormat[] = ['png', 'jpg', 'webp', 'gif', 'bmp'] as const;
+const FORMATS: readonly ConvertFormat[] = [
+  'png',
+  'jpg',
+  'webp',
+  'gif',
+  'bmp',
+] as const;
 if (!FORMATS.includes(from) || !FORMATS.includes(to)) {
   return Astro.redirect('/convert');
 }

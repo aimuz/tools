@@ -3,12 +3,20 @@ import ConvertPairPage from '../../components/pages/ConvertPairPage.astro';
 import { isLocale, type Locale } from '../../i18n/config';
 import type { ConvertFormat } from '../../i18n/schema';
 
-const FORMATS: readonly ConvertFormat[] = ['png', 'jpg', 'webp', 'gif', 'bmp'] as const;
+const FORMATS: readonly ConvertFormat[] = [
+  'png',
+  'jpg',
+  'webp',
+  'gif',
+  'bmp',
+] as const;
 
 export const getStaticPaths = () => {
   const formats: ConvertFormat[] = ['png', 'jpg', 'webp', 'gif', 'bmp'];
   const locales: Locale[] = ['en', 'zh-TW', 'ja', 'ko', 'es'];
-  const paths: { params: { locale: Locale; from: ConvertFormat; to: ConvertFormat } }[] = [];
+  const paths: {
+    params: { locale: Locale; from: ConvertFormat; to: ConvertFormat };
+  }[] = [];
   for (const locale of locales) {
     for (const from of formats) {
       for (const to of formats) {

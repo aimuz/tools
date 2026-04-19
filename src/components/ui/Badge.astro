@@ -5,11 +5,7 @@ interface Props {
   class?: string;
 }
 
-const {
-  variant = 'default',
-  size = 'sm',
-  class: className = ''
-} = Astro.props;
+const { variant = 'default', size = 'sm', class: className = '' } = Astro.props;
 
 const baseStyles = 'inline-flex items-center font-medium rounded-pill';
 

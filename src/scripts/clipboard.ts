@@ -30,7 +30,10 @@ export function setClipboardLabels(labels: ClipboardLabels): void {
   activeLabels = { ...DEFAULT_LABELS, ...labels };
 }
 
-export async function copyImageToClipboard(blob: Blob, mime: string): Promise<void> {
+export async function copyImageToClipboard(
+  blob: Blob,
+  mime: string,
+): Promise<void> {
   if (!('clipboard' in navigator) || !('ClipboardItem' in window)) {
     throw new Error(activeLabels.notSupported);
   }
@@ -63,7 +66,10 @@ async function transcodeToPng(blob: Blob): Promise<Blob> {
 
 export function canvasToPngBlob(canvas: HTMLCanvasElement): Promise<Blob> {
   return new Promise((resolve, reject) => {
-    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error(activeLabels.pngFailed))), 'image/png');
+    canvas.toBlob(
+      (b) => (b ? resolve(b) : reject(new Error(activeLabels.pngFailed))),
+      'image/png',
+    );
   });
 }
 

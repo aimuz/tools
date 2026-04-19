@@ -43,16 +43,23 @@ const quickColors: { hex: string; nameKey: keyof typeof c.colorNames }[] = [
 ];
 
 const colorNamesJson = JSON.stringify(
-  Object.fromEntries(quickColors.map((q) => [q.hex.toUpperCase(), c.colorNames[q.nameKey]])),
+  Object.fromEntries(
+    quickColors.map((q) => [q.hex.toUpperCase(), c.colorNames[q.nameKey]]),
+  ),
 );
 ---
 
 <Layout title={c.title} description={c.description} locale={locale}>
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+    slot="head"
+  />
   <Header locale={locale} />
 
   <main class="flex-1 py-10">
-    <div class="max-w-[800px] mx-auto px-6"
+    <div
+      class="max-w-[800px] mx-auto px-6"
       data-color-names={colorNamesJson}
       data-i18n-copy={c.copyBtn}
       data-i18n-copied={c.copiedBtn}
@@ -63,8 +70,15 @@ const colorNamesJson = JSON.stringify(
       </div>
 
       <div class="mb-8 p-6 bg-white border border-gray-200 rounded-xl">
-        <div id="color-preview" class="w-full h-32 rounded-lg shadow-inner transition-colors duration-200" style="background-color: #3B82F6;"></div>
-        <p id="color-name" class="text-center mt-3 text-sm text-gray-500">{c.colorNames.blue}</p>
+        <div
+          id="color-preview"
+          class="w-full h-32 rounded-lg shadow-inner transition-colors duration-200"
+          style="background-color: #3B82F6;"
+        >
+        </div>
+        <p id="color-name" class="text-center mt-3 text-sm text-gray-500">
+          {c.colorNames.blue}
+        </p>
       </div>
 
       <div class="mb-6 flex justify-center">
@@ -82,8 +96,14 @@ const colorNamesJson = JSON.stringify(
       <div class="space-y-4">
         <div class="p-4 bg-white border border-gray-200 rounded-xl">
           <div class="flex justify-between items-center mb-2">
-            <label class="text-sm font-medium text-[#171717]">{c.hex.label}</label>
-            <button data-format="hex" class="copy-btn text-xs text-gray-400 hover:text-[#171717]">{c.copyBtn}</button>
+            <label class="text-sm font-medium text-[#171717]"
+              >{c.hex.label}</label
+            >
+            <button
+              data-format="hex"
+              class="copy-btn text-xs text-gray-400 hover:text-[#171717]"
+              >{c.copyBtn}</button
+            >
           </div>
           <div class="flex gap-2">
             <span class="flex items-center text-gray-400 font-mono">#</span>
@@ -100,71 +120,148 @@ const colorNamesJson = JSON.stringify(
 
         <div class="p-4 bg-white border border-gray-200 rounded-xl">
           <div class="flex justify-between items-center mb-2">
-            <label class="text-sm font-medium text-[#171717]">{c.rgb.label}</label>
-            <button data-format="rgb" class="copy-btn text-xs text-gray-400 hover:text-[#171717]">{c.copyBtn}</button>
+            <label class="text-sm font-medium text-[#171717]"
+              >{c.rgb.label}</label
+            >
+            <button
+              data-format="rgb"
+              class="copy-btn text-xs text-gray-400 hover:text-[#171717]"
+              >{c.copyBtn}</button
+            >
           </div>
           <div class="grid grid-cols-3 gap-3">
             <div>
               <label class="text-xs text-gray-400">{c.rgb.r}</label>
-              <input type="number" id="rgb-r" min="0" max="255" value="59" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717]" />
+              <input
+                type="number"
+                id="rgb-r"
+                min="0"
+                max="255"
+                value="59"
+                class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717]"
+              />
             </div>
             <div>
               <label class="text-xs text-gray-400">{c.rgb.g}</label>
-              <input type="number" id="rgb-g" min="0" max="255" value="130" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717]" />
+              <input
+                type="number"
+                id="rgb-g"
+                min="0"
+                max="255"
+                value="130"
+                class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717]"
+              />
             </div>
             <div>
               <label class="text-xs text-gray-400">{c.rgb.b}</label>
-              <input type="number" id="rgb-b" min="0" max="255" value="246" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717]" />
+              <input
+                type="number"
+                id="rgb-b"
+                min="0"
+                max="255"
+                value="246"
+                class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717]"
+              />
             </div>
           </div>
           <div class="mt-2 flex items-center gap-2">
-            <code id="rgb-css" class="flex-1 px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm text-gray-600">rgb(59, 130, 246)</code>
-            <button data-format="rgb-css" class="copy-btn text-xs text-gray-400 hover:text-[#171717]">{c.copyBtn}</button>
+            <code
+              id="rgb-css"
+              class="flex-1 px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm text-gray-600"
+              >rgb(59, 130, 246)</code
+            >
+            <button
+              data-format="rgb-css"
+              class="copy-btn text-xs text-gray-400 hover:text-[#171717]"
+              >{c.copyBtn}</button
+            >
           </div>
         </div>
 
         <div class="p-4 bg-white border border-gray-200 rounded-xl">
           <div class="flex justify-between items-center mb-2">
-            <label class="text-sm font-medium text-[#171717]">{c.hsl.label}</label>
-            <button data-format="hsl" class="copy-btn text-xs text-gray-400 hover:text-[#171717]">{c.copyBtn}</button>
+            <label class="text-sm font-medium text-[#171717]"
+              >{c.hsl.label}</label
+            >
+            <button
+              data-format="hsl"
+              class="copy-btn text-xs text-gray-400 hover:text-[#171717]"
+              >{c.copyBtn}</button
+            >
           </div>
           <div class="grid grid-cols-3 gap-3">
             <div>
               <label class="text-xs text-gray-400">{c.hsl.h}</label>
-              <input type="number" id="hsl-h" min="0" max="360" value="217" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717]" />
+              <input
+                type="number"
+                id="hsl-h"
+                min="0"
+                max="360"
+                value="217"
+                class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717]"
+              />
             </div>
             <div>
               <label class="text-xs text-gray-400">{c.hsl.s}</label>
-              <input type="number" id="hsl-s" min="0" max="100" value="91" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717]" />
+              <input
+                type="number"
+                id="hsl-s"
+                min="0"
+                max="100"
+                value="91"
+                class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717]"
+              />
             </div>
             <div>
               <label class="text-xs text-gray-400">{c.hsl.l}</label>
-              <input type="number" id="hsl-l" min="0" max="100" value="60" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717]" />
+              <input
+                type="number"
+                id="hsl-l"
+                min="0"
+                max="100"
+                value="60"
+                class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717]"
+              />
             </div>
           </div>
           <div class="mt-2 flex items-center gap-2">
-            <code id="hsl-css" class="flex-1 px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm text-gray-600">hsl(217, 91%, 60%)</code>
-            <button data-format="hsl-css" class="copy-btn text-xs text-gray-400 hover:text-[#171717]">{c.copyBtn}</button>
+            <code
+              id="hsl-css"
+              class="flex-1 px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm text-gray-600"
+              >hsl(217, 91%, 60%)</code
+            >
+            <button
+              data-format="hsl-css"
+              class="copy-btn text-xs text-gray-400 hover:text-[#171717]"
+              >{c.copyBtn}</button
+            >
           </div>
         </div>
       </div>
 
       <div class="mt-8">
-        <p class="text-sm font-medium text-[#171717] mb-3">{c.quickColorsLabel}</p>
+        <p class="text-sm font-medium text-[#171717] mb-3">
+          {c.quickColorsLabel}
+        </p>
         <div class="flex flex-wrap gap-2">
-          {quickColors.map((q) => (
-            <button
-              data-color={q.hex}
-              class="quick-color w-10 h-10 rounded-lg border border-gray-200 hover:scale-110 transition-transform"
-              style={`background-color: ${q.hex};`}
-              title={c.colorNames[q.nameKey]}
-            ></button>
-          ))}
+          {
+            quickColors.map((q) => (
+              <button
+                data-color={q.hex}
+                class="quick-color w-10 h-10 rounded-lg border border-gray-200 hover:scale-110 transition-transform"
+                style={`background-color: ${q.hex};`}
+                title={c.colorNames[q.nameKey]}
+              />
+            ))
+          }
         </div>
       </div>
 
       <div class="mt-6 text-center">
-        <button id="random-btn" class="px-4 py-2 bg-[#171717] text-white text-sm rounded-lg hover:bg-gray-800 transition-colors">
+        <button
+          id="random-btn"
+          class="px-4 py-2 bg-[#171717] text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+        >
           {c.randomBtn}
         </button>
       </div>
@@ -177,7 +274,8 @@ const colorNamesJson = JSON.stringify(
 <script>
   const root = document.querySelector<HTMLElement>('main .max-w-\\[800px\\]')!;
   const D = root.dataset;
-  const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+  const $ = <T extends HTMLElement = HTMLElement>(id: string) =>
+    document.getElementById(id) as T;
 
   const colorNames: Record<string, string> = JSON.parse(D.colorNames ?? '{}');
 
@@ -194,39 +292,69 @@ const colorNamesJson = JSON.stringify(
   const hslL = $<HTMLInputElement>('hsl-l');
   const hslCss = $('hsl-css');
 
-  const hexToRgb = (hex: string): { r: number; g: number; b: number } | null => {
+  const hexToRgb = (
+    hex: string,
+  ): { r: number; g: number; b: number } | null => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16),
-    } : null;
+    return result
+      ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16),
+        }
+      : null;
   };
 
   const rgbToHex = (r: number, g: number, b: number): string => {
-    return [r, g, b].map(x => Math.max(0, Math.min(255, x)).toString(16).padStart(2, '0')).join('').toUpperCase();
+    return [r, g, b]
+      .map((x) => Math.max(0, Math.min(255, x)).toString(16).padStart(2, '0'))
+      .join('')
+      .toUpperCase();
   };
 
-  const rgbToHsl = (r: number, g: number, b: number): { h: number; s: number; l: number } => {
-    r /= 255; g /= 255; b /= 255;
+  const rgbToHsl = (
+    r: number,
+    g: number,
+    b: number,
+  ): { h: number; s: number; l: number } => {
+    r /= 255;
+    g /= 255;
+    b /= 255;
     const max = Math.max(r, g, b);
     const min = Math.min(r, g, b);
-    let h = 0, s = 0;
+    let h = 0,
+      s = 0;
     const l = (max + min) / 2;
     if (max !== min) {
       const d = max - min;
       s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
       switch (max) {
-        case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
-        case g: h = ((b - r) / d + 2) / 6; break;
-        case b: h = ((r - g) / d + 4) / 6; break;
+        case r:
+          h = ((g - b) / d + (g < b ? 6 : 0)) / 6;
+          break;
+        case g:
+          h = ((b - r) / d + 2) / 6;
+          break;
+        case b:
+          h = ((r - g) / d + 4) / 6;
+          break;
       }
     }
-    return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+    return {
+      h: Math.round(h * 360),
+      s: Math.round(s * 100),
+      l: Math.round(l * 100),
+    };
   };
 
-  const hslToRgb = (h: number, s: number, l: number): { r: number; g: number; b: number } => {
-    h /= 360; s /= 100; l /= 100;
+  const hslToRgb = (
+    h: number,
+    s: number,
+    l: number,
+  ): { r: number; g: number; b: number } => {
+    h /= 360;
+    s /= 100;
+    l /= 100;
     let r, g, b;
     if (s === 0) {
       r = g = b = l;
@@ -234,18 +362,22 @@ const colorNamesJson = JSON.stringify(
       const hue2rgb = (p: number, q: number, t: number) => {
         if (t < 0) t += 1;
         if (t > 1) t -= 1;
-        if (t < 1/6) return p + (q - p) * 6 * t;
-        if (t < 1/2) return q;
-        if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+        if (t < 1 / 6) return p + (q - p) * 6 * t;
+        if (t < 1 / 2) return q;
+        if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
         return p;
       };
       const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
       const p = 2 * l - q;
-      r = hue2rgb(p, q, h + 1/3);
+      r = hue2rgb(p, q, h + 1 / 3);
       g = hue2rgb(p, q, h);
-      b = hue2rgb(p, q, h - 1/3);
+      b = hue2rgb(p, q, h - 1 / 3);
     }
-    return { r: Math.round(r * 255), g: Math.round(g * 255), b: Math.round(b * 255) };
+    return {
+      r: Math.round(r * 255),
+      g: Math.round(g * 255),
+      b: Math.round(b * 255),
+    };
   };
 
   const updateFromHex = (hex: string) => {
@@ -305,17 +437,25 @@ const colorNamesJson = JSON.stringify(
     colorName.textContent = colorNames[fullHex] || fullHex;
   };
 
-  colorPicker.addEventListener('input', (e) => updateFromHex((e.target as HTMLInputElement).value));
+  colorPicker.addEventListener('input', (e) =>
+    updateFromHex((e.target as HTMLInputElement).value),
+  );
   hexInput.addEventListener('input', () => {
     const hex = hexInput.value.replace(/[^0-9A-Fa-f]/g, '').slice(0, 6);
     if (hex.length === 6) updateFromHex(hex);
   });
-  [rgbR, rgbG, rgbB].forEach(input => input.addEventListener('input', updateFromRgb));
-  [hslH, hslS, hslL].forEach(input => input.addEventListener('input', updateFromHsl));
+  [rgbR, rgbG, rgbB].forEach((input) =>
+    input.addEventListener('input', updateFromRgb),
+  );
+  [hslH, hslS, hslL].forEach((input) =>
+    input.addEventListener('input', updateFromHsl),
+  );
 
-  document.querySelectorAll<HTMLButtonElement>('.quick-color').forEach(btn => {
-    btn.addEventListener('click', () => updateFromHex(btn.dataset.color!));
-  });
+  document
+    .querySelectorAll<HTMLButtonElement>('.quick-color')
+    .forEach((btn) => {
+      btn.addEventListener('click', () => updateFromHex(btn.dataset.color!));
+    });
 
   $('random-btn').addEventListener('click', () => {
     const r = Math.floor(Math.random() * 256);
@@ -324,23 +464,29 @@ const colorNamesJson = JSON.stringify(
     updateFromHex(rgbToHex(r, g, b));
   });
 
-  document.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach(btn => {
+  document.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach((btn) => {
     btn.addEventListener('click', async () => {
       const format = btn.dataset.format;
       let text = '';
       switch (format) {
-        case 'hex': text = '#' + hexInput.value; break;
+        case 'hex':
+          text = '#' + hexInput.value;
+          break;
         case 'rgb':
-        case 'rgb-css': text = rgbCss.textContent ?? ''; break;
+        case 'rgb-css':
+          text = rgbCss.textContent ?? '';
+          break;
         case 'hsl':
-        case 'hsl-css': text = hslCss.textContent ?? ''; break;
+        case 'hsl-css':
+          text = hslCss.textContent ?? '';
+          break;
       }
       if (!text) return;
       try {
         await navigator.clipboard.writeText(text);
         const old = btn.textContent;
         btn.textContent = D.i18nCopied ?? 'Copied';
-        setTimeout(() => btn.textContent = old, 1200);
+        setTimeout(() => (btn.textContent = old), 1200);
       } catch {}
     });
   });

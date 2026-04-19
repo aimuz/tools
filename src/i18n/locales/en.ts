@@ -29,12 +29,15 @@ export const en = {
       needText: 'Please enter the text to embed',
       noWatermark: 'No watermark detected',
       capacityHintTemplate: 'Capacity {bytes} bytes · ~{chars} characters',
-      capacityErrorTemplate: 'Image capacity exceeded — max {cap} bytes (current text {len} bytes)',
+      capacityErrorTemplate:
+        'Image capacity exceeded — max {cap} bytes (current text {len} bytes)',
       imageTooSmallDct: 'Image too small — DCT requires at least 128×128 px',
-      imageTooSmallLsb: 'Image too small — at least ~32×32 px required to embed a watermark',
+      imageTooSmallLsb:
+        'Image too small — at least ~32×32 px required to embed a watermark',
       clipboardNotSupported: 'Clipboard API is not supported in this browser',
       pngGenerationFailed: 'PNG generation failed',
-      audioDecodeFailed: 'Could not decode audio. Try another file or use Chrome/Firefox.',
+      audioDecodeFailed:
+        'Could not decode audio. Try another file or use Chrome/Firefox.',
       audioEncodeFailed: 'Audio encoding failed',
       compareBtn: 'Compare',
       compareBefore: 'Before',
@@ -45,36 +48,84 @@ export const en = {
     image: {
       label: 'Image Tools',
       items: {
-        compress: { name: 'Image Compress', desc: 'Smart PNG / JPG / WebP compression' },
-        convert: { name: 'Image Format Convert', desc: 'PNG JPG WebP GIF BMP interchange' },
-        'png-to-jpg': { name: 'PNG to JPG', desc: 'Fill transparency with white · smaller files' },
-        'jpg-to-png': { name: 'JPG to PNG', desc: 'Lossless save · transparency support' },
-        'png-to-webp': { name: 'PNG to WebP', desc: 'Keep transparency · smaller files' },
-        'jpg-to-webp': { name: 'JPG to WebP', desc: 'Same quality · 25-35% smaller' },
-        watermark: { name: 'Hidden Watermark', desc: 'Embed / extract hidden text' },
-        'text-watermark': { name: 'Text Watermark', desc: 'For ID cards · anti-theft watermark' },
+        compress: {
+          name: 'Image Compress',
+          desc: 'Smart PNG / JPG / WebP compression',
+        },
+        convert: {
+          name: 'Image Format Convert',
+          desc: 'PNG JPG WebP GIF BMP interchange',
+        },
+        'png-to-jpg': {
+          name: 'PNG to JPG',
+          desc: 'Fill transparency with white · smaller files',
+        },
+        'jpg-to-png': {
+          name: 'JPG to PNG',
+          desc: 'Lossless save · transparency support',
+        },
+        'png-to-webp': {
+          name: 'PNG to WebP',
+          desc: 'Keep transparency · smaller files',
+        },
+        'jpg-to-webp': {
+          name: 'JPG to WebP',
+          desc: 'Same quality · 25-35% smaller',
+        },
+        watermark: {
+          name: 'Hidden Watermark',
+          desc: 'Embed / extract hidden text',
+        },
+        'text-watermark': {
+          name: 'Text Watermark',
+          desc: 'For ID cards · anti-theft watermark',
+        },
       },
     },
     dev: {
       label: 'Developer Tools',
       items: {
-        jwt: { name: 'JWT Decode/Verify', desc: 'Parse, generate, signature verification' },
+        jwt: {
+          name: 'JWT Decode/Verify',
+          desc: 'Parse, generate, signature verification',
+        },
         timestamp: { name: 'Timestamp Convert', desc: 'Unix timestamp ↔ date' },
         json: { name: 'JSON Format', desc: 'Beautify / minify / validate' },
-        'code-image': { name: 'Code to Image', desc: 'Generate code share images' },
-        base64: { name: 'Base64 Encode/Decode', desc: 'Text and file encoding & decoding' },
+        'code-image': {
+          name: 'Code to Image',
+          desc: 'Generate code share images',
+        },
+        base64: {
+          name: 'Base64 Encode/Decode',
+          desc: 'Text and file encoding & decoding',
+        },
         uuid: { name: 'UUID Generator', desc: 'Batch generate unique IDs' },
-        'url-encode': { name: 'URL Encode/Decode', desc: 'URL special character encoding' },
+        'url-encode': {
+          name: 'URL Encode/Decode',
+          desc: 'URL special character encoding',
+        },
         color: { name: 'Color Converter', desc: 'HEX, RGB, HSL conversions' },
-        qrcode: { name: 'QR Code Generator', desc: 'Generate QR codes from text/links' },
-        hash: { name: 'Hash Generator', desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 checksums' },
+        qrcode: {
+          name: 'QR Code Generator',
+          desc: 'Generate QR codes from text/links',
+        },
+        hash: {
+          name: 'Hash Generator',
+          desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 checksums',
+        },
       },
     },
     media: {
       label: 'Media Tools',
       items: {
-        'mp4-to-mp3': { name: 'MP4 to MP3', desc: 'Extract audio from video files' },
-        'compress-mp3': { name: 'MP3 Compress', desc: 'Shrink MP3 size by lowering bitrate' },
+        'mp4-to-mp3': {
+          name: 'MP4 to MP3',
+          desc: 'Extract audio from video files',
+        },
+        'compress-mp3': {
+          name: 'MP3 Compress',
+          desc: 'Shrink MP3 size by lowering bitrate',
+        },
       },
     },
   },
@@ -87,7 +138,12 @@ export const en = {
     'jpg-compress': {
       name: 'JPG Compress',
       description: 'Photo compression · 30-45% smaller',
-      tags: ['JPG compress', 'JPEG compress', 'image compression', 'compress jpg'],
+      tags: [
+        'JPG compress',
+        'JPEG compress',
+        'image compression',
+        'compress jpg',
+      ],
     },
     'webp-compress': {
       name: 'WebP Compress',
@@ -147,7 +203,14 @@ export const en = {
     base64: {
       name: 'Base64 Encode/Decode',
       description: 'Convert text/files to and from Base64',
-      tags: ['Base64', 'encode', 'decode', 'file', 'base64 encode', 'base64 decode'],
+      tags: [
+        'Base64',
+        'encode',
+        'decode',
+        'file',
+        'base64 encode',
+        'base64 decode',
+      ],
     },
     uuid: {
       name: 'UUID Generator',
@@ -157,7 +220,13 @@ export const en = {
     'url-encode': {
       name: 'URL Encode/Decode',
       description: 'Encode/decode URL special characters',
-      tags: ['URL encode', 'URL decode', 'encodeURIComponent', 'percent encoding', 'url encode'],
+      tags: [
+        'URL encode',
+        'URL decode',
+        'encodeURIComponent',
+        'percent encoding',
+        'url encode',
+      ],
     },
     color: {
       name: 'Color Converter',
@@ -172,7 +241,16 @@ export const en = {
     'any-convert': {
       name: 'Image Convert',
       description: 'PNG JPG WebP format interchange',
-      tags: ['image convert', 'image format convert', 'png to jpg', 'jpg to png', 'WebP', 'HEIC', 'BMP', 'GIF'],
+      tags: [
+        'image convert',
+        'image format convert',
+        'png to jpg',
+        'jpg to png',
+        'WebP',
+        'HEIC',
+        'BMP',
+        'GIF',
+      ],
     },
     'any-compress': {
       name: 'Image Compress',
@@ -188,25 +266,55 @@ export const en = {
       name: 'Text Watermark',
       description: 'ID card / anti-theft watermark',
       tags: [
-        'text watermark', 'image watermark', 'photo watermark', 'add watermark',
-        'online watermark', 'ID watermark', 'document watermark', 'copyright watermark',
+        'text watermark',
+        'image watermark',
+        'photo watermark',
+        'add watermark',
+        'online watermark',
+        'ID watermark',
+        'document watermark',
+        'copyright watermark',
         'anti-theft watermark',
       ],
     },
     'mp4-to-mp3': {
       name: 'MP4 to MP3',
       description: 'Extract audio from video · 128-320 kbps',
-      tags: ['mp4 to mp3', 'video to mp3', 'extract audio', 'mp4 audio', 'mp3 converter', 'audio extractor'],
+      tags: [
+        'mp4 to mp3',
+        'video to mp3',
+        'extract audio',
+        'mp4 audio',
+        'mp3 converter',
+        'audio extractor',
+      ],
     },
     'compress-mp3': {
       name: 'MP3 Compress',
       description: 'Shrink MP3 files · lower bitrate, same format',
-      tags: ['compress mp3', 'mp3 compressor', 'shrink mp3', 'mp3 size reducer', 'audio compression', 'reduce mp3 size', 'mp3 bitrate'],
+      tags: [
+        'compress mp3',
+        'mp3 compressor',
+        'shrink mp3',
+        'mp3 size reducer',
+        'audio compression',
+        'reduce mp3 size',
+        'mp3 bitrate',
+      ],
     },
     hash: {
       name: 'Hash Generator',
       description: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 in one click',
-      tags: ['hash', 'sha256', 'sha-256', 'sha512', 'checksum', 'file hash', 'sha1', 'file integrity'],
+      tags: [
+        'hash',
+        'sha256',
+        'sha-256',
+        'sha512',
+        'checksum',
+        'file hash',
+        'sha1',
+        'file integrity',
+      ],
     },
   },
   toolCategories: {
@@ -214,34 +322,73 @@ export const en = {
       name: 'Image Tools',
       description: 'Image compression and format conversion',
       tools: {
-        compress: { name: 'Image Compress', description: 'Compress images while keeping quality' },
-        convert: { name: 'Image Format Convert', description: 'PNG JPG WebP GIF BMP interchange' },
-        watermark: { name: 'Hidden Watermark', description: 'Embed / extract hidden text' },
-        'text-watermark': { name: 'Text Watermark', description: 'Anti-theft / document watermark' },
+        compress: {
+          name: 'Image Compress',
+          description: 'Compress images while keeping quality',
+        },
+        convert: {
+          name: 'Image Format Convert',
+          description: 'PNG JPG WebP GIF BMP interchange',
+        },
+        watermark: {
+          name: 'Hidden Watermark',
+          description: 'Embed / extract hidden text',
+        },
+        'text-watermark': {
+          name: 'Text Watermark',
+          description: 'Anti-theft / document watermark',
+        },
       },
     },
     code: {
       name: 'Developer Tools',
       description: 'Tools for developers',
       tools: {
-        'code-image': { name: 'Code to Image', description: 'Turn code into beautiful share images' },
+        'code-image': {
+          name: 'Code to Image',
+          description: 'Turn code into beautiful share images',
+        },
         json: { name: 'JSON', description: 'JSON formatting' },
         jwt: { name: 'JWT', description: 'Generate / parse / verify' },
-        timestamp: { name: 'Timestamp', description: 'Unix timestamp conversion' },
-        base64: { name: 'Base64', description: 'Text/file encoding & decoding' },
+        timestamp: {
+          name: 'Timestamp',
+          description: 'Unix timestamp conversion',
+        },
+        base64: {
+          name: 'Base64',
+          description: 'Text/file encoding & decoding',
+        },
         uuid: { name: 'UUID', description: 'Batch generate unique IDs' },
-        'url-encode': { name: 'URL Encode/Decode', description: 'URL special character encoding' },
-        color: { name: 'Color Converter', description: 'HEX, RGB, HSL conversions' },
-        qrcode: { name: 'QR Code Generator', description: 'Generate QR codes from text/links' },
-        hash: { name: 'Hash Generator', description: 'SHA family checksums for text and files' },
+        'url-encode': {
+          name: 'URL Encode/Decode',
+          description: 'URL special character encoding',
+        },
+        color: {
+          name: 'Color Converter',
+          description: 'HEX, RGB, HSL conversions',
+        },
+        qrcode: {
+          name: 'QR Code Generator',
+          description: 'Generate QR codes from text/links',
+        },
+        hash: {
+          name: 'Hash Generator',
+          description: 'SHA family checksums for text and files',
+        },
       },
     },
     media: {
       name: 'Media Tools',
       description: 'Audio and video conversion',
       tools: {
-        'mp4-to-mp3': { name: 'MP4 to MP3', description: 'Extract audio from video files' },
-        'compress-mp3': { name: 'MP3 Compress', description: 'Reduce MP3 file size' },
+        'mp4-to-mp3': {
+          name: 'MP4 to MP3',
+          description: 'Extract audio from video files',
+        },
+        'compress-mp3': {
+          name: 'MP3 Compress',
+          description: 'Reduce MP3 file size',
+        },
       },
     },
   },
@@ -254,7 +401,8 @@ export const en = {
   manifest: {
     name: 'WizGo',
     shortName: 'WizGo',
-    description: 'Free online toolbox: image compression, format conversion, JWT, timestamps and more — runs locally, no uploads',
+    description:
+      'Free online toolbox: image compression, format conversion, JWT, timestamps and more — runs locally, no uploads',
   },
   pages: {
     home: {
@@ -262,7 +410,8 @@ export const en = {
       description:
         'Free in-browser tools: image compression, format conversion, JWT decode, timestamp, JSON formatting, code-to-image. No uploads, no install.',
       heroHeading: 'Free Online Toolbox',
-      heroSubheading: 'Image compression, format conversion, JWT, timestamps · runs locally',
+      heroSubheading:
+        'Image compression, format conversion, JWT, timestamps · runs locally',
       searchPlaceholder: 'Search tools, e.g. PNG compress, to JPG...',
       emptyState: 'No matching tools',
       features: {
@@ -327,27 +476,41 @@ export const en = {
       descriptionTemplate:
         'Convert {fromLabel} to {toLabel} online. {hintWithSpace}Runs locally, no uploads.',
       h1Template: '{fromLabel} to {toLabel}',
-      fallbackHintTemplate: 'Convert {fromFull} images to {toFull} online · runs locally, no uploads',
+      fallbackHintTemplate:
+        'Convert {fromFull} images to {toFull} online · runs locally, no uploads',
       pairHints: {
-        'png-jpg': 'Transparent backgrounds filled white, typically 40-80% smaller, great for web, email, chat.',
-        'png-webp': 'WebP keeps transparency while 25-50% smaller than PNG, widely supported.',
+        'png-jpg':
+          'Transparent backgrounds filled white, typically 40-80% smaller, great for web, email, chat.',
+        'png-webp':
+          'WebP keeps transparency while 25-50% smaller than PNG, widely supported.',
         'png-gif': 'For legacy platforms that only accept GIF.',
         'png-bmp': 'Lossless uncompressed BMP for older Windows applications.',
-        'jpg-png': 'Lossless save with transparency — useful before background removal.',
-        'jpg-webp': '25-35% smaller with virtually no visible difference — ideal for image-heavy sites.',
+        'jpg-png':
+          'Lossless save with transparency — useful before background removal.',
+        'jpg-webp':
+          '25-35% smaller with virtually no visible difference — ideal for image-heavy sites.',
         'jpg-gif': 'Photos to GIF for legacy chat platforms.',
-        'jpg-bmp': 'Lossless but very large bitmap — for printing or special program input.',
-        'webp-png': 'When WebP is unsupported, PNG is the safest fallback. Transparency preserved.',
-        'webp-jpg': 'Best for platforms lacking WebP support (forums, older publishers).',
-        'webp-gif': 'For older browsers or chat platforms that only accept GIF.',
+        'jpg-bmp':
+          'Lossless but very large bitmap — for printing or special program input.',
+        'webp-png':
+          'When WebP is unsupported, PNG is the safest fallback. Transparency preserved.',
+        'webp-jpg':
+          'Best for platforms lacking WebP support (forums, older publishers).',
+        'webp-gif':
+          'For older browsers or chat platforms that only accept GIF.',
         'webp-bmp': 'For specific graphics programs or print pipelines.',
         'gif-png': 'Keeps transparency, sharper quality (first frame only).',
-        'gif-jpg': 'Smaller files but loses transparency, first frame only — suited for sharing.',
-        'gif-webp': 'Static GIFs compressed further as WebP, transparency kept.',
+        'gif-jpg':
+          'Smaller files but loses transparency, first frame only — suited for sharing.',
+        'gif-webp':
+          'Static GIFs compressed further as WebP, transparency kept.',
         'gif-bmp': 'First frame only, for batch graphics processing.',
-        'bmp-png': 'Major lossless size reduction (70%+) — great for archiving.',
-        'bmp-jpg': 'Highest compression for sharing scans and screenshots in bulk.',
-        'bmp-webp': 'Highest compression ratio, supported across modern browsers.',
+        'bmp-png':
+          'Major lossless size reduction (70%+) — great for archiving.',
+        'bmp-jpg':
+          'Highest compression for sharing scans and screenshots in bulk.',
+        'bmp-webp':
+          'Highest compression ratio, supported across modern browsers.',
         'bmp-gif': 'For legacy chat or forum platforms accepting only GIF.',
       },
       upload: {
@@ -368,7 +531,8 @@ export const en = {
         more: 'More formats',
       },
       schema: {
-        descriptionTemplate: 'Convert {fromFull} images to {toFull} online — runs locally, no uploads.',
+        descriptionTemplate:
+          'Convert {fromFull} images to {toFull} online — runs locally, no uploads.',
       },
     },
     compress: {
@@ -376,10 +540,12 @@ export const en = {
       description:
         'Compress PNG, JPG, JPEG, WebP, GIF online — smart algorithm preserves quality, batch supported, runs in browser, no uploads.',
       h1: 'Image Compression',
-      subheading: 'Online PNG, JPG, WebP compression · runs locally · batch supported',
+      subheading:
+        'Online PNG, JPG, WebP compression · runs locally · batch supported',
       schema: {
         name: 'Image Compression',
-        description: 'Free online image compression for PNG, JPG, WebP — runs locally, no uploads',
+        description:
+          'Free online image compression for PNG, JPG, WebP — runs locally, no uploads',
         browserReq: 'Modern browser with WebAssembly support',
       },
       upload: {
@@ -403,7 +569,8 @@ export const en = {
       subheading: 'Online PNG, JPG, WebP, GIF, BMP interchange · runs locally',
       schema: {
         name: 'Image Format Converter',
-        description: 'PNG, JPG, WebP, GIF, BMP online interchange — runs locally, no uploads',
+        description:
+          'PNG, JPG, WebP, GIF, BMP online interchange — runs locally, no uploads',
       },
       upload: {
         drag: 'Drop images here',
@@ -424,11 +591,12 @@ export const en = {
     about: {
       title: 'About WizGo — Local-First Tools, Privacy & Stack',
       description:
-        'WizGo\'s tech and privacy policy: tools run locally in your browser — no file uploads. Built with Astro + Rust WASM + WebCrypto.',
+        "WizGo's tech and privacy policy: tools run locally in your browser — no file uploads. Built with Astro + Rust WASM + WebCrypto.",
       h1: 'About WizGo',
       schema: {
         name: 'About WizGo',
-        description: 'WizGo\'s tech stack and privacy policy: every tool runs in your browser — no uploads.',
+        description:
+          "WizGo's tech stack and privacy policy: every tool runs in your browser — no uploads.",
         orgDescription:
           'Free online toolbox: image compression, format conversion, JWT, timestamps and more. Pure in-browser processing — no uploads.',
       },
@@ -438,13 +606,11 @@ export const en = {
         heading: 'Tech Stack',
         image: {
           title: 'Image Processing',
-          body:
-            'Rust-built WebAssembly modules with imagequant palette quantization and the jpeg-encoder optimization pipeline. Supports PNG, JPEG, WebP, GIF, BMP.',
+          body: 'Rust-built WebAssembly modules with imagequant palette quantization and the jpeg-encoder optimization pipeline. Supports PNG, JPEG, WebP, GIF, BMP.',
         },
         crypto: {
           title: 'Crypto & Signing',
-          body:
-            'JWT decoding, signing and verification all run on the browser-native WebCrypto API. Supports HS, RS and ES algorithm families with zero third-party dependencies.',
+          body: 'JWT decoding, signing and verification all run on the browser-native WebCrypto API. Supports HS, RS and ES algorithm families with zero third-party dependencies.',
         },
         frontend: {
           title: 'Frontend Framework',
@@ -457,7 +623,8 @@ export const en = {
       },
       privacy: {
         heading: 'Privacy Policy',
-        intro: 'WizGo is a pure-frontend architecture; every file is processed inside your browser:',
+        intro:
+          'WizGo is a pure-frontend architecture; every file is processed inside your browser:',
         items: [
           'Files are never uploaded to any server',
           'No personal data is collected',
@@ -466,7 +633,8 @@ export const en = {
       },
       limits: {
         heading: 'Limitations',
-        intro: 'Due to browser environment constraints, WizGo has the following usage limits:',
+        intro:
+          'Due to browser environment constraints, WizGo has the following usage limits:',
         items: [
           'Image files should stay under 100MB',
           'Large files may take longer to process',
@@ -475,13 +643,34 @@ export const en = {
       },
       credits: {
         heading: 'Open-Source Acknowledgements',
-        intro: 'WizGo is built with the following excellent open-source libraries:',
+        intro:
+          'WizGo is built with the following excellent open-source libraries:',
         items: [
-          { label: 'imagequant', href: 'https://github.com/ImageOptim/libimagequant', desc: 'PNG palette quantization' },
-          { label: 'lodepng-rust', href: 'https://github.com/kornelski/lodepng-rust', desc: 'Pure-Rust PNG encoding' },
-          { label: 'jpeg-encoder', href: 'https://github.com/vstroebel/jpeg-encoder', desc: 'Rust JPEG encoder' },
-          { label: 'Astro', href: 'https://astro.build', desc: 'Modern static site generator' },
-          { label: 'Geist', href: 'https://vercel.com/font', desc: 'Vercel design typeface' },
+          {
+            label: 'imagequant',
+            href: 'https://github.com/ImageOptim/libimagequant',
+            desc: 'PNG palette quantization',
+          },
+          {
+            label: 'lodepng-rust',
+            href: 'https://github.com/kornelski/lodepng-rust',
+            desc: 'Pure-Rust PNG encoding',
+          },
+          {
+            label: 'jpeg-encoder',
+            href: 'https://github.com/vstroebel/jpeg-encoder',
+            desc: 'Rust JPEG encoder',
+          },
+          {
+            label: 'Astro',
+            href: 'https://astro.build',
+            desc: 'Modern static site generator',
+          },
+          {
+            label: 'Geist',
+            href: 'https://vercel.com/font',
+            desc: 'Vercel design typeface',
+          },
         ],
       },
     },
@@ -490,7 +679,8 @@ export const en = {
       description:
         'Embed hidden text in image pixels or extract watermark — LSB and DCT steganography. Pure in-browser processing, no uploads.',
       h1: 'Hidden Image Watermark',
-      subheading: 'Hide text inside image pixels or extract it back · runs locally',
+      subheading:
+        'Hide text inside image pixels or extract it back · runs locally',
       schema: {
         name: 'Hidden Image Watermark',
         description:
@@ -508,7 +698,8 @@ export const en = {
         textLabel: 'Hidden text',
         textPlaceholder: 'e.g. © Author 2026',
         runBtn: 'Embed watermark',
-        jpgWarn: 'Output is always PNG — saving as PNG keeps the broadest compatibility',
+        jpgWarn:
+          'Output is always PNG — saving as PNG keeps the broadest compatibility',
         resultLabel: 'Watermarked result',
         downloadBtn: 'Download PNG',
         copyImageBtn: 'Copy image',
@@ -532,7 +723,8 @@ export const en = {
       description:
         'Free online UUID v4 generator — batch, multiple formats (standard / no-dashes / uppercase), one-click copy. Crypto-secure random, runs locally.',
       h1: 'UUID Generator',
-      subheading: 'Batch generate unique IDs · standard / no-dashes / uppercase · runs locally',
+      subheading:
+        'Batch generate unique IDs · standard / no-dashes / uppercase · runs locally',
       schema: {
         name: 'UUID Generator',
         description: 'Online batch UUID generator with multiple formats',
@@ -550,8 +742,7 @@ export const en = {
       copiedBtn: 'Copied',
       info: {
         heading: 'About UUID',
-        body:
-          'UUID (Universally Unique Identifier) is a 128-bit identifier, typically rendered as 32 hexadecimal digits in 5 groups. This tool uses the browser\'s built-in cryptographically secure random generator (crypto.getRandomValues) to produce UUID v4, ensuring extremely high uniqueness — suitable for database primary keys, session IDs, API keys, and more.',
+        body: "UUID (Universally Unique Identifier) is a 128-bit identifier, typically rendered as 32 hexadecimal digits in 5 groups. This tool uses the browser's built-in cryptographically secure random generator (crypto.getRandomValues) to produce UUID v4, ensuring extremely high uniqueness — suitable for database primary keys, session IDs, API keys, and more.",
       },
     },
     urlEncode: {
@@ -559,10 +750,12 @@ export const en = {
       description:
         'Free URL encode/decode online — Unicode and special characters, batch processing, encodeURI vs encodeURIComponent modes. Runs locally.',
       h1: 'URL Encode/Decode',
-      subheading: 'URL special character encoding · supports Unicode · batch processing · runs locally',
+      subheading:
+        'URL special character encoding · supports Unicode · batch processing · runs locally',
       schema: {
         name: 'URL Encode/Decode',
-        description: 'URL encoding/decoding tool with Unicode and special character support',
+        description:
+          'URL encoding/decoding tool with Unicode and special character support',
       },
       tabEncode: 'Encode',
       tabDecode: 'Decode',
@@ -570,8 +763,10 @@ export const en = {
         label: 'Encode mode',
         component: 'Full encode (recommended)',
         uri: 'Preserve URL chars',
-        componentHint: 'Full encode: encodes all special characters — best for URL parameter values',
-        uriHint: 'Preserve URL chars: keeps : / ? # & = and other reserved characters — best for full URLs',
+        componentHint:
+          'Full encode: encodes all special characters — best for URL parameter values',
+        uriHint:
+          'Preserve URL chars: keeps : / ? # & = and other reserved characters — best for full URLs',
       },
       labels: {
         inputEncode: 'Input text',
@@ -595,7 +790,12 @@ export const en = {
       },
       examples: {
         heading: 'Examples',
-        labels: { chinese: '中文', space: 'Space', ampersand: '&', equals: '=' },
+        labels: {
+          chinese: '中文',
+          space: 'Space',
+          ampersand: '&',
+          equals: '=',
+        },
       },
       useCases: {
         heading: 'Use cases',
@@ -613,7 +813,8 @@ export const en = {
       description:
         'Free online QR code generator for text, URLs and contacts. Customize size and colors; download PNG/SVG. Pure in-browser generation, no uploads.',
       h1: 'QR Code Generator',
-      subheading: 'Text/links to QR codes · customizable styles · PNG/SVG download · runs locally',
+      subheading:
+        'Text/links to QR codes · customizable styles · PNG/SVG download · runs locally',
       schema: {
         name: 'QR Code Generator',
         description: 'Online QR code generator with custom size and color',
@@ -624,7 +825,11 @@ export const en = {
         hint: 'Supports text, URLs, emails, phone numbers and more',
       },
       size: 'Size',
-      colors: { label: 'Colors', foreground: 'Foreground', background: 'Background' },
+      colors: {
+        label: 'Colors',
+        foreground: 'Foreground',
+        background: 'Background',
+      },
       ec: {
         label: 'Error correction',
         low: 'Low',
@@ -646,7 +851,8 @@ export const en = {
       emptyContent: 'Please type content',
       downloadPng: 'Download PNG',
       downloadSvg: 'Download SVG',
-      infoTemplate: 'Length: {chars} chars / {bytes} bytes · Size: {size}x{size}px',
+      infoTemplate:
+        'Length: {chars} chars / {bytes} bytes · Size: {size}x{size}px',
       examples: {
         heading: 'Examples',
         url: 'URL:',
@@ -663,7 +869,8 @@ export const en = {
       subheading: 'Unix timestamp ↔ date · seconds / milliseconds / ISO 8601',
       schema: {
         name: 'Unix Timestamp Converter',
-        description: 'Unix timestamp ↔ date converter with seconds/milliseconds and UTC/local timezone support',
+        description:
+          'Unix timestamp ↔ date converter with seconds/milliseconds and UTC/local timezone support',
       },
       currentTime: {
         label: 'Current time',
@@ -681,27 +888,41 @@ export const en = {
         fillNowBtn: 'Fill now',
         units: { auto: 'Auto', sec: 'sec', ms: 'ms' },
         placeholder: 'e.g. 1516239022 or 1516239022000',
-        errors: { nan: 'Must be a number', oor: 'Number out of range', invalid: 'Invalid timestamp' },
-        outputs: { local: 'Local time', utc: 'UTC time', iso: 'ISO 8601', relative: 'Relative' },
+        errors: {
+          nan: 'Must be a number',
+          oor: 'Number out of range',
+          invalid: 'Invalid timestamp',
+        },
+        outputs: {
+          local: 'Local time',
+          utc: 'UTC time',
+          iso: 'ISO 8601',
+          relative: 'Relative',
+        },
       },
       d2t: {
         label: 'Date → Timestamp',
         fillNowBtn: 'Fill now',
         isoPlaceholder: 'or paste ISO string: 2024-01-18T03:30:22Z',
-        errors: { invalidDate: 'Invalid date', unparseable: 'Could not parse date string' },
+        errors: {
+          invalidDate: 'Invalid date',
+          unparseable: 'Could not parse date string',
+        },
         outputs: { sec: 'Unix sec', ms: 'Unix ms', iso: 'ISO 8601 (UTC)' },
       },
       copyBtn: 'Copy',
       copiedBtn: 'Copied',
       justNow: 'just now',
-      footerHint: 'Unix epoch: 1970-01-01 00:00:00 UTC · 10-digit second · 13-digit millisecond',
+      footerHint:
+        'Unix epoch: 1970-01-01 00:00:00 UTC · 10-digit second · 13-digit millisecond',
     },
     color: {
       title: 'Color Converter: HEX/RGB/HSL Online | WizGo',
       description:
         'Free HEX, RGB, HSL color converter online — live preview, one-click copy. Built for designers and developers. Runs locally.',
       h1: 'Color Converter',
-      subheading: 'HEX, RGB and HSL color value conversion · live preview · runs locally',
+      subheading:
+        'HEX, RGB and HSL color value conversion · live preview · runs locally',
       schema: {
         name: 'Color Converter',
         description: 'HEX, RGB and HSL color value converter with live preview',
@@ -709,14 +930,28 @@ export const en = {
       pickerHint: 'Pick a color',
       hex: { label: 'Hex value' },
       rgb: { label: 'RGB values', r: 'R (red)', g: 'G (green)', b: 'B (blue)' },
-      hsl: { label: 'HSL values', h: 'H (hue)', s: 'S (saturation)', l: 'L (lightness)' },
+      hsl: {
+        label: 'HSL values',
+        h: 'H (hue)',
+        s: 'S (saturation)',
+        l: 'L (lightness)',
+      },
       copyBtn: 'Copy',
       copiedBtn: 'Copied',
       quickColorsLabel: 'Quick colors',
       colorNames: {
-        black: 'Black', red: 'Red', orange: 'Orange', amber: 'Amber',
-        yellowGreen: 'Yellow-green', green: 'Green', cyan: 'Cyan', blue: 'Blue',
-        indigo: 'Indigo', purple: 'Purple', pink: 'Pink', white: 'White',
+        black: 'Black',
+        red: 'Red',
+        orange: 'Orange',
+        amber: 'Amber',
+        yellowGreen: 'Yellow-green',
+        green: 'Green',
+        cyan: 'Cyan',
+        blue: 'Blue',
+        indigo: 'Indigo',
+        purple: 'Purple',
+        pink: 'Pink',
+        white: 'White',
       },
       randomBtn: 'Random color',
     },
@@ -725,10 +960,12 @@ export const en = {
       description:
         'Turn code snippets into beautiful share images online. Supports JavaScript, TypeScript, Python, Go, Rust and many more. Pick a theme, download as PNG.',
       h1: 'Code to Image',
-      subheading: 'Generate beautiful share images from code · multi-language · multi-theme',
+      subheading:
+        'Generate beautiful share images from code · multi-language · multi-theme',
       schema: {
         name: 'Code to Image',
-        description: 'Convert code to beautiful share images with multi-language and multi-theme support',
+        description:
+          'Convert code to beautiful share images with multi-language and multi-theme support',
       },
       placeholder: 'Type or paste code here...',
       formatBtn: 'Format',
@@ -736,7 +973,8 @@ export const en = {
       copyBtn: 'Copy image',
       downloadBtn: 'Download image',
       tipPrefix: 'Tip:',
-      tipBody: 'Multi-language syntax highlighting renders live as you type — no extra step needed.',
+      tipBody:
+        'Multi-language syntax highlighting renders live as you type — no extra step needed.',
       renderError: 'Render failed',
     },
     base64: {
@@ -744,10 +982,12 @@ export const en = {
       description:
         'Free Base64 encoder/decoder online — text and files, image preview, binary download. Runs in your browser, no uploads.',
       h1: 'Base64 Encode/Decode',
-      subheading: 'Text/file ↔ Base64 · supports images, text and binary · runs locally',
+      subheading:
+        'Text/file ↔ Base64 · supports images, text and binary · runs locally',
       schema: {
         name: 'Base64 Encode/Decode',
-        description: 'Text/file ↔ Base64 converter supporting images, text and binary',
+        description:
+          'Text/file ↔ Base64 converter supporting images, text and binary',
       },
       tabs: { encode: 'Encode', decode: 'Decode' },
       labels: {
@@ -772,7 +1012,8 @@ export const en = {
       fileSizeLimit: 'File size limit: 5MB',
       unknownType: 'unknown type',
       errors: {
-        encodeFail: 'Encode failed: text contains characters that cannot be processed',
+        encodeFail:
+          'Encode failed: text contains characters that cannot be processed',
         fileReadFail: 'Failed to read file',
         decodeFail: 'Decode failed: invalid Base64 string',
         fileTooLargeTemplate: 'File too large. Max 5MB, current {size}',
@@ -796,7 +1037,8 @@ export const en = {
       subheading: 'JSON Web Token · HS256 RS256 ES256 · runs locally',
       schema: {
         name: 'JWT Decode/Sign/Verify',
-        description: 'JSON Web Token online tool supporting HS/RS/ES algorithm families — runs locally',
+        description:
+          'JSON Web Token online tool supporting HS/RS/ES algorithm families — runs locally',
       },
       algoLabel: 'Signing algorithm',
       encodedLabel: 'Encoded · full token',
@@ -824,8 +1066,10 @@ export const en = {
       },
       pubkeyLabel: 'Public Key (PEM, for verification)',
       privkeyLabel: 'Private Key (PEM, for signing)',
-      pubkeyPlaceholder: '-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----',
-      privkeyPlaceholder: '-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----',
+      pubkeyPlaceholder:
+        '-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----',
+      privkeyPlaceholder:
+        '-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----',
       errors: {
         pemEmpty: 'PEM content is empty',
         jwtFormat: 'Invalid JWT format: expected header.payload.signature',
@@ -841,10 +1085,16 @@ export const en = {
       description:
         'Add "for X use only" watermark to ID cards, contracts, ICP filings — anti-fraud, copyright protection. Tile/center/corner layouts. Browser-only.',
       h1: 'Image Text Watermark',
-      subheading: 'Add "for filing only" style text watermarks to images · anti-theft, traceable · runs locally',
+      subheading:
+        'Add "for filing only" style text watermarks to images · anti-theft, traceable · runs locally',
       schema: {
         name: 'Image Text Watermark',
-        alternateNames: ['ID card watermark', 'document watermark', 'filing watermark tool', 'image text watermark'],
+        alternateNames: [
+          'ID card watermark',
+          'document watermark',
+          'filing watermark tool',
+          'image text watermark',
+        ],
         description:
           'Add visible text watermarks to images for use cases like anti-fraud ID protection, document scans, ICP filings and copyright defense. Supports tile / center / corner layouts. Pure in-browser processing.',
         featureList: [
@@ -858,22 +1108,56 @@ export const en = {
       },
       howToSchema: {
         name: 'How to add a text watermark to an image (ID card / document)',
-        description: 'Add a "for X use only" text watermark to an image in three steps to prevent document misuse',
+        description:
+          'Add a "for X use only" text watermark to an image in three steps to prevent document misuse',
         toolName: 'Browser (Chrome / Safari / Edge)',
         steps: [
-          { name: 'Upload image', text: 'Click the upload area or drag the image in. Supports PNG / JPG / WebP. Images are processed locally and never uploaded.' },
-          { name: 'Type watermark text', text: 'For example "For X bank mortgage application use only" or "For example.com ICP filing only". State the specific use case and recipient.' },
-          { name: 'Adjust style and download', text: 'Pick tile (anti-crop), tweak color, size, opacity and rotation, then click download PNG.' },
+          {
+            name: 'Upload image',
+            text: 'Click the upload area or drag the image in. Supports PNG / JPG / WebP. Images are processed locally and never uploaded.',
+          },
+          {
+            name: 'Type watermark text',
+            text: 'For example "For X bank mortgage application use only" or "For example.com ICP filing only". State the specific use case and recipient.',
+          },
+          {
+            name: 'Adjust style and download',
+            text: 'Pick tile (anti-crop), tweak color, size, opacity and rotation, then click download PNG.',
+          },
         ],
       },
       faqSchema: {
         items: [
-          { question: 'Is it legal to add a watermark to an ID card?', answer: 'Yes, and widely recommended. Adding a "for X use only" text watermark to an ID card photocopy or scan is an effective way to prevent the document being misused, and many regulators have published similar guidance.' },
-          { question: 'What text should the watermark contain?', answer: 'Include three elements: purpose + recipient + date. For example "For X Bank 2026 mortgage application only". The more specific, the harder to misuse.' },
-          { question: 'Where is the safest place to put the watermark?', answer: 'Tile mode is safest — text is laid diagonally across the whole image and cannot be cropped out. Corner watermarks are easily cropped away. For important documents, use tile + semi-transparent gray.' },
-          { question: 'Will my image be uploaded to a server?', answer: 'No. All processing happens locally in your browser (Canvas 2D). Image files and watermark text never leave your device — the server only delivers the static page.' },
-          { question: 'Can the watermark be removed in Photoshop?', answer: 'Text watermarks are visible pixel changes; a skilled user can erase them in Photoshop, but it takes time and leaves traces. For everyday misuse (chat-app forwarding, hot-linking), text watermarks are deterrent enough. For removal-resistant invisible signatures, use our hidden watermark tool.' },
-          { question: 'Is the watermarked image saved as JPG or PNG?', answer: 'This tool exports PNG (lossless, sharpest watermark edges). If the file is too large, run it through "PNG Compress" to shrink further.' },
+          {
+            question: 'Is it legal to add a watermark to an ID card?',
+            answer:
+              'Yes, and widely recommended. Adding a "for X use only" text watermark to an ID card photocopy or scan is an effective way to prevent the document being misused, and many regulators have published similar guidance.',
+          },
+          {
+            question: 'What text should the watermark contain?',
+            answer:
+              'Include three elements: purpose + recipient + date. For example "For X Bank 2026 mortgage application only". The more specific, the harder to misuse.',
+          },
+          {
+            question: 'Where is the safest place to put the watermark?',
+            answer:
+              'Tile mode is safest — text is laid diagonally across the whole image and cannot be cropped out. Corner watermarks are easily cropped away. For important documents, use tile + semi-transparent gray.',
+          },
+          {
+            question: 'Will my image be uploaded to a server?',
+            answer:
+              'No. All processing happens locally in your browser (Canvas 2D). Image files and watermark text never leave your device — the server only delivers the static page.',
+          },
+          {
+            question: 'Can the watermark be removed in Photoshop?',
+            answer:
+              'Text watermarks are visible pixel changes; a skilled user can erase them in Photoshop, but it takes time and leaves traces. For everyday misuse (chat-app forwarding, hot-linking), text watermarks are deterrent enough. For removal-resistant invisible signatures, use our hidden watermark tool.',
+          },
+          {
+            question: 'Is the watermarked image saved as JPG or PNG?',
+            answer:
+              'This tool exports PNG (lossless, sharpest watermark edges). If the file is too large, run it through "PNG Compress" to shrink further.',
+          },
         ],
       },
       imageLabel: 'Image',
@@ -887,8 +1171,13 @@ export const en = {
       colorLabel: 'Color',
       boldLabel: 'Bold',
       swatches: {
-        red: 'Filing red', white: 'White', lightGray: 'Light gray', midGray: 'Medium gray',
-        darkGray: 'Dark gray', charcoal: 'Charcoal', black: 'Black',
+        red: 'Filing red',
+        white: 'White',
+        lightGray: 'Light gray',
+        midGray: 'Medium gray',
+        darkGray: 'Dark gray',
+        charcoal: 'Charcoal',
+        black: 'Black',
       },
       customColorTitle: 'Custom color',
       opacityLabel: 'Opacity',
@@ -901,10 +1190,26 @@ export const en = {
       useCases: {
         heading: 'Common use cases',
         items: [
-          { title: 'ID card watermark · anti-fraud', bodyHtml: 'When applying for banking, renting or onboarding, you often submit ID card copies. Adding a watermark like "For X Bank 2026 mortgage only" prevents the ID being repurposed for loans, account opening, etc. Use <strong>tile mode</strong> with 30–50% opacity.' },
-          { title: 'Business license / contract / document watermark', bodyHtml: 'When sending business licenses, account-opening permits or contract scans to partners, a "for X purpose only" watermark restricts reuse. Same applies to electronic copies of diplomas, driver\'s licenses and passports.' },
-          { title: 'Website ICP filing watermark', bodyHtml: 'In ICP filing materials, ID documents and authorization letters need watermarks. Common format: "For example.com website ICP filing only". Red tile is the recommended style across major Chinese cloud providers.' },
-          { title: 'Anti-theft / copyright protection', bodyHtml: 'Adding author signature or domain to photos, product shots and illustrations before posting on social platforms substantially reduces direct theft. Use <strong>corner</strong> for subtle copyright marks; <strong>tile</strong> for strong anti-theft coverage.' },
+          {
+            title: 'ID card watermark · anti-fraud',
+            bodyHtml:
+              'When applying for banking, renting or onboarding, you often submit ID card copies. Adding a watermark like "For X Bank 2026 mortgage only" prevents the ID being repurposed for loans, account opening, etc. Use <strong>tile mode</strong> with 30–50% opacity.',
+          },
+          {
+            title: 'Business license / contract / document watermark',
+            bodyHtml:
+              'When sending business licenses, account-opening permits or contract scans to partners, a "for X purpose only" watermark restricts reuse. Same applies to electronic copies of diplomas, driver\'s licenses and passports.',
+          },
+          {
+            title: 'Website ICP filing watermark',
+            bodyHtml:
+              'In ICP filing materials, ID documents and authorization letters need watermarks. Common format: "For example.com website ICP filing only". Red tile is the recommended style across major Chinese cloud providers.',
+          },
+          {
+            title: 'Anti-theft / copyright protection',
+            bodyHtml:
+              'Adding author signature or domain to photos, product shots and illustrations before posting on social platforms substantially reduces direct theft. Use <strong>corner</strong> for subtle copyright marks; <strong>tile</strong> for strong anti-theft coverage.',
+          },
         ],
       },
       steps: {
@@ -919,12 +1224,36 @@ export const en = {
       faq: {
         heading: 'FAQ',
         items: [
-          { q: 'Is it legal to add a watermark to an ID card?', aHtml: 'Yes, and widely recommended. Adding a "for X use only" text watermark to an ID card photocopy or scan is an effective way to prevent the document being misused, and many regulators have published similar guidance.' },
-          { q: 'What text should the watermark contain?', aHtml: 'Include three elements: purpose + recipient + date. For example "For X Bank 2026 mortgage only". The more specific, the harder to misuse. For website filings, use "For yourdomain.com ICP filing only".' },
-          { q: 'Where is the safest place to put the watermark?', aHtml: 'Tile mode is safest — text is laid diagonally across the whole image and cannot be cropped out. Corner watermarks are easily cropped away. For ID cards or bank cards, use tile + semi-transparent gray for both safety and legibility.' },
-          { q: 'Will my image be uploaded to a server?', aHtml: 'No. All processing happens locally in your browser (Canvas 2D draws pixels directly). Image files and watermark text never leave your device. You can even use this tool offline.' },
-          { q: 'Can the watermark be removed in Photoshop?', aHtml: 'Text watermarks are visible pixel changes; a skilled user can erase them in Photoshop, but it takes time and leaves traces. For everyday misuse (chat-app forwarding, hot-linking), text watermarks are deterrent enough. For removal-resistant invisible signatures, use our <a href="/en/watermark" class="text-[#0072f5] hover:underline">Hidden Watermark</a> tool.' },
-          { q: 'What if the watermarked image is too large?', aHtml: 'This tool exports PNG (lossless, sharpest edges). If the file is too large to upload or send, run it through <a href="/en/compress-png" class="text-[#0072f5] hover:underline">PNG Compress</a> to shrink further, or use <a href="/en/png-to-jpg" class="text-[#0072f5] hover:underline">PNG to JPG</a> to switch to a smaller format.' },
+          {
+            q: 'Is it legal to add a watermark to an ID card?',
+            aHtml:
+              'Yes, and widely recommended. Adding a "for X use only" text watermark to an ID card photocopy or scan is an effective way to prevent the document being misused, and many regulators have published similar guidance.',
+          },
+          {
+            q: 'What text should the watermark contain?',
+            aHtml:
+              'Include three elements: purpose + recipient + date. For example "For X Bank 2026 mortgage only". The more specific, the harder to misuse. For website filings, use "For yourdomain.com ICP filing only".',
+          },
+          {
+            q: 'Where is the safest place to put the watermark?',
+            aHtml:
+              'Tile mode is safest — text is laid diagonally across the whole image and cannot be cropped out. Corner watermarks are easily cropped away. For ID cards or bank cards, use tile + semi-transparent gray for both safety and legibility.',
+          },
+          {
+            q: 'Will my image be uploaded to a server?',
+            aHtml:
+              'No. All processing happens locally in your browser (Canvas 2D draws pixels directly). Image files and watermark text never leave your device. You can even use this tool offline.',
+          },
+          {
+            q: 'Can the watermark be removed in Photoshop?',
+            aHtml:
+              'Text watermarks are visible pixel changes; a skilled user can erase them in Photoshop, but it takes time and leaves traces. For everyday misuse (chat-app forwarding, hot-linking), text watermarks are deterrent enough. For removal-resistant invisible signatures, use our <a href="/en/watermark" class="text-[#0072f5] hover:underline">Hidden Watermark</a> tool.',
+          },
+          {
+            q: 'What if the watermarked image is too large?',
+            aHtml:
+              'This tool exports PNG (lossless, sharpest edges). If the file is too large to upload or send, run it through <a href="/en/compress-png" class="text-[#0072f5] hover:underline">PNG Compress</a> to shrink further, or use <a href="/en/png-to-jpg" class="text-[#0072f5] hover:underline">PNG to JPG</a> to switch to a smaller format.',
+          },
         ],
       },
     },
@@ -936,7 +1265,8 @@ export const en = {
       subheading: 'Beautify, minify, validate JSON · runs locally',
       schema: {
         name: 'JSON Formatter',
-        description: 'JSON beautify, minify and validate — runs locally, no uploads',
+        description:
+          'JSON beautify, minify and validate — runs locally, no uploads',
       },
       inputLabel: 'Input JSON',
       formatBtn: 'Beautify',
@@ -954,10 +1284,12 @@ export const en = {
       description:
         'Generate SHA-1, SHA-256, SHA-384, SHA-512 hashes for text and files in your browser. Verify downloads, check integrity — nothing leaves your device.',
       h1: 'Hash Generator',
-      subheading: 'Check file integrity or hash any text · SHA-1 / SHA-256 / SHA-384 / SHA-512 · runs in your browser',
+      subheading:
+        'Check file integrity or hash any text · SHA-1 / SHA-256 / SHA-384 / SHA-512 · runs in your browser',
       schema: {
         name: 'Hash Generator',
-        description: 'Free online tool to compute SHA-1, SHA-256, SHA-384, and SHA-512 hashes for text and files — all locally in your browser.',
+        description:
+          'Free online tool to compute SHA-1, SHA-256, SHA-384, and SHA-512 hashes for text and files — all locally in your browser.',
       },
       tabs: { text: 'Text', file: 'File' },
       input: {
@@ -987,9 +1319,11 @@ export const en = {
         sha512: 'SHA-512',
       },
       errors: {
-        tooLargeTemplate: 'File is too large ({size}). Maximum supported size is 2GB.',
+        tooLargeTemplate:
+          'File is too large ({size}). Maximum supported size is 2GB.',
         readFailed: 'Could not read the file. Please try again.',
-        hashFailed: 'Hashing failed. Your browser may not support this algorithm.',
+        hashFailed:
+          'Hashing failed. Your browser may not support this algorithm.',
       },
       tips: {
         heading: 'About hash values',
@@ -1006,10 +1340,12 @@ export const en = {
       description:
         'Pull the audio out of a video and save it as MP3 — free, instant, in your browser. No uploads, no sign-up, no install.',
       h1: 'Video to MP3',
-      subheading: 'Get the audio out of any video · works on your device · nothing leaves your computer',
+      subheading:
+        'Get the audio out of any video · works on your device · nothing leaves your computer',
       schema: {
         name: 'MP4 to MP3 Converter',
-        description: 'Free online tool to extract audio from MP4 videos and save as MP3 — runs in your browser, no uploads.',
+        description:
+          'Free online tool to extract audio from MP4 videos and save as MP3 — runs in your browser, no uploads.',
       },
       upload: {
         drag: 'Drop a video here',
@@ -1031,9 +1367,12 @@ export const en = {
         done: 'Done!',
       },
       errors: {
-        tooLargeTemplate: 'That file is too big. Max size is 500MB (yours is {size}).',
-        decodeFailedSafari: 'Safari could not read this file. Please update Safari, or try it in Chrome or Firefox.',
-        decodeFailedGeneric: 'Could not read the audio in this file. The format inside might be unusual.',
+        tooLargeTemplate:
+          'That file is too big. Max size is 500MB (yours is {size}).',
+        decodeFailedSafari:
+          'Safari could not read this file. Please update Safari, or try it in Chrome or Firefox.',
+        decodeFailedGeneric:
+          'Could not read the audio in this file. The format inside might be unusual.',
       },
       result: {
         ready: 'Your MP3 is ready — preview or download below',
@@ -1043,11 +1382,26 @@ export const en = {
       faq: {
         heading: 'Common questions',
         items: [
-          { q: 'Will my video be uploaded somewhere?', a: 'No. Everything happens right here in your browser. The file never leaves your computer.' },
-          { q: 'What kinds of videos work?', a: 'Most everyday videos — MP4 (the most common), MOV from iPhone, M4A audio, and WebM. If a file does not work, the audio inside is in an unusual format.' },
-          { q: 'Why does it sometimes fail on Safari?', a: 'Older Safari can not read the audio in some MP4 files. Update Safari, or open the page in Chrome, Firefox or Edge.' },
-          { q: 'Is there a size limit?', a: 'Yes — 500MB per file. Anything bigger can freeze your browser, especially on a phone.' },
-          { q: 'Can I convert several videos at once?', a: 'Not yet. For now, do them one by one.' },
+          {
+            q: 'Will my video be uploaded somewhere?',
+            a: 'No. Everything happens right here in your browser. The file never leaves your computer.',
+          },
+          {
+            q: 'What kinds of videos work?',
+            a: 'Most everyday videos — MP4 (the most common), MOV from iPhone, M4A audio, and WebM. If a file does not work, the audio inside is in an unusual format.',
+          },
+          {
+            q: 'Why does it sometimes fail on Safari?',
+            a: 'Older Safari can not read the audio in some MP4 files. Update Safari, or open the page in Chrome, Firefox or Edge.',
+          },
+          {
+            q: 'Is there a size limit?',
+            a: 'Yes — 500MB per file. Anything bigger can freeze your browser, especially on a phone.',
+          },
+          {
+            q: 'Can I convert several videos at once?',
+            a: 'Not yet. For now, do them one by one.',
+          },
         ],
       },
     },
@@ -1056,10 +1410,12 @@ export const en = {
       description:
         'Shrink MP3 files by re-encoding at a lower bitrate — free, instant, in your browser. No uploads, no sign-up.',
       h1: 'MP3 Compressor',
-      subheading: 'Shrink MP3 files by re-encoding at a lower bitrate · runs on your device · nothing uploaded',
+      subheading:
+        'Shrink MP3 files by re-encoding at a lower bitrate · runs on your device · nothing uploaded',
       schema: {
         name: 'MP3 Compressor',
-        description: 'Free online tool to compress MP3 files by re-encoding at a lower bitrate. Runs in your browser with WebAssembly.',
+        description:
+          'Free online tool to compress MP3 files by re-encoding at a lower bitrate. Runs in your browser with WebAssembly.',
       },
       upload: {
         drag: 'Drop an audio file here',
@@ -1081,7 +1437,8 @@ export const en = {
         done: 'Done!',
       },
       errors: {
-        tooLargeTemplate: 'That file is too big. Max size is 500MB (yours is {size}).',
+        tooLargeTemplate:
+          'That file is too big. Max size is 500MB (yours is {size}).',
         decodeFailedSafari:
           'Safari could not read this file. Please update Safari, or try it in Chrome or Firefox.',
         decodeFailedGeneric: 'Could not read the audio in this file.',
@@ -1095,11 +1452,26 @@ export const en = {
       faq: {
         heading: 'Common questions',
         items: [
-          { q: 'How much smaller will my MP3 be?', a: 'Depends on the original bitrate. A 320kbps MP3 compressed to 128kbps shrinks by about 60%. A 192kbps to 96kbps saves around 50%.' },
-          { q: 'Will the quality drop?', a: 'Yes, but how much depends on the target bitrate. 128kbps sounds near-original for most music, 96kbps is OK for streaming, 64kbps is for voice recordings only.' },
-          { q: 'Is my audio uploaded?', a: 'No. Everything happens in your browser with WebAssembly. The file never leaves your device.' },
-          { q: 'Can I also use WAV or FLAC files?', a: 'Yes. Any format your browser can decode (WAV, FLAC, M4A, OGG) will be converted to MP3 at your chosen bitrate.' },
-          { q: 'What is the maximum file size?', a: '500MB per file. Larger files may freeze your browser, especially on mobile.' },
+          {
+            q: 'How much smaller will my MP3 be?',
+            a: 'Depends on the original bitrate. A 320kbps MP3 compressed to 128kbps shrinks by about 60%. A 192kbps to 96kbps saves around 50%.',
+          },
+          {
+            q: 'Will the quality drop?',
+            a: 'Yes, but how much depends on the target bitrate. 128kbps sounds near-original for most music, 96kbps is OK for streaming, 64kbps is for voice recordings only.',
+          },
+          {
+            q: 'Is my audio uploaded?',
+            a: 'No. Everything happens in your browser with WebAssembly. The file never leaves your device.',
+          },
+          {
+            q: 'Can I also use WAV or FLAC files?',
+            a: 'Yes. Any format your browser can decode (WAV, FLAC, M4A, OGG) will be converted to MP3 at your chosen bitrate.',
+          },
+          {
+            q: 'What is the maximum file size?',
+            a: '500MB per file. Larger files may freeze your browser, especially on mobile.',
+          },
         ],
       },
     },

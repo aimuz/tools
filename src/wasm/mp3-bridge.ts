@@ -17,7 +17,9 @@ export interface EncodeMp3Options {
 
 export function encodeMp3(opts: EncodeMp3Options): Promise<Blob> {
   return new Promise<Blob>((resolve, reject) => {
-    const worker = new Worker(new URL('./mp3-worker.ts', import.meta.url), { type: 'module' });
+    const worker = new Worker(new URL('./mp3-worker.ts', import.meta.url), {
+      type: 'module',
+    });
 
     worker.addEventListener('message', (ev) => {
       const msg = ev.data as

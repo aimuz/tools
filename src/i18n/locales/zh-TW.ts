@@ -3,7 +3,8 @@ import type { Translations } from '../schema';
 export const zhTW = {
   common: {
     siteName: 'WizGo',
-    siteTagline: 'WizGo 是免費線上工具箱：圖片壓縮、格式轉換、JWT、時間戳記等開發者日常工具，純瀏覽器本機處理不上傳。',
+    siteTagline:
+      'WizGo 是免費線上工具箱：圖片壓縮、格式轉換、JWT、時間戳記等開發者日常工具，純瀏覽器本機處理不上傳。',
     aboutLink: '關於',
     menuButtonAria: '選單',
     languageSwitcherAria: '切換語言',
@@ -28,7 +29,8 @@ export const zhTW = {
       needText: '請輸入要嵌入的文字',
       noWatermark: '未偵測到浮水印',
       capacityHintTemplate: '可嵌入 {bytes} 位元組 · 約 {chars} 個漢字',
-      capacityErrorTemplate: '圖片容量不足，最多可嵌入 {cap} 位元組（目前文字 {len} 位元組）',
+      capacityErrorTemplate:
+        '圖片容量不足，最多可嵌入 {cap} 位元組（目前文字 {len} 位元組）',
       imageTooSmallDct: '圖片太小，DCT 演算法至少需要 128×128 像素',
       imageTooSmallLsb: '圖片太小，無法嵌入浮水印（至少需要約 32×32 像素）',
       clipboardNotSupported: '此瀏覽器不支援剪貼簿 API',
@@ -46,12 +48,18 @@ export const zhTW = {
       items: {
         compress: { name: '圖片壓縮', desc: 'PNG / JPG / WebP 智慧壓縮' },
         convert: { name: '圖片格式轉換', desc: 'PNG JPG WebP GIF BMP 互轉' },
-        'png-to-jpg': { name: 'PNG 轉 JPG', desc: '透明背景白色填滿 · 體積更小' },
+        'png-to-jpg': {
+          name: 'PNG 轉 JPG',
+          desc: '透明背景白色填滿 · 體積更小',
+        },
         'jpg-to-png': { name: 'JPG 轉 PNG', desc: '無損保存 · 支援透明度' },
         'png-to-webp': { name: 'PNG 轉 WebP', desc: '保留透明 · 更小體積' },
         'jpg-to-webp': { name: 'JPG 轉 WebP', desc: '同畫質再壓縮 25-35%' },
         watermark: { name: '圖片隱藏浮水印', desc: '嵌入 / 提取隱藏文字' },
-        'text-watermark': { name: '圖片文字浮水印', desc: '僅供備案使用 · 防盜浮水印' },
+        'text-watermark': {
+          name: '圖片文字浮水印',
+          desc: '僅供備案使用 · 防盜浮水印',
+        },
       },
     },
     dev: {
@@ -66,14 +74,20 @@ export const zhTW = {
         'url-encode': { name: 'URL 編解碼', desc: 'URL 特殊字元編碼解碼' },
         color: { name: '色彩轉換', desc: '十六進位、RGB、HSL 互轉' },
         qrcode: { name: 'QR Code 產生器', desc: '文字 / 連結產生 QR Code' },
-        hash: { name: '雜湊值產生器', desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 校驗' },
+        hash: {
+          name: '雜湊值產生器',
+          desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 校驗',
+        },
       },
     },
     media: {
       label: '媒體工具',
       items: {
         'mp4-to-mp3': { name: 'MP4 轉 MP3', desc: '從影片檔案擷取音訊' },
-        'compress-mp3': { name: 'MP3 壓縮', desc: '降低位元率減小 MP3 檔案體積' },
+        'compress-mp3': {
+          name: 'MP3 壓縮',
+          desc: '降低位元率減小 MP3 檔案體積',
+        },
       },
     },
   },
@@ -146,7 +160,14 @@ export const zhTW = {
     base64: {
       name: 'Base64 編解碼',
       description: '文字/檔案與 Base64 互轉',
-      tags: ['Base64', '編碼', '解碼', '檔案轉換', 'base64 encode', 'base64 decode'],
+      tags: [
+        'Base64',
+        '編碼',
+        '解碼',
+        '檔案轉換',
+        'base64 encode',
+        'base64 decode',
+      ],
     },
     uuid: {
       name: 'UUID 產生器',
@@ -156,22 +177,52 @@ export const zhTW = {
     'url-encode': {
       name: 'URL 編解碼',
       description: 'URL 特殊字元編碼解碼',
-      tags: ['URL編碼', 'URL解碼', 'encodeURIComponent', '百分比編碼', 'url encode'],
+      tags: [
+        'URL編碼',
+        'URL解碼',
+        'encodeURIComponent',
+        '百分比編碼',
+        'url encode',
+      ],
     },
     color: {
       name: '色彩轉換',
       description: '十六進位、RGB、HSL 色彩值互轉',
-      tags: ['色彩', '色值', '色彩轉換', 'RGB', 'HEX', 'HSL', 'color picker', '取色器'],
+      tags: [
+        '色彩',
+        '色值',
+        '色彩轉換',
+        'RGB',
+        'HEX',
+        'HSL',
+        'color picker',
+        '取色器',
+      ],
     },
     qrcode: {
       name: 'QR Code 產生',
       description: '文字/連結產生 QR Code',
-      tags: ['QR Code', '二維條碼', '條碼', 'qrcode generator', 'QR Code 產生器'],
+      tags: [
+        'QR Code',
+        '二維條碼',
+        '條碼',
+        'qrcode generator',
+        'QR Code 產生器',
+      ],
     },
     'any-convert': {
       name: '圖片轉換',
       description: 'PNG JPG WebP 格式互轉',
-      tags: ['圖片轉換', '圖片格式轉換', 'PNG轉JPG', 'JPG轉PNG', 'WebP', 'HEIC', 'BMP', 'GIF'],
+      tags: [
+        '圖片轉換',
+        '圖片格式轉換',
+        'PNG轉JPG',
+        'JPG轉PNG',
+        'WebP',
+        'HEIC',
+        'BMP',
+        'GIF',
+      ],
     },
     'any-compress': {
       name: '圖片壓縮',
@@ -187,26 +238,66 @@ export const zhTW = {
       name: '圖片文字浮水印',
       description: '身分證 / 備案 / 防盜浮水印',
       tags: [
-        '文字浮水印', '圖片浮水印', '圖片加浮水印', '線上加浮水印', '身分證浮水印',
-        '身分證加浮水印', '證件浮水印', '營利事業登記證浮水印', '合約浮水印', '備案浮水印',
-        'ICP備案浮水印', '防盜浮水印', '版權浮水印', '僅供備案使用', '僅供xx使用',
-        '照片浮水印', 'text watermark', 'image watermark', 'photo watermark',
+        '文字浮水印',
+        '圖片浮水印',
+        '圖片加浮水印',
+        '線上加浮水印',
+        '身分證浮水印',
+        '身分證加浮水印',
+        '證件浮水印',
+        '營利事業登記證浮水印',
+        '合約浮水印',
+        '備案浮水印',
+        'ICP備案浮水印',
+        '防盜浮水印',
+        '版權浮水印',
+        '僅供備案使用',
+        '僅供xx使用',
+        '照片浮水印',
+        'text watermark',
+        'image watermark',
+        'photo watermark',
       ],
     },
     'mp4-to-mp3': {
       name: 'MP4 轉 MP3',
       description: '從影片中擷取音訊 · 128-320 kbps',
-      tags: ['mp4轉mp3', '影片轉mp3', '擷取音訊', '影片轉音訊', 'mp3', '音訊擷取', 'mp4 to mp3'],
+      tags: [
+        'mp4轉mp3',
+        '影片轉mp3',
+        '擷取音訊',
+        '影片轉音訊',
+        'mp3',
+        '音訊擷取',
+        'mp4 to mp3',
+      ],
     },
     'compress-mp3': {
       name: 'MP3 壓縮',
       description: '減小 MP3 檔案體積 · 降低位元率',
-      tags: ['MP3 壓縮', '壓縮 MP3', '減小 MP3 體積', 'MP3 減肥', '音訊壓縮', 'MP3 位元率'],
+      tags: [
+        'MP3 壓縮',
+        '壓縮 MP3',
+        '減小 MP3 體積',
+        'MP3 減肥',
+        '音訊壓縮',
+        'MP3 位元率',
+      ],
     },
     hash: {
       name: '雜湊值產生器',
       description: '一鍵產生 SHA-1 / SHA-256 / SHA-384 / SHA-512',
-      tags: ['雜湊', 'hash', 'sha256', 'sha-256', 'sha512', '校驗值', '檔案校驗', 'checksum', '雜湊值'],
+      tags: [
+        '雜湊',
+        'hash',
+        'sha256',
+        'sha-256',
+        'sha512',
+        '校驗值',
+        '檔案校驗',
+        'checksum',
+        '雜湊值',
+      ],
     },
   },
   toolCategories: {
@@ -215,23 +306,41 @@ export const zhTW = {
       description: '圖片壓縮、格式轉換',
       tools: {
         compress: { name: '圖片壓縮', description: '壓縮圖片大小，保持畫質' },
-        convert: { name: '圖片格式轉換', description: 'PNG JPG WebP GIF BMP 互轉' },
-        watermark: { name: '圖片隱藏浮水印', description: '嵌入 / 提取隱藏文字' },
-        'text-watermark': { name: '圖片文字浮水印', description: '備案 / 防盜浮水印' },
+        convert: {
+          name: '圖片格式轉換',
+          description: 'PNG JPG WebP GIF BMP 互轉',
+        },
+        watermark: {
+          name: '圖片隱藏浮水印',
+          description: '嵌入 / 提取隱藏文字',
+        },
+        'text-watermark': {
+          name: '圖片文字浮水印',
+          description: '備案 / 防盜浮水印',
+        },
       },
     },
     code: {
       name: '程式碼工具',
       description: '開發者工具',
       tools: {
-        'code-image': { name: '程式碼轉圖片', description: '把程式碼產生精美的分享圖片' },
+        'code-image': {
+          name: '程式碼轉圖片',
+          description: '把程式碼產生精美的分享圖片',
+        },
         json: { name: 'JSON', description: 'JSON 格式化' },
         jwt: { name: 'JWT', description: '產生 / 解析 / 驗章' },
         timestamp: { name: '時間戳記', description: 'Unix 時間戳記轉換' },
         base64: { name: 'Base64', description: '文字/檔案編解碼' },
         uuid: { name: 'UUID', description: '批次產生唯一識別碼' },
-        'url-encode': { name: 'URL 編解碼', description: 'URL 特殊字元編碼解碼' },
-        color: { name: '色彩轉換', description: '十六進位、RGB、HSL 色彩值互轉' },
+        'url-encode': {
+          name: 'URL 編解碼',
+          description: 'URL 特殊字元編碼解碼',
+        },
+        color: {
+          name: '色彩轉換',
+          description: '十六進位、RGB、HSL 色彩值互轉',
+        },
         qrcode: { name: 'QR Code 產生', description: '文字/連結產生 QR Code' },
         hash: { name: '雜湊值產生器', description: '文字和檔案的 SHA 校驗值' },
       },
@@ -254,7 +363,8 @@ export const zhTW = {
   manifest: {
     name: 'WizGo',
     shortName: 'WizGo',
-    description: '免費線上工具箱：圖片壓縮、格式轉換、JWT、時間戳記等，本機處理不上傳',
+    description:
+      '免費線上工具箱：圖片壓縮、格式轉換、JWT、時間戳記等，本機處理不上傳',
   },
   pages: {
     home: {
@@ -327,26 +437,36 @@ export const zhTW = {
       descriptionTemplate:
         '{fromLabel} 轉 {toLabel} 線上工具。{hintWithSpace}純瀏覽器本機處理不上傳。',
       h1Template: '{fromLabel} 轉 {toLabel}',
-      fallbackHintTemplate: '把 {fromFull} 圖片線上轉換為 {toFull} 格式 · 本機處理不上傳',
+      fallbackHintTemplate:
+        '把 {fromFull} 圖片線上轉換為 {toFull} 格式 · 本機處理不上傳',
       pairHints: {
-        'png-jpg': '透明背景會被白色填滿，檔案通常可縮小 40-80%，適合網頁、郵件、訊息分享。',
-        'png-webp': 'WebP 保留透明度的同時比 PNG 小 25-50%，現代瀏覽器普遍支援。',
+        'png-jpg':
+          '透明背景會被白色填滿，檔案通常可縮小 40-80%，適合網頁、郵件、訊息分享。',
+        'png-webp':
+          'WebP 保留透明度的同時比 PNG 小 25-50%，現代瀏覽器普遍支援。',
         'png-gif': '把 PNG 轉成 GIF，用於傳送到只支援 GIF 的舊平台。',
         'png-bmp': '把 PNG 轉成無損未壓縮的 BMP，常用於相容舊版 Windows 程式。',
-        'jpg-png': 'JPG 轉 PNG 可無損保存並獲得透明度支援，適合 logo 底圖去背前處理。',
-        'jpg-webp': 'JPG 轉 WebP 可再壓縮 25-35%，視覺幾乎無差，適合圖片量大的網站。',
+        'jpg-png':
+          'JPG 轉 PNG 可無損保存並獲得透明度支援，適合 logo 底圖去背前處理。',
+        'jpg-webp':
+          'JPG 轉 WebP 可再壓縮 25-35%，視覺幾乎無差，適合圖片量大的網站。',
         'jpg-gif': 'JPG 轉 GIF，常用於把照片轉成可傳送到舊聊天平台的格式。',
-        'jpg-bmp': 'JPG 轉 BMP 會得到無損但體積巨大的點陣圖，用於列印或特殊程式輸入。',
-        'webp-png': 'WebP 不被某些軟體支援時，轉回 PNG 是最安全的備援選擇，完整保留透明度。',
-        'webp-jpg': '需要傳圖到不支援 WebP 的舊平台（論壇、舊版發布平台等）時，轉 JPG 最穩當。',
+        'jpg-bmp':
+          'JPG 轉 BMP 會得到無損但體積巨大的點陣圖，用於列印或特殊程式輸入。',
+        'webp-png':
+          'WebP 不被某些軟體支援時，轉回 PNG 是最安全的備援選擇，完整保留透明度。',
+        'webp-jpg':
+          '需要傳圖到不支援 WebP 的舊平台（論壇、舊版發布平台等）時，轉 JPG 最穩當。',
         'webp-gif': 'WebP 轉 GIF，相容舊版瀏覽器或只支援 GIF 的聊天平台。',
         'webp-bmp': 'WebP 轉 BMP，用於特定的圖形程式或列印流程。',
         'gif-png': 'GIF 轉 PNG 保留透明度，畫質更清晰（僅轉換首幀）。',
-        'gif-jpg': 'GIF 轉 JPG 體積更小，但會失去透明度、只保留首幀，適合分享用途。',
+        'gif-jpg':
+          'GIF 轉 JPG 體積更小，但會失去透明度、只保留首幀，適合分享用途。',
         'gif-webp': 'GIF 轉 WebP 靜態圖可進一步壓縮，保留透明度。',
         'gif-bmp': 'GIF 轉 BMP，僅保留首幀，適用於圖形程式批次處理。',
         'bmp-png': 'BMP 轉 PNG 可無損大幅縮小體積（通常減少 70%+），適合歸檔。',
-        'bmp-jpg': 'BMP 轉 JPG 壓縮率最高，適合有大量掃描檔、截圖需要分享時使用。',
+        'bmp-jpg':
+          'BMP 轉 JPG 壓縮率最高，適合有大量掃描檔、截圖需要分享時使用。',
         'bmp-webp': 'BMP 轉 WebP 可獲得最高壓縮率，現代瀏覽器普遍支援。',
         'bmp-gif': 'BMP 轉 GIF，用於相容只支援 GIF 的舊聊天或論壇平台。',
       },
@@ -368,7 +488,8 @@ export const zhTW = {
         more: '更多格式',
       },
       schema: {
-        descriptionTemplate: '把 {fromFull} 圖片線上轉換為 {toFull} 格式，本機處理不上傳。',
+        descriptionTemplate:
+          '把 {fromFull} 圖片線上轉換為 {toFull} 格式，本機處理不上傳。',
       },
     },
     compress: {
@@ -379,7 +500,8 @@ export const zhTW = {
       subheading: 'PNG、JPG、WebP 線上無損壓縮 · 本機處理不上傳 · 支援批次',
       schema: {
         name: '圖片壓縮',
-        description: '免費線上圖片壓縮工具，支援 PNG、JPG、WebP 格式，本機處理不上傳',
+        description:
+          '免費線上圖片壓縮工具，支援 PNG、JPG、WebP 格式，本機處理不上傳',
         browserReq: '需要支援 WebAssembly 的現代瀏覽器',
       },
       upload: {
@@ -428,8 +550,10 @@ export const zhTW = {
       h1: '關於 WizGo',
       schema: {
         name: '關於 WizGo',
-        description: 'WizGo 的技術堆疊與隱私政策：所有工具在瀏覽器本機執行，檔案不上傳。',
-        orgDescription: '免費線上工具箱，圖片壓縮、格式轉換、JWT、時間戳記等，純瀏覽器本機處理不上傳。',
+        description:
+          'WizGo 的技術堆疊與隱私政策：所有工具在瀏覽器本機執行，檔案不上傳。',
+        orgDescription:
+          '免費線上工具箱，圖片壓縮、格式轉換、JWT、時間戳記等，純瀏覽器本機處理不上傳。',
       },
       intro:
         'WizGo 是一套免費、安全、快速的線上工具箱。我們堅信使用者的資料隱私至關重要，因此所有工具都在你的瀏覽器中本機完成處理，檔案和資料不會上傳到任何伺服器。',
@@ -437,13 +561,11 @@ export const zhTW = {
         heading: '技術堆疊',
         image: {
           title: '圖片處理',
-          body:
-            'Rust 編寫的 WebAssembly 模組，整合 imagequant 調色盤量化與 jpeg-encoder 最佳化管線，支援 PNG、JPEG、WebP、GIF、BMP 等格式',
+          body: 'Rust 編寫的 WebAssembly 模組，整合 imagequant 調色盤量化與 jpeg-encoder 最佳化管線，支援 PNG、JPEG、WebP、GIF、BMP 等格式',
         },
         crypto: {
           title: '加密與簽章',
-          body:
-            'JWT 解碼、簽發與驗章全部走瀏覽器原生 WebCrypto，支援 HS、RS、ES 系列演算法，零第三方相依',
+          body: 'JWT 解碼、簽發與驗章全部走瀏覽器原生 WebCrypto，支援 HS、RS、ES 系列演算法，零第三方相依',
         },
         frontend: {
           title: '前端框架',
@@ -476,11 +598,31 @@ export const zhTW = {
         heading: '開源函式庫致謝',
         intro: 'WizGo 建置過程中使用了以下優秀的開源函式庫：',
         items: [
-          { label: 'imagequant', href: 'https://github.com/ImageOptim/libimagequant', desc: 'PNG 調色盤量化' },
-          { label: 'lodepng-rust', href: 'https://github.com/kornelski/lodepng-rust', desc: '純 Rust PNG 編碼' },
-          { label: 'jpeg-encoder', href: 'https://github.com/vstroebel/jpeg-encoder', desc: 'Rust JPEG 編碼' },
-          { label: 'Astro', href: 'https://astro.build', desc: '現代靜態網站產生器' },
-          { label: 'Geist', href: 'https://vercel.com/font', desc: 'Vercel 設計字型' },
+          {
+            label: 'imagequant',
+            href: 'https://github.com/ImageOptim/libimagequant',
+            desc: 'PNG 調色盤量化',
+          },
+          {
+            label: 'lodepng-rust',
+            href: 'https://github.com/kornelski/lodepng-rust',
+            desc: '純 Rust PNG 編碼',
+          },
+          {
+            label: 'jpeg-encoder',
+            href: 'https://github.com/vstroebel/jpeg-encoder',
+            desc: 'Rust JPEG 編碼',
+          },
+          {
+            label: 'Astro',
+            href: 'https://astro.build',
+            desc: '現代靜態網站產生器',
+          },
+          {
+            label: 'Geist',
+            href: 'https://vercel.com/font',
+            desc: 'Vercel 設計字型',
+          },
         ],
       },
     },
@@ -531,7 +673,8 @@ export const zhTW = {
       description:
         '免費線上 UUID 產生器，支援批次產生、多種格式（標準/無連字號/大寫）、一鍵複製。使用密碼學安全亂數產生，瀏覽器本機處理不上傳。',
       h1: 'UUID 產生器',
-      subheading: '批次產生唯一識別碼 · 標準格式 / 無連字號 / 大寫 · 本機產生不上傳',
+      subheading:
+        '批次產生唯一識別碼 · 標準格式 / 無連字號 / 大寫 · 本機產生不上傳',
       schema: {
         name: 'UUID 產生器',
         description: '線上批次產生 UUID 唯一識別碼，支援多種格式',
@@ -549,8 +692,7 @@ export const zhTW = {
       copiedBtn: '已複製',
       info: {
         heading: '關於 UUID',
-        body:
-          'UUID（通用唯一識別碼）是一種 128 位元的識別碼，通常表示為 32 個十六進位數字，分為 5 組。本工具使用瀏覽器內建的密碼學安全亂數產生器（crypto.getRandomValues）產生 UUID v4 版本，確保產生的識別碼具有極高的唯一性，適合用於資料庫主鍵、會話識別、API 金鑰等場景。',
+        body: 'UUID（通用唯一識別碼）是一種 128 位元的識別碼，通常表示為 32 個十六進位數字，分為 5 組。本工具使用瀏覽器內建的密碼學安全亂數產生器（crypto.getRandomValues）產生 UUID v4 版本，確保產生的識別碼具有極高的唯一性，適合用於資料庫主鍵、會話識別、API 金鑰等場景。',
       },
     },
     urlEncode: {
@@ -570,7 +712,8 @@ export const zhTW = {
         component: '完整編碼（推薦）',
         uri: '保留 URL 字元',
         componentHint: '完整編碼：編碼所有特殊字元，適合作為 URL 參數值',
-        uriHint: '保留 URL 字元：不編碼 : / ? # & = 等 URL 保留字元，適合編碼完整 URL',
+        uriHint:
+          '保留 URL 字元：不編碼 : / ? # & = 等 URL 保留字元，適合編碼完整 URL',
       },
       labels: {
         inputEncode: '輸入文字',
@@ -612,7 +755,8 @@ export const zhTW = {
       description:
         '免費線上 QR Code 產生器，支援文字、URL、聯絡人產生 QR Code。自訂尺寸、顏色，可下載 PNG/SVG 格式。純瀏覽器本機產生不上傳。',
       h1: 'QR Code 產生',
-      subheading: '文字/連結產生 QR Code · 自訂樣式 · 下載 PNG/SVG · 本機產生不上傳',
+      subheading:
+        '文字/連結產生 QR Code · 自訂樣式 · 下載 PNG/SVG · 本機產生不上傳',
       schema: {
         name: 'QR Code 產生器',
         description: '線上產生 QR Code，支援自訂尺寸和顏色',
@@ -645,7 +789,8 @@ export const zhTW = {
       emptyContent: '請輸入內容',
       downloadPng: '下載 PNG',
       downloadSvg: '下載 SVG',
-      infoTemplate: '內容長度：{chars} 字元 / {bytes} 位元組 · 尺寸：{size}x{size}px',
+      infoTemplate:
+        '內容長度：{chars} 字元 / {bytes} 位元組 · 尺寸：{size}x{size}px',
       examples: {
         heading: '使用範例',
         url: '網址：',
@@ -680,8 +825,17 @@ export const zhTW = {
         fillNowBtn: '填入目前',
         units: { auto: '自動', sec: '秒', ms: '毫秒' },
         placeholder: '如：1516239022 或 1516239022000',
-        errors: { nan: '必須是數字', oor: '數字超出範圍', invalid: '無效的時間戳記' },
-        outputs: { local: '本地時間', utc: 'UTC 時間', iso: 'ISO 8601', relative: '相對時間' },
+        errors: {
+          nan: '必須是數字',
+          oor: '數字超出範圍',
+          invalid: '無效的時間戳記',
+        },
+        outputs: {
+          local: '本地時間',
+          utc: 'UTC 時間',
+          iso: 'ISO 8601',
+          relative: '相對時間',
+        },
       },
       d2t: {
         label: '日期 → 時間戳記',
@@ -693,7 +847,8 @@ export const zhTW = {
       copyBtn: '複製',
       copiedBtn: '已複製',
       justNow: '剛剛',
-      footerHint: 'Unix 紀元：1970-01-01 00:00:00 UTC · 秒級時間戳記 10 位 · 毫秒級 13 位',
+      footerHint:
+        'Unix 紀元：1970-01-01 00:00:00 UTC · 秒級時間戳記 10 位 · 毫秒級 13 位',
     },
     color: {
       title: '色彩轉換 - 線上 HEX/RGB/HSL 色彩值轉換工具 | WizGo',
@@ -713,9 +868,18 @@ export const zhTW = {
       copiedBtn: '已複製',
       quickColorsLabel: '常用顏色',
       colorNames: {
-        black: '黑色', red: '紅色', orange: '橙色', amber: '琥珀色',
-        yellowGreen: '黃綠色', green: '綠色', cyan: '青色', blue: '藍色',
-        indigo: '靛藍色', purple: '紫色', pink: '粉色', white: '白色',
+        black: '黑色',
+        red: '紅色',
+        orange: '橙色',
+        amber: '琥珀色',
+        yellowGreen: '黃綠色',
+        green: '綠色',
+        cyan: '青色',
+        blue: '藍色',
+        indigo: '靛藍色',
+        purple: '紫色',
+        pink: '粉色',
+        white: '白色',
       },
       randomBtn: '隨機顏色',
     },
@@ -743,7 +907,8 @@ export const zhTW = {
       description:
         '免費線上 Base64 編解碼工具，支援文字與 Base64 互轉、檔案上傳轉 Base64、Base64 下載為檔案。圖片、文字、二進位檔案均可處理，瀏覽器本機處理不上傳。',
       h1: 'Base64 編解碼',
-      subheading: '文字/檔案與 Base64 互轉 · 支援圖片、文字、二進位檔案 · 本機處理不上傳',
+      subheading:
+        '文字/檔案與 Base64 互轉 · 支援圖片、文字、二進位檔案 · 本機處理不上傳',
       schema: {
         name: 'Base64 編解碼',
         description: '文字/檔案與 Base64 互轉工具，支援圖片、文字、二進位檔案',
@@ -792,10 +957,12 @@ export const zhTW = {
       description:
         '線上 JSON Web Token 工具，解碼 header/payload、驗證簽章、產生新 token。支援 HS256/384/512、RS256/384/512、ES256/384 演算法，瀏覽器本機運算不上傳。',
       h1: 'JWT 解碼/產生/驗章',
-      subheading: 'JSON Web Token 線上工具 · HS256 RS256 ES256 · 本機運算不上傳',
+      subheading:
+        'JSON Web Token 線上工具 · HS256 RS256 ES256 · 本機運算不上傳',
       schema: {
         name: 'JWT 解碼/產生/驗章',
-        description: 'JSON Web Token 線上工具，支援 HS/RS/ES 系列演算法，本機運算',
+        description:
+          'JSON Web Token 線上工具，支援 HS/RS/ES 系列演算法，本機運算',
       },
       algoLabel: '簽章演算法',
       encodedLabel: 'Encoded · 完整 Token',
@@ -823,8 +990,10 @@ export const zhTW = {
       },
       pubkeyLabel: 'Public Key（PEM，用於驗章）',
       privkeyLabel: 'Private Key（PEM，用於簽發）',
-      pubkeyPlaceholder: '-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----',
-      privkeyPlaceholder: '-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----',
+      pubkeyPlaceholder:
+        '-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----',
+      privkeyPlaceholder:
+        '-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----',
       errors: {
         pemEmpty: 'PEM 內容為空',
         jwtFormat: 'JWT 格式錯誤：應為 header.payload.signature',
@@ -840,10 +1009,16 @@ export const zhTW = {
       description:
         '給圖片加「僅供xx使用」文字浮水印：身分證、登記證、合約、網站備案防冒用。平鋪/居中/右下角排列。本機處理不上傳照片。',
       h1: '圖片文字浮水印',
-      subheading: '在圖片上加上「僅供備案使用」等文字浮水印 · 防盜、溯源 · 本機處理不上傳',
+      subheading:
+        '在圖片上加上「僅供備案使用」等文字浮水印 · 防盜、溯源 · 本機處理不上傳',
       schema: {
         name: '圖片文字浮水印',
-        alternateNames: ['身分證加浮水印', '證件浮水印', '備案浮水印工具', '圖片加文字浮水印'],
+        alternateNames: [
+          '身分證加浮水印',
+          '證件浮水印',
+          '備案浮水印工具',
+          '圖片加文字浮水印',
+        ],
         description:
           '在圖片上加上可見的文字浮水印，用於身分證防冒用、證件影本、網站備案、版權防盜等場景。支援平鋪、居中、右下角三種排列，純瀏覽器本機處理不上傳。',
         featureList: [
@@ -860,19 +1035,52 @@ export const zhTW = {
         description: '三步給圖片加上「僅供xx使用」文字浮水印，防止證件被冒用',
         toolName: '瀏覽器（Chrome / Safari / Edge）',
         steps: [
-          { name: '上傳圖片', text: '點擊上傳區或直接拖拉圖片進來，支援 PNG / JPG / WebP，圖片只在本機處理不會上傳伺服器。' },
-          { name: '輸入浮水印文字', text: '例如「僅供 xx 銀行房貸辦理使用」、「僅供 xxx.com 網站備案使用」等。建議寫明具體用途和接收方名稱。' },
-          { name: '調整樣式並下載', text: '選擇平鋪（防裁切）、調整顏色字級透明度和旋轉角度，點擊下載 PNG。' },
+          {
+            name: '上傳圖片',
+            text: '點擊上傳區或直接拖拉圖片進來，支援 PNG / JPG / WebP，圖片只在本機處理不會上傳伺服器。',
+          },
+          {
+            name: '輸入浮水印文字',
+            text: '例如「僅供 xx 銀行房貸辦理使用」、「僅供 xxx.com 網站備案使用」等。建議寫明具體用途和接收方名稱。',
+          },
+          {
+            name: '調整樣式並下載',
+            text: '選擇平鋪（防裁切）、調整顏色字級透明度和旋轉角度，點擊下載 PNG。',
+          },
         ],
       },
       faqSchema: {
         items: [
-          { question: '給身分證加浮水印合法嗎？', answer: '合法，且被廣泛推薦。在身分證影本 / 掃描檔上標註「僅供 xx 使用」的文字浮水印，是防止證件被挪作他用的有效手段。' },
-          { question: '浮水印文字應該寫什麼？', answer: '建議包含「用途 + 接收方 + 日期」三要素，例如「僅供 xx 銀行 2026 年房貸辦理使用」。越具體越不容易被濫用。' },
-          { question: '浮水印加在哪裡最安全？', answer: '平鋪模式最安全——文字斜向鋪滿整張圖，無法透過裁切去除；右下角等角落浮水印容易被直接裁掉。建議身分證等重要證件用平鋪+半透明灰。' },
-          { question: '圖片會被上傳到伺服器嗎？', answer: '不會。本工具所有處理都在你的瀏覽器本機完成（Canvas 2D），圖片檔案和浮水印文字從不離開你的裝置，伺服器只提供靜態頁面。' },
-          { question: '浮水印能被 PS 去掉嗎？', answer: '文字浮水印本質上是可見的像素改動，專業使用者用 PS 可以擦除，但耗時且會留下痕跡。對於一般盜用情境，文字浮水印的嚇阻力已經足夠。如果需要抗擦除的「隱形簽章」，可以用我們的圖片隱藏浮水印工具。' },
-          { question: '加完浮水印的圖片儲存成 JPG 還是 PNG？', answer: '本工具匯出 PNG（無損，浮水印邊緣最清晰）。如果檔案太大，可以用「PNG 壓縮」工具進一步減小體積。' },
+          {
+            question: '給身分證加浮水印合法嗎？',
+            answer:
+              '合法，且被廣泛推薦。在身分證影本 / 掃描檔上標註「僅供 xx 使用」的文字浮水印，是防止證件被挪作他用的有效手段。',
+          },
+          {
+            question: '浮水印文字應該寫什麼？',
+            answer:
+              '建議包含「用途 + 接收方 + 日期」三要素，例如「僅供 xx 銀行 2026 年房貸辦理使用」。越具體越不容易被濫用。',
+          },
+          {
+            question: '浮水印加在哪裡最安全？',
+            answer:
+              '平鋪模式最安全——文字斜向鋪滿整張圖，無法透過裁切去除；右下角等角落浮水印容易被直接裁掉。建議身分證等重要證件用平鋪+半透明灰。',
+          },
+          {
+            question: '圖片會被上傳到伺服器嗎？',
+            answer:
+              '不會。本工具所有處理都在你的瀏覽器本機完成（Canvas 2D），圖片檔案和浮水印文字從不離開你的裝置，伺服器只提供靜態頁面。',
+          },
+          {
+            question: '浮水印能被 PS 去掉嗎？',
+            answer:
+              '文字浮水印本質上是可見的像素改動，專業使用者用 PS 可以擦除，但耗時且會留下痕跡。對於一般盜用情境，文字浮水印的嚇阻力已經足夠。如果需要抗擦除的「隱形簽章」，可以用我們的圖片隱藏浮水印工具。',
+          },
+          {
+            question: '加完浮水印的圖片儲存成 JPG 還是 PNG？',
+            answer:
+              '本工具匯出 PNG（無損，浮水印邊緣最清晰）。如果檔案太大，可以用「PNG 壓縮」工具進一步減小體積。',
+          },
         ],
       },
       imageLabel: '圖片',
@@ -886,8 +1094,13 @@ export const zhTW = {
       colorLabel: '顏色',
       boldLabel: '粗體',
       swatches: {
-        red: '備案紅', white: '白', lightGray: '淺灰', midGray: '中灰',
-        darkGray: '深灰', charcoal: '炭灰', black: '黑',
+        red: '備案紅',
+        white: '白',
+        lightGray: '淺灰',
+        midGray: '中灰',
+        darkGray: '深灰',
+        charcoal: '炭灰',
+        black: '黑',
       },
       customColorTitle: '自訂顏色',
       opacityLabel: '透明度',
@@ -900,10 +1113,26 @@ export const zhTW = {
       useCases: {
         heading: '常見用途',
         items: [
-          { title: '身分證加浮水印 · 防冒用', bodyHtml: '辦理銀行業務、租屋、工作入職時經常要繳交身分證影本。加上「僅供 xx 銀行 2026 年房貸辦理使用」一類的文字浮水印，可以避免身分證資訊被挪作貸款、開卡等其他用途，降低冒名風險。建議用<strong>平鋪模式</strong>，透明度 30–50%。' },
-          { title: '營利事業登記證 / 合約 / 證件浮水印', bodyHtml: '公司營利事業登記證、開戶許可證、合約掃描檔提交給合作方時，加上「僅供 xx 用途」浮水印可以限制被重複使用。同樣適用於學位證、駕照、護照等證件的電子副本。' },
-          { title: '網站備案浮水印', bodyHtml: 'ICP 備案資料裡，主體身分證件和法人授權書都需要在圖片上加浮水印。常見格式：「僅供 xxx.com 網站 ICP 備案使用」，紅色平鋪是雲端服務商備案推薦樣式。' },
-          { title: '防盜圖 / 版權保護', bodyHtml: '攝影作品、產品圖、插畫發布到社群平台前加上作者署名或站點網域，可以顯著降低被直接盜用的機率。版權標用<strong>右下角</strong>低調；防盜用<strong>平鋪</strong>強覆蓋。' },
+          {
+            title: '身分證加浮水印 · 防冒用',
+            bodyHtml:
+              '辦理銀行業務、租屋、工作入職時經常要繳交身分證影本。加上「僅供 xx 銀行 2026 年房貸辦理使用」一類的文字浮水印，可以避免身分證資訊被挪作貸款、開卡等其他用途，降低冒名風險。建議用<strong>平鋪模式</strong>，透明度 30–50%。',
+          },
+          {
+            title: '營利事業登記證 / 合約 / 證件浮水印',
+            bodyHtml:
+              '公司營利事業登記證、開戶許可證、合約掃描檔提交給合作方時，加上「僅供 xx 用途」浮水印可以限制被重複使用。同樣適用於學位證、駕照、護照等證件的電子副本。',
+          },
+          {
+            title: '網站備案浮水印',
+            bodyHtml:
+              'ICP 備案資料裡，主體身分證件和法人授權書都需要在圖片上加浮水印。常見格式：「僅供 xxx.com 網站 ICP 備案使用」，紅色平鋪是雲端服務商備案推薦樣式。',
+          },
+          {
+            title: '防盜圖 / 版權保護',
+            bodyHtml:
+              '攝影作品、產品圖、插畫發布到社群平台前加上作者署名或站點網域，可以顯著降低被直接盜用的機率。版權標用<strong>右下角</strong>低調；防盜用<strong>平鋪</strong>強覆蓋。',
+          },
         ],
       },
       steps: {
@@ -918,12 +1147,36 @@ export const zhTW = {
       faq: {
         heading: '常見問題',
         items: [
-          { q: '給身分證加浮水印合法嗎？', aHtml: '合法，且被廣泛推薦。在身分證影本 / 掃描檔上標註「僅供 xx 使用」的文字浮水印，是防止證件被挪作他用的有效手段。' },
-          { q: '浮水印文字應該寫什麼？', aHtml: '建議包含「用途 + 接收方 + 日期」三要素，例如「僅供 xx 銀行 2026 年房貸辦理使用」。越具體越不容易被濫用。如果是網站備案，寫「僅供 yourdomain.com 網站 ICP 備案使用」。' },
-          { q: '浮水印加在哪裡最安全？', aHtml: '平鋪模式最安全——文字斜向鋪滿整張圖，無法透過裁切去除。右下角等角落浮水印容易被直接裁掉。身分證、信用卡等重要證件建議平鋪 + 半透明灰，既安全又不影響辨識。' },
-          { q: '圖片會被上傳到伺服器嗎？', aHtml: '不會。本工具所有處理都在你的瀏覽器本機完成（Canvas 2D 直接繪製像素），圖片檔案和浮水印文字從不離開你的裝置。可以斷網後繼續使用。' },
-          { q: '浮水印能被 PS 去掉嗎？', aHtml: '文字浮水印本質上是可見的像素改動，專業使用者用 PS 可以擦除，但耗時且會留下痕跡。對於一般盜用情境，文字浮水印的嚇阻力已經足夠。如果需要抗擦除的「隱形簽章」，可以用我們的<a href="/zh-TW/watermark" class="text-[#0072f5] hover:underline">圖片隱藏浮水印</a>工具。' },
-          { q: '加完浮水印的圖片太大怎麼辦？', aHtml: '本工具匯出 PNG（無損，浮水印邊緣最清晰）。如果檔案太大影響上傳或傳送，可以用<a href="/zh-TW/compress-png" class="text-[#0072f5] hover:underline">PNG 壓縮</a>進一步減小體積，或用<a href="/zh-TW/png-to-jpg" class="text-[#0072f5] hover:underline">PNG 轉 JPG</a>換成更小的格式。' },
+          {
+            q: '給身分證加浮水印合法嗎？',
+            aHtml:
+              '合法，且被廣泛推薦。在身分證影本 / 掃描檔上標註「僅供 xx 使用」的文字浮水印，是防止證件被挪作他用的有效手段。',
+          },
+          {
+            q: '浮水印文字應該寫什麼？',
+            aHtml:
+              '建議包含「用途 + 接收方 + 日期」三要素，例如「僅供 xx 銀行 2026 年房貸辦理使用」。越具體越不容易被濫用。如果是網站備案，寫「僅供 yourdomain.com 網站 ICP 備案使用」。',
+          },
+          {
+            q: '浮水印加在哪裡最安全？',
+            aHtml:
+              '平鋪模式最安全——文字斜向鋪滿整張圖，無法透過裁切去除。右下角等角落浮水印容易被直接裁掉。身分證、信用卡等重要證件建議平鋪 + 半透明灰，既安全又不影響辨識。',
+          },
+          {
+            q: '圖片會被上傳到伺服器嗎？',
+            aHtml:
+              '不會。本工具所有處理都在你的瀏覽器本機完成（Canvas 2D 直接繪製像素），圖片檔案和浮水印文字從不離開你的裝置。可以斷網後繼續使用。',
+          },
+          {
+            q: '浮水印能被 PS 去掉嗎？',
+            aHtml:
+              '文字浮水印本質上是可見的像素改動，專業使用者用 PS 可以擦除，但耗時且會留下痕跡。對於一般盜用情境，文字浮水印的嚇阻力已經足夠。如果需要抗擦除的「隱形簽章」，可以用我們的<a href="/zh-TW/watermark" class="text-[#0072f5] hover:underline">圖片隱藏浮水印</a>工具。',
+          },
+          {
+            q: '加完浮水印的圖片太大怎麼辦？',
+            aHtml:
+              '本工具匯出 PNG（無損，浮水印邊緣最清晰）。如果檔案太大影響上傳或傳送，可以用<a href="/zh-TW/compress-png" class="text-[#0072f5] hover:underline">PNG 壓縮</a>進一步減小體積，或用<a href="/zh-TW/png-to-jpg" class="text-[#0072f5] hover:underline">PNG 轉 JPG</a>換成更小的格式。',
+          },
         ],
       },
     },
@@ -950,12 +1203,15 @@ export const zhTW = {
     },
     hash: {
       title: '雜湊值產生器：SHA-256、SHA-512 線上計算 | WizGo',
-      description: '在瀏覽器中為文字和檔案產生 SHA-1、SHA-256、SHA-384、SHA-512 雜湊值。校驗下載完整性，資料全程本機處理，不上傳。',
+      description:
+        '在瀏覽器中為文字和檔案產生 SHA-1、SHA-256、SHA-384、SHA-512 雜湊值。校驗下載完整性，資料全程本機處理，不上傳。',
       h1: '雜湊值產生器',
-      subheading: '校驗檔案完整性或對任意文字計算雜湊 · SHA-1 / SHA-256 / SHA-384 / SHA-512 · 純瀏覽器本機運算',
+      subheading:
+        '校驗檔案完整性或對任意文字計算雜湊 · SHA-1 / SHA-256 / SHA-384 / SHA-512 · 純瀏覽器本機運算',
       schema: {
         name: '雜湊值產生器',
-        description: '免費線上工具，為文字或檔案一次產生 SHA-1、SHA-256、SHA-384、SHA-512 雜湊值，全部在瀏覽器本機計算。',
+        description:
+          '免費線上工具，為文字或檔案一次產生 SHA-1、SHA-256、SHA-384、SHA-512 雜湊值，全部在瀏覽器本機計算。',
       },
       tabs: { text: '文字', file: '檔案' },
       input: {
@@ -1007,7 +1263,8 @@ export const zhTW = {
       subheading: '把影片裡的聲音擷取出來 · 在你的電腦上完成 · 檔案不會上傳',
       schema: {
         name: 'MP4 轉 MP3 轉換器',
-        description: '免費線上把 MP4 影片中的音訊擷取並儲存為 MP3，瀏覽器本地處理，檔案不會上傳。',
+        description:
+          '免費線上把 MP4 影片中的音訊擷取並儲存為 MP3，瀏覽器本地處理，檔案不會上傳。',
       },
       upload: {
         drag: '把影片拖到這裡',
@@ -1030,7 +1287,8 @@ export const zhTW = {
       },
       errors: {
         tooLargeTemplate: '檔案太大了，最大 500MB（你的有 {size}）',
-        decodeFailedSafari: 'Safari 讀取此檔案失敗。請升級 Safari，或用 Chrome、Firefox 試試。',
+        decodeFailedSafari:
+          'Safari 讀取此檔案失敗。請升級 Safari，或用 Chrome、Firefox 試試。',
         decodeFailedGeneric: '讀不出這個檔案裡的聲音，裡面的格式可能比較少見。',
       },
       result: {
@@ -1041,10 +1299,22 @@ export const zhTW = {
       faq: {
         heading: '常見問題',
         items: [
-          { q: '我的影片會被上傳到伺服器嗎？', a: '不會。整個過程都在你瀏覽器裡完成，檔案不會離開你的電腦。' },
-          { q: '支援哪些影片？', a: '常見的影片都可以：手機/電腦的 MP4、iPhone 拍的 MOV、M4A 音訊，還有 WebM。如果某個檔案不行，表示裡面的音訊格式比較少見。' },
-          { q: '為什麼 Safari 有時會失敗？', a: '舊版 Safari 讀不出某些 MP4 裡的聲音。把 Safari 升到新版，或者改用 Chrome、Firefox、Edge。' },
-          { q: '有大小限制嗎？', a: '有，單檔最大 500MB。再大可能讓瀏覽器卡死，特別是在手機上。' },
+          {
+            q: '我的影片會被上傳到伺服器嗎？',
+            a: '不會。整個過程都在你瀏覽器裡完成，檔案不會離開你的電腦。',
+          },
+          {
+            q: '支援哪些影片？',
+            a: '常見的影片都可以：手機/電腦的 MP4、iPhone 拍的 MOV、M4A 音訊，還有 WebM。如果某個檔案不行，表示裡面的音訊格式比較少見。',
+          },
+          {
+            q: '為什麼 Safari 有時會失敗？',
+            a: '舊版 Safari 讀不出某些 MP4 裡的聲音。把 Safari 升到新版，或者改用 Chrome、Firefox、Edge。',
+          },
+          {
+            q: '有大小限制嗎？',
+            a: '有，單檔最大 500MB。再大可能讓瀏覽器卡死，特別是在手機上。',
+          },
           { q: '可以一次轉好幾個嗎？', a: '暫時還不行，目前一次只能轉一個。' },
         ],
       },
@@ -1057,7 +1327,8 @@ export const zhTW = {
       subheading: '降低位元率壓縮 MP3 · 本地處理 · 檔案不離開你的裝置',
       schema: {
         name: 'MP3 壓縮工具',
-        description: '免費線上工具，通過降低位元率壓縮 MP3 檔案。瀏覽器內 WebAssembly 執行。',
+        description:
+          '免費線上工具，通過降低位元率壓縮 MP3 檔案。瀏覽器內 WebAssembly 執行。',
       },
       upload: {
         drag: '拖入音訊檔案',
@@ -1093,11 +1364,26 @@ export const zhTW = {
       faq: {
         heading: '常見問題',
         items: [
-          { q: 'MP3 能壓縮多少？', a: '取決於原始位元率。320kbps 壓到 128kbps 約省 60%；192kbps 壓到 96kbps 約省 50%。' },
-          { q: '會損失音質嗎？', a: '會，但多少取決於目標位元率。128kbps 對多數音樂接近原聲，96kbps 對串流夠用，64kbps 僅建議用於語音。' },
-          { q: '音訊會上傳嗎？', a: '不會。一切在你的瀏覽器中用 WebAssembly 處理，檔案不離開裝置。' },
-          { q: '可以壓 WAV、FLAC 嗎？', a: '可以。任何瀏覽器能解碼的音訊格式（WAV、FLAC、M4A、OGG）都會被轉成 MP3。' },
-          { q: '檔案大小上限？', a: '每個檔案 500MB。超大檔案可能卡瀏覽器，尤其是手機。' },
+          {
+            q: 'MP3 能壓縮多少？',
+            a: '取決於原始位元率。320kbps 壓到 128kbps 約省 60%；192kbps 壓到 96kbps 約省 50%。',
+          },
+          {
+            q: '會損失音質嗎？',
+            a: '會，但多少取決於目標位元率。128kbps 對多數音樂接近原聲，96kbps 對串流夠用，64kbps 僅建議用於語音。',
+          },
+          {
+            q: '音訊會上傳嗎？',
+            a: '不會。一切在你的瀏覽器中用 WebAssembly 處理，檔案不離開裝置。',
+          },
+          {
+            q: '可以壓 WAV、FLAC 嗎？',
+            a: '可以。任何瀏覽器能解碼的音訊格式（WAV、FLAC、M4A、OGG）都會被轉成 MP3。',
+          },
+          {
+            q: '檔案大小上限？',
+            a: '每個檔案 500MB。超大檔案可能卡瀏覽器，尤其是手機。',
+          },
         ],
       },
     },

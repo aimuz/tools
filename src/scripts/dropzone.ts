@@ -31,7 +31,9 @@ export function wireDropzone(
     e.preventDefault();
     dropzone.classList.add(DRAG_RING);
   });
-  dropzone.addEventListener('dragleave', () => dropzone.classList.remove(DRAG_RING));
+  dropzone.addEventListener('dragleave', () =>
+    dropzone.classList.remove(DRAG_RING),
+  );
   dropzone.addEventListener('drop', (e) => {
     e.preventDefault();
     dropzone.classList.remove(DRAG_RING);

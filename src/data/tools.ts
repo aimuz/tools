@@ -1,7 +1,11 @@
 import { useTranslations } from '../i18n';
 import { DEFAULT_LOCALE, type Locale } from '../i18n/config';
 import { localizedPath } from '../i18n/seo';
-import type { CategoryKey, CategoryToolKey, QuickActionKey } from '../i18n/schema';
+import type {
+  CategoryKey,
+  CategoryToolKey,
+  QuickActionKey,
+} from '../i18n/schema';
 
 export interface QuickAction {
   id: QuickActionKey;
@@ -102,7 +106,9 @@ const CATEGORY_ORDER: { id: CategoryKey; tools: CategoryToolMeta[] }[] = [
   },
 ];
 
-export function getQuickActions(locale: Locale = DEFAULT_LOCALE): QuickAction[] {
+export function getQuickActions(
+  locale: Locale = DEFAULT_LOCALE,
+): QuickAction[] {
   const t = useTranslations(locale);
   return QUICK_ACTION_ORDER.map((meta) => {
     const entry = t.quickActions[meta.id];
@@ -117,7 +123,9 @@ export function getQuickActions(locale: Locale = DEFAULT_LOCALE): QuickAction[] 
   });
 }
 
-export function getToolCategories(locale: Locale = DEFAULT_LOCALE): ToolCategory[] {
+export function getToolCategories(
+  locale: Locale = DEFAULT_LOCALE,
+): ToolCategory[] {
   const t = useTranslations(locale);
   return CATEGORY_ORDER.map((cat) => {
     const catEntry = t.toolCategories[cat.id];
@@ -147,7 +155,10 @@ export function getAllTools(locale: Locale = DEFAULT_LOCALE): Tool[] {
   return getToolCategories(locale).flatMap((cat) => cat.tools);
 }
 
-export function getToolById(id: CategoryToolKey, locale: Locale = DEFAULT_LOCALE): Tool | undefined {
+export function getToolById(
+  id: CategoryToolKey,
+  locale: Locale = DEFAULT_LOCALE,
+): Tool | undefined {
   return getAllTools(locale).find((tool) => tool.id === id);
 }
 
@@ -155,7 +166,9 @@ export function getToolsByCategory(
   categoryId: CategoryKey,
   locale: Locale = DEFAULT_LOCALE,
 ): Tool[] {
-  const category = getToolCategories(locale).find((cat) => cat.id === categoryId);
+  const category = getToolCategories(locale).find(
+    (cat) => cat.id === categoryId,
+  );
   return category?.tools ?? [];
 }
 

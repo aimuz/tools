@@ -53,8 +53,12 @@ const interpolate = (template: string, vars: Record<string, string | number>) =>
   template.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ''));
 
 const escapeHtml = (s: string) =>
-  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-   .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 
 export interface CompressPageOptions {
   /** Read `mode` from `?mode=` query param on load. Used by /compress. */
@@ -66,7 +70,9 @@ export interface CompressPageOptions {
 }
 
 const formatSize = (b: number) =>
-  b < 1024 * 1024 ? (b / 1024).toFixed(1) + ' KB' : (b / 1024 / 1024).toFixed(2) + ' MB';
+  b < 1024 * 1024
+    ? (b / 1024).toFixed(1) + ' KB'
+    : (b / 1024 / 1024).toFixed(2) + ' MB';
 
 export function initCompressPage(opts: CompressPageOptions = {}) {
   const labels = opts.labels ?? DEFAULT_LABELS;
@@ -85,10 +91,14 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
   });
 
   const uploadZone = document.getElementById('upload-zone');
-  const fileInput = document.getElementById('file-input') as HTMLInputElement | null;
+  const fileInput = document.getElementById(
+    'file-input',
+  ) as HTMLInputElement | null;
   const options = document.getElementById('options');
   const fileList = document.getElementById('file-list');
-  const compressBtn = document.getElementById('compress-btn') as HTMLButtonElement | null;
+  const compressBtn = document.getElementById(
+    'compress-btn',
+  ) as HTMLButtonElement | null;
   const results = document.getElementById('results');
   const modeBtns = document.querySelectorAll<HTMLButtonElement>('.mode-btn');
 
@@ -96,11 +106,11 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
   let imageConverter: any = null;
   let mode: Mode = opts.defaultMode ?? 'smart';
 
-  getImageConverter().then(c => (imageConverter = c));
+  getImageConverter().then((c) => (imageConverter = c));
 
   const activateMode = (next: Mode) => {
     mode = next;
-    modeBtns.forEach(b => {
+    modeBtns.forEach((b) => {
       const active = b.dataset.mode === mode;
       b.classList.toggle('bg-[#171717]', active);
       b.classList.toggle('text-white', active);
@@ -108,13 +118,17 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
     });
   };
 
-  modeBtns.forEach(btn => {
+  modeBtns.forEach((btn) => {
     btn.addEventListener('click', () => activateMode(btn.dataset.mode as Mode));
   });
 
   if (opts.readUrlParams) {
     const presetMode = new URLSearchParams(location.search).get('mode');
-    if (presetMode === 'smart' || presetMode === 'light' || presetMode === 'strong') {
+    if (
+      presetMode === 'smart' ||
+      presetMode === 'light' ||
+      presetMode === 'strong'
+    ) {
       activateMode(presetMode);
     }
   }
@@ -137,9 +151,9 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
   });
 
   function handleFiles(newFiles: File[]) {
-    files.forEach(f => URL.revokeObjectURL(f.originalUrl));
-    const imgs = newFiles.filter(f => f.type.startsWith('image/'));
-    files = imgs.map(file => ({
+    files.forEach((f) => URL.revokeObjectURL(f.originalUrl));
+    const imgs = newFiles.filter((f) => f.type.startsWith('image/'));
+    files = imgs.map((file) => ({
       file,
       id: Math.random().toString(36).slice(2, 11),
       originalUrl: URL.createObjectURL(file),
@@ -151,7 +165,9 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
 
   function renderFileList() {
     if (!fileList) return;
-    fileList.innerHTML = files.map(({ file, id, originalUrl }) => `
+    fileList.innerHTML = files
+      .map(
+        ({ file, id, originalUrl }) => `
       <div class="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg">
         <img src="${originalUrl}" alt="" class="w-10 h-10 object-cover rounded bg-gray-100 border border-gray-200" />
         <div class="flex-1 min-w-0">
@@ -160,32 +176,39 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
         </div>
         <button data-remove="${id}" class="text-gray-400 hover:text-red-500">✕</button>
       </div>
-    `).join('');
-    fileList.querySelectorAll<HTMLButtonElement>('[data-remove]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const removed = files.find(f => f.id === btn.dataset.remove);
-        if (removed) URL.revokeObjectURL(removed.originalUrl);
-        files = files.filter(f => f.id !== btn.dataset.remove);
-        renderFileList();
-        if (files.length === 0) {
-          options?.classList.add('hidden');
-          uploadZone?.classList.remove('hidden');
-          results?.classList.add('hidden');
-        }
+    `,
+      )
+      .join('');
+    fileList
+      .querySelectorAll<HTMLButtonElement>('[data-remove]')
+      .forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const removed = files.find((f) => f.id === btn.dataset.remove);
+          if (removed) URL.revokeObjectURL(removed.originalUrl);
+          files = files.filter((f) => f.id !== btn.dataset.remove);
+          renderFileList();
+          if (files.length === 0) {
+            options?.classList.add('hidden');
+            uploadZone?.classList.remove('hidden');
+            results?.classList.add('hidden');
+          }
+        });
       });
-    });
   }
 
   let resultsList: any[] = [];
 
   compressBtn?.addEventListener('click', async () => {
-    if (!imageConverter) { alert(labels.loading); return; }
+    if (!imageConverter) {
+      alert(labels.loading);
+      return;
+    }
     const origText = compressBtn.textContent;
     compressBtn.textContent = labels.processing;
     compressBtn.disabled = true;
 
     // Release object URLs from the previous batch so they don't leak across re-runs.
-    resultsList.forEach(r => r.url && URL.revokeObjectURL(r.url));
+    resultsList.forEach((r) => r.url && URL.revokeObjectURL(r.url));
     resultsList = [];
     for (const { file, originalUrl } of files) {
       try {
@@ -201,7 +224,10 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
             data: out,
             originalSize,
             compressedSize: out.length,
-            compressionRatio: +(((originalSize - out.length) / originalSize) * 100).toFixed(1),
+            compressionRatio: +(
+              ((originalSize - out.length) / originalSize) *
+              100
+            ).toFixed(1),
           };
         }
         const blob = new Blob([r.data], { type: file.type });
@@ -222,11 +248,15 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
     }
 
     if (results) {
-      results.innerHTML = resultsList.map((item, idx) => item.error ? `
+      results.innerHTML = resultsList
+        .map((item, idx) =>
+          item.error
+            ? `
         <div class="flex items-center gap-3 p-3 bg-red-50 border border-red-100 rounded-lg">
           <span class="text-red-500 text-sm">${escapeHtml(interpolate(labels.processingFailedTemplate, { name: item.name }))}</span>
         </div>
-      ` : `
+      `
+            : `
         <div class="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg">
           <button type="button" data-compare-idx="${idx}" class="group flex items-center gap-1 rounded hover:ring-2 hover:ring-[#171717]/20 transition-all" title="${escapeHtml(labels.compareBtn)}" aria-label="${escapeHtml(labels.compareBtn)}">
             ${thumbPairHtml(item.originalUrl, item.url)}
@@ -243,20 +273,28 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
           <button data-copy-idx="${idx}" class="px-3 py-1.5 border border-gray-200 text-gray-600 text-sm rounded hover:border-[#171717] hover:text-[#171717]">${escapeHtml(labels.copyBtn)}</button>
           <a href="${item.url}" download="compressed_${escapeHtml(item.name)}" class="px-3 py-1.5 bg-[#171717] text-white text-sm rounded hover:bg-gray-800">${escapeHtml(labels.downloadBtn)}</a>
         </div>
-      `).join('');
+      `,
+        )
+        .join('');
       results.classList.remove('hidden');
 
-      results.querySelectorAll<HTMLButtonElement>('[data-copy-idx]').forEach(btn => {
-        const item = resultsList[Number(btn.dataset.copyIdx)];
-        if (item && !item.error) bindCopyButton(btn, () => ({ blob: item.blob, mime: item.mime }));
-      });
-
-      results.querySelectorAll<HTMLButtonElement>('[data-compare-idx]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const item = resultsList[Number(btn.dataset.compareIdx)];
-          if (item && !item.error) openCompare(item.originalUrl, item.url, item.name);
+      results
+        .querySelectorAll<HTMLButtonElement>('[data-copy-idx]')
+        .forEach((btn) => {
+          const item = resultsList[Number(btn.dataset.copyIdx)];
+          if (item && !item.error)
+            bindCopyButton(btn, () => ({ blob: item.blob, mime: item.mime }));
         });
-      });
+
+      results
+        .querySelectorAll<HTMLButtonElement>('[data-compare-idx]')
+        .forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const item = resultsList[Number(btn.dataset.compareIdx)];
+            if (item && !item.error)
+              openCompare(item.originalUrl, item.url, item.name);
+          });
+        });
     }
 
     compressBtn.textContent = origText ?? labels.startCompress;

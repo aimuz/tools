@@ -14,8 +14,16 @@ interface Props {
 
 const { locale, format } = Astro.props;
 
-const LABEL: Record<CompressFormat, string> = { png: 'PNG', jpg: 'JPG', webp: 'WebP' };
-const FULL: Record<CompressFormat, string> = { png: 'PNG', jpg: 'JPEG', webp: 'WebP' };
+const LABEL: Record<CompressFormat, string> = {
+  png: 'PNG',
+  jpg: 'JPG',
+  webp: 'WebP',
+};
+const FULL: Record<CompressFormat, string> = {
+  png: 'PNG',
+  jpg: 'JPEG',
+  webp: 'WebP',
+};
 
 const t = useTranslations(locale);
 const cf = t.pages.compressFormat;
@@ -25,12 +33,18 @@ const full = FULL[format];
 const pitch = cf.formats[format];
 
 const title = interpolate(cf.titleTemplate, { label, full });
-const description = interpolate(cf.descriptionTemplate, { label, seoBenefit: pitch.seoBenefit });
+const description = interpolate(cf.descriptionTemplate, {
+  label,
+  seoBenefit: pitch.seoBenefit,
+});
 const h1 = interpolate(cf.h1Template, { label });
 const dragText = interpolate(cf.upload.dragTemplate, { label });
 const aboutHeading = interpolate(cf.aboutTemplate, { label });
 const schemaName = interpolate(cf.related.compressTemplate, { label });
-const schemaDesc = interpolate(cf.schema.descriptionTemplate, { full, headline: pitch.headline });
+const schemaDesc = interpolate(cf.schema.descriptionTemplate, {
+  full,
+  headline: pitch.headline,
+});
 
 const pageUrl = absoluteUrl(locale, `/compress-${format}`);
 
@@ -67,14 +81,20 @@ const schema = {
   url: pageUrl,
 };
 
-const otherFormats = (['png', 'jpg', 'webp'] as CompressFormat[]).filter((f) => f !== format);
+const otherFormats = (['png', 'jpg', 'webp'] as CompressFormat[]).filter(
+  (f) => f !== format,
+);
 const allCompressHref = localizedPath(locale, '/compress');
 const toJpgHref = localizedPath(locale, `/${format}-to-jpg`);
 const toWebpHref = localizedPath(locale, `/${format}-to-webp`);
 ---
 
 <Layout title={title} description={description} locale={locale}>
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+    slot="head"
+  />
   <Header locale={locale} />
 
   <main class="flex-1 py-12">
@@ -90,28 +110,55 @@ const toWebpHref = localizedPath(locale, `/${format}-to-webp`);
         id="upload-zone"
         class="relative w-full min-h-[240px] rounded-xl border-2 border-dashed border-gray-300 hover:border-[#171717] transition-colors bg-white flex flex-col items-center justify-center gap-3 cursor-pointer mb-6"
       >
-        <svg class="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+        <svg
+          class="w-12 h-12 text-gray-300"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+          ></path>
         </svg>
         <div class="text-center">
           <p class="text-base text-[#171717]">{dragText}</p>
           <p class="text-sm text-gray-400 mt-1">{cf.upload.orClick}</p>
         </div>
         <p class="text-xs text-gray-400">{cf.upload.sizeHint}</p>
-        <input type="file" id="file-input" class="hidden" accept="image/*" multiple />
+        <input
+          type="file"
+          id="file-input"
+          class="hidden"
+          accept="image/*"
+          multiple
+        />
       </div>
 
       <!-- Options -->
       <div id="options" class="mb-6 hidden">
         <p class="text-sm text-gray-500 mb-2">{cf.options.strength}</p>
         <div class="flex gap-2 mb-6">
-          <button class="mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 bg-[#171717] text-white" data-mode="smart">{cf.options.smart}</button>
-          <button class="mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" data-mode="light">{cf.options.light}</button>
-          <button class="mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]" data-mode="strong">{cf.options.strong}</button>
+          <button
+            class="mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 bg-[#171717] text-white"
+            data-mode="smart">{cf.options.smart}</button
+          >
+          <button
+            class="mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]"
+            data-mode="light">{cf.options.light}</button
+          >
+          <button
+            class="mode-btn px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]"
+            data-mode="strong">{cf.options.strong}</button
+          >
         </div>
 
-        <button id="compress-btn" class="w-full py-3 bg-[#171717] text-white rounded-lg font-medium hover:bg-gray-800 transition-colors">
+        <button
+          id="compress-btn"
+          class="w-full py-3 bg-[#171717] text-white rounded-lg font-medium hover:bg-gray-800 transition-colors"
+        >
           {cf.options.start}
         </button>
       </div>
@@ -121,7 +168,9 @@ const toWebpHref = localizedPath(locale, `/${format}-to-webp`);
 
       <!-- How it works (SEO body content) -->
       <section class="mt-12 pt-8 border-t border-gray-100">
-        <h2 class="text-lg font-semibold text-[#171717] mb-3">{aboutHeading}</h2>
+        <h2 class="text-lg font-semibold text-[#171717] mb-3">
+          {aboutHeading}
+        </h2>
         <p class="text-sm text-gray-600 leading-relaxed">{pitch.hint}</p>
       </section>
 
@@ -129,18 +178,32 @@ const toWebpHref = localizedPath(locale, `/${format}-to-webp`);
       <section class="mt-8 pt-8 border-t border-gray-100">
         <p class="text-sm text-gray-500 mb-4">{cf.related.label}</p>
         <div class="flex flex-wrap gap-2">
-          {otherFormats.map((f) => (
-            <a href={localizedPath(locale, `/compress-${f}`)} class="text-xs px-3 py-1.5 border border-gray-200 rounded-full text-gray-600 hover:border-[#171717] hover:text-[#171717]">
-              {interpolate(cf.related.compressTemplate, { label: LABEL[f] })}
-            </a>
-          ))}
-          <a href={toJpgHref} class="text-xs px-3 py-1.5 border border-gray-200 rounded-full text-gray-600 hover:border-[#171717] hover:text-[#171717]">
+          {
+            otherFormats.map((f) => (
+              <a
+                href={localizedPath(locale, `/compress-${f}`)}
+                class="text-xs px-3 py-1.5 border border-gray-200 rounded-full text-gray-600 hover:border-[#171717] hover:text-[#171717]"
+              >
+                {interpolate(cf.related.compressTemplate, { label: LABEL[f] })}
+              </a>
+            ))
+          }
+          <a
+            href={toJpgHref}
+            class="text-xs px-3 py-1.5 border border-gray-200 rounded-full text-gray-600 hover:border-[#171717] hover:text-[#171717]"
+          >
             {interpolate(cf.related.toJpgTemplate, { label })}
           </a>
-          <a href={toWebpHref} class="text-xs px-3 py-1.5 border border-gray-200 rounded-full text-gray-600 hover:border-[#171717] hover:text-[#171717]">
+          <a
+            href={toWebpHref}
+            class="text-xs px-3 py-1.5 border border-gray-200 rounded-full text-gray-600 hover:border-[#171717] hover:text-[#171717]"
+          >
             {interpolate(cf.related.toWebpTemplate, { label })}
           </a>
-          <a href={allCompressHref} class="text-xs px-3 py-1.5 border border-gray-200 rounded-full text-gray-600 hover:border-[#171717] hover:text-[#171717]">
+          <a
+            href={allCompressHref}
+            class="text-xs px-3 py-1.5 border border-gray-200 rounded-full text-gray-600 hover:border-[#171717] hover:text-[#171717]"
+          >
             {cf.related.all}
           </a>
         </div>
@@ -151,10 +214,16 @@ const toWebpHref = localizedPath(locale, `/${format}-to-webp`);
   <Footer />
 </Layout>
 
-<script type="application/json" id="compress-labels" set:html={JSON.stringify(compressLabels)}></script>
+<script
+  type="application/json"
+  id="compress-labels"
+  set:html={JSON.stringify(compressLabels)}
+/>
 <script>
   import { initCompressPage } from '../../scripts/compress-page';
   const labelsEl = document.getElementById('compress-labels');
-  const labels = labelsEl ? JSON.parse(labelsEl.textContent ?? '{}') : undefined;
+  const labels = labelsEl
+    ? JSON.parse(labelsEl.textContent ?? '{}')
+    : undefined;
   initCompressPage({ labels });
 </script>

@@ -3,7 +3,8 @@ import type { Translations } from '../schema';
 export const ko = {
   common: {
     siteName: 'WizGo',
-    siteTagline: 'WizGo는 무료 온라인 도구 모음입니다: 이미지 압축, 형식 변환, JWT, 타임스탬프 등 개발자 일상 도구. 모두 브라우저에서 처리, 업로드 없음.',
+    siteTagline:
+      'WizGo는 무료 온라인 도구 모음입니다: 이미지 압축, 형식 변환, JWT, 타임스탬프 등 개발자 일상 도구. 모두 브라우저에서 처리, 업로드 없음.',
     aboutLink: '소개',
     menuButtonAria: '메뉴',
     languageSwitcherAria: '언어 전환',
@@ -28,12 +29,16 @@ export const ko = {
       needText: '삽입할 텍스트를 입력하세요',
       noWatermark: '워터마크가 감지되지 않음',
       capacityHintTemplate: '삽입 가능 {bytes} 바이트 · 약 {chars}자',
-      capacityErrorTemplate: '이미지 용량 부족, 최대 {cap} 바이트 (현재 텍스트 {len} 바이트)',
-      imageTooSmallDct: '이미지가 너무 작습니다. DCT 알고리즘은 최소 128×128 픽셀 필요',
-      imageTooSmallLsb: '이미지가 너무 작아 워터마크를 삽입할 수 없습니다 (최소 약 32×32 픽셀 필요)',
+      capacityErrorTemplate:
+        '이미지 용량 부족, 최대 {cap} 바이트 (현재 텍스트 {len} 바이트)',
+      imageTooSmallDct:
+        '이미지가 너무 작습니다. DCT 알고리즘은 최소 128×128 픽셀 필요',
+      imageTooSmallLsb:
+        '이미지가 너무 작아 워터마크를 삽입할 수 없습니다 (최소 약 32×32 픽셀 필요)',
       clipboardNotSupported: '이 브라우저는 클립보드 API를 지원하지 않습니다',
       pngGenerationFailed: 'PNG 생성 실패',
-      audioDecodeFailed: '오디오를 디코딩할 수 없습니다. 다른 파일을 시도하거나 Chrome / Firefox를 사용하세요',
+      audioDecodeFailed:
+        '오디오를 디코딩할 수 없습니다. 다른 파일을 시도하거나 Chrome / Firefox를 사용하세요',
       audioEncodeFailed: '오디오 인코딩 실패',
       compareBtn: '비교',
       compareBefore: '원본',
@@ -45,13 +50,22 @@ export const ko = {
       label: '이미지 도구',
       items: {
         compress: { name: '이미지 압축', desc: 'PNG / JPG / WebP 스마트 압축' },
-        convert: { name: '이미지 형식 변환', desc: 'PNG JPG WebP GIF BMP 상호 변환' },
-        'png-to-jpg': { name: 'PNG → JPG', desc: '투명 배경 흰색 채움 · 더 작은 용량' },
+        convert: {
+          name: '이미지 형식 변환',
+          desc: 'PNG JPG WebP GIF BMP 상호 변환',
+        },
+        'png-to-jpg': {
+          name: 'PNG → JPG',
+          desc: '투명 배경 흰색 채움 · 더 작은 용량',
+        },
         'jpg-to-png': { name: 'JPG → PNG', desc: '무손실 저장 · 투명도 지원' },
         'png-to-webp': { name: 'PNG → WebP', desc: '투명 유지 · 더 작은 용량' },
         'jpg-to-webp': { name: 'JPG → WebP', desc: '같은 화질로 25-35% 축소' },
         watermark: { name: '이미지 숨김 워터마크', desc: '텍스트 삽입 / 추출' },
-        'text-watermark': { name: '이미지 텍스트 워터마크', desc: '제출용 · 도용 방지 워터마크' },
+        'text-watermark': {
+          name: '이미지 텍스트 워터마크',
+          desc: '제출용 · 도용 방지 워터마크',
+        },
       },
     },
     dev: {
@@ -61,19 +75,34 @@ export const ko = {
         timestamp: { name: '타임스탬프 변환', desc: 'Unix 타임스탬프 ↔ 날짜' },
         json: { name: 'JSON 포매터', desc: '미화 / 압축 / 검증' },
         'code-image': { name: '코드 이미지화', desc: '코드 공유 이미지 생성' },
-        base64: { name: 'Base64 인코딩/디코딩', desc: '텍스트/파일 인코딩 및 디코딩' },
+        base64: {
+          name: 'Base64 인코딩/디코딩',
+          desc: '텍스트/파일 인코딩 및 디코딩',
+        },
         uuid: { name: 'UUID 생성', desc: '고유 식별자 일괄 생성' },
-        'url-encode': { name: 'URL 인코딩/디코딩', desc: 'URL 특수 문자 인코딩' },
+        'url-encode': {
+          name: 'URL 인코딩/디코딩',
+          desc: 'URL 특수 문자 인코딩',
+        },
         color: { name: '색상 변환', desc: 'HEX, RGB, HSL 상호 변환' },
         qrcode: { name: 'QR 코드 생성기', desc: '텍스트/링크로 QR 코드 생성' },
-        hash: { name: '해시 생성기', desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 체크섬' },
+        hash: {
+          name: '해시 생성기',
+          desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 체크섬',
+        },
       },
     },
     media: {
       label: '미디어 도구',
       items: {
-        'mp4-to-mp3': { name: 'MP4 → MP3', desc: '동영상 파일에서 오디오 추출' },
-        'compress-mp3': { name: 'MP3 압축', desc: '비트레이트 낮춰 MP3 크기 줄이기' },
+        'mp4-to-mp3': {
+          name: 'MP4 → MP3',
+          desc: '동영상 파일에서 오디오 추출',
+        },
+        'compress-mp3': {
+          name: 'MP3 압축',
+          desc: '비트레이트 낮춰 MP3 크기 줄이기',
+        },
       },
     },
   },
@@ -146,7 +175,14 @@ export const ko = {
     base64: {
       name: 'Base64 인코딩/디코딩',
       description: '텍스트/파일과 Base64 상호 변환',
-      tags: ['Base64', '인코딩', '디코딩', '파일', 'base64 encode', 'base64 decode'],
+      tags: [
+        'Base64',
+        '인코딩',
+        '디코딩',
+        '파일',
+        'base64 encode',
+        'base64 decode',
+      ],
     },
     uuid: {
       name: 'UUID 생성기',
@@ -156,22 +192,52 @@ export const ko = {
     'url-encode': {
       name: 'URL 인코딩/디코딩',
       description: 'URL 특수 문자 인코딩 디코딩',
-      tags: ['URL 인코딩', 'URL 디코딩', 'encodeURIComponent', '퍼센트 인코딩', 'url encode'],
+      tags: [
+        'URL 인코딩',
+        'URL 디코딩',
+        'encodeURIComponent',
+        '퍼센트 인코딩',
+        'url encode',
+      ],
     },
     color: {
       name: '색상 변환',
       description: 'HEX, RGB, HSL 색상값 상호 변환',
-      tags: ['색상', '컬러', '색상 변환', 'RGB', 'HEX', 'HSL', 'color picker', '컬러 피커'],
+      tags: [
+        '색상',
+        '컬러',
+        '색상 변환',
+        'RGB',
+        'HEX',
+        'HSL',
+        'color picker',
+        '컬러 피커',
+      ],
     },
     qrcode: {
       name: 'QR 코드 생성',
       description: '텍스트/링크로 QR 코드 생성',
-      tags: ['QR 코드', 'QR Code', '바코드', 'qrcode generator', 'QR 코드 생성기'],
+      tags: [
+        'QR 코드',
+        'QR Code',
+        '바코드',
+        'qrcode generator',
+        'QR 코드 생성기',
+      ],
     },
     'any-convert': {
       name: '이미지 변환',
       description: 'PNG JPG WebP 형식 상호 변환',
-      tags: ['이미지 변환', '이미지 형식 변환', 'PNG to JPG', 'JPG to PNG', 'WebP', 'HEIC', 'BMP', 'GIF'],
+      tags: [
+        '이미지 변환',
+        '이미지 형식 변환',
+        'PNG to JPG',
+        'JPG to PNG',
+        'WebP',
+        'HEIC',
+        'BMP',
+        'GIF',
+      ],
     },
     'any-compress': {
       name: '이미지 압축',
@@ -181,31 +247,69 @@ export const ko = {
     watermark: {
       name: '이미지 숨김 워터마크',
       description: '숨김 텍스트 삽입/추출',
-      tags: ['숨김 워터마크', '스테가노그래피', 'watermark', 'steganography', 'LSB', 'DCT'],
+      tags: [
+        '숨김 워터마크',
+        '스테가노그래피',
+        'watermark',
+        'steganography',
+        'LSB',
+        'DCT',
+      ],
     },
     'text-watermark': {
       name: '이미지 텍스트 워터마크',
       description: '신분증 / 제출용 / 도용 방지 워터마크',
       tags: [
-        '텍스트 워터마크', '이미지 워터마크', '워터마크 추가', '온라인 워터마크',
-        '신분증 워터마크', '문서 워터마크', '계약서 워터마크', '도용 방지 워터마크', '저작권 워터마크',
-        'photo watermark', 'text watermark', 'image watermark',
+        '텍스트 워터마크',
+        '이미지 워터마크',
+        '워터마크 추가',
+        '온라인 워터마크',
+        '신분증 워터마크',
+        '문서 워터마크',
+        '계약서 워터마크',
+        '도용 방지 워터마크',
+        '저작권 워터마크',
+        'photo watermark',
+        'text watermark',
+        'image watermark',
       ],
     },
     'mp4-to-mp3': {
       name: 'MP4를 MP3로',
       description: '동영상에서 오디오 추출 · 128-320 kbps',
-      tags: ['mp4 mp3 변환', '동영상 mp3', '오디오 추출', '비디오 오디오', 'mp3 변환', 'mp4 to mp3'],
+      tags: [
+        'mp4 mp3 변환',
+        '동영상 mp3',
+        '오디오 추출',
+        '비디오 오디오',
+        'mp3 변환',
+        'mp4 to mp3',
+      ],
     },
     'compress-mp3': {
       name: 'MP3 압축',
       description: 'MP3 파일 크기 줄이기 · 비트레이트 낮추기',
-      tags: ['MP3 압축', 'MP3 용량 줄이기', 'MP3 다이어트', '오디오 압축', 'MP3 비트레이트'],
+      tags: [
+        'MP3 압축',
+        'MP3 용량 줄이기',
+        'MP3 다이어트',
+        '오디오 압축',
+        'MP3 비트레이트',
+      ],
     },
     hash: {
       name: '해시 생성기',
       description: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 한 번에 생성',
-      tags: ['해시', 'hash', 'sha256', 'sha-256', 'sha512', '체크섬', '파일 무결성', 'checksum'],
+      tags: [
+        '해시',
+        'hash',
+        'sha256',
+        'sha-256',
+        'sha512',
+        '체크섬',
+        '파일 무결성',
+        'checksum',
+      ],
     },
   },
   toolCategories: {
@@ -213,33 +317,63 @@ export const ko = {
       name: '이미지 도구',
       description: '이미지 압축, 형식 변환',
       tools: {
-        compress: { name: '이미지 압축', description: '화질을 유지하며 이미지 크기 압축' },
-        convert: { name: '이미지 형식 변환', description: 'PNG JPG WebP GIF BMP 상호 변환' },
-        watermark: { name: '이미지 숨김 워터마크', description: '텍스트 삽입 / 추출' },
-        'text-watermark': { name: '이미지 텍스트 워터마크', description: '제출용 / 도용 방지 워터마크' },
+        compress: {
+          name: '이미지 압축',
+          description: '화질을 유지하며 이미지 크기 압축',
+        },
+        convert: {
+          name: '이미지 형식 변환',
+          description: 'PNG JPG WebP GIF BMP 상호 변환',
+        },
+        watermark: {
+          name: '이미지 숨김 워터마크',
+          description: '텍스트 삽입 / 추출',
+        },
+        'text-watermark': {
+          name: '이미지 텍스트 워터마크',
+          description: '제출용 / 도용 방지 워터마크',
+        },
       },
     },
     code: {
       name: '개발자 도구',
       description: '개발자용 유틸리티',
       tools: {
-        'code-image': { name: '코드 이미지화', description: '코드를 아름다운 공유 이미지로 변환' },
+        'code-image': {
+          name: '코드 이미지화',
+          description: '코드를 아름다운 공유 이미지로 변환',
+        },
         json: { name: 'JSON', description: 'JSON 포맷팅' },
         jwt: { name: 'JWT', description: '생성 / 분석 / 검증' },
         timestamp: { name: '타임스탬프', description: 'Unix 타임스탬프 변환' },
         base64: { name: 'Base64', description: '텍스트/파일 인코딩/디코딩' },
         uuid: { name: 'UUID', description: '고유 식별자 일괄 생성' },
-        'url-encode': { name: 'URL 인코딩/디코딩', description: 'URL 특수 문자 처리' },
-        color: { name: '색상 변환', description: 'HEX, RGB, HSL 색상값 상호 변환' },
-        qrcode: { name: 'QR 코드 생성', description: '텍스트/링크로 QR 코드 생성' },
-        hash: { name: '해시 생성기', description: '텍스트와 파일의 SHA 체크섬' },
+        'url-encode': {
+          name: 'URL 인코딩/디코딩',
+          description: 'URL 특수 문자 처리',
+        },
+        color: {
+          name: '색상 변환',
+          description: 'HEX, RGB, HSL 색상값 상호 변환',
+        },
+        qrcode: {
+          name: 'QR 코드 생성',
+          description: '텍스트/링크로 QR 코드 생성',
+        },
+        hash: {
+          name: '해시 생성기',
+          description: '텍스트와 파일의 SHA 체크섬',
+        },
       },
     },
     media: {
       name: '미디어 도구',
       description: '오디오 및 비디오 변환',
       tools: {
-        'mp4-to-mp3': { name: 'MP4를 MP3로', description: '비디오 파일에서 오디오 추출' },
+        'mp4-to-mp3': {
+          name: 'MP4를 MP3로',
+          description: '비디오 파일에서 오디오 추출',
+        },
         'compress-mp3': { name: 'MP3 압축', description: 'MP3 파일 크기 감소' },
       },
     },
@@ -253,7 +387,8 @@ export const ko = {
   manifest: {
     name: 'WizGo',
     shortName: 'WizGo',
-    description: '무료 온라인 도구 모음: 이미지 압축, 형식 변환, JWT, 타임스탬프 등. 브라우저에서 처리, 업로드 없음',
+    description:
+      '무료 온라인 도구 모음: 이미지 압축, 형식 변환, JWT, 타임스탬프 등. 브라우저에서 처리, 업로드 없음',
   },
   pages: {
     home: {
@@ -261,7 +396,8 @@ export const ko = {
       description:
         '브라우저에서 실행되는 무료 도구: 이미지 압축, 형식 변환, JWT 디코드, 타임스탬프, JSON 포맷팅, 코드 이미지화. 업로드 없음, 설치 불필요.',
       heroHeading: '무료 온라인 도구 모음',
-      heroSubheading: '이미지 압축, 형식 변환, JWT, 타임스탬프 · 브라우저에서 처리',
+      heroSubheading:
+        '이미지 압축, 형식 변환, JWT, 타임스탬프 · 브라우저에서 처리',
       searchPlaceholder: '도구 검색 (예: PNG 압축, to JPG)...',
       emptyState: '관련 도구를 찾을 수 없음',
       features: {
@@ -326,14 +462,17 @@ export const ko = {
       descriptionTemplate:
         '{fromLabel} → {toLabel} 브라우저에서 변환. {hintWithSpace}업로드 없음.',
       h1Template: '{fromLabel} → {toLabel}',
-      fallbackHintTemplate: '{fromFull} 이미지를 온라인에서 {toFull} 형식으로 변환 · 브라우저에서 처리',
+      fallbackHintTemplate:
+        '{fromFull} 이미지를 온라인에서 {toFull} 형식으로 변환 · 브라우저에서 처리',
       pairHints: {
-        'png-jpg': '투명 배경은 흰색으로 채워지며 40-80% 축소, 웹·메일 공유에 적합.',
+        'png-jpg':
+          '투명 배경은 흰색으로 채워지며 40-80% 축소, 웹·메일 공유에 적합.',
         'png-webp': '투명도 유지하며 PNG보다 25-50% 작고, 최신 브라우저 지원.',
         'png-gif': 'GIF만 지원하는 구형 플랫폼용.',
         'png-bmp': '무손실 비압축 BMP, 구형 Windows 프로그램 호환용.',
         'jpg-png': '무손실 저장과 투명도, 로고 배경 처리 전 단계에 적합.',
-        'jpg-webp': '25-35% 추가 축소, 시각적 차이 거의 없음, 이미지 많은 사이트에.',
+        'jpg-webp':
+          '25-35% 추가 축소, 시각적 차이 거의 없음, 이미지 많은 사이트에.',
         'jpg-gif': '사진을 구형 채팅 플랫폼 형식으로.',
         'jpg-bmp': '무손실이지만 큰 비트맵, 인쇄나 특수 프로그램 입력용.',
         'webp-png': 'WebP 미지원 시 가장 안전한 폴백, 투명도 완전 유지.',
@@ -367,7 +506,8 @@ export const ko = {
         more: '더 많은 형식',
       },
       schema: {
-        descriptionTemplate: '{fromFull} 이미지를 온라인에서 {toFull} 형식으로 변환, 브라우저에서 처리.',
+        descriptionTemplate:
+          '{fromFull} 이미지를 온라인에서 {toFull} 형식으로 변환, 브라우저에서 처리.',
       },
     },
     compress: {
@@ -375,10 +515,12 @@ export const ko = {
       description:
         '무료 온라인 이미지 압축 도구. PNG, JPG, JPEG, WebP, GIF 등 일반 형식 지원, 화질을 유지하며 파일 크기를 대폭 축소. 모두 브라우저에서 처리, 일괄 압축 지원.',
       h1: '이미지 압축',
-      subheading: 'PNG, JPG, WebP 온라인 무손실 압축 · 브라우저에서 처리 · 일괄 지원',
+      subheading:
+        'PNG, JPG, WebP 온라인 무손실 압축 · 브라우저에서 처리 · 일괄 지원',
       schema: {
         name: '이미지 압축',
-        description: '무료 온라인 이미지 압축 도구, PNG, JPG, WebP 형식 지원, 브라우저에서 처리',
+        description:
+          '무료 온라인 이미지 압축 도구, PNG, JPG, WebP 형식 지원, 브라우저에서 처리',
         browserReq: 'WebAssembly 지원 최신 브라우저',
       },
       upload: {
@@ -399,10 +541,12 @@ export const ko = {
       description:
         '무료 온라인 이미지 형식 변환 도구. PNG, JPG, JPEG, WebP, GIF, BMP 등 일반 형식 상호 변환 지원. 모두 브라우저에서 처리, 안전, 빠르고 설치 불필요.',
       h1: '이미지 형식 변환',
-      subheading: 'PNG, JPG, WebP, GIF, BMP 온라인 상호 변환 · 브라우저에서 처리',
+      subheading:
+        'PNG, JPG, WebP, GIF, BMP 온라인 상호 변환 · 브라우저에서 처리',
       schema: {
         name: '이미지 형식 변환',
-        description: 'PNG, JPG, WebP, GIF, BMP 온라인 상호 변환, 브라우저에서 처리',
+        description:
+          'PNG, JPG, WebP, GIF, BMP 온라인 상호 변환, 브라우저에서 처리',
       },
       upload: {
         drag: '이미지를 여기에 드롭',
@@ -427,8 +571,10 @@ export const ko = {
       h1: 'WizGo 소개',
       schema: {
         name: 'WizGo 소개',
-        description: 'WizGo의 기술 스택과 개인 정보 정책: 모든 도구는 브라우저에서 로컬 실행, 파일 업로드 없음.',
-        orgDescription: '무료 온라인 도구 모음, 이미지 압축, 형식 변환, JWT, 타임스탬프 등, 모두 브라우저에서 처리.',
+        description:
+          'WizGo의 기술 스택과 개인 정보 정책: 모든 도구는 브라우저에서 로컬 실행, 파일 업로드 없음.',
+        orgDescription:
+          '무료 온라인 도구 모음, 이미지 압축, 형식 변환, JWT, 타임스탬프 등, 모두 브라우저에서 처리.',
       },
       intro:
         'WizGo는 무료, 안전, 빠른 온라인 도구 모음입니다. 사용자의 데이터 개인 정보가 매우 중요하다고 믿기에 모든 도구는 브라우저에서 로컬로 처리되며 파일과 데이터는 어떤 서버에도 업로드되지 않습니다.',
@@ -436,13 +582,11 @@ export const ko = {
         heading: '기술 스택',
         image: {
           title: '이미지 처리',
-          body:
-            'Rust로 작성된 WebAssembly 모듈. imagequant 팔레트 양자화와 jpeg-encoder 최적화 파이프라인 통합, PNG, JPEG, WebP, GIF, BMP 등 형식 지원',
+          body: 'Rust로 작성된 WebAssembly 모듈. imagequant 팔레트 양자화와 jpeg-encoder 최적화 파이프라인 통합, PNG, JPEG, WebP, GIF, BMP 등 형식 지원',
         },
         crypto: {
           title: '암호화와 서명',
-          body:
-            'JWT 디코드, 발행, 검증 모두 브라우저 네이티브 WebCrypto 사용, HS, RS, ES 계열 알고리즘 지원, 외부 의존성 없음',
+          body: 'JWT 디코드, 발행, 검증 모두 브라우저 네이티브 WebCrypto 사용, HS, RS, ES 계열 알고리즘 지원, 외부 의존성 없음',
         },
         frontend: {
           title: '프론트엔드 프레임워크',
@@ -455,7 +599,8 @@ export const ko = {
       },
       privacy: {
         heading: '개인 정보 정책',
-        intro: 'WizGo는 순수 프론트엔드 아키텍처를 채택, 모든 파일 처리는 브라우저에서 완료됩니다:',
+        intro:
+          'WizGo는 순수 프론트엔드 아키텍처를 채택, 모든 파일 처리는 브라우저에서 완료됩니다:',
         items: [
           '파일은 어떤 서버에도 업로드되지 않습니다',
           '개인 데이터를 수집하지 않습니다',
@@ -464,7 +609,8 @@ export const ko = {
       },
       limits: {
         heading: '제한 사항',
-        intro: '브라우저 환경의 제약으로 인해 WizGo에는 다음과 같은 사용 제약이 있습니다:',
+        intro:
+          '브라우저 환경의 제약으로 인해 WizGo에는 다음과 같은 사용 제약이 있습니다:',
         items: [
           '이미지 파일은 100MB 이내 권장',
           '큰 파일 처리에는 시간이 걸릴 수 있음',
@@ -473,13 +619,34 @@ export const ko = {
       },
       credits: {
         heading: '오픈소스 라이브러리 감사',
-        intro: 'WizGo 빌드 과정에서 다음의 우수한 오픈소스 라이브러리를 사용했습니다:',
+        intro:
+          'WizGo 빌드 과정에서 다음의 우수한 오픈소스 라이브러리를 사용했습니다:',
         items: [
-          { label: 'imagequant', href: 'https://github.com/ImageOptim/libimagequant', desc: 'PNG 팔레트 양자화' },
-          { label: 'lodepng-rust', href: 'https://github.com/kornelski/lodepng-rust', desc: '순수 Rust PNG 인코딩' },
-          { label: 'jpeg-encoder', href: 'https://github.com/vstroebel/jpeg-encoder', desc: 'Rust JPEG 인코더' },
-          { label: 'Astro', href: 'https://astro.build', desc: '최신 정적 사이트 생성기' },
-          { label: 'Geist', href: 'https://vercel.com/font', desc: 'Vercel 디자인 폰트' },
+          {
+            label: 'imagequant',
+            href: 'https://github.com/ImageOptim/libimagequant',
+            desc: 'PNG 팔레트 양자화',
+          },
+          {
+            label: 'lodepng-rust',
+            href: 'https://github.com/kornelski/lodepng-rust',
+            desc: '순수 Rust PNG 인코딩',
+          },
+          {
+            label: 'jpeg-encoder',
+            href: 'https://github.com/vstroebel/jpeg-encoder',
+            desc: 'Rust JPEG 인코더',
+          },
+          {
+            label: 'Astro',
+            href: 'https://astro.build',
+            desc: '최신 정적 사이트 생성기',
+          },
+          {
+            label: 'Geist',
+            href: 'https://vercel.com/font',
+            desc: 'Vercel 디자인 폰트',
+          },
         ],
       },
     },
@@ -488,7 +655,8 @@ export const ko = {
       description:
         '이미지 픽셀에 숨김 텍스트를 삽입하거나 추출. LSB와 DCT 두 알고리즘 지원. 모두 브라우저에서 처리.',
       h1: '이미지 숨김 워터마크',
-      subheading: '텍스트를 이미지 픽셀에 숨기거나 이미지에서 추출 · 브라우저에서 처리',
+      subheading:
+        '텍스트를 이미지 픽셀에 숨기거나 이미지에서 추출 · 브라우저에서 처리',
       schema: {
         name: '이미지 숨김 워터마크',
         description:
@@ -530,7 +698,8 @@ export const ko = {
       description:
         '무료 온라인 UUID 생성기. 일괄 생성, 다양한 형식 (표준/하이픈 없음/대문자), 원클릭 복사 지원. 암호학적으로 안전한 난수 사용, 브라우저에서 처리.',
       h1: 'UUID 생성기',
-      subheading: '고유 식별자 일괄 생성 · 표준 / 하이픈 없음 / 대문자 · 브라우저에서 생성',
+      subheading:
+        '고유 식별자 일괄 생성 · 표준 / 하이픈 없음 / 대문자 · 브라우저에서 생성',
       schema: {
         name: 'UUID 생성기',
         description: '온라인에서 UUID 고유 식별자 일괄 생성, 다양한 형식 지원',
@@ -548,8 +717,7 @@ export const ko = {
       copiedBtn: '복사됨',
       info: {
         heading: 'UUID 소개',
-        body:
-          'UUID(범용 고유 식별자)는 128비트 식별자로, 일반적으로 32자리 16진수를 5개 그룹으로 나누어 표시합니다. 본 도구는 브라우저 내장 암호학적 안전 난수 생성기 (crypto.getRandomValues)를 사용하여 UUID v4 버전을 생성하므로 매우 높은 고유성을 보장합니다. 데이터베이스 기본 키, 세션 식별자, API 키 등에 적합.',
+        body: 'UUID(범용 고유 식별자)는 128비트 식별자로, 일반적으로 32자리 16진수를 5개 그룹으로 나누어 표시합니다. 본 도구는 브라우저 내장 암호학적 안전 난수 생성기 (crypto.getRandomValues)를 사용하여 UUID v4 버전을 생성하므로 매우 높은 고유성을 보장합니다. 데이터베이스 기본 키, 세션 식별자, API 키 등에 적합.',
       },
     },
     urlEncode: {
@@ -557,7 +725,8 @@ export const ko = {
       description:
         '무료 온라인 URL 인코딩/디코딩 도구. 한글과 특수 문자 인코딩, 일괄 처리, encodeURI 와 encodeURIComponent 모드 전환 지원. 브라우저에서 처리.',
       h1: 'URL 인코딩/디코딩',
-      subheading: 'URL 특수 문자 인코딩 디코딩 · 한글 지원 · 일괄 처리 · 브라우저에서 처리',
+      subheading:
+        'URL 특수 문자 인코딩 디코딩 · 한글 지원 · 일괄 처리 · 브라우저에서 처리',
       schema: {
         name: 'URL 인코딩/디코딩',
         description: 'URL 인코딩 디코딩 도구, 한글과 특수 문자 지원',
@@ -568,8 +737,10 @@ export const ko = {
         label: '인코딩 모드',
         component: '전체 인코딩 (권장)',
         uri: 'URL 문자 보존',
-        componentHint: '전체 인코딩: 모든 특수 문자를 인코딩, URL 매개변수 값에 적합',
-        uriHint: 'URL 문자 보존: : / ? # & = 등 URL 예약 문자 인코딩 안 함, 전체 URL 인코딩에 적합',
+        componentHint:
+          '전체 인코딩: 모든 특수 문자를 인코딩, URL 매개변수 값에 적합',
+        uriHint:
+          'URL 문자 보존: : / ? # & = 등 URL 예약 문자 인코딩 안 함, 전체 URL 인코딩에 적합',
       },
       labels: {
         inputEncode: '텍스트 입력',
@@ -611,7 +782,8 @@ export const ko = {
       description:
         '무료 온라인 QR 코드 생성기. 텍스트, URL, 연락처에서 QR 코드 생성. 크기, 색상 사용자 정의, PNG/SVG 다운로드 지원. 모두 브라우저에서 생성.',
       h1: 'QR 코드 생성',
-      subheading: '텍스트/링크로 QR 코드 · 스타일 사용자 정의 · PNG/SVG 다운로드 · 브라우저에서 생성',
+      subheading:
+        '텍스트/링크로 QR 코드 · 스타일 사용자 정의 · PNG/SVG 다운로드 · 브라우저에서 생성',
       schema: {
         name: 'QR 코드 생성기',
         description: '온라인 QR 코드 생성, 사용자 정의 크기와 색상 지원',
@@ -644,7 +816,8 @@ export const ko = {
       emptyContent: '내용을 입력하세요',
       downloadPng: 'PNG 다운로드',
       downloadSvg: 'SVG 다운로드',
-      infoTemplate: '내용 길이: {chars} 문자 / {bytes} 바이트 · 크기: {size}x{size}px',
+      infoTemplate:
+        '내용 길이: {chars} 문자 / {bytes} 바이트 · 크기: {size}x{size}px',
       examples: {
         heading: '사용 예시',
         url: 'URL:',
@@ -661,7 +834,8 @@ export const ko = {
       subheading: 'Unix 타임스탬프 ↔ 날짜 · 초 / 밀리초 / ISO 8601 지원',
       schema: {
         name: 'Unix 타임스탬프 변환',
-        description: 'Unix 타임스탬프 ↔ 날짜 변환 도구, 초/밀리초, UTC/로컬 시간대 지원',
+        description:
+          'Unix 타임스탬프 ↔ 날짜 변환 도구, 초/밀리초, UTC/로컬 시간대 지원',
       },
       currentTime: {
         label: '현재 시간',
@@ -679,27 +853,41 @@ export const ko = {
         fillNowBtn: '현재 입력',
         units: { auto: '자동', sec: '초', ms: '밀리초' },
         placeholder: '예: 1516239022 또는 1516239022000',
-        errors: { nan: '숫자여야 합니다', oor: '숫자가 범위를 벗어남', invalid: '잘못된 타임스탬프' },
-        outputs: { local: '로컬 시간', utc: 'UTC 시간', iso: 'ISO 8601', relative: '상대 시간' },
+        errors: {
+          nan: '숫자여야 합니다',
+          oor: '숫자가 범위를 벗어남',
+          invalid: '잘못된 타임스탬프',
+        },
+        outputs: {
+          local: '로컬 시간',
+          utc: 'UTC 시간',
+          iso: 'ISO 8601',
+          relative: '상대 시간',
+        },
       },
       d2t: {
         label: '날짜 → 타임스탬프',
         fillNowBtn: '현재 입력',
         isoPlaceholder: '또는 ISO 문자열 붙여넣기: 2024-01-18T03:30:22Z',
-        errors: { invalidDate: '잘못된 날짜', unparseable: '날짜 문자열을 분석할 수 없음' },
+        errors: {
+          invalidDate: '잘못된 날짜',
+          unparseable: '날짜 문자열을 분석할 수 없음',
+        },
         outputs: { sec: 'Unix 초', ms: 'Unix 밀리초', iso: 'ISO 8601 (UTC)' },
       },
       copyBtn: '복사',
       copiedBtn: '복사됨',
       justNow: '방금',
-      footerHint: 'Unix 에포크: 1970-01-01 00:00:00 UTC · 초 타임스탬프 10자리 · 밀리초 13자리',
+      footerHint:
+        'Unix 에포크: 1970-01-01 00:00:00 UTC · 초 타임스탬프 10자리 · 밀리초 13자리',
     },
     color: {
       title: '색상 변환 - 온라인 HEX/RGB/HSL 색상값 변환 도구 | WizGo',
       description:
         '무료 온라인 색상 변환 도구. 16진 색상값, RGB 값, HSL 색상 상호 변환 지원. 실시간 미리보기, 원클릭 복사, 디자이너와 개발자에게 적합. 브라우저에서 처리.',
       h1: '색상 변환',
-      subheading: '16진, RGB, HSL 색상값 상호 변환 · 실시간 미리보기 · 브라우저에서 처리',
+      subheading:
+        '16진, RGB, HSL 색상값 상호 변환 · 실시간 미리보기 · 브라우저에서 처리',
       schema: {
         name: '색상 변환',
         description: 'HEX, RGB, HSL 색상값 상호 변환 도구, 실시간 미리보기',
@@ -712,9 +900,18 @@ export const ko = {
       copiedBtn: '복사됨',
       quickColorsLabel: '자주 사용하는 색상',
       colorNames: {
-        black: '검정', red: '빨강', orange: '주황', amber: '호박색',
-        yellowGreen: '연두', green: '초록', cyan: '청록', blue: '파랑',
-        indigo: '남색', purple: '보라', pink: '분홍', white: '하양',
+        black: '검정',
+        red: '빨강',
+        orange: '주황',
+        amber: '호박색',
+        yellowGreen: '연두',
+        green: '초록',
+        cyan: '청록',
+        blue: '파랑',
+        indigo: '남색',
+        purple: '보라',
+        pink: '분홍',
+        white: '하양',
       },
       randomBtn: '랜덤 색상',
     },
@@ -726,7 +923,8 @@ export const ko = {
       subheading: '코드 스니펫을 아름다운 공유 이미지로 · 다국어 · 다양한 테마',
       schema: {
         name: '코드 이미지화',
-        description: '코드를 아름다운 공유 이미지로 변환, 다국어와 다양한 테마 지원',
+        description:
+          '코드를 아름다운 공유 이미지로 변환, 다국어와 다양한 테마 지원',
       },
       placeholder: '여기에 코드를 입력 또는 붙여넣기...',
       formatBtn: '포맷',
@@ -734,7 +932,8 @@ export const ko = {
       copyBtn: '이미지 복사',
       downloadBtn: '이미지 다운로드',
       tipPrefix: '팁:',
-      tipBody: '다양한 프로그래밍 언어 하이라이트 지원, 코드는 실시간으로 렌더링되며 입력만으로 효과를 확인할 수 있습니다.',
+      tipBody:
+        '다양한 프로그래밍 언어 하이라이트 지원, 코드는 실시간으로 렌더링되며 입력만으로 효과를 확인할 수 있습니다.',
       renderError: '렌더링 실패',
     },
     base64: {
@@ -742,10 +941,12 @@ export const ko = {
       description:
         '무료 Base64 인코딩/디코딩. 텍스트와 Base64 상호 변환, 이미지 미리보기, 바이너리 다운로드 지원. 브라우저에서 처리.',
       h1: 'Base64 인코딩/디코딩',
-      subheading: '텍스트/파일과 Base64 상호 변환 · 이미지, 텍스트, 바이너리 지원 · 브라우저에서 처리',
+      subheading:
+        '텍스트/파일과 Base64 상호 변환 · 이미지, 텍스트, 바이너리 지원 · 브라우저에서 처리',
       schema: {
         name: 'Base64 인코딩/디코딩',
-        description: '텍스트/파일과 Base64 상호 변환 도구, 이미지, 텍스트, 바이너리 지원',
+        description:
+          '텍스트/파일과 Base64 상호 변환 도구, 이미지, 텍스트, 바이너리 지원',
       },
       tabs: { encode: '인코딩', decode: '디코딩' },
       labels: {
@@ -791,10 +992,12 @@ export const ko = {
       description:
         '온라인 JSON Web Token 도구. header/payload 디코딩, 서명 검증, 새 token 생성. HS256/384/512, RS256/384/512, ES256/384 알고리즘 지원, 브라우저에서 처리.',
       h1: 'JWT 디코딩/생성/검증',
-      subheading: 'JSON Web Token 온라인 도구 · HS256 RS256 ES256 · 브라우저에서 처리',
+      subheading:
+        'JSON Web Token 온라인 도구 · HS256 RS256 ES256 · 브라우저에서 처리',
       schema: {
         name: 'JWT 디코딩/생성/검증',
-        description: 'JSON Web Token 온라인 도구, HS/RS/ES 계열 알고리즘 지원, 브라우저에서 처리',
+        description:
+          'JSON Web Token 온라인 도구, HS/RS/ES 계열 알고리즘 지원, 브라우저에서 처리',
       },
       algoLabel: '서명 알고리즘',
       encodedLabel: 'Encoded · 전체 Token',
@@ -822,8 +1025,10 @@ export const ko = {
       },
       pubkeyLabel: 'Public Key (PEM, 검증용)',
       privkeyLabel: 'Private Key (PEM, 서명용)',
-      pubkeyPlaceholder: '-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----',
-      privkeyPlaceholder: '-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----',
+      pubkeyPlaceholder:
+        '-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----',
+      privkeyPlaceholder:
+        '-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----',
       errors: {
         pemEmpty: 'PEM 내용이 비어 있음',
         jwtFormat: 'JWT 형식 오류: header.payload.signature 이어야 함',
@@ -839,10 +1044,16 @@ export const ko = {
       description:
         '이미지에 "○○용도만 사용" 텍스트 워터마크 추가: 신분증·계약서·ICP 제출, 도용 방지·저작권 보호. 타일/중앙/우하단 배치. 브라우저에서 처리.',
       h1: '이미지 텍스트 워터마크',
-      subheading: '이미지에 "ICP 제출 전용" 등 텍스트 워터마크 추가 · 도용 방지, 출처 추적 · 브라우저에서 처리',
+      subheading:
+        '이미지에 "ICP 제출 전용" 등 텍스트 워터마크 추가 · 도용 방지, 출처 추적 · 브라우저에서 처리',
       schema: {
         name: '이미지 텍스트 워터마크',
-        alternateNames: ['신분증 워터마크', '문서 워터마크', '제출용 워터마크 도구', '이미지 텍스트 워터마크'],
+        alternateNames: [
+          '신분증 워터마크',
+          '문서 워터마크',
+          '제출용 워터마크 도구',
+          '이미지 텍스트 워터마크',
+        ],
         description:
           '이미지에 보이는 텍스트 워터마크를 추가, 신분증 부정 사용 방지, 문서 사본, ICP 제출, 저작권 보호 등에 사용. 타일, 중앙, 우하단 3가지 배치 지원, 모두 브라우저에서 처리.',
         featureList: [
@@ -856,22 +1067,57 @@ export const ko = {
       },
       howToSchema: {
         name: '이미지 (신분증 / 문서)에 텍스트 워터마크를 추가하는 방법',
-        description: '3단계로 "○○용도만 사용" 텍스트 워터마크를 추가하여 문서 부정 사용 방지',
+        description:
+          '3단계로 "○○용도만 사용" 텍스트 워터마크를 추가하여 문서 부정 사용 방지',
         toolName: '브라우저 (Chrome / Safari / Edge)',
         steps: [
-          { name: '이미지 업로드', text: '업로드 영역을 클릭하거나 이미지를 직접 드래그하세요. PNG / JPG / WebP 지원, 이미지는 로컬에서 처리되며 서버에 업로드되지 않습니다.' },
-          { name: '워터마크 텍스트 입력', text: '예: "○○은행 2026년 주택담보대출 신청 전용", "○○.com 사이트 제출 전용" 등. 구체적인 용도와 수신자 이름을 명시하세요.' },
-          { name: '스타일 조정 및 다운로드', text: '타일 (자르기 방지)을 선택, 색상, 크기, 투명도, 회전 각도 조정, PNG 다운로드 클릭.' },
+          {
+            name: '이미지 업로드',
+            text: '업로드 영역을 클릭하거나 이미지를 직접 드래그하세요. PNG / JPG / WebP 지원, 이미지는 로컬에서 처리되며 서버에 업로드되지 않습니다.',
+          },
+          {
+            name: '워터마크 텍스트 입력',
+            text: '예: "○○은행 2026년 주택담보대출 신청 전용", "○○.com 사이트 제출 전용" 등. 구체적인 용도와 수신자 이름을 명시하세요.',
+          },
+          {
+            name: '스타일 조정 및 다운로드',
+            text: '타일 (자르기 방지)을 선택, 색상, 크기, 투명도, 회전 각도 조정, PNG 다운로드 클릭.',
+          },
         ],
       },
       faqSchema: {
         items: [
-          { question: '신분증에 워터마크를 추가하는 것이 합법인가요?', answer: '합법이며 널리 권장됩니다. 신분증 사본 / 스캔에 "○○ 전용" 텍스트 워터마크를 추가하는 것은 문서가 다른 용도로 유용되는 것을 방지하는 효과적인 수단입니다.' },
-          { question: '워터마크 텍스트에는 무엇을 써야 하나요?', answer: '"용도 + 수신자 + 날짜" 3요소를 포함하는 것을 권장. 예: "○○은행 2026년 주택담보대출 신청 전용". 구체적일수록 오용되기 어렵습니다.' },
-          { question: '워터마크를 어디에 두는 것이 가장 안전한가요?', answer: '타일 모드가 가장 안전합니다 — 텍스트를 이미지 전체에 대각선으로 깔아 자르기로 제거할 수 없습니다. 우하단 등 모서리 워터마크는 직접 잘리기 쉽습니다. 신분증 등 중요 문서는 타일 + 반투명 회색 권장.' },
-          { question: '이미지가 서버에 업로드되나요?', answer: '아니요. 본 도구의 모든 처리는 브라우저에서 로컬로 완료됩니다 (Canvas 2D). 이미지 파일과 워터마크 텍스트는 사용자 기기를 떠나지 않으며, 서버는 정적 페이지만 제공합니다.' },
-          { question: '워터마크를 PS로 제거할 수 있나요?', answer: '텍스트 워터마크는 본질적으로 보이는 픽셀 변경이므로 숙련자는 PS로 지울 수 있지만 시간이 걸리고 흔적이 남습니다. 일반적인 도용 시나리오에서는 텍스트 워터마크의 억지력으로 충분합니다. 제거 저항성 "보이지 않는 서명"이 필요하다면 이미지 숨김 워터마크 도구를 사용하세요.' },
-          { question: '워터마크가 추가된 이미지는 JPG와 PNG 중 어떤 것으로 저장하나요?', answer: '본 도구는 PNG로 내보냅니다 (무손실, 워터마크 가장자리가 가장 선명). 파일이 너무 크면 "PNG 압축" 도구로 더 줄일 수 있습니다.' },
+          {
+            question: '신분증에 워터마크를 추가하는 것이 합법인가요?',
+            answer:
+              '합법이며 널리 권장됩니다. 신분증 사본 / 스캔에 "○○ 전용" 텍스트 워터마크를 추가하는 것은 문서가 다른 용도로 유용되는 것을 방지하는 효과적인 수단입니다.',
+          },
+          {
+            question: '워터마크 텍스트에는 무엇을 써야 하나요?',
+            answer:
+              '"용도 + 수신자 + 날짜" 3요소를 포함하는 것을 권장. 예: "○○은행 2026년 주택담보대출 신청 전용". 구체적일수록 오용되기 어렵습니다.',
+          },
+          {
+            question: '워터마크를 어디에 두는 것이 가장 안전한가요?',
+            answer:
+              '타일 모드가 가장 안전합니다 — 텍스트를 이미지 전체에 대각선으로 깔아 자르기로 제거할 수 없습니다. 우하단 등 모서리 워터마크는 직접 잘리기 쉽습니다. 신분증 등 중요 문서는 타일 + 반투명 회색 권장.',
+          },
+          {
+            question: '이미지가 서버에 업로드되나요?',
+            answer:
+              '아니요. 본 도구의 모든 처리는 브라우저에서 로컬로 완료됩니다 (Canvas 2D). 이미지 파일과 워터마크 텍스트는 사용자 기기를 떠나지 않으며, 서버는 정적 페이지만 제공합니다.',
+          },
+          {
+            question: '워터마크를 PS로 제거할 수 있나요?',
+            answer:
+              '텍스트 워터마크는 본질적으로 보이는 픽셀 변경이므로 숙련자는 PS로 지울 수 있지만 시간이 걸리고 흔적이 남습니다. 일반적인 도용 시나리오에서는 텍스트 워터마크의 억지력으로 충분합니다. 제거 저항성 "보이지 않는 서명"이 필요하다면 이미지 숨김 워터마크 도구를 사용하세요.',
+          },
+          {
+            question:
+              '워터마크가 추가된 이미지는 JPG와 PNG 중 어떤 것으로 저장하나요?',
+            answer:
+              '본 도구는 PNG로 내보냅니다 (무손실, 워터마크 가장자리가 가장 선명). 파일이 너무 크면 "PNG 압축" 도구로 더 줄일 수 있습니다.',
+          },
         ],
       },
       imageLabel: '이미지',
@@ -885,8 +1131,13 @@ export const ko = {
       colorLabel: '색상',
       boldLabel: '굵게',
       swatches: {
-        red: '제출용 빨강', white: '하양', lightGray: '연한 회색', midGray: '중간 회색',
-        darkGray: '진한 회색', charcoal: '숯회색', black: '검정',
+        red: '제출용 빨강',
+        white: '하양',
+        lightGray: '연한 회색',
+        midGray: '중간 회색',
+        darkGray: '진한 회색',
+        charcoal: '숯회색',
+        black: '검정',
       },
       customColorTitle: '사용자 정의 색상',
       opacityLabel: '투명도',
@@ -899,10 +1150,26 @@ export const ko = {
       useCases: {
         heading: '일반적인 용도',
         items: [
-          { title: '신분증 워터마크 · 부정 사용 방지', bodyHtml: '은행 업무, 임대, 입사 시 신분증 사본 제출이 빈번합니다. "○○은행 2026년 주택담보대출 신청 전용" 같은 텍스트 워터마크를 추가하면 신분증 정보가 대출, 계좌 개설 등 다른 용도로 유용되는 것을 방지하고 사칭 위험을 줄일 수 있습니다. <strong>타일 모드</strong>, 투명도 30–50% 권장.' },
-          { title: '사업자등록증 / 계약서 / 문서 워터마크', bodyHtml: '회사 사업자등록증, 계좌 개설 허가증, 계약서 스캔본을 협력사에 제출할 때 "○○용도 전용" 워터마크를 추가하면 재사용을 제한할 수 있습니다. 학위증, 운전면허증, 여권 등 문서의 전자 사본에도 동일하게 적용.' },
-          { title: '사이트 ICP 제출 워터마크', bodyHtml: 'ICP 제출 자료에는 주체 신분증 문서와 법인 위임장에 이미지 워터마크가 필요합니다. 일반 형식: "○○.com 사이트 ICP 제출 전용", 빨간색 타일이 클라우드 서비스 제출 권장 스타일.' },
-          { title: '도용 방지 / 저작권 보호', bodyHtml: '사진, 제품 이미지, 일러스트를 SNS 게시 전 작가 서명이나 도메인을 추가하면 직접 도용 확률을 크게 낮출 수 있습니다. 저작권 마크는 <strong>우하단</strong>에 차분하게, 도용 방지는 <strong>타일</strong>로 강하게 덮습니다.' },
+          {
+            title: '신분증 워터마크 · 부정 사용 방지',
+            bodyHtml:
+              '은행 업무, 임대, 입사 시 신분증 사본 제출이 빈번합니다. "○○은행 2026년 주택담보대출 신청 전용" 같은 텍스트 워터마크를 추가하면 신분증 정보가 대출, 계좌 개설 등 다른 용도로 유용되는 것을 방지하고 사칭 위험을 줄일 수 있습니다. <strong>타일 모드</strong>, 투명도 30–50% 권장.',
+          },
+          {
+            title: '사업자등록증 / 계약서 / 문서 워터마크',
+            bodyHtml:
+              '회사 사업자등록증, 계좌 개설 허가증, 계약서 스캔본을 협력사에 제출할 때 "○○용도 전용" 워터마크를 추가하면 재사용을 제한할 수 있습니다. 학위증, 운전면허증, 여권 등 문서의 전자 사본에도 동일하게 적용.',
+          },
+          {
+            title: '사이트 ICP 제출 워터마크',
+            bodyHtml:
+              'ICP 제출 자료에는 주체 신분증 문서와 법인 위임장에 이미지 워터마크가 필요합니다. 일반 형식: "○○.com 사이트 ICP 제출 전용", 빨간색 타일이 클라우드 서비스 제출 권장 스타일.',
+          },
+          {
+            title: '도용 방지 / 저작권 보호',
+            bodyHtml:
+              '사진, 제품 이미지, 일러스트를 SNS 게시 전 작가 서명이나 도메인을 추가하면 직접 도용 확률을 크게 낮출 수 있습니다. 저작권 마크는 <strong>우하단</strong>에 차분하게, 도용 방지는 <strong>타일</strong>로 강하게 덮습니다.',
+          },
         ],
       },
       steps: {
@@ -917,12 +1184,36 @@ export const ko = {
       faq: {
         heading: '자주 묻는 질문',
         items: [
-          { q: '신분증에 워터마크를 추가하는 것이 합법인가요?', aHtml: '합법이며 널리 권장됩니다. 신분증 사본 / 스캔에 "○○ 전용" 텍스트 워터마크를 추가하는 것은 문서가 다른 용도로 유용되는 것을 방지하는 효과적인 수단입니다.' },
-          { q: '워터마크 텍스트에는 무엇을 써야 하나요?', aHtml: '"용도 + 수신자 + 날짜" 3요소를 포함하는 것을 권장. 예: "○○은행 2026년 주택담보대출 신청 전용". 사이트 제출이라면 "yourdomain.com 사이트 ICP 제출 전용".' },
-          { q: '워터마크를 어디에 두는 것이 가장 안전한가요?', aHtml: '타일 모드가 가장 안전합니다 —— 텍스트를 이미지 전체에 대각선으로 깔아 자르기로 제거할 수 없습니다. 우하단 등 모서리 워터마크는 직접 잘리기 쉽습니다. 신분증, 신용카드 등 중요 문서는 타일 + 반투명 회색 권장, 안전하면서도 식별성 유지.' },
-          { q: '이미지가 서버에 업로드되나요?', aHtml: '아니요. 본 도구의 모든 처리는 브라우저에서 로컬로 완료됩니다 (Canvas 2D 직접 픽셀 그리기). 이미지 파일과 워터마크 텍스트는 사용자 기기를 떠나지 않습니다. 오프라인에서도 계속 사용 가능.' },
-          { q: '워터마크를 PS로 제거할 수 있나요?', aHtml: '텍스트 워터마크는 본질적으로 보이는 픽셀 변경이므로 숙련자는 PS로 지울 수 있지만 시간이 걸리고 흔적이 남습니다. 일반적인 도용 시나리오에서는 텍스트 워터마크의 억지력으로 충분합니다. 제거 저항성 "보이지 않는 서명"이 필요하다면 <a href="/ko/watermark" class="text-[#0072f5] hover:underline">이미지 숨김 워터마크</a> 도구를 사용하세요.' },
-          { q: '워터마크가 추가된 이미지가 너무 클 때는?', aHtml: '본 도구는 PNG로 내보냅니다 (무손실, 워터마크 가장자리가 가장 선명). 파일이 너무 커서 업로드나 전송에 영향을 줄 경우 <a href="/ko/compress-png" class="text-[#0072f5] hover:underline">PNG 압축</a>으로 크기를 줄이거나 <a href="/ko/png-to-jpg" class="text-[#0072f5] hover:underline">PNG → JPG</a>로 더 작은 형식으로 변환할 수 있습니다.' },
+          {
+            q: '신분증에 워터마크를 추가하는 것이 합법인가요?',
+            aHtml:
+              '합법이며 널리 권장됩니다. 신분증 사본 / 스캔에 "○○ 전용" 텍스트 워터마크를 추가하는 것은 문서가 다른 용도로 유용되는 것을 방지하는 효과적인 수단입니다.',
+          },
+          {
+            q: '워터마크 텍스트에는 무엇을 써야 하나요?',
+            aHtml:
+              '"용도 + 수신자 + 날짜" 3요소를 포함하는 것을 권장. 예: "○○은행 2026년 주택담보대출 신청 전용". 사이트 제출이라면 "yourdomain.com 사이트 ICP 제출 전용".',
+          },
+          {
+            q: '워터마크를 어디에 두는 것이 가장 안전한가요?',
+            aHtml:
+              '타일 모드가 가장 안전합니다 —— 텍스트를 이미지 전체에 대각선으로 깔아 자르기로 제거할 수 없습니다. 우하단 등 모서리 워터마크는 직접 잘리기 쉽습니다. 신분증, 신용카드 등 중요 문서는 타일 + 반투명 회색 권장, 안전하면서도 식별성 유지.',
+          },
+          {
+            q: '이미지가 서버에 업로드되나요?',
+            aHtml:
+              '아니요. 본 도구의 모든 처리는 브라우저에서 로컬로 완료됩니다 (Canvas 2D 직접 픽셀 그리기). 이미지 파일과 워터마크 텍스트는 사용자 기기를 떠나지 않습니다. 오프라인에서도 계속 사용 가능.',
+          },
+          {
+            q: '워터마크를 PS로 제거할 수 있나요?',
+            aHtml:
+              '텍스트 워터마크는 본질적으로 보이는 픽셀 변경이므로 숙련자는 PS로 지울 수 있지만 시간이 걸리고 흔적이 남습니다. 일반적인 도용 시나리오에서는 텍스트 워터마크의 억지력으로 충분합니다. 제거 저항성 "보이지 않는 서명"이 필요하다면 <a href="/ko/watermark" class="text-[#0072f5] hover:underline">이미지 숨김 워터마크</a> 도구를 사용하세요.',
+          },
+          {
+            q: '워터마크가 추가된 이미지가 너무 클 때는?',
+            aHtml:
+              '본 도구는 PNG로 내보냅니다 (무손실, 워터마크 가장자리가 가장 선명). 파일이 너무 커서 업로드나 전송에 영향을 줄 경우 <a href="/ko/compress-png" class="text-[#0072f5] hover:underline">PNG 압축</a>으로 크기를 줄이거나 <a href="/ko/png-to-jpg" class="text-[#0072f5] hover:underline">PNG → JPG</a>로 더 작은 형식으로 변환할 수 있습니다.',
+          },
         ],
       },
     },
@@ -952,10 +1243,12 @@ export const ko = {
       description:
         '브라우저에서 텍스트와 파일의 SHA-1, SHA-256, SHA-384, SHA-512 해시를 생성합니다. 다운로드 무결성을 확인하세요. 모든 처리는 로컬에서 이루어집니다.',
       h1: '해시 생성기',
-      subheading: '파일 무결성 검증 또는 텍스트 해시 계산 · SHA-1 / SHA-256 / SHA-384 / SHA-512 · 브라우저에서 실행',
+      subheading:
+        '파일 무결성 검증 또는 텍스트 해시 계산 · SHA-1 / SHA-256 / SHA-384 / SHA-512 · 브라우저에서 실행',
       schema: {
         name: '해시 생성기',
-        description: '텍스트나 파일에 대해 SHA-1, SHA-256, SHA-384, SHA-512 해시를 브라우저에서 계산하는 무료 온라인 도구.',
+        description:
+          '텍스트나 파일에 대해 SHA-1, SHA-256, SHA-384, SHA-512 해시를 브라우저에서 계산하는 무료 온라인 도구.',
       },
       tabs: { text: '텍스트', file: '파일' },
       input: {
@@ -985,9 +1278,11 @@ export const ko = {
         sha512: 'SHA-512',
       },
       errors: {
-        tooLargeTemplate: '파일이 너무 큽니다({size}). 최대 지원 크기는 2GB입니다.',
+        tooLargeTemplate:
+          '파일이 너무 큽니다({size}). 최대 지원 크기는 2GB입니다.',
         readFailed: '파일을 읽을 수 없습니다. 다시 시도해주세요.',
-        hashFailed: '해시 계산 실패. 브라우저가 해당 알고리즘을 지원하지 않을 수 있습니다.',
+        hashFailed:
+          '해시 계산 실패. 브라우저가 해당 알고리즘을 지원하지 않을 수 있습니다.',
       },
       tips: {
         heading: '해시에 대하여',
@@ -1004,10 +1299,12 @@ export const ko = {
       description:
         '영상에서 소리만 뽑아 MP3로 저장하세요. 무료, 즉시, 브라우저에서 처리. 업로드, 가입, 설치 모두 필요 없습니다.',
       h1: '영상에서 MP3 추출',
-      subheading: '영상의 소리를 뽑아냅니다 · 내 기기에서 처리 · 파일은 어디에도 올라가지 않습니다',
+      subheading:
+        '영상의 소리를 뽑아냅니다 · 내 기기에서 처리 · 파일은 어디에도 올라가지 않습니다',
       schema: {
         name: 'MP4 → MP3 변환',
-        description: '무료 온라인 도구 — MP4 영상에서 오디오를 추출해 MP3로 저장. 브라우저에서 동작, 업로드 없음.',
+        description:
+          '무료 온라인 도구 — MP4 영상에서 오디오를 추출해 MP3로 저장. 브라우저에서 동작, 업로드 없음.',
       },
       upload: {
         drag: '영상을 여기에 놓아주세요',
@@ -1029,9 +1326,12 @@ export const ko = {
         done: '완료!',
       },
       errors: {
-        tooLargeTemplate: '파일이 너무 큽니다. 최대 500MB까지만 가능합니다 (현재 {size})',
-        decodeFailedSafari: 'Safari가 이 파일을 읽지 못했습니다. Safari를 업데이트하거나 Chrome, Firefox로 시도해 보세요.',
-        decodeFailedGeneric: '이 파일 안의 소리를 읽지 못했습니다. 안의 형식이 흔치 않을 수 있어요.',
+        tooLargeTemplate:
+          '파일이 너무 큽니다. 최대 500MB까지만 가능합니다 (현재 {size})',
+        decodeFailedSafari:
+          'Safari가 이 파일을 읽지 못했습니다. Safari를 업데이트하거나 Chrome, Firefox로 시도해 보세요.',
+        decodeFailedGeneric:
+          '이 파일 안의 소리를 읽지 못했습니다. 안의 형식이 흔치 않을 수 있어요.',
       },
       result: {
         ready: 'MP3가 준비됐어요 — 미리듣기 또는 다운로드 가능',
@@ -1041,11 +1341,26 @@ export const ko = {
       faq: {
         heading: '자주 묻는 질문',
         items: [
-          { q: '제 영상이 서버로 올라가나요?', a: '아니요. 모든 처리는 브라우저 안에서 끝납니다. 파일은 컴퓨터를 벗어나지 않아요.' },
-          { q: '어떤 영상이 되나요?', a: '흔한 영상은 거의 다 됩니다: MP4, 아이폰 MOV, M4A 오디오, WebM. 안 되면 안에 있는 오디오 형식이 좀 특이한 경우입니다.' },
-          { q: 'Safari에서 가끔 실패하는 이유는?', a: '구버전 Safari는 일부 MP4의 소리를 읽지 못해요. Safari를 최신으로 업데이트하거나, Chrome / Firefox / Edge로 열어보세요.' },
-          { q: '용량 제한이 있나요?', a: '네, 한 파일에 500MB까지요. 더 크면 특히 휴대폰에서 브라우저가 멈출 수 있어요.' },
-          { q: '여러 개를 한 번에 변환할 수 있나요?', a: '아직은 안 돼요. 지금은 한 번에 하나씩만 가능합니다.' },
+          {
+            q: '제 영상이 서버로 올라가나요?',
+            a: '아니요. 모든 처리는 브라우저 안에서 끝납니다. 파일은 컴퓨터를 벗어나지 않아요.',
+          },
+          {
+            q: '어떤 영상이 되나요?',
+            a: '흔한 영상은 거의 다 됩니다: MP4, 아이폰 MOV, M4A 오디오, WebM. 안 되면 안에 있는 오디오 형식이 좀 특이한 경우입니다.',
+          },
+          {
+            q: 'Safari에서 가끔 실패하는 이유는?',
+            a: '구버전 Safari는 일부 MP4의 소리를 읽지 못해요. Safari를 최신으로 업데이트하거나, Chrome / Firefox / Edge로 열어보세요.',
+          },
+          {
+            q: '용량 제한이 있나요?',
+            a: '네, 한 파일에 500MB까지요. 더 크면 특히 휴대폰에서 브라우저가 멈출 수 있어요.',
+          },
+          {
+            q: '여러 개를 한 번에 변환할 수 있나요?',
+            a: '아직은 안 돼요. 지금은 한 번에 하나씩만 가능합니다.',
+          },
         ],
       },
     },
@@ -1054,10 +1369,12 @@ export const ko = {
       description:
         '비트레이트를 낮춰 MP3 파일 압축 · 무료, 즉시, 브라우저에서 완료. 업로드 불필요, 가입 불필요.',
       h1: 'MP3 압축',
-      subheading: '비트레이트를 낮춰 MP3 압축 · 로컬 처리 · 파일이 기기를 떠나지 않음',
+      subheading:
+        '비트레이트를 낮춰 MP3 압축 · 로컬 처리 · 파일이 기기를 떠나지 않음',
       schema: {
         name: 'MP3 압축 도구',
-        description: '비트레이트를 낮춰 MP3 파일을 압축하는 무료 온라인 도구. 브라우저 내 WebAssembly로 실행.',
+        description:
+          '비트레이트를 낮춰 MP3 파일을 압축하는 무료 온라인 도구. 브라우저 내 WebAssembly로 실행.',
       },
       upload: {
         drag: '오디오 파일을 드롭하세요',
@@ -1093,11 +1410,26 @@ export const ko = {
       faq: {
         heading: '자주 묻는 질문',
         items: [
-          { q: '얼마나 작아지나요?', a: '원본 비트레이트에 따라 다릅니다. 320kbps를 128kbps로 압축하면 약 60% 감소, 192kbps를 96kbps로 압축하면 약 50% 감소합니다.' },
-          { q: '음질이 떨어지나요?', a: '예, 목표 비트레이트에 따라 다릅니다. 128kbps는 대부분의 음악에서 원음에 가깝고, 96kbps는 스트리밍용, 64kbps는 음성 녹음 전용입니다.' },
-          { q: '오디오가 업로드되나요?', a: '아니요. 모든 것은 브라우저의 WebAssembly에서 처리됩니다. 파일이 기기를 떠나지 않습니다.' },
-          { q: 'WAV, FLAC도 사용할 수 있나요?', a: '예. 브라우저가 디코딩할 수 있는 모든 형식(WAV, FLAC, M4A, OGG)을 선택한 비트레이트로 MP3로 변환합니다.' },
-          { q: '최대 파일 크기는?', a: '파일당 500MB. 더 큰 파일은 브라우저를 멈추게 할 수 있습니다 (특히 모바일에서).' },
+          {
+            q: '얼마나 작아지나요?',
+            a: '원본 비트레이트에 따라 다릅니다. 320kbps를 128kbps로 압축하면 약 60% 감소, 192kbps를 96kbps로 압축하면 약 50% 감소합니다.',
+          },
+          {
+            q: '음질이 떨어지나요?',
+            a: '예, 목표 비트레이트에 따라 다릅니다. 128kbps는 대부분의 음악에서 원음에 가깝고, 96kbps는 스트리밍용, 64kbps는 음성 녹음 전용입니다.',
+          },
+          {
+            q: '오디오가 업로드되나요?',
+            a: '아니요. 모든 것은 브라우저의 WebAssembly에서 처리됩니다. 파일이 기기를 떠나지 않습니다.',
+          },
+          {
+            q: 'WAV, FLAC도 사용할 수 있나요?',
+            a: '예. 브라우저가 디코딩할 수 있는 모든 형식(WAV, FLAC, M4A, OGG)을 선택한 비트레이트로 MP3로 변환합니다.',
+          },
+          {
+            q: '최대 파일 크기는?',
+            a: '파일당 500MB. 더 큰 파일은 브라우저를 멈추게 할 수 있습니다 (특히 모바일에서).',
+          },
         ],
       },
     },

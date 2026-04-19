@@ -1,4 +1,8 @@
-import { bindCopyButton, canvasToPngBlob, setClipboardLabels } from './clipboard';
+import {
+  bindCopyButton,
+  canvasToPngBlob,
+  setClipboardLabels,
+} from './clipboard';
 import { setZoneEmpty, setZoneFilled, wireDropzone } from './dropzone';
 
 export interface TextWatermarkLabels {
@@ -32,7 +36,7 @@ type Pattern = 'tile' | 'single' | 'corner';
 interface Opts {
   text: string;
   fontSize: number;
-  color: string;   // #rrggbb
+  color: string; // #rrggbb
   opacity: number; // 0..1
   rotation: number; // degrees; ignored for corner
   spacing: number; // tile spacing multiplier; only used by tile pattern
@@ -41,7 +45,11 @@ interface Opts {
   bold: boolean;
 }
 
-function drawWatermark(canvas: HTMLCanvasElement, bitmap: ImageBitmap, opts: Opts): void {
+function drawWatermark(
+  canvas: HTMLCanvasElement,
+  bitmap: ImageBitmap,
+  opts: Opts,
+): void {
   // Only resize when dimensions actually change — reassigning width/height
   // resets the GPU context and forces a texture re-upload (slow).
   if (canvas.width !== bitmap.width) canvas.width = bitmap.width;
@@ -98,7 +106,9 @@ function drawWatermark(canvas: HTMLCanvasElement, bitmap: ImageBitmap, opts: Opt
 
 const FONT_STACK = `'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif`;
 
-export function initTextWatermarkPage(opts: TextWatermarkInitOptions = {}): void {
+export function initTextWatermarkPage(
+  opts: TextWatermarkInitOptions = {},
+): void {
   const labels = opts.labels ?? DEFAULT_LABELS;
   setClipboardLabels({
     notSupported: labels.clipboardNotSupported,
@@ -108,7 +118,8 @@ export function initTextWatermarkPage(opts: TextWatermarkInitOptions = {}): void
     copied: labels.copied,
     copyFailed: labels.copyFailed,
   });
-  const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+  const $ = <T extends HTMLElement = HTMLElement>(id: string) =>
+    document.getElementById(id) as T;
 
   const dropzone = $<HTMLLabelElement>('tw-dropzone');
   const fileIn = $<HTMLInputElement>('tw-file');
@@ -129,7 +140,8 @@ export function initTextWatermarkPage(opts: TextWatermarkInitOptions = {}): void
   const spacingIn = $<HTMLInputElement>('tw-spacing');
   const spacingOut = $('tw-spacing-val');
   const boldIn = $<HTMLInputElement>('tw-bold');
-  const patternBtns = document.querySelectorAll<HTMLButtonElement>('.tw-pattern-btn');
+  const patternBtns =
+    document.querySelectorAll<HTMLButtonElement>('.tw-pattern-btn');
   const swatchBtns = document.querySelectorAll<HTMLButtonElement>('.tw-swatch');
   const rotationRow = $('tw-rotation-row');
   const spacingRow = $('tw-spacing-row');
@@ -146,7 +158,10 @@ export function initTextWatermarkPage(opts: TextWatermarkInitOptions = {}): void
   let pattern: Pattern = 'tile';
   let rafId: number | undefined;
 
-  const showErr = (m: string) => { errBox.textContent = m; errBox.classList.remove('hidden'); };
+  const showErr = (m: string) => {
+    errBox.textContent = m;
+    errBox.classList.remove('hidden');
+  };
   const clearErr = () => errBox.classList.add('hidden');
 
   const getOpts = (): Opts => ({
@@ -216,7 +231,10 @@ export function initTextWatermarkPage(opts: TextWatermarkInitOptions = {}): void
       setZoneFilled(dropzone);
       // Auto-size font: ~1/28 of the smaller edge keeps the watermark readable
       // across phone screenshots (small) and DSLR shots (big).
-      const auto = Math.max(24, Math.round(Math.min(bitmap.width, bitmap.height) / 28));
+      const auto = Math.max(
+        24,
+        Math.round(Math.min(bitmap.width, bitmap.height) / 28),
+      );
       sizeIn.value = String(Math.min(auto, parseInt(sizeIn.max, 10)));
       sizeOut.textContent = `${sizeIn.value}px`;
       resultCard.classList.remove('hidden');
@@ -287,10 +305,17 @@ export function initTextWatermarkPage(opts: TextWatermarkInitOptions = {}): void
     spacingRow.classList.toggle('pointer-events-none', pattern !== 'tile');
     scheduleRedraw();
   };
-  patternBtns.forEach((b) => b.addEventListener('click', () => applyPattern(b.dataset.pattern as Pattern)));
+  patternBtns.forEach((b) =>
+    b.addEventListener('click', () =>
+      applyPattern(b.dataset.pattern as Pattern),
+    ),
+  );
 
   downloadBtn.addEventListener('click', async () => {
-    if (!bitmap) { showErr(labels.needImageFirst); return; }
+    if (!bitmap) {
+      showErr(labels.needImageFirst);
+      return;
+    }
     // Render at full resolution on demand — the live canvas is preview-sized,
     // so users still get a watermarked image at the source's native dimensions.
     const blob = await canvasToPngBlob(renderFull());
@@ -302,7 +327,10 @@ export function initTextWatermarkPage(opts: TextWatermarkInitOptions = {}): void
     setTimeout(() => URL.revokeObjectURL(url), 2000);
   });
 
-  bindCopyButton(copyBtn, () => ({ blob: canvasToPngBlob(renderFull()), mime: 'image/png' }));
+  bindCopyButton(copyBtn, () => ({
+    blob: canvasToPngBlob(renderFull()),
+    mime: 'image/png',
+  }));
 
   // Initial label values
   sizeOut.textContent = `${sizeIn.value}px`;

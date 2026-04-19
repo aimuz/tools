@@ -29,11 +29,16 @@ const schema = {
 ---
 
 <Layout title={b.title} description={b.description} locale={locale}>
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+    slot="head"
+  />
   <Header locale={locale} />
 
   <main class="flex-1 py-10">
-    <div class="max-w-[960px] mx-auto px-6"
+    <div
+      class="max-w-[960px] mx-auto px-6"
       data-i18n-input-encode-label={b.labels.inputEncode}
       data-i18n-input-decode-label={b.labels.inputDecode}
       data-i18n-output-encode-label={b.labels.outputEncode}
@@ -58,18 +63,34 @@ const schema = {
 
       <div class="flex justify-center mb-6">
         <div class="inline-flex p-1 bg-gray-100 rounded-lg">
-          <button data-mode="encode" class="mode-btn px-4 py-2 text-sm rounded-md bg-white text-[#171717] shadow-sm transition-all">{b.tabs.encode}</button>
-          <button data-mode="decode" class="mode-btn px-4 py-2 text-sm rounded-md text-gray-500 hover:text-[#171717] transition-all">{b.tabs.decode}</button>
+          <button
+            data-mode="encode"
+            class="mode-btn px-4 py-2 text-sm rounded-md bg-white text-[#171717] shadow-sm transition-all"
+            >{b.tabs.encode}</button
+          >
+          <button
+            data-mode="decode"
+            class="mode-btn px-4 py-2 text-sm rounded-md text-gray-500 hover:text-[#171717] transition-all"
+            >{b.tabs.decode}</button
+          >
         </div>
       </div>
 
       <div class="grid md:grid-cols-2 gap-6">
         <section>
           <div class="flex justify-between items-center mb-2">
-            <span id="input-label" class="text-sm font-medium text-[#171717]">{b.labels.inputEncode}</span>
+            <span id="input-label" class="text-sm font-medium text-[#171717]"
+              >{b.labels.inputEncode}</span
+            >
             <div class="flex gap-2">
-              <button id="clear-btn" class="text-xs text-gray-400 hover:text-red-500">{b.clearBtn}</button>
-              <label class="text-xs text-gray-400 hover:text-[#171717] cursor-pointer">
+              <button
+                id="clear-btn"
+                class="text-xs text-gray-400 hover:text-red-500"
+                >{b.clearBtn}</button
+              >
+              <label
+                class="text-xs text-gray-400 hover:text-[#171717] cursor-pointer"
+              >
                 <input id="file-input" type="file" class="hidden" />
                 <span>{b.uploadBtn}</span>
               </label>
@@ -79,16 +100,30 @@ const schema = {
           <textarea
             id="text-input"
             class="w-full h-64 p-4 bg-white border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717] resize-none"
-            placeholder={b.placeholders.inputEncode}
-          ></textarea>
+            placeholder={b.placeholders.inputEncode}></textarea>
 
-          <div id="file-info" class="hidden mt-3 p-3 bg-gray-50 border border-gray-200 rounded-lg">
+          <div
+            id="file-info"
+            class="hidden mt-3 p-3 bg-gray-50 border border-gray-200 rounded-lg"
+          >
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                <svg
+                  class="w-4 h-4 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  ></path>
                 </svg>
-                <span id="file-name" class="text-sm text-[#171717] truncate max-w-[200px]"></span>
+                <span
+                  id="file-name"
+                  class="text-sm text-[#171717] truncate max-w-[200px]"></span>
               </div>
               <span id="file-size" class="text-xs text-gray-400"></span>
             </div>
@@ -100,10 +135,20 @@ const schema = {
 
         <section>
           <div class="flex justify-between items-center mb-2">
-            <span id="output-label" class="text-sm font-medium text-[#171717]">{b.labels.outputEncode}</span>
+            <span id="output-label" class="text-sm font-medium text-[#171717]"
+              >{b.labels.outputEncode}</span
+            >
             <div class="flex gap-2">
-              <button id="copy-btn" class="text-xs text-gray-400 hover:text-[#171717]">{b.copyBtn}</button>
-              <button id="download-btn" class="hidden text-xs text-gray-400 hover:text-[#171717]">{b.downloadBtn}</button>
+              <button
+                id="copy-btn"
+                class="text-xs text-gray-400 hover:text-[#171717]"
+                >{b.copyBtn}</button
+              >
+              <button
+                id="download-btn"
+                class="hidden text-xs text-gray-400 hover:text-[#171717]"
+                >{b.downloadBtn}</button
+              >
             </div>
           </div>
 
@@ -111,22 +156,31 @@ const schema = {
             id="text-output"
             readonly
             class="w-full h-64 p-4 bg-gray-50 border border-gray-200 rounded-lg font-mono text-sm resize-none break-all"
-            placeholder={b.placeholders.outputEncode}
-          ></textarea>
+            placeholder={b.placeholders.outputEncode}></textarea>
 
           <div id="image-preview" class="hidden mt-3">
             <p class="text-xs text-gray-400 mb-2">{b.labels.imagePreview}</p>
             <div class="p-3 bg-gray-50 border border-gray-200 rounded-lg">
-              <img id="preview-img" class="max-w-full max-h-48 mx-auto" alt={b.labels.imageAlt} />
+              <img
+                id="preview-img"
+                class="max-w-full max-h-48 mx-auto"
+                alt={b.labels.imageAlt}
+              />
             </div>
           </div>
         </section>
       </div>
 
-      <div id="error-msg" class="hidden mt-5 p-3 bg-red-50 border border-red-100 rounded-lg text-red-500 text-sm"></div>
+      <div
+        id="error-msg"
+        class="hidden mt-5 p-3 bg-red-50 border border-red-100 rounded-lg text-red-500 text-sm"
+      >
+      </div>
 
       <div class="mt-8 p-4 bg-gray-50 border border-gray-200 rounded-xl">
-        <h3 class="text-sm font-medium text-[#171717] mb-2">{b.tips.heading}</h3>
+        <h3 class="text-sm font-medium text-[#171717] mb-2">
+          {b.tips.heading}
+        </h3>
         <ul class="text-xs text-gray-500 space-y-1 list-disc list-inside">
           {b.tips.items.map((item) => <li>{item}</li>)}
         </ul>
@@ -140,7 +194,8 @@ const schema = {
 <script>
   const root = document.querySelector<HTMLElement>('main .max-w-\\[960px\\]')!;
   const D = root.dataset;
-  const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+  const $ = <T extends HTMLElement = HTMLElement>(id: string) =>
+    document.getElementById(id) as T;
 
   const interpolate = (template: string, vars: Record<string, string>) =>
     template.replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? '');
@@ -182,7 +237,7 @@ const schema = {
 
   const setMode = (newMode: 'encode' | 'decode') => {
     mode = newMode;
-    modeBtns.forEach(btn => {
+    modeBtns.forEach((btn) => {
       const isActive = btn.dataset.mode === mode;
       btn.classList.toggle('bg-white', isActive);
       btn.classList.toggle('text-[#171717]', isActive);
@@ -246,11 +301,19 @@ const schema = {
 
   const getExtensionFromMime = (mime: string) => {
     const extensions: Record<string, string> = {
-      'image/png': '.png', 'image/jpeg': '.jpg', 'image/jpg': '.jpg',
-      'image/gif': '.gif', 'image/webp': '.webp', 'image/svg+xml': '.svg',
-      'text/plain': '.txt', 'text/html': '.html', 'text/css': '.css',
-      'text/javascript': '.js', 'application/json': '.json',
-      'application/pdf': '.pdf', 'application/zip': '.zip',
+      'image/png': '.png',
+      'image/jpeg': '.jpg',
+      'image/jpg': '.jpg',
+      'image/gif': '.gif',
+      'image/webp': '.webp',
+      'image/svg+xml': '.svg',
+      'text/plain': '.txt',
+      'text/html': '.html',
+      'text/css': '.css',
+      'text/javascript': '.js',
+      'application/json': '.json',
+      'application/pdf': '.pdf',
+      'application/zip': '.zip',
     };
     return extensions[mime] || '';
   };
@@ -273,8 +336,11 @@ const schema = {
         if (mimeType) {
           const byteCharacters = atob(base64String);
           const byteNumbers = new Array(byteCharacters.length);
-          for (let i = 0; i < byteCharacters.length; i++) byteNumbers[i] = byteCharacters.charCodeAt(i);
-          decodedBlob = new Blob([new Uint8Array(byteNumbers)], { type: mimeType });
+          for (let i = 0; i < byteCharacters.length; i++)
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+          decodedBlob = new Blob([new Uint8Array(byteNumbers)], {
+            type: mimeType,
+          });
           decodedFileName = `decoded-file${getExtensionFromMime(mimeType)}`;
           downloadBtn.classList.remove('hidden');
           if (mimeType.startsWith('image/')) {
@@ -285,10 +351,16 @@ const schema = {
       } catch (e) {
         const byteCharacters = atob(base64String);
         const byteNumbers = new Array(byteCharacters.length);
-        for (let i = 0; i < byteCharacters.length; i++) byteNumbers[i] = byteCharacters.charCodeAt(i);
-        decodedBlob = new Blob([new Uint8Array(byteNumbers)], { type: mimeType || 'application/octet-stream' });
+        for (let i = 0; i < byteCharacters.length; i++)
+          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        decodedBlob = new Blob([new Uint8Array(byteNumbers)], {
+          type: mimeType || 'application/octet-stream',
+        });
         decodedFileName = `decoded-file${getExtensionFromMime(mimeType || 'application/octet-stream')}`;
-        textOutput.value = interpolate(D.i18nBinaryFileTemplate ?? '[binary - {size}]', { size: formatSize(decodedBlob.size) });
+        textOutput.value = interpolate(
+          D.i18nBinaryFileTemplate ?? '[binary - {size}]',
+          { size: formatSize(decodedBlob.size) },
+        );
         downloadBtn.classList.remove('hidden');
         if ((mimeType || '').startsWith('image/')) {
           previewImg.src = URL.createObjectURL(decodedBlob);
@@ -302,7 +374,11 @@ const schema = {
     }
   };
 
-  modeBtns.forEach(btn => btn.addEventListener('click', () => setMode(btn.dataset.mode as 'encode' | 'decode')));
+  modeBtns.forEach((btn) =>
+    btn.addEventListener('click', () =>
+      setMode(btn.dataset.mode as 'encode' | 'decode'),
+    ),
+  );
 
   textInput.addEventListener('input', () => {
     hideError();
@@ -317,7 +393,11 @@ const schema = {
     const file = fileInput.files?.[0];
     if (!file) return;
     if (file.size > MAX_FILE_SIZE) {
-      showError(interpolate(D.i18nErrorTooLargeTemplate ?? 'Too large {size}', { size: formatSize(file.size) }));
+      showError(
+        interpolate(D.i18nErrorTooLargeTemplate ?? 'Too large {size}', {
+          size: formatSize(file.size),
+        }),
+      );
       return;
     }
     currentFile = file;
@@ -336,7 +416,7 @@ const schema = {
     try {
       await navigator.clipboard.writeText(textOutput.value);
       copyBtn.textContent = D.i18nCopied ?? 'Copied';
-      setTimeout(() => copyBtn.textContent = D.i18nCopy ?? 'Copy', 1200);
+      setTimeout(() => (copyBtn.textContent = D.i18nCopy ?? 'Copy'), 1200);
     } catch {}
   });
 

@@ -27,15 +27,29 @@ const schema = {
   url: pageUrl,
 };
 
-const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'ES384'];
+const algos = [
+  'HS256',
+  'HS384',
+  'HS512',
+  'RS256',
+  'RS384',
+  'RS512',
+  'ES256',
+  'ES384',
+];
 ---
 
 <Layout title={j.title} description={j.description} locale={locale}>
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+    slot="head"
+  />
   <Header locale={locale} />
 
   <main class="flex-1 py-10">
-    <div class="max-w-[1040px] mx-auto px-6"
+    <div
+      class="max-w-[1040px] mx-auto px-6"
       data-i18n-verify-idle={j.verify.idle}
       data-i18n-verify-ok={j.verify.ok}
       data-i18n-verify-bad={j.verify.bad}
@@ -63,9 +77,16 @@ const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'E
       <div class="mb-6">
         <p class="text-sm text-gray-500 mb-2">{j.algoLabel}</p>
         <div id="algo-row" class="flex flex-wrap gap-2">
-          {algos.map((a, i) => (
-            <button data-algo={a} class={`algo-btn px-4 py-2 text-sm rounded-full border border-gray-200 ${i === 0 ? 'bg-[#171717] text-white' : 'text-gray-600 hover:border-[#171717]'}`}>{a}</button>
-          ))}
+          {
+            algos.map((a, i) => (
+              <button
+                data-algo={a}
+                class={`algo-btn px-4 py-2 text-sm rounded-full border border-gray-200 ${i === 0 ? 'bg-[#171717] text-white' : 'text-gray-600 hover:border-[#171717]'}`}
+              >
+                {a}
+              </button>
+            ))
+          }
         </div>
       </div>
 
@@ -74,18 +95,28 @@ const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'E
           <div class="flex justify-between items-center mb-2">
             <span class="text-sm text-gray-500">{j.encodedLabel}</span>
             <div class="flex gap-2">
-              <button id="sample-btn" class="text-sm text-gray-400 hover:text-[#171717]">{j.sampleBtn}</button>
-              <button id="copy-btn" class="text-sm text-gray-400 hover:text-[#171717]">{j.copyBtn}</button>
+              <button
+                id="sample-btn"
+                class="text-sm text-gray-400 hover:text-[#171717]"
+                >{j.sampleBtn}</button
+              >
+              <button
+                id="copy-btn"
+                class="text-sm text-gray-400 hover:text-[#171717]"
+                >{j.copyBtn}</button
+              >
             </div>
           </div>
           <textarea
             id="encoded"
             class="w-full h-[440px] p-4 bg-white border border-gray-200 rounded-lg font-mono text-sm leading-relaxed focus:outline-none focus:border-[#171717] resize-none break-all"
             spellcheck="false"
-            placeholder={j.encodedPlaceholder}
-          ></textarea>
+            placeholder={j.encodedPlaceholder}></textarea>
 
-          <div id="verify-status" class="mt-3 px-4 py-2 rounded-lg text-sm border border-gray-200 text-gray-500 bg-gray-50">
+          <div
+            id="verify-status"
+            class="mt-3 px-4 py-2 rounded-lg text-sm border border-gray-200 text-gray-500 bg-gray-50"
+          >
             <span id="verify-text">{j.verify.idle}</span>
           </div>
         </section>
@@ -96,8 +127,7 @@ const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'E
             <textarea
               id="header-json"
               class="mt-2 w-full h-24 p-3 bg-white border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717] resize-none"
-              spellcheck="false"
-            ></textarea>
+              spellcheck="false"></textarea>
           </div>
 
           <div>
@@ -105,15 +135,18 @@ const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'E
             <textarea
               id="payload-json"
               class="mt-2 w-full h-40 p-3 bg-white border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717] resize-none"
-              spellcheck="false"
-            ></textarea>
+              spellcheck="false"></textarea>
           </div>
 
           <div id="secret-box">
             <div class="flex justify-between items-center">
               <span class="text-sm text-gray-500">{j.secret.label}</span>
               <label class="text-xs text-gray-400 flex items-center gap-1">
-                <input id="secret-base64" type="checkbox" class="accent-[#171717]" />
+                <input
+                  id="secret-base64"
+                  type="checkbox"
+                  class="accent-[#171717]"
+                />
                 {j.secret.isB64Label}
               </label>
             </div>
@@ -121,8 +154,7 @@ const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'E
               id="secret"
               class="mt-2 w-full h-20 p-3 bg-white border border-gray-200 rounded-lg font-mono text-sm focus:outline-none focus:border-[#171717] resize-none"
               spellcheck="false"
-              placeholder={j.secret.placeholder}
-            ></textarea>
+              placeholder={j.secret.placeholder}></textarea>
           </div>
 
           <div id="asym-box" class="hidden space-y-3">
@@ -132,8 +164,7 @@ const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'E
                 id="pubkey"
                 class="mt-2 w-full h-24 p-3 bg-white border border-gray-200 rounded-lg font-mono text-xs focus:outline-none focus:border-[#171717] resize-none"
                 spellcheck="false"
-                placeholder={j.pubkeyPlaceholder}
-              ></textarea>
+                placeholder={j.pubkeyPlaceholder}></textarea>
             </div>
             <div>
               <span class="text-sm text-gray-500">{j.privkeyLabel}</span>
@@ -141,14 +172,17 @@ const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'E
                 id="privkey"
                 class="mt-2 w-full h-24 p-3 bg-white border border-gray-200 rounded-lg font-mono text-xs focus:outline-none focus:border-[#171717] resize-none"
                 spellcheck="false"
-                placeholder={j.privkeyPlaceholder}
-              ></textarea>
+                placeholder={j.privkeyPlaceholder}></textarea>
             </div>
           </div>
         </section>
       </div>
 
-      <div id="err" class="hidden mt-5 p-3 bg-red-50 border border-red-100 rounded-lg text-red-500 text-sm"></div>
+      <div
+        id="err"
+        class="hidden mt-5 p-3 bg-red-50 border border-red-100 rounded-lg text-red-500 text-sm"
+      >
+      </div>
     </div>
   </main>
 
@@ -158,7 +192,8 @@ const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'E
 <script>
   const root = document.querySelector<HTMLElement>('main .max-w-\\[1040px\\]')!;
   const D = root.dataset;
-  const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+  const $ = <T extends HTMLElement = HTMLElement>(id: string) =>
+    document.getElementById(id) as T;
 
   const interpolate = (template: string, vars: Record<string, string>) =>
     template.replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? '');
@@ -179,7 +214,15 @@ const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'E
   const copyBtn = $('copy-btn');
   const algoBtns = document.querySelectorAll<HTMLButtonElement>('.algo-btn');
 
-  type Algo = 'HS256' | 'HS384' | 'HS512' | 'RS256' | 'RS384' | 'RS512' | 'ES256' | 'ES384';
+  type Algo =
+    | 'HS256'
+    | 'HS384'
+    | 'HS512'
+    | 'RS256'
+    | 'RS384'
+    | 'RS512'
+    | 'ES256'
+    | 'ES384';
   let algo: Algo = 'HS256';
   let updatingFromEncoded = false;
   let updatingFromDecoded = false;
@@ -189,7 +232,8 @@ const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'E
     for (let i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]);
     return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
   };
-  const b64urlEncodeString = (s: string) => b64urlEncodeBytes(new TextEncoder().encode(s));
+  const b64urlEncodeString = (s: string) =>
+    b64urlEncodeBytes(new TextEncoder().encode(s));
   const b64urlDecodeBytes = (s: string) => {
     const pad = s.length % 4 === 2 ? '==' : s.length % 4 === 3 ? '=' : '';
     const b64 = s.replace(/-/g, '+').replace(/_/g, '/') + pad;
@@ -198,10 +242,14 @@ const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'E
     for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
     return bytes;
   };
-  const b64urlDecodeString = (s: string) => new TextDecoder().decode(b64urlDecodeBytes(s));
+  const b64urlDecodeString = (s: string) =>
+    new TextDecoder().decode(b64urlDecodeBytes(s));
 
   const pemToDer = (pem: string) => {
-    const body = pem.replace(/-----BEGIN [^-]+-----/g, '').replace(/-----END [^-]+-----/g, '').replace(/\s+/g, '');
+    const body = pem
+      .replace(/-----BEGIN [^-]+-----/g, '')
+      .replace(/-----END [^-]+-----/g, '')
+      .replace(/\s+/g, '');
     if (!body) throw new Error(D.i18nErrPemEmpty ?? 'PEM is empty');
     const bin = atob(body);
     const bytes = new Uint8Array(bin.length);
@@ -209,7 +257,8 @@ const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'E
     return bytes;
   };
 
-  const hashFromAlgo = (a: Algo) => ({ '256': 'SHA-256', '384': 'SHA-384', '512': 'SHA-512' }[a.slice(2)])!;
+  const hashFromAlgo = (a: Algo) =>
+    ({ '256': 'SHA-256', '384': 'SHA-384', '512': 'SHA-512' })[a.slice(2)]!;
   const isHS = (a: Algo) => a.startsWith('HS');
   const isRS = (a: Algo) => a.startsWith('RS');
   const isES = (a: Algo) => a.startsWith('ES');
@@ -217,25 +266,53 @@ const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'E
 
   async function importHmac(usages: KeyUsage[]) {
     const raw = secretB64.checked
-      ? b64urlDecodeBytes(secretEl.value.trim().replace(/-/g, '+').replace(/_/g, '/'))
+      ? b64urlDecodeBytes(
+          secretEl.value.trim().replace(/-/g, '+').replace(/_/g, '/'),
+        )
       : new TextEncoder().encode(secretEl.value);
-    return crypto.subtle.importKey('raw', raw, { name: 'HMAC', hash: hashFromAlgo(algo) }, false, usages);
+    return crypto.subtle.importKey(
+      'raw',
+      raw,
+      { name: 'HMAC', hash: hashFromAlgo(algo) },
+      false,
+      usages,
+    );
   }
   async function importRsaPublic() {
-    return crypto.subtle.importKey('spki', pemToDer(pubkeyEl.value),
-      { name: 'RSASSA-PKCS1-v1_5', hash: hashFromAlgo(algo) }, false, ['verify']);
+    return crypto.subtle.importKey(
+      'spki',
+      pemToDer(pubkeyEl.value),
+      { name: 'RSASSA-PKCS1-v1_5', hash: hashFromAlgo(algo) },
+      false,
+      ['verify'],
+    );
   }
   async function importRsaPrivate() {
-    return crypto.subtle.importKey('pkcs8', pemToDer(privkeyEl.value),
-      { name: 'RSASSA-PKCS1-v1_5', hash: hashFromAlgo(algo) }, false, ['sign']);
+    return crypto.subtle.importKey(
+      'pkcs8',
+      pemToDer(privkeyEl.value),
+      { name: 'RSASSA-PKCS1-v1_5', hash: hashFromAlgo(algo) },
+      false,
+      ['sign'],
+    );
   }
   async function importEcPublic() {
-    return crypto.subtle.importKey('spki', pemToDer(pubkeyEl.value),
-      { name: 'ECDSA', namedCurve: ecCurveFromAlgo(algo) }, false, ['verify']);
+    return crypto.subtle.importKey(
+      'spki',
+      pemToDer(pubkeyEl.value),
+      { name: 'ECDSA', namedCurve: ecCurveFromAlgo(algo) },
+      false,
+      ['verify'],
+    );
   }
   async function importEcPrivate() {
-    return crypto.subtle.importKey('pkcs8', pemToDer(privkeyEl.value),
-      { name: 'ECDSA', namedCurve: ecCurveFromAlgo(algo) }, false, ['sign']);
+    return crypto.subtle.importKey(
+      'pkcs8',
+      pemToDer(privkeyEl.value),
+      { name: 'ECDSA', namedCurve: ecCurveFromAlgo(algo) },
+      false,
+      ['sign'],
+    );
   }
 
   async function sign(signingInput: string): Promise<Uint8Array | null> {
@@ -248,17 +325,28 @@ const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'E
     if (isRS(algo)) {
       if (!privkeyEl.value.trim()) return null;
       const key = await importRsaPrivate();
-      return new Uint8Array(await crypto.subtle.sign('RSASSA-PKCS1-v1_5', key, data));
+      return new Uint8Array(
+        await crypto.subtle.sign('RSASSA-PKCS1-v1_5', key, data),
+      );
     }
     if (isES(algo)) {
       if (!privkeyEl.value.trim()) return null;
       const key = await importEcPrivate();
-      return new Uint8Array(await crypto.subtle.sign({ name: 'ECDSA', hash: hashFromAlgo(algo) }, key, data));
+      return new Uint8Array(
+        await crypto.subtle.sign(
+          { name: 'ECDSA', hash: hashFromAlgo(algo) },
+          key,
+          data,
+        ),
+      );
     }
     return null;
   }
 
-  async function verify(signingInput: string, sig: Uint8Array): Promise<boolean> {
+  async function verify(
+    signingInput: string,
+    sig: Uint8Array,
+  ): Promise<boolean> {
     const data = new TextEncoder().encode(signingInput);
     if (isHS(algo)) {
       if (!secretEl.value) throw new Error('NEED_SECRET');
@@ -273,30 +361,49 @@ const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'E
     if (isES(algo)) {
       if (!pubkeyEl.value.trim()) throw new Error('NEED_PUBKEY');
       const key = await importEcPublic();
-      return crypto.subtle.verify({ name: 'ECDSA', hash: hashFromAlgo(algo) }, key, sig, data);
+      return crypto.subtle.verify(
+        { name: 'ECDSA', hash: hashFromAlgo(algo) },
+        key,
+        sig,
+        data,
+      );
     }
     return false;
   }
 
   const setStatus = (kind: 'ok' | 'bad' | 'idle', msg: string) => {
     verifyBox.className = 'mt-3 px-4 py-2 rounded-lg text-sm border';
-    if (kind === 'ok') verifyBox.className += ' border-green-200 bg-green-50 text-green-700';
-    if (kind === 'bad') verifyBox.className += ' border-red-200 bg-red-50 text-red-600';
-    if (kind === 'idle') verifyBox.className += ' border-gray-200 bg-gray-50 text-gray-500';
+    if (kind === 'ok')
+      verifyBox.className += ' border-green-200 bg-green-50 text-green-700';
+    if (kind === 'bad')
+      verifyBox.className += ' border-red-200 bg-red-50 text-red-600';
+    if (kind === 'idle')
+      verifyBox.className += ' border-gray-200 bg-gray-50 text-gray-500';
     verifyText.textContent = msg;
   };
-  const showErr = (m: string) => { errBox.textContent = m; errBox.classList.remove('hidden'); };
+  const showErr = (m: string) => {
+    errBox.textContent = m;
+    errBox.classList.remove('hidden');
+  };
   const hideErr = () => errBox.classList.add('hidden');
 
   const updateKeyBoxVisibility = () => {
-    if (isHS(algo)) { secretBox.classList.remove('hidden'); asymBox.classList.add('hidden'); }
-    else { secretBox.classList.add('hidden'); asymBox.classList.remove('hidden'); }
+    if (isHS(algo)) {
+      secretBox.classList.remove('hidden');
+      asymBox.classList.add('hidden');
+    } else {
+      secretBox.classList.add('hidden');
+      asymBox.classList.remove('hidden');
+    }
   };
 
   async function decodeAndVerify() {
     hideErr();
     const raw = encoded.value.trim();
-    if (!raw) { setStatus('idle', D.i18nVerifyIdle ?? ''); return; }
+    if (!raw) {
+      setStatus('idle', D.i18nVerifyIdle ?? '');
+      return;
+    }
     const parts = raw.split('.');
     if (parts.length !== 3) {
       showErr(D.i18nErrJwtFormat ?? 'Invalid JWT');
@@ -304,39 +411,98 @@ const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'E
       return;
     }
 
-    let headerJson = '', payloadJson = '';
-    try { headerJson = b64urlDecodeString(parts[0]); } catch { showErr(D.i18nErrHeaderB64 ?? 'Header b64'); return; }
-    try { payloadJson = b64urlDecodeString(parts[1]); } catch { showErr(D.i18nErrPayloadB64 ?? 'Payload b64'); return; }
+    let headerJson = '',
+      payloadJson = '';
+    try {
+      headerJson = b64urlDecodeString(parts[0]);
+    } catch {
+      showErr(D.i18nErrHeaderB64 ?? 'Header b64');
+      return;
+    }
+    try {
+      payloadJson = b64urlDecodeString(parts[1]);
+    } catch {
+      showErr(D.i18nErrPayloadB64 ?? 'Payload b64');
+      return;
+    }
 
     let headerObj: any;
-    try { headerObj = JSON.parse(headerJson); } catch { showErr(D.i18nErrHeaderJson ?? 'Header JSON'); return; }
+    try {
+      headerObj = JSON.parse(headerJson);
+    } catch {
+      showErr(D.i18nErrHeaderJson ?? 'Header JSON');
+      return;
+    }
 
-    try { headerEl.value = JSON.stringify(headerObj, null, 2); } catch { headerEl.value = headerJson; }
-    try { payloadEl.value = JSON.stringify(JSON.parse(payloadJson), null, 2); } catch { payloadEl.value = payloadJson; }
+    try {
+      headerEl.value = JSON.stringify(headerObj, null, 2);
+    } catch {
+      headerEl.value = headerJson;
+    }
+    try {
+      payloadEl.value = JSON.stringify(JSON.parse(payloadJson), null, 2);
+    } catch {
+      payloadEl.value = payloadJson;
+    }
 
-    if (typeof headerObj.alg === 'string' && headerObj.alg !== algo && algoIsSupported(headerObj.alg)) {
+    if (
+      typeof headerObj.alg === 'string' &&
+      headerObj.alg !== algo &&
+      algoIsSupported(headerObj.alg)
+    ) {
       setAlgo(headerObj.alg as Algo, false);
     }
 
     try {
       const sig = b64urlDecodeBytes(parts[2]);
       const ok = await verify(`${parts[0]}.${parts[1]}`, sig);
-      setStatus(ok ? 'ok' : 'bad', ok ? (D.i18nVerifyOk ?? '') : (D.i18nVerifyBad ?? ''));
+      setStatus(
+        ok ? 'ok' : 'bad',
+        ok ? (D.i18nVerifyOk ?? '') : (D.i18nVerifyBad ?? ''),
+      );
     } catch (e: any) {
-      if (e.message === 'NEED_SECRET') setStatus('idle', D.i18nVerifyNeedSecret ?? '');
-      else if (e.message === 'NEED_PUBKEY') setStatus('idle', D.i18nVerifyNeedPubkey ?? '');
-      else setStatus('bad', interpolate(D.i18nVerifyFailTemplate ?? '{msg}', { msg: e.message || String(e) }));
+      if (e.message === 'NEED_SECRET')
+        setStatus('idle', D.i18nVerifyNeedSecret ?? '');
+      else if (e.message === 'NEED_PUBKEY')
+        setStatus('idle', D.i18nVerifyNeedPubkey ?? '');
+      else
+        setStatus(
+          'bad',
+          interpolate(D.i18nVerifyFailTemplate ?? '{msg}', {
+            msg: e.message || String(e),
+          }),
+        );
     }
   }
 
-  const supportedAlgos: Algo[] = ['HS256','HS384','HS512','RS256','RS384','RS512','ES256','ES384'];
-  const algoIsSupported = (a: string): a is Algo => (supportedAlgos as string[]).includes(a);
+  const supportedAlgos: Algo[] = [
+    'HS256',
+    'HS384',
+    'HS512',
+    'RS256',
+    'RS384',
+    'RS512',
+    'ES256',
+    'ES384',
+  ];
+  const algoIsSupported = (a: string): a is Algo =>
+    (supportedAlgos as string[]).includes(a);
 
   async function encodeFromDecoded() {
     hideErr();
     let headerObj: any, payloadObj: any;
-    try { headerObj = JSON.parse(headerEl.value); } catch { showErr(D.i18nErrHeaderJson ?? 'Header JSON'); return; }
-    try { payloadObj = JSON.parse(payloadEl.value); } catch { showErr(D.i18nErrPayloadJson ?? 'Payload JSON'); return; }
+    try {
+      headerObj = JSON.parse(headerEl.value);
+    } catch {
+      showErr(D.i18nErrHeaderJson ?? 'Header JSON');
+      return;
+    }
+    try {
+      payloadObj = JSON.parse(payloadEl.value);
+    } catch {
+      showErr(D.i18nErrPayloadJson ?? 'Payload JSON');
+      return;
+    }
 
     if (!headerObj.alg) headerObj.alg = algo;
     if (!headerObj.typ) headerObj.typ = 'JWT';
@@ -349,23 +515,37 @@ const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'E
       const sig = await sign(signingInput);
       if (!sig) {
         encoded.value = `${signingInput}.`;
-        setStatus('idle', isHS(algo) ? (D.i18nVerifyNeedSecretSign ?? '') : (D.i18nVerifyNeedPrivkeySign ?? ''));
+        setStatus(
+          'idle',
+          isHS(algo)
+            ? (D.i18nVerifyNeedSecretSign ?? '')
+            : (D.i18nVerifyNeedPrivkeySign ?? ''),
+        );
         return;
       }
       const token = `${signingInput}.${b64urlEncodeBytes(sig)}`;
       encoded.value = token;
       try {
         const ok = await verify(signingInput, sig);
-        setStatus(ok ? 'ok' : 'bad', ok ? (D.i18nVerifyOk ?? '') : (D.i18nVerifyBad ?? ''));
-      } catch { setStatus('idle', D.i18nVerifySigned ?? ''); }
+        setStatus(
+          ok ? 'ok' : 'bad',
+          ok ? (D.i18nVerifyOk ?? '') : (D.i18nVerifyBad ?? ''),
+        );
+      } catch {
+        setStatus('idle', D.i18nVerifySigned ?? '');
+      }
     } catch (e: any) {
-      showErr(interpolate(D.i18nErrSignTemplate ?? '{msg}', { msg: e.message || String(e) }));
+      showErr(
+        interpolate(D.i18nErrSignTemplate ?? '{msg}', {
+          msg: e.message || String(e),
+        }),
+      );
     }
   }
 
   function setAlgo(next: Algo, triggerEncode: boolean) {
     algo = next;
-    algoBtns.forEach(btn => {
+    algoBtns.forEach((btn) => {
       const active = btn.dataset.algo === algo;
       btn.classList.toggle('bg-[#171717]', active);
       btn.classList.toggle('text-white', active);
@@ -385,38 +565,52 @@ const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'E
     else scheduleDecode();
   }
 
-  algoBtns.forEach(btn => btn.addEventListener('click', () => setAlgo(btn.dataset.algo as Algo, true)));
+  algoBtns.forEach((btn) =>
+    btn.addEventListener('click', () =>
+      setAlgo(btn.dataset.algo as Algo, true),
+    ),
+  );
 
   let t: number | undefined;
   const debounce = (fn: () => void, ms = 120) => {
     if (t) clearTimeout(t);
     t = window.setTimeout(fn, ms);
   };
-  const scheduleDecode = () => debounce(async () => {
-    if (updatingFromDecoded) return;
-    updatingFromEncoded = true;
-    await decodeAndVerify();
-    updatingFromEncoded = false;
-  });
-  const scheduleEncode = () => debounce(async () => {
-    if (updatingFromEncoded) return;
-    updatingFromDecoded = true;
-    await encodeFromDecoded();
-    updatingFromDecoded = false;
-  });
+  const scheduleDecode = () =>
+    debounce(async () => {
+      if (updatingFromDecoded) return;
+      updatingFromEncoded = true;
+      await decodeAndVerify();
+      updatingFromEncoded = false;
+    });
+  const scheduleEncode = () =>
+    debounce(async () => {
+      if (updatingFromEncoded) return;
+      updatingFromDecoded = true;
+      await encodeFromDecoded();
+      updatingFromDecoded = false;
+    });
 
   encoded.addEventListener('input', scheduleDecode);
   headerEl.addEventListener('input', scheduleEncode);
   payloadEl.addEventListener('input', scheduleEncode);
-  secretEl.addEventListener('input', () => { if (isHS(algo)) scheduleEncode(); });
-  secretB64.addEventListener('change', () => { if (isHS(algo)) scheduleEncode(); });
+  secretEl.addEventListener('input', () => {
+    if (isHS(algo)) scheduleEncode();
+  });
+  secretB64.addEventListener('change', () => {
+    if (isHS(algo)) scheduleEncode();
+  });
   pubkeyEl.addEventListener('input', scheduleDecode);
   privkeyEl.addEventListener('input', scheduleEncode);
 
   const loadSample = () => {
     setAlgo('HS256', false);
     headerEl.value = JSON.stringify({ alg: 'HS256', typ: 'JWT' }, null, 2);
-    payloadEl.value = JSON.stringify({ sub: '1234567890', name: 'John Doe', iat: 1516239022 }, null, 2);
+    payloadEl.value = JSON.stringify(
+      { sub: '1234567890', name: 'John Doe', iat: 1516239022 },
+      null,
+      2,
+    );
     secretEl.value = 'your-256-bit-secret';
     secretB64.checked = false;
     scheduleEncode();
@@ -427,7 +621,9 @@ const algos = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'ES256', 'E
     if (!encoded.value) return;
     await navigator.clipboard.writeText(encoded.value);
     copyBtn.textContent = D.i18nCopied ?? 'Copied';
-    setTimeout(() => { copyBtn.textContent = D.i18nCopy ?? 'Copy'; }, 1200);
+    setTimeout(() => {
+      copyBtn.textContent = D.i18nCopy ?? 'Copy';
+    }, 1200);
   });
 
   loadSample();

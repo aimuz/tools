@@ -16,7 +16,11 @@ pub fn calculate_dimensions(
     if !keep_aspect_ratio {
         return (
             if max_width > 0 { max_width } else { orig_width },
-            if max_height > 0 { max_height } else { orig_height },
+            if max_height > 0 {
+                max_height
+            } else {
+                orig_height
+            },
         );
     }
 

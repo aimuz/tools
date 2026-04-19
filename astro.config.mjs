@@ -32,7 +32,8 @@ export default defineConfig({
       manifest: {
         name: 'WizGo',
         short_name: 'WizGo',
-        description: '免费在线工具箱：图片压缩、格式转换、JWT、时间戳等，本地处理不上传',
+        description:
+          '免费在线工具箱：图片压缩、格式转换、JWT、时间戳等，本地处理不上传',
         theme_color: '#171717',
         background_color: '#ffffff',
         display: 'standalone',

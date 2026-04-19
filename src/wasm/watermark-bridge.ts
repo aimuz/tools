@@ -3,11 +3,16 @@
 
 let worker: Worker | null = null;
 let nextId = 1;
-const pending = new Map<number, { resolve: (v: unknown) => void; reject: (e: Error) => void }>();
+const pending = new Map<
+  number,
+  { resolve: (v: unknown) => void; reject: (e: Error) => void }
+>();
 
 function getWorker(): Worker {
   if (!worker) {
-    worker = new Worker(new URL('./watermark-worker.ts', import.meta.url), { type: 'module' });
+    worker = new Worker(new URL('./watermark-worker.ts', import.meta.url), {
+      type: 'module',
+    });
     worker.addEventListener('message', (ev) => {
       const { id, ok, result, error } = ev.data as {
         id: number;
@@ -22,14 +27,19 @@ function getWorker(): Worker {
       else p.reject(new Error(error ?? 'Worker error'));
     });
     worker.addEventListener('error', (ev) => {
-      for (const { reject } of pending.values()) reject(new Error(ev.message || 'Worker error'));
+      for (const { reject } of pending.values())
+        reject(new Error(ev.message || 'Worker error'));
       pending.clear();
     });
   }
   return worker;
 }
 
-function call<T>(op: string, args: unknown[], transfer: Transferable[] = []): Promise<T> {
+function call<T>(
+  op: string,
+  args: unknown[],
+  transfer: Transferable[] = [],
+): Promise<T> {
   const w = getWorker();
   const id = nextId++;
   return new Promise<T>((resolve, reject) => {

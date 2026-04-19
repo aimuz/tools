@@ -73,6 +73,7 @@ export const ja = {
       label: 'メディアツール',
       items: {
         'mp4-to-mp3': { name: 'MP4 から MP3', desc: '動画ファイルから音声を抽出' },
+        'compress-mp3': { name: 'MP3 圧縮', desc: 'ビットレートを下げて MP3 を小さく' },
       },
     },
   },
@@ -196,6 +197,11 @@ export const ja = {
       description: '動画から音声を抽出 · 128-320 kbps',
       tags: ['mp4 から mp3', '動画から mp3', '音声抽出', '動画 音声', 'mp3 変換', 'mp4 to mp3'],
     },
+    'compress-mp3': {
+      name: 'MP3 圧縮',
+      description: 'MP3 を小さくする · ビットレートを下げる',
+      tags: ['MP3 圧縮', 'MP3 サイズ削減', 'MP3 ダイエット', '音声圧縮', 'MP3 ビットレート'],
+    },
     hash: {
       name: 'ハッシュ値生成',
       description: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 をワンクリックで生成',
@@ -234,6 +240,7 @@ export const ja = {
       description: '音声と動画の変換',
       tools: {
         'mp4-to-mp3': { name: 'MP4 から MP3', description: '動画ファイルから音声を抽出' },
+        'compress-mp3': { name: 'MP3 圧縮', description: 'MP3 ファイルサイズを削減' },
       },
     },
   },
@@ -1039,6 +1046,58 @@ export const ja = {
           { q: 'Safari で失敗するのはなぜ？', a: '古い Safari は一部の MP4 内の音声を読めません。Safari を最新にするか、Chrome / Firefox / Edge をご利用ください。' },
           { q: 'サイズ制限はありますか？', a: 'はい、1 ファイル 500MB までです。それ以上は特にスマホでブラウザがフリーズすることがあります。' },
           { q: '複数同時に変換できますか？', a: '今のところできません。1 つずつお願いします。' },
+        ],
+      },
+    },
+    compressMp3: {
+      title: 'オンライン MP3 圧縮 - 音声ファイルサイズを削減 | WizGo',
+      description:
+        'ビットレートを下げて MP3 ファイルを圧縮 · 無料・即時・ブラウザ内完結。アップロード不要・登録不要。',
+      h1: 'MP3 圧縮',
+      subheading: 'ビットレートを下げて MP3 を圧縮 · ローカル処理 · ファイルはデバイスから出ない',
+      schema: {
+        name: 'MP3 圧縮ツール',
+        description: 'ビットレートを下げて MP3 ファイルを圧縮する無料オンラインツール。ブラウザ内 WebAssembly で動作。',
+      },
+      upload: {
+        drag: '音声ファイルをドロップ',
+        orClick: 'またはクリックして選択 (MP3、M4A、WAV、FLAC、OGG)',
+        sizeHint: '最大 500MB · 一度に 1 ファイル',
+      },
+      options: {
+        bitrateLabel: '目標ビットレート：',
+        k64: '音声 · 64k',
+        k96: '音楽 · 96k',
+        k128: '標準 · 128k',
+        k192: '高音質 · 192k',
+        start: '圧縮する',
+      },
+      progress: {
+        preparing: '準備中...',
+        decoding: '音声を読み込み中...',
+        encodingTemplate: '圧縮中 · {pct}%',
+        done: '完了！',
+      },
+      errors: {
+        tooLargeTemplate: 'ファイルが大きすぎます。最大 500MB（現在 {size}）。',
+        decodeFailedSafari:
+          'Safari はこのファイルをデコードできません。Safari をアップデートするか、Chrome / Firefox をお試しください。',
+        decodeFailedGeneric: 'このファイルの音声をデコードできませんでした。',
+      },
+      result: {
+        ready: '圧縮完了',
+        downloadBtn: 'ダウンロード',
+        sizeTemplate: 'サイズ: {size}',
+        reductionTemplate: '{pct}% 削減 · {before} → {after}',
+      },
+      faq: {
+        heading: 'よくある質問',
+        items: [
+          { q: 'どれくらい小さくなりますか？', a: '元のビットレートによります。320kbps を 128kbps にすると約 60% 削減、192kbps を 96kbps にすると約 50% 削減します。' },
+          { q: '音質は落ちますか？', a: 'はい、目標ビットレート次第です。128kbps は多くの音楽でほぼ原音、96kbps はストリーミング向け、64kbps は音声録音専用です。' },
+          { q: '音声はアップロードされますか？', a: 'いいえ。すべてブラウザ内の WebAssembly で処理されます。ファイルはデバイスから出ません。' },
+          { q: 'WAV や FLAC も使えますか？', a: 'はい。ブラウザがデコードできる任意の形式（WAV、FLAC、M4A、OGG）を指定のビットレートで MP3 に変換します。' },
+          { q: '最大ファイルサイズは？', a: '1 ファイル 500MB。大きすぎるとブラウザがフリーズする可能性があります（特にスマホで）。' },
         ],
       },
     },

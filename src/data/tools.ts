@@ -59,6 +59,7 @@ const QUICK_ACTION_ORDER: QuickActionMeta[] = [
   { id: 'watermark', href: '/watermark', isNew: true },
   { id: 'text-watermark', href: '/text-watermark', isNew: true },
   { id: 'mp4-to-mp3', href: '/mp4-to-mp3', isNew: true },
+  { id: 'compress-mp3', href: '/compress-mp3', isNew: true },
 ];
 
 type CategoryToolMeta = {
@@ -96,6 +97,7 @@ const CATEGORY_ORDER: { id: CategoryKey; tools: CategoryToolMeta[] }[] = [
     id: 'media',
     tools: [
       { id: 'mp4-to-mp3', href: '/mp4-to-mp3', isNew: true },
+      { id: 'compress-mp3', href: '/compress-mp3', isNew: true },
     ],
   },
 ];

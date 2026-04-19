@@ -73,6 +73,7 @@ export const zhTW = {
       label: '媒體工具',
       items: {
         'mp4-to-mp3': { name: 'MP4 轉 MP3', desc: '從影片檔案擷取音訊' },
+        'compress-mp3': { name: 'MP3 壓縮', desc: '降低位元率減小 MP3 檔案體積' },
       },
     },
   },
@@ -197,6 +198,11 @@ export const zhTW = {
       description: '從影片中擷取音訊 · 128-320 kbps',
       tags: ['mp4轉mp3', '影片轉mp3', '擷取音訊', '影片轉音訊', 'mp3', '音訊擷取', 'mp4 to mp3'],
     },
+    'compress-mp3': {
+      name: 'MP3 壓縮',
+      description: '減小 MP3 檔案體積 · 降低位元率',
+      tags: ['MP3 壓縮', '壓縮 MP3', '減小 MP3 體積', 'MP3 減肥', '音訊壓縮', 'MP3 位元率'],
+    },
     hash: {
       name: '雜湊值產生器',
       description: '一鍵產生 SHA-1 / SHA-256 / SHA-384 / SHA-512',
@@ -235,6 +241,7 @@ export const zhTW = {
       description: '音訊與影片轉換',
       tools: {
         'mp4-to-mp3': { name: 'MP4 轉 MP3', description: '從影片檔案擷取音訊' },
+        'compress-mp3': { name: 'MP3 壓縮', description: '減小 MP3 檔案體積' },
       },
     },
   },
@@ -1039,6 +1046,58 @@ export const zhTW = {
           { q: '為什麼 Safari 有時會失敗？', a: '舊版 Safari 讀不出某些 MP4 裡的聲音。把 Safari 升到新版，或者改用 Chrome、Firefox、Edge。' },
           { q: '有大小限制嗎？', a: '有，單檔最大 500MB。再大可能讓瀏覽器卡死，特別是在手機上。' },
           { q: '可以一次轉好幾個嗎？', a: '暫時還不行，目前一次只能轉一個。' },
+        ],
+      },
+    },
+    compressMp3: {
+      title: '線上壓縮 MP3 - 減小音訊檔案體積 | WizGo',
+      description:
+        '降低位元率壓縮 MP3 檔案 · 免費、即時、瀏覽器內完成。不需上傳、不需註冊。',
+      h1: 'MP3 體積壓縮',
+      subheading: '降低位元率壓縮 MP3 · 本地處理 · 檔案不離開你的裝置',
+      schema: {
+        name: 'MP3 壓縮工具',
+        description: '免費線上工具，通過降低位元率壓縮 MP3 檔案。瀏覽器內 WebAssembly 執行。',
+      },
+      upload: {
+        drag: '拖入音訊檔案',
+        orClick: '或點擊選擇 (MP3、M4A、WAV、FLAC、OGG)',
+        sizeHint: '最大 500MB · 一次一個檔案',
+      },
+      options: {
+        bitrateLabel: '目標位元率：',
+        k64: '語音 · 64k',
+        k96: '音樂 · 96k',
+        k128: '標準 · 128k',
+        k192: '高品 · 192k',
+        start: '開始壓縮',
+      },
+      progress: {
+        preparing: '準備中...',
+        decoding: '讀取音訊...',
+        encodingTemplate: '壓縮中 · {pct}%',
+        done: '完成！',
+      },
+      errors: {
+        tooLargeTemplate: '檔案太大，最大 500MB（當前 {size}）。',
+        decodeFailedSafari:
+          'Safari 無法解碼此檔案。請升級 Safari 或改用 Chrome / Firefox。',
+        decodeFailedGeneric: '無法解碼此檔案中的音訊。',
+      },
+      result: {
+        ready: '壓縮完成',
+        downloadBtn: '下載',
+        sizeTemplate: '大小：{size}',
+        reductionTemplate: '節省 {pct}% · {before} → {after}',
+      },
+      faq: {
+        heading: '常見問題',
+        items: [
+          { q: 'MP3 能壓縮多少？', a: '取決於原始位元率。320kbps 壓到 128kbps 約省 60%；192kbps 壓到 96kbps 約省 50%。' },
+          { q: '會損失音質嗎？', a: '會，但多少取決於目標位元率。128kbps 對多數音樂接近原聲，96kbps 對串流夠用，64kbps 僅建議用於語音。' },
+          { q: '音訊會上傳嗎？', a: '不會。一切在你的瀏覽器中用 WebAssembly 處理，檔案不離開裝置。' },
+          { q: '可以壓 WAV、FLAC 嗎？', a: '可以。任何瀏覽器能解碼的音訊格式（WAV、FLAC、M4A、OGG）都會被轉成 MP3。' },
+          { q: '檔案大小上限？', a: '每個檔案 500MB。超大檔案可能卡瀏覽器，尤其是手機。' },
         ],
       },
     },

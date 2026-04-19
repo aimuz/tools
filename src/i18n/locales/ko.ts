@@ -73,6 +73,7 @@ export const ko = {
       label: '미디어 도구',
       items: {
         'mp4-to-mp3': { name: 'MP4 → MP3', desc: '동영상 파일에서 오디오 추출' },
+        'compress-mp3': { name: 'MP3 압축', desc: '비트레이트 낮춰 MP3 크기 줄이기' },
       },
     },
   },
@@ -196,6 +197,11 @@ export const ko = {
       description: '동영상에서 오디오 추출 · 128-320 kbps',
       tags: ['mp4 mp3 변환', '동영상 mp3', '오디오 추출', '비디오 오디오', 'mp3 변환', 'mp4 to mp3'],
     },
+    'compress-mp3': {
+      name: 'MP3 압축',
+      description: 'MP3 파일 크기 줄이기 · 비트레이트 낮추기',
+      tags: ['MP3 압축', 'MP3 용량 줄이기', 'MP3 다이어트', '오디오 압축', 'MP3 비트레이트'],
+    },
     hash: {
       name: '해시 생성기',
       description: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 한 번에 생성',
@@ -234,6 +240,7 @@ export const ko = {
       description: '오디오 및 비디오 변환',
       tools: {
         'mp4-to-mp3': { name: 'MP4를 MP3로', description: '비디오 파일에서 오디오 추출' },
+        'compress-mp3': { name: 'MP3 압축', description: 'MP3 파일 크기 감소' },
       },
     },
   },
@@ -1039,6 +1046,58 @@ export const ko = {
           { q: 'Safari에서 가끔 실패하는 이유는?', a: '구버전 Safari는 일부 MP4의 소리를 읽지 못해요. Safari를 최신으로 업데이트하거나, Chrome / Firefox / Edge로 열어보세요.' },
           { q: '용량 제한이 있나요?', a: '네, 한 파일에 500MB까지요. 더 크면 특히 휴대폰에서 브라우저가 멈출 수 있어요.' },
           { q: '여러 개를 한 번에 변환할 수 있나요?', a: '아직은 안 돼요. 지금은 한 번에 하나씩만 가능합니다.' },
+        ],
+      },
+    },
+    compressMp3: {
+      title: '온라인 MP3 압축 - 오디오 파일 크기 감소 | WizGo',
+      description:
+        '비트레이트를 낮춰 MP3 파일 압축 · 무료, 즉시, 브라우저에서 완료. 업로드 불필요, 가입 불필요.',
+      h1: 'MP3 압축',
+      subheading: '비트레이트를 낮춰 MP3 압축 · 로컬 처리 · 파일이 기기를 떠나지 않음',
+      schema: {
+        name: 'MP3 압축 도구',
+        description: '비트레이트를 낮춰 MP3 파일을 압축하는 무료 온라인 도구. 브라우저 내 WebAssembly로 실행.',
+      },
+      upload: {
+        drag: '오디오 파일을 드롭하세요',
+        orClick: '또는 클릭하여 선택 (MP3, M4A, WAV, FLAC, OGG)',
+        sizeHint: '최대 500MB · 한 번에 한 파일',
+      },
+      options: {
+        bitrateLabel: '목표 비트레이트:',
+        k64: '음성 · 64k',
+        k96: '음악 · 96k',
+        k128: '표준 · 128k',
+        k192: '고음질 · 192k',
+        start: '압축',
+      },
+      progress: {
+        preparing: '준비 중...',
+        decoding: '오디오 읽는 중...',
+        encodingTemplate: '압축 중 · {pct}%',
+        done: '완료!',
+      },
+      errors: {
+        tooLargeTemplate: '파일이 너무 큽니다. 최대 500MB (현재 {size}).',
+        decodeFailedSafari:
+          'Safari가 이 파일을 디코딩할 수 없습니다. Safari를 업데이트하거나 Chrome / Firefox를 사용해 보세요.',
+        decodeFailedGeneric: '이 파일의 오디오를 디코딩할 수 없습니다.',
+      },
+      result: {
+        ready: '압축 완료',
+        downloadBtn: '다운로드',
+        sizeTemplate: '크기: {size}',
+        reductionTemplate: '{pct}% 절약 · {before} → {after}',
+      },
+      faq: {
+        heading: '자주 묻는 질문',
+        items: [
+          { q: '얼마나 작아지나요?', a: '원본 비트레이트에 따라 다릅니다. 320kbps를 128kbps로 압축하면 약 60% 감소, 192kbps를 96kbps로 압축하면 약 50% 감소합니다.' },
+          { q: '음질이 떨어지나요?', a: '예, 목표 비트레이트에 따라 다릅니다. 128kbps는 대부분의 음악에서 원음에 가깝고, 96kbps는 스트리밍용, 64kbps는 음성 녹음 전용입니다.' },
+          { q: '오디오가 업로드되나요?', a: '아니요. 모든 것은 브라우저의 WebAssembly에서 처리됩니다. 파일이 기기를 떠나지 않습니다.' },
+          { q: 'WAV, FLAC도 사용할 수 있나요?', a: '예. 브라우저가 디코딩할 수 있는 모든 형식(WAV, FLAC, M4A, OGG)을 선택한 비트레이트로 MP3로 변환합니다.' },
+          { q: '최대 파일 크기는?', a: '파일당 500MB. 더 큰 파일은 브라우저를 멈추게 할 수 있습니다 (특히 모바일에서).' },
         ],
       },
     },

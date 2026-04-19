@@ -73,6 +73,7 @@ export const zhCN = {
       label: '媒体工具',
       items: {
         'mp4-to-mp3': { name: 'MP4 转 MP3', desc: '从视频文件提取音频' },
+        'compress-mp3': { name: 'MP3 压缩', desc: '降低比特率减小 MP3 文件体积' },
       },
     },
   },
@@ -197,6 +198,11 @@ export const zhCN = {
       description: '从视频中提取音频 · 128-320 kbps',
       tags: ['mp4转mp3', '视频转mp3', '提取音频', '视频转音频', 'mp3', '音频提取', 'mp4 to mp3'],
     },
+    'compress-mp3': {
+      name: 'MP3 压缩',
+      description: '减小 MP3 文件体积 · 降低比特率',
+      tags: ['MP3 压缩', '压缩 MP3', '减小 MP3 体积', 'MP3 瘦身', '音频压缩', 'MP3 比特率'],
+    },
     hash: {
       name: '哈希值生成',
       description: '一键生成 SHA-1 / SHA-256 / SHA-384 / SHA-512',
@@ -235,6 +241,7 @@ export const zhCN = {
       description: '音频和视频转换',
       tools: {
         'mp4-to-mp3': { name: 'MP4 转 MP3', description: '从视频文件提取音频' },
+        'compress-mp3': { name: 'MP3 压缩', description: '减小 MP3 文件体积' },
       },
     },
   },
@@ -1039,6 +1046,58 @@ export const zhCN = {
           { q: '为什么 Safari 上有时候会失败？', a: '老版本的 Safari 读不出某些 MP4 里的声音。把 Safari 升到新版，或者改用 Chrome、Firefox、Edge。' },
           { q: '有大小限制吗？', a: '有，单个文件最大 500MB。再大可能让浏览器卡死，尤其在手机上。' },
           { q: '可以一次转好几个吗？', a: '暂时还不行，目前一次只能转一个。' },
+        ],
+      },
+    },
+    compressMp3: {
+      title: '在线压缩 MP3 - 减小音频文件体积 | WizGo',
+      description:
+        '降低比特率压缩 MP3 文件 · 免费、即时、浏览器内完成。无需上传、无需注册。',
+      h1: 'MP3 体积压缩',
+      subheading: '降低比特率压缩 MP3 · 本地处理 · 文件不离开你的设备',
+      schema: {
+        name: 'MP3 压缩工具',
+        description: '免费在线工具，通过降低比特率压缩 MP3 文件。浏览器内 WebAssembly 运行。',
+      },
+      upload: {
+        drag: '拖入音频文件',
+        orClick: '或点击选择 (MP3、M4A、WAV、FLAC、OGG)',
+        sizeHint: '最大 500MB · 一次一个文件',
+      },
+      options: {
+        bitrateLabel: '目标比特率：',
+        k64: '语音 · 64k',
+        k96: '音乐 · 96k',
+        k128: '标准 · 128k',
+        k192: '高品 · 192k',
+        start: '开始压缩',
+      },
+      progress: {
+        preparing: '准备中...',
+        decoding: '读取音频...',
+        encodingTemplate: '压缩中 · {pct}%',
+        done: '完成！',
+      },
+      errors: {
+        tooLargeTemplate: '文件太大，最大 500MB（当前 {size}）。',
+        decodeFailedSafari:
+          'Safari 无法解码此文件。请升级 Safari 或改用 Chrome / Firefox。',
+        decodeFailedGeneric: '无法解码此文件中的音频。',
+      },
+      result: {
+        ready: '压缩完成',
+        downloadBtn: '下载',
+        sizeTemplate: '大小：{size}',
+        reductionTemplate: '节省 {pct}% · {before} → {after}',
+      },
+      faq: {
+        heading: '常见问题',
+        items: [
+          { q: 'MP3 能压缩多少？', a: '取决于原始比特率。320kbps 压到 128kbps 大约省 60%；192kbps 压到 96kbps 大约省 50%。' },
+          { q: '会损失音质吗？', a: '会，但多少取决于目标比特率。128kbps 对多数音乐接近原声，96kbps 对流媒体够用，64kbps 仅建议用于语音。' },
+          { q: '音频会上传吗？', a: '不会。一切在你的浏览器里用 WebAssembly 处理，文件不离开设备。' },
+          { q: '可以压 WAV、FLAC 吗？', a: '可以。任何浏览器能解码的音频格式（WAV、FLAC、M4A、OGG）都会被转成 MP3。' },
+          { q: '文件大小上限？', a: '每个文件 500MB。超大文件可能卡浏览器，尤其是手机。' },
         ],
       },
     },

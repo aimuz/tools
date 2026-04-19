@@ -30,7 +30,8 @@ export type QuickActionKey =
   | 'any-compress'
   | 'watermark'
   | 'text-watermark'
-  | 'mp4-to-mp3';
+  | 'mp4-to-mp3'
+  | 'compress-mp3';
 
 export type CategoryToolKey =
   | 'compress'
@@ -47,7 +48,8 @@ export type CategoryToolKey =
   | 'color'
   | 'qrcode'
   | 'hash'
-  | 'mp4-to-mp3';
+  | 'mp4-to-mp3'
+  | 'compress-mp3';
 
 export type CategoryKey = 'image' | 'code' | 'media';
 
@@ -70,7 +72,8 @@ export type NavItemKey =
   | 'color'
   | 'qrcode'
   | 'hash'
-  | 'mp4-to-mp3';
+  | 'mp4-to-mp3'
+  | 'compress-mp3';
 
 export type CompressFormat = 'png' | 'jpg' | 'webp';
 
@@ -694,6 +697,38 @@ export type Translations = {
         ready: string;
         downloadBtn: string;
         sizeTemplate: string;
+      };
+      faq: {
+        heading: string;
+        items: { q: string; a: string }[];
+      };
+    };
+    compressMp3: {
+      title: string;
+      description: string;
+      h1: string;
+      subheading: string;
+      schema: { name: string; description: string };
+      upload: { drag: string; orClick: string; sizeHint: string };
+      options: {
+        bitrateLabel: string;
+        k64: string;
+        k96: string;
+        k128: string;
+        k192: string;
+        start: string;
+      };
+      progress: { preparing: string; decoding: string; encodingTemplate: string; done: string };
+      errors: {
+        tooLargeTemplate: string;
+        decodeFailedSafari: string;
+        decodeFailedGeneric: string;
+      };
+      result: {
+        ready: string;
+        downloadBtn: string;
+        sizeTemplate: string;
+        reductionTemplate: string;
       };
       faq: {
         heading: string;

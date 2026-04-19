@@ -74,6 +74,7 @@ export const es = {
       label: 'Herramientas Multimedia',
       items: {
         'mp4-to-mp3': { name: 'MP4 a MP3', desc: 'Extrae audio de archivos de video' },
+        'compress-mp3': { name: 'Comprimir MP3', desc: 'Reduce el tamaño del MP3 bajando el bitrate' },
       },
     },
   },
@@ -197,6 +198,11 @@ export const es = {
       description: 'Extrae audio de vídeo · 128-320 kbps',
       tags: ['mp4 a mp3', 'vídeo a mp3', 'extraer audio', 'audio de vídeo', 'convertidor mp3', 'mp4 to mp3'],
     },
+    'compress-mp3': {
+      name: 'Comprimir MP3',
+      description: 'Reduce el tamaño de MP3 · baja el bitrate',
+      tags: ['comprimir mp3', 'reducir tamaño mp3', 'compresor mp3', 'compresión audio', 'mp3 bitrate'],
+    },
     hash: {
       name: 'Generador de Hash',
       description: 'Genera SHA-1 / SHA-256 / SHA-384 / SHA-512 con un clic',
@@ -235,6 +241,7 @@ export const es = {
       description: 'Conversión de audio y vídeo',
       tools: {
         'mp4-to-mp3': { name: 'MP4 a MP3', description: 'Extrae el audio de un vídeo' },
+        'compress-mp3': { name: 'Comprimir MP3', description: 'Reduce el tamaño de archivos MP3' },
       },
     },
   },
@@ -1041,6 +1048,58 @@ export const es = {
           { q: '¿Por qué a veces falla en Safari?', a: 'Las versiones antiguas de Safari no leen el audio de algunos MP4. Actualiza Safari, o abre la página en Chrome, Firefox o Edge.' },
           { q: '¿Hay un límite de tamaño?', a: 'Sí: 500MB por archivo. Más allá de eso el navegador puede colgarse, sobre todo en el móvil.' },
           { q: '¿Puedo convertir varios vídeos a la vez?', a: 'Aún no. De momento, uno por uno.' },
+        ],
+      },
+    },
+    compressMp3: {
+      title: 'Comprimir MP3 Online - Reduce el tamaño del audio | WizGo',
+      description:
+        'Reduce el tamaño de archivos MP3 re-codificando a menor bitrate · gratis, instantáneo, en tu navegador. Sin subidas, sin registro.',
+      h1: 'Compresor de MP3',
+      subheading: 'Reduce el tamaño de MP3 bajando el bitrate · se ejecuta en tu dispositivo · nada se sube',
+      schema: {
+        name: 'Compresor de MP3',
+        description: 'Herramienta online gratuita para comprimir archivos MP3 re-codificando a un bitrate más bajo. Funciona en tu navegador con WebAssembly.',
+      },
+      upload: {
+        drag: 'Suelta un archivo de audio aquí',
+        orClick: 'o haz clic para elegir (MP3, M4A, WAV, FLAC, OGG)',
+        sizeHint: 'Hasta 500MB · un archivo a la vez',
+      },
+      options: {
+        bitrateLabel: 'Bitrate objetivo:',
+        k64: 'Voz · 64k',
+        k96: 'Música · 96k',
+        k128: 'Estándar · 128k',
+        k192: 'Alta · 192k',
+        start: 'Comprimir',
+      },
+      progress: {
+        preparing: 'Preparando...',
+        decoding: 'Leyendo el audio...',
+        encodingTemplate: 'Comprimiendo · {pct}%',
+        done: '¡Listo!',
+      },
+      errors: {
+        tooLargeTemplate: 'El archivo es demasiado grande. Tamaño máximo 500MB (el tuyo es {size}).',
+        decodeFailedSafari:
+          'Safari no pudo leer este archivo. Actualiza Safari o prueba en Chrome o Firefox.',
+        decodeFailedGeneric: 'No se pudo leer el audio de este archivo.',
+      },
+      result: {
+        ready: 'Tu MP3 comprimido está listo',
+        downloadBtn: 'Descargar',
+        sizeTemplate: 'Tamaño: {size}',
+        reductionTemplate: 'Ahorrado {pct}% · {before} → {after}',
+      },
+      faq: {
+        heading: 'Preguntas frecuentes',
+        items: [
+          { q: '¿Cuánto se reducirá mi MP3?', a: 'Depende del bitrate original. Un MP3 de 320kbps comprimido a 128kbps se reduce aproximadamente un 60%. De 192kbps a 96kbps ahorra cerca del 50%.' },
+          { q: '¿Bajará la calidad?', a: 'Sí, pero depende del bitrate objetivo. 128kbps suena casi original para la mayoría de música, 96kbps está bien para streaming, 64kbps es solo para grabaciones de voz.' },
+          { q: '¿Se sube mi audio?', a: 'No. Todo sucede en tu navegador con WebAssembly. El archivo nunca sale de tu dispositivo.' },
+          { q: '¿Puedo usar archivos WAV o FLAC?', a: 'Sí. Cualquier formato que tu navegador pueda decodificar (WAV, FLAC, M4A, OGG) se convertirá a MP3 en el bitrate elegido.' },
+          { q: '¿Cuál es el tamaño máximo?', a: '500MB por archivo. Archivos más grandes pueden congelar tu navegador, especialmente en móviles.' },
         ],
       },
     },

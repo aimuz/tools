@@ -6,7 +6,10 @@
 export interface EncodeMp3Options {
   channels: 1 | 2;
   sampleRate: number;
-  kbps: 128 | 192 | 256 | 320;
+  // Any standard LAME/MPEG-1 Layer III bitrate: 32, 40, 48, 56, 64, 80, 96,
+  // 112, 128, 160, 192, 224, 256, 320. Caller is responsible for picking a
+  // sensible value; shine-rs validates at encoder-init time.
+  kbps: number;
   left: Int16Array;
   right: Int16Array | null;
   onProgress?: (pct: number) => void;

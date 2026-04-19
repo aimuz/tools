@@ -1,5 +1,5 @@
 [build]
 rustflags = [
-    "-C", "target-feature=+bulk-memory,+mutable-globals,+sign-ext,+reference-types,+simd128",
+    "-C", "target-feature=+bulk-memory,+mutable-globals,+sign-ext,+reference-types",
     "-Z", "unstable-options"
 ]

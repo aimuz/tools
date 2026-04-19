@@ -56,8 +56,7 @@ build_crate() {
       --enable-nontrapping-float-to-int \
       --enable-reference-types \
       --enable-sign-ext \
-      --enable-mutable-globals \
-      --enable-simd
+      --enable-mutable-globals
   else
     cp "$wasm_in" "$wasm_out"
   fi

@@ -5,15 +5,11 @@
 // Expected DOM: #upload-zone, #file-input, #options, #file-list, #convert-btn,
 // #progress, .progress-fill, #progress-label, #results, .bitrate-btn[data-bitrate].
 
-import { Mp3Encoder } from '@breezystack/lamejs';
+import { encodeMp3 } from '../wasm/mp3-bridge';
 
 type Bitrate = 128 | 192 | 256 | 320;
 
 const MAX_BYTES = 500 * 1024 * 1024;
-const FRAME_SIZE = 1152;
-// Yield to the UI roughly every ~200ms of audio at common sample rates
-// (44.1k / 1152 ≈ 38 frames; tune by chunks of frames between yields).
-const FRAMES_PER_YIELD = 8;
 
 export interface Mp4ToMp3Labels {
   preparing: string;
@@ -203,33 +199,21 @@ export function initMp4ToMp3Page(opts: Mp4ToMp3Options = {}) {
   }
 
   async function encode(audio: AudioBuffer, kbps: Bitrate): Promise<Blob> {
-    const channels = Math.min(2, audio.numberOfChannels);
+    const channels = (Math.min(2, audio.numberOfChannels) as 1 | 2);
     const sampleRate = audio.sampleRate;
     const left = floatToInt16(audio.getChannelData(0));
     const right = channels === 2 ? floatToInt16(audio.getChannelData(1)) : null;
 
-    const encoder = new Mp3Encoder(channels, sampleRate, kbps);
-    const chunks: Uint8Array[] = [];
-    const totalFrames = Math.ceil(left.length / FRAME_SIZE);
-    let frameCount = 0;
-
-    for (let i = 0; i < left.length; i += FRAME_SIZE) {
-      const l = left.subarray(i, i + FRAME_SIZE);
-      const r = right ? right.subarray(i, i + FRAME_SIZE) : undefined;
-      const out = right ? encoder.encodeBuffer(l, r) : encoder.encodeBuffer(l);
-      if (out.length > 0) chunks.push(out);
-      frameCount++;
-      if (frameCount % FRAMES_PER_YIELD === 0) {
-        const pct = Math.round((frameCount / totalFrames) * 100);
-        setProgress(pct, interpolate(labels.encodingTemplate, { pct }));
-        await new Promise((r) => setTimeout(r, 0));
-      }
-    }
-    const tail = encoder.flush();
-    if (tail.length > 0) chunks.push(tail);
+    const blob = await encodeMp3({
+      channels,
+      sampleRate,
+      kbps,
+      left,
+      right,
+      onProgress: (pct) => setProgress(pct, interpolate(labels.encodingTemplate, { pct })),
+    });
     setProgress(100, labels.done);
-
-    return new Blob(chunks as BlobPart[], { type: 'audio/mpeg' });
+    return blob;
   }
 
   function renderResult(file: File, blob: Blob, _kbps: Bitrate) {

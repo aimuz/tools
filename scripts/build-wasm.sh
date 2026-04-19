@@ -64,6 +64,7 @@ build_crate() {
 
 build_crate image image_tools
 build_crate watermark watermark
+build_crate mp3 mp3_encode
 
 echo ""
 echo "==> wasm sizes"

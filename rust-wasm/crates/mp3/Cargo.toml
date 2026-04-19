@@ -1,0 +1,20 @@
+[package]
+name = "mp3-encode"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen.workspace = true
+js-sys.workspace = true
+shine-rs = "0.1"
+console_error_panic_hook = { workspace = true, optional = true }
+
+[features]
+default = []
+debug-panics = ["dep:console_error_panic_hook"]
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false

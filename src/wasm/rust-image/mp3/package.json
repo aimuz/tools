@@ -1,0 +1,15 @@
+{
+  "name": "mp3-encode",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "mp3_encode_bg.wasm",
+    "mp3_encode.js",
+    "mp3_encode.d.ts"
+  ],
+  "main": "mp3_encode.js",
+  "types": "mp3_encode.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

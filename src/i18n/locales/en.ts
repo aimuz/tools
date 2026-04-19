@@ -113,6 +113,10 @@ export const en = {
           name: 'Hash Generator',
           desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 checksums',
         },
+        password: {
+          name: 'Password Generator',
+          desc: 'Generate strong random passwords',
+        },
       },
     },
     media: {
@@ -316,6 +320,18 @@ export const en = {
         'file integrity',
       ],
     },
+    password: {
+      name: 'Password Generator',
+      description: 'Generate strong random passwords with customizable options',
+      tags: [
+        'password generator',
+        'random password',
+        'strong password',
+        'secure password',
+        'password creator',
+        'generate password',
+      ],
+    },
   },
   toolCategories: {
     image: {
@@ -374,6 +390,10 @@ export const en = {
         hash: {
           name: 'Hash Generator',
           description: 'SHA family checksums for text and files',
+        },
+        password: {
+          name: 'Password Generator',
+          description: 'Generate strong random passwords',
         },
       },
     },
@@ -1473,6 +1493,63 @@ export const en = {
             a: '500MB per file. Larger files may freeze your browser, especially on mobile.',
           },
         ],
+      },
+    },
+    password: {
+      title: 'Password Generator - Create Strong Random Passwords | WizGo',
+      description:
+        'Free online password generator. Create strong random passwords with customizable length and character types (uppercase, lowercase, numbers, symbols). Exclude similar and ambiguous characters. Runs locally in your browser.',
+      h1: 'Password Generator',
+      subheading:
+        'Generate strong random passwords · customize length and character types · runs locally',
+      schema: {
+        name: 'Password Generator',
+        description:
+          'Generate strong random passwords with customizable options',
+      },
+      modeLabel: 'Password type',
+      mode: {
+        random: 'Random password',
+        passphrase: 'Passphrase',
+      },
+      lengthLabel: 'Password length',
+      wordCountLabel: 'Word count',
+      charTypesLabel: 'Character types',
+      charTypes: {
+        uppercase: 'Uppercase (A-Z)',
+        lowercase: 'Lowercase (a-z)',
+        numbers: 'Numbers (0-9)',
+        symbols: 'Symbols (!@#$%)',
+      },
+      separatorLabel: 'Separator',
+      separators: {
+        hyphen: 'Hyphen (-)',
+        underscore: 'Underscore (_)',
+        space: 'Space ( )',
+        period: 'Period (.)',
+        number: 'Random number',
+      },
+      advanced: {
+        label: 'Advanced options',
+        excludeSimilar: 'Exclude similar characters (i, l, 1, L, o, 0, O)',
+        excludeAmbiguous:
+          'Exclude ambiguous symbols ({ } [ ] ( ) / \\ \' " ` ~ , ; : . < >)',
+      },
+      generateBtn: 'Generate password',
+      copyBtn: 'Copy',
+      copiedBtn: 'Copied',
+      regenerateBtn: 'Regenerate',
+      resultLabel: 'Generated password',
+      strength: {
+        label: 'Password strength',
+        weak: 'Weak',
+        fair: 'Fair',
+        good: 'Good',
+        strong: 'Strong',
+      },
+      info: {
+        heading: 'Password security tips',
+        body: 'Longer passwords are more secure. We recommend at least 12 characters with a mix of uppercase, lowercase, numbers, and symbols. Never reuse passwords across multiple sites. Consider using a password manager to store your generated passwords.',
       },
     },
   },

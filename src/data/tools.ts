@@ -58,6 +58,7 @@ const QUICK_ACTION_ORDER: QuickActionMeta[] = [
   { id: 'color', href: '/color', isNew: true },
   { id: 'qrcode', href: '/qrcode', isNew: true },
   { id: 'hash', href: '/hash', isNew: true },
+  { id: 'password', href: '/password', isNew: true },
   { id: 'any-convert', href: '/convert' },
   { id: 'any-compress', href: '/compress' },
   { id: 'watermark', href: '/watermark', isNew: true },
@@ -95,6 +96,7 @@ const CATEGORY_ORDER: { id: CategoryKey; tools: CategoryToolMeta[] }[] = [
       { id: 'color', href: '/color', isNew: true },
       { id: 'qrcode', href: '/qrcode', isNew: true },
       { id: 'hash', href: '/hash', isNew: true },
+      { id: 'password', href: '/password', isNew: true },
     ],
   },
   {

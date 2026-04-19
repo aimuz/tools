@@ -97,6 +97,10 @@ export const ja = {
           name: 'ハッシュ値生成',
           desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 チェックサム',
         },
+        password: {
+          name: 'パスワード生成',
+          desc: '強力なランダムパスワードを生成',
+        },
       },
     },
     media: {
@@ -321,6 +325,18 @@ export const ja = {
         'checksum',
       ],
     },
+    password: {
+      name: 'パスワード生成',
+      description: 'カスタマイズ可能な強力なランダムパスワードを生成',
+      tags: [
+        'パスワード生成',
+        'ランダムパスワード',
+        '強力なパスワード',
+        'password generator',
+        '安全なパスワード',
+        'パスワード作成',
+      ],
+    },
   },
   toolCategories: {
     image: {
@@ -376,6 +392,10 @@ export const ja = {
         hash: {
           name: 'ハッシュ値生成',
           description: 'テキストとファイルの SHA チェックサム',
+        },
+        password: {
+          name: 'パスワード生成',
+          description: '強力なランダムパスワードを生成',
         },
       },
     },
@@ -1456,6 +1476,63 @@ export const ja = {
             a: '1 ファイル 500MB。大きすぎるとブラウザがフリーズする可能性があります（特にスマホで）。',
           },
         ],
+      },
+    },
+    password: {
+      title:
+        'パスワード生成 - 強力なランダムパスワードをオンラインで生成 | WizGo',
+      description:
+        '無料のオンラインパスワード生成ツール。長さと文字タイプ（大文字、小文字、数字、記号）をカスタマイズして強力なランダムパスワードを生成。類似文字とあいまいな記号を除外可能。ブラウザ内でローカル生成、アップロードなし。',
+      h1: 'パスワード生成',
+      subheading:
+        '強力なランダムパスワードを生成 · 長さと文字タイプをカスタマイズ · ローカル生成',
+      schema: {
+        name: 'パスワード生成',
+        description: 'カスタマイズ可能な強力なランダムパスワードを生成',
+      },
+      modeLabel: 'パスワードタイプ',
+      mode: {
+        random: 'ランダムパスワード',
+        passphrase: 'パスフレーズ',
+      },
+      lengthLabel: 'パスワードの長さ',
+      wordCountLabel: '単語数',
+      charTypesLabel: '文字タイプ',
+      separatorLabel: '区切り文字',
+      separators: {
+        hyphen: 'ハイフン (-)',
+        underscore: 'アンダースコア (_)',
+        space: 'スペース ( )',
+        period: 'ピリオド (.)',
+        number: 'ランダム数字',
+      },
+      charTypes: {
+        uppercase: '大文字 (A-Z)',
+        lowercase: '小文字 (a-z)',
+        numbers: '数字 (0-9)',
+        symbols: '記号 (!@#$%)',
+      },
+      advanced: {
+        label: '詳細設定',
+        excludeSimilar: '類似文字を除外 (i, l, 1, L, o, 0, O)',
+        excludeAmbiguous:
+          'あいまいな記号を除外 ({ } [ ] ( ) / \\ \' " ` ~ , ; : . < >)',
+      },
+      generateBtn: 'パスワードを生成',
+      copyBtn: 'コピー',
+      copiedBtn: 'コピーしました',
+      regenerateBtn: '再生成',
+      resultLabel: '生成されたパスワード',
+      strength: {
+        label: 'パスワード強度',
+        weak: '弱い',
+        fair: '普通',
+        good: '良好',
+        strong: '強い',
+      },
+      info: {
+        heading: 'パスワードのセキュリティヒント',
+        body: 'パスワードは長いほど安全です。少なくとも 12 文字以上で、大文字・小文字・数字・記号の組み合わせを推奨します。複数のサイトで同じパスワードを使い回さないでください。生成したパスワードはパスワード管理ツールで保存することを検討してください。',
       },
     },
   },

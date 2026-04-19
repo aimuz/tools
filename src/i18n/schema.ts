@@ -26,6 +26,7 @@ export type QuickActionKey =
   | 'color'
   | 'qrcode'
   | 'hash'
+  | 'password'
   | 'any-convert'
   | 'any-compress'
   | 'watermark'
@@ -48,6 +49,7 @@ export type CategoryToolKey =
   | 'color'
   | 'qrcode'
   | 'hash'
+  | 'password'
   | 'mp4-to-mp3'
   | 'compress-mp3';
 
@@ -72,6 +74,7 @@ export type NavItemKey =
   | 'color'
   | 'qrcode'
   | 'hash'
+  | 'password'
   | 'mp4-to-mp3'
   | 'compress-mp3';
 
@@ -718,6 +721,56 @@ export type Translations = {
         hashFailed: string;
       };
       tips: { heading: string; items: string[] };
+    };
+    password: {
+      title: string;
+      description: string;
+      h1: string;
+      subheading: string;
+      schema: { name: string; description: string };
+      modeLabel: string;
+      mode: {
+        random: string;
+        passphrase: string;
+      };
+      lengthLabel: string;
+      wordCountLabel: string;
+      charTypesLabel: string;
+      charTypes: {
+        uppercase: string;
+        lowercase: string;
+        numbers: string;
+        symbols: string;
+      };
+      separatorLabel: string;
+      separators: {
+        hyphen: string;
+        underscore: string;
+        space: string;
+        period: string;
+        number: string;
+      };
+      advanced: {
+        label: string;
+        excludeSimilar: string;
+        excludeAmbiguous: string;
+      };
+      generateBtn: string;
+      copyBtn: string;
+      copiedBtn: string;
+      regenerateBtn: string;
+      resultLabel: string;
+      strength: {
+        label: string;
+        weak: string;
+        fair: string;
+        good: string;
+        strong: string;
+      };
+      info: {
+        heading: string;
+        body: string;
+      };
     };
     mp4ToMp3: {
       title: string;

@@ -126,6 +126,10 @@ export const es = {
           name: 'Generador de Hash',
           desc: 'Sumas SHA-1 / SHA-256 / SHA-384 / SHA-512',
         },
+        password: {
+          name: 'Generador de Contraseñas',
+          desc: 'Genera contraseñas aleatorias seguras',
+        },
       },
     },
     media: {
@@ -351,6 +355,19 @@ export const es = {
         'integridad de archivo',
       ],
     },
+    password: {
+      name: 'Generador de Contraseñas',
+      description:
+        'Genera contraseñas aleatorias seguras con opciones personalizables',
+      tags: [
+        'generador de contraseñas',
+        'contraseña aleatoria',
+        'contraseña segura',
+        'password generator',
+        'contraseña fuerte',
+        'crear contraseña',
+      ],
+    },
   },
   toolCategories: {
     image: {
@@ -409,6 +426,10 @@ export const es = {
         hash: {
           name: 'Generador de Hash',
           description: 'Sumas SHA para texto y archivos',
+        },
+        password: {
+          name: 'Generador de Contraseñas',
+          description: 'Genera contraseñas aleatorias seguras',
         },
       },
     },
@@ -1514,6 +1535,63 @@ export const es = {
             a: '500MB por archivo. Archivos más grandes pueden congelar tu navegador, especialmente en móviles.',
           },
         ],
+      },
+    },
+    password: {
+      title: 'Generador de Contraseñas - Crea contraseñas seguras | WizGo',
+      description:
+        'Generador de contraseñas en línea gratuito. Crea contraseñas aleatorias seguras con longitud y tipos de caracteres personalizables (mayúsculas, minúsculas, números, símbolos). Excluye caracteres similares y símbolos ambiguos. Se ejecuta localmente en tu navegador.',
+      h1: 'Generador de Contraseñas',
+      subheading:
+        'Genera contraseñas aleatorias seguras · personaliza longitud y tipos de caracteres · se ejecuta localmente',
+      schema: {
+        name: 'Generador de Contraseñas',
+        description:
+          'Genera contraseñas aleatorias seguras con opciones personalizables',
+      },
+      modeLabel: 'Tipo de contraseña',
+      mode: {
+        random: 'Contraseña aleatoria',
+        passphrase: 'Frase de contraseña',
+      },
+      lengthLabel: 'Longitud de la contraseña',
+      wordCountLabel: 'Número de palabras',
+      charTypesLabel: 'Tipos de caracteres',
+      separatorLabel: 'Separador',
+      separators: {
+        hyphen: 'Guión (-)',
+        underscore: 'Guion bajo (_)',
+        space: 'Espacio ( )',
+        period: 'Punto (.)',
+        number: 'Número aleatorio',
+      },
+      charTypes: {
+        uppercase: 'Mayúsculas (A-Z)',
+        lowercase: 'Minúsculas (a-z)',
+        numbers: 'Números (0-9)',
+        symbols: 'Símbolos (!@#$%)',
+      },
+      advanced: {
+        label: 'Opciones avanzadas',
+        excludeSimilar: 'Excluir caracteres similares (i, l, 1, L, o, 0, O)',
+        excludeAmbiguous:
+          'Excluir símbolos ambiguos ({ } [ ] ( ) / \\ \' " ` ~ , ; : . < >)',
+      },
+      generateBtn: 'Generar contraseña',
+      copyBtn: 'Copiar',
+      copiedBtn: 'Copiado',
+      regenerateBtn: 'Regenerar',
+      resultLabel: 'Contraseña generada',
+      strength: {
+        label: 'Fortaleza de la contraseña',
+        weak: 'Débil',
+        fair: 'Aceptable',
+        good: 'Buena',
+        strong: 'Fuerte',
+      },
+      info: {
+        heading: 'Consejos de seguridad para contraseñas',
+        body: 'Las contraseñas más largas son más seguras. Recomendamos al menos 12 caracteres con una combinación de mayúsculas, minúsculas, números y símbolos. Nunca reutilices contraseñas en múltiples sitios. Considera usar un administrador de contraseñas para guardar tus contraseñas generadas.',
       },
     },
   },

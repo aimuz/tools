@@ -78,6 +78,10 @@ export const zhCN = {
           name: '哈希值生成',
           desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 校验',
         },
+        password: {
+          name: '密码生成器',
+          desc: '生成高强度随机密码',
+        },
       },
     },
     media: {
@@ -293,6 +297,18 @@ export const zhCN = {
         '散列',
       ],
     },
+    password: {
+      name: '密码生成器',
+      description: '生成高强度随机密码 · 支持自定义长度和字符类型',
+      tags: [
+        '密码生成器',
+        '随机密码',
+        '强密码',
+        'password generator',
+        '安全密码',
+        '随机字符串',
+      ],
+    },
   },
   toolCategories: {
     image: {
@@ -331,6 +347,7 @@ export const zhCN = {
         color: { name: '颜色转换', description: '十六进制、RGB、HSL 色值互转' },
         qrcode: { name: '二维码生成', description: '文本/链接生成二维码' },
         hash: { name: '哈希值生成', description: '文本和文件的 SHA 校验值' },
+        password: { name: '密码生成器', description: '生成高强度随机密码' },
       },
     },
     media: {
@@ -1377,6 +1394,61 @@ export const zhCN = {
             a: '每个文件 500MB。超大文件可能卡浏览器，尤其是手机。',
           },
         ],
+      },
+    },
+    password: {
+      title: '密码生成器 - 在线生成高强度随机密码 | WizGo',
+      description:
+        '免费在线密码生成器，生成高强度随机密码。支持自定义长度、字符类型（大小写字母、数字、符号），排除相似字符和歧义符号。浏览器本地生成，不上传。',
+      h1: '密码生成器',
+      subheading: '生成高强度随机密码 · 自定义长度和字符类型 · 本地生成不上传',
+      schema: {
+        name: '密码生成器',
+        description: '在线生成高强度随机密码，支持自定义选项',
+      },
+      modeLabel: '密码类型',
+      mode: {
+        random: '随机密码',
+        passphrase: '短语密码',
+      },
+      lengthLabel: '密码长度',
+      wordCountLabel: '单词数量',
+      charTypesLabel: '字符类型',
+      charTypes: {
+        uppercase: '大写字母 (A-Z)',
+        lowercase: '小写字母 (a-z)',
+        numbers: '数字 (0-9)',
+        symbols: '特殊符号 (!@#$%)',
+      },
+      separatorLabel: '分隔符',
+      separators: {
+        hyphen: '连字符 (-)',
+        underscore: '下划线 (_)',
+        space: '空格 ( )',
+        period: '句点 (.)',
+        number: '随机数字',
+      },
+      advanced: {
+        label: '高级选项',
+        excludeSimilar: '排除相似字符 (i, l, 1, L, o, 0, O)',
+        excludeAmbiguous:
+          '排除歧义符号 ({ } [ ] ( ) / \\ \' " ` ~ , ; : . < >)',
+      },
+      generateBtn: '生成密码',
+      copyBtn: '复制',
+      copiedBtn: '已复制',
+      regenerateBtn: '重新生成',
+      resultLabel: '生成的密码',
+      strength: {
+        label: '密码强度',
+        weak: '弱',
+        fair: '一般',
+        good: '良好',
+        strong: '强',
+      },
+      info: {
+        heading: '密码安全提示',
+        body: '密码越长越安全。建议密码长度至少 12 位，包含大小写字母、数字和特殊符号的组合。不要在多个网站使用相同密码，推荐使用密码管理器保存生成的密码。',
       },
     },
   },

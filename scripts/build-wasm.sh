@@ -51,7 +51,7 @@ build_crate() {
   # features current Rust emits (bulk-memory, nontrapping-fptoi, etc.).
   if command -v wasm-opt >/dev/null 2>&1; then
     wasm-opt "$wasm_in" -o "$wasm_out" \
-      -Oz \
+      -O4 \
       --enable-bulk-memory \
       --enable-nontrapping-float-to-int \
       --enable-reference-types \

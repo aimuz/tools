@@ -78,6 +78,10 @@ export const zhTW = {
           name: '雜湊值產生器',
           desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 校驗',
         },
+        password: {
+          name: '密碼產生器',
+          desc: '產生高強度隨機密碼',
+        },
       },
     },
     media: {
@@ -299,6 +303,18 @@ export const zhTW = {
         '雜湊值',
       ],
     },
+    password: {
+      name: '密碼產生器',
+      description: '產生高強度隨機密碼，支援自訂長度和字元類型',
+      tags: [
+        '密碼產生器',
+        '隨機密碼',
+        '強密碼',
+        'password generator',
+        '安全密碼',
+        '隨機字串',
+      ],
+    },
   },
   toolCategories: {
     image: {
@@ -343,6 +359,7 @@ export const zhTW = {
         },
         qrcode: { name: 'QR Code 產生', description: '文字/連結產生 QR Code' },
         hash: { name: '雜湊值產生器', description: '文字和檔案的 SHA 校驗值' },
+        password: { name: '密碼產生器', description: '產生高強度隨機密碼' },
       },
     },
     media: {
@@ -1385,6 +1402,61 @@ export const zhTW = {
             a: '每個檔案 500MB。超大檔案可能卡瀏覽器，尤其是手機。',
           },
         ],
+      },
+    },
+    password: {
+      title: '密碼產生器 - 線上產生高強度隨機密碼 | WizGo',
+      description:
+        '免費線上密碼產生器，產生高強度隨機密碼。支援自訂長度、字元類型（大小寫字母、數字、符號），排除相似字元和歧義符號。瀏覽器本地產生，不上傳。',
+      h1: '密碼產生器',
+      subheading: '產生高強度隨機密碼 · 自訂長度和字元類型 · 本地產生不上傳',
+      schema: {
+        name: '密碼產生器',
+        description: '線上產生高強度隨機密碼，支援多種自訂選項',
+      },
+      modeLabel: '密碼類型',
+      mode: {
+        random: '隨機密碼',
+        passphrase: '短語密碼',
+      },
+      lengthLabel: '密碼長度',
+      wordCountLabel: '單詞數量',
+      charTypesLabel: '字元類型',
+      separatorLabel: '分隔符號',
+      separators: {
+        hyphen: '連字元 (-)',
+        underscore: '底線 (_)',
+        space: '空格 ( )',
+        period: '句點 (.)',
+        number: '隨機數字',
+      },
+      charTypes: {
+        uppercase: '大寫字母 (A-Z)',
+        lowercase: '小寫字母 (a-z)',
+        numbers: '數字 (0-9)',
+        symbols: '特殊符號 (!@#$%)',
+      },
+      advanced: {
+        label: '進階選項',
+        excludeSimilar: '排除相似字元 (i, l, 1, L, o, 0, O)',
+        excludeAmbiguous:
+          '排除歧義符號 ({ } [ ] ( ) / \ ' + "'" + ' " ` ~ , ; : . < >)',
+      },
+      generateBtn: '產生密碼',
+      copyBtn: '複製',
+      copiedBtn: '已複製',
+      regenerateBtn: '重新產生',
+      resultLabel: '產生的密碼',
+      strength: {
+        label: '密碼強度',
+        weak: '弱',
+        fair: '一般',
+        good: '良好',
+        strong: '強',
+      },
+      info: {
+        heading: '密碼安全提示',
+        body: '密碼越長越安全。建議密碼長度至少 12 位，包含大小寫字母、數字和特殊符號的組合。不要多個網站使用相同密碼，推薦使用密碼管理員儲存產生的密碼。',
       },
     },
   },

@@ -90,6 +90,10 @@ export const ko = {
           name: '해시 생성기',
           desc: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 체크섬',
         },
+        password: {
+          name: '비밀번호 생성기',
+          desc: '강력한 무작위 비밀번호 생성',
+        },
       },
     },
     media: {
@@ -311,6 +315,18 @@ export const ko = {
         'checksum',
       ],
     },
+    password: {
+      name: '비밀번호 생성기',
+      description: '사용자 정의 가능한 강력한 무작위 비밀번호 생성',
+      tags: [
+        '비밀번호 생성기',
+        '무작위 비밀번호',
+        '강력한 비밀번호',
+        'password generator',
+        '안전한 비밀번호',
+        '비밀번호 만들기',
+      ],
+    },
   },
   toolCategories: {
     image: {
@@ -363,6 +379,10 @@ export const ko = {
         hash: {
           name: '해시 생성기',
           description: '텍스트와 파일의 SHA 체크섬',
+        },
+        password: {
+          name: '비밀번호 생성기',
+          description: '강력한 무작위 비밀번호 생성',
         },
       },
     },
@@ -1431,6 +1451,62 @@ export const ko = {
             a: '파일당 500MB. 더 큰 파일은 브라우저를 멈추게 할 수 있습니다 (특히 모바일에서).',
           },
         ],
+      },
+    },
+    password: {
+      title: '비밀번호 생성기 - 강력한 무작위 비밀번호 온라인 생성 | WizGo',
+      description:
+        '무료 온라인 비밀번호 생성기. 길이와 문자 유형(대문자, 소문자, 숫자, 기호)을 사용자 정의하여 강력한 무작위 비밀번호를 생성합니다. 유사 문자와 모호한 기호를 제외할 수 있습니다. 브라우저에서 로컬 생성, 업로드 없음.',
+      h1: '비밀번호 생성기',
+      subheading:
+        '강력한 무작위 비밀번호 생성 · 길이와 문자 유형 사용자 정의 · 로컬 생성',
+      schema: {
+        name: '비밀번호 생성기',
+        description: '사용자 정의 가능한 강력한 무작위 비밀번호 생성',
+      },
+      modeLabel: '비밀번호 유형',
+      mode: {
+        random: '무작위 비밀번호',
+        passphrase: '암호 문구',
+      },
+      lengthLabel: '비밀번호 길이',
+      wordCountLabel: '단어 수',
+      charTypesLabel: '문자 유형',
+      separatorLabel: '구분 기호',
+      separators: {
+        hyphen: '하이픈 (-)',
+        underscore: '밑줄 (_)',
+        space: '공백 ( )',
+        period: '마침표 (.)',
+        number: '무작위 숫자',
+      },
+      charTypes: {
+        uppercase: '대문자 (A-Z)',
+        lowercase: '소문자 (a-z)',
+        numbers: '숫자 (0-9)',
+        symbols: '특수 기호 (!@#$%)',
+      },
+      advanced: {
+        label: '고급 옵션',
+        excludeSimilar: '유사 문자 제외 (i, l, 1, L, o, 0, O)',
+        excludeAmbiguous:
+          '모호한 기호 제외 ({ } [ ] ( ) / \\ \' " ` ~ , ; : . < >)',
+      },
+      generateBtn: '비밀번호 생성',
+      copyBtn: '복사',
+      copiedBtn: '복사됨',
+      regenerateBtn: '재생성',
+      resultLabel: '생성된 비밀번호',
+      strength: {
+        label: '비밀번호 강도',
+        weak: '약함',
+        fair: '보통',
+        good: '양호',
+        strong: '강함',
+      },
+      info: {
+        heading: '비밀번호 보안 팁',
+        body: '비밀번호는 길수록 더 안전합니다. 최소 12자 이상의 대문자, 소문자, 숫자 및 기호 조합을 권장합니다. 여러 사이트에서 동일한 비밀번호를 재사용하지 마세요. 생성된 비밀번호는 비밀번호 관리자에 저장하는 것을 고려하세요.',
       },
     },
   },

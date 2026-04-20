@@ -6,6 +6,7 @@
 // `#quality-option` wrapper, and `#detected-format` span for showing the detected input format.
 
 import { getImageConverter } from '../wasm/rust-image-converter.js';
+import { encodeJpeg } from '../wasm/jpeg-bridge';
 import {
   decodeToRgba,
   encodeWebp,
@@ -359,6 +360,14 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
             lossless: lossless && !losslessOnJpg,
             quality: losslessOnJpg ? 100 : quality,
           });
+        } else if (targetFormat === 'jpg' || targetFormat === 'jpeg') {
+          // MozJPEG via the zig-built wasm (~358 KB). Browser decodes the
+          // input; wrapper.c flattens alpha onto white (PNG→JPG convention)
+          // and runs encode with trellis quant + scan optimization on, which
+          // is where the ~10-20% same-quality size win over the old Rust
+          // `jpeg-encoder` crate comes from.
+          const { rgba, width, height } = await decodeToRgba(buf);
+          out = await encodeJpeg(rgba, width, height, quality);
         } else {
           // Rust's image crate no longer carries a WebP decoder — bridge the
           // input through Canvas → PNG so `convertImage` still sees a format

@@ -4,6 +4,7 @@
 // and buttons matching `.mode-btn[data-mode="smart|light|strong"]`.
 
 import { getImageConverter } from '../wasm/rust-image-converter.js';
+import { encodeJpeg } from '../wasm/jpeg-bridge';
 import { decodeToRgba, encodeWebp } from '../wasm/webp-bridge';
 import { bindCopyButton, setClipboardLabels } from './clipboard';
 import { openCompare, setCompareLabels, thumbPairHtml } from './image-compare';
@@ -219,18 +220,24 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
         const buf = new Uint8Array(await file.arrayBuffer());
         const originalSize = buf.length;
         const isWebp = file.type === 'image/webp';
+        const isJpeg = file.type === 'image/jpeg' || file.type === 'image/jpg';
         let r: any;
-        if (isWebp) {
-          // WebP → WebP goes through libwebp (zig-wasm/webp), not image-rs.
-          // Canvas decodes the input to RGBA; libwebp re-encodes. `smart` and
-          // `light` use lossy q=85 (visually lossless on most inputs); `strong`
-          // drops to q=60.
-          const quality = mode === 'strong' ? 60 : 85;
+        if (isWebp || isJpeg) {
+          // WebP → WebP and JPG → JPG go through their zig-wasm encoders
+          // (libwebp / MozJPEG) rather than image-rs. Canvas decodes the
+          // input to RGBA; the codec re-encodes. smart / light use q=85
+          // (visually lossless on most photos); strong drops to q=60.
+          // For JPG, smart uses q=80 for a bit more savings since JPG
+          // inputs are already lossy and q=85 barely saves anything.
+          const quality =
+            mode === 'strong' ? 60 : isJpeg && mode === 'smart' ? 80 : 85;
           const { rgba, width, height } = await decodeToRgba(buf);
-          const out = await encodeWebp(rgba, width, height, {
-            lossless: false,
-            quality,
-          });
+          const out = isWebp
+            ? await encodeWebp(rgba, width, height, {
+                lossless: false,
+                quality,
+              })
+            : await encodeJpeg(rgba, width, height, quality);
           // Safety net mirrors what Rust's compress_image did: never hand back
           // a larger file than the user uploaded.
           const data = out.length > originalSize ? buf : out;

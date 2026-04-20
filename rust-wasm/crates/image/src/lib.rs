@@ -1,7 +1,7 @@
 use image::{imageops::FilterType, DynamicImage, ImageFormat};
 use wasm_bindgen::prelude::*;
 use wizgo_core::{
-    calculate_dimensions, encode_jpeg, encode_png_lossless, encode_via_image_crate, set_panic_hook,
+    calculate_dimensions, encode_png_lossless, encode_via_image_crate, set_panic_hook,
 };
 
 // ---------- shared info helpers ----------
@@ -65,12 +65,18 @@ pub fn convert_image(input: &[u8], output_format: &str, quality: u8) -> Result<V
     let img = image::load_from_memory(input)
         .map_err(|e| JsValue::from_str(&format!("Failed to load image: {}", e)))?;
 
-    // WebP encoding is handled browser-side via libwebp (zig-wasm/webp) — the
-    // pure-Rust image-webp encoder produces 2-3× larger output than libwebp
-    // on transparency-heavy PNG content, which is why we carved it out.
-    // `convert-page.ts` routes `webp` targets directly to the zig worker.
+    // WebP and JPG encoding are handled browser-side via the zig-built
+    // wasm (libwebp for WebP, MozJPEG for JPG). Both deliver meaningfully
+    // smaller output than the pure-Rust alternatives at the same quality.
+    // `convert-page.ts` routes those targets directly; the arms here are
+    // fallbacks in case someone calls this export from a new surface.
     match output_format.to_lowercase().as_str() {
-        "jpeg" | "jpg" => encode_jpeg(&img, quality).map_err(js_err),
+        "jpeg" | "jpg" => {
+            // Fallback: image-rs's bundled encoder (quality arg ignored; we
+            // keep accepting it for call-shape compatibility).
+            let _ = quality;
+            encode_via_image_crate(&img, ImageFormat::Jpeg).map_err(js_err)
+        }
         "png" => encode_png_lossless(&img).map_err(js_err),
         "bmp" => encode_via_image_crate(&img, ImageFormat::Bmp).map_err(js_err),
         "gif" => encode_via_image_crate(&img, ImageFormat::Gif).map_err(js_err),
@@ -138,13 +144,14 @@ pub fn compress_image(input: &[u8], options: CompressOptions) -> Result<Vec<u8>,
         img
     };
 
-    // WebP inputs are routed to the zig/libwebp encoder from JS (see
-    // compress-page.ts); they never reach this function. If one slips through
-    // we fall back to JPEG just to return something, same as any unknown format.
+    // WebP and JPG inputs are routed to their zig-built encoders from JS
+    // (see compress-page.ts); they never reach this function under normal
+    // use. If one slips through — or an unrecognized format shows up — we
+    // fall back to image-rs's bundled JPEG encoder to at least return
+    // something recognizable.
     let result = match original_format {
-        ImageFormat::Jpeg => encode_jpeg(&img, options.quality).map_err(js_err)?,
         ImageFormat::Png => encode_png_quantized(&img, options.quality)?,
-        _ => encode_jpeg(&img, options.quality).map_err(js_err)?,
+        _ => encode_via_image_crate(&img, ImageFormat::Jpeg).map_err(js_err)?,
     };
 
     // Safety net: if compression did not help and no resize happened, return original bytes

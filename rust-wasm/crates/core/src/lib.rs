@@ -40,27 +40,6 @@ pub fn calculate_dimensions(
     (new_width.max(1), new_height.max(1))
 }
 
-/// JPEG encoder with 4:2:0 subsampling, progressive, optimized Huffman, no EXIF.
-pub fn encode_jpeg(img: &DynamicImage, quality: u8) -> Result<Vec<u8>, String> {
-    use jpeg_encoder::{ColorType as JpegColorType, Encoder as JpegEncoder, SamplingFactor};
-
-    let rgb = img.to_rgb8();
-    let (w, h) = (rgb.width(), rgb.height());
-    if w == 0 || h == 0 || w > u16::MAX as u32 || h > u16::MAX as u32 {
-        return Err(format!("JPEG dimensions out of range: {}x{}", w, h));
-    }
-
-    let mut out = Vec::new();
-    let mut enc = JpegEncoder::new(&mut out, quality);
-    // F_2_2 = 2x2 luma sampling, i.e. 4:2:0 chroma subsampling.
-    enc.set_sampling_factor(SamplingFactor::F_2_2);
-    enc.set_progressive(true);
-    enc.set_optimized_huffman_tables(true);
-    enc.encode(rgb.as_raw(), w as u16, h as u16, JpegColorType::Rgb)
-        .map_err(|e| format!("JPEG encode failed: {}", e))?;
-    Ok(out)
-}
-
 /// Lossless PNG encode through lodepng (keeps 32-bit RGBA colour depth).
 pub fn encode_png_lossless(img: &DynamicImage) -> Result<Vec<u8>, String> {
     let rgba = img.to_rgba8();

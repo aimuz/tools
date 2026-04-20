@@ -47,7 +47,7 @@ export const es = {
   },
   nav: {
     image: {
-      label: 'Herramientas de imagen',
+      label: 'Imágenes',
       items: {
         compress: {
           name: 'Comprimir imagen',
@@ -84,7 +84,7 @@ export const es = {
       },
     },
     dev: {
-      label: 'Herramientas para desarrolladores',
+      label: 'Desarrollo',
       items: {
         jwt: {
           name: 'JWT Decodificar/Verificar',
@@ -133,7 +133,7 @@ export const es = {
       },
     },
     media: {
-      label: 'Herramientas Multimedia',
+      label: 'Multimedia',
       items: {
         'mp4-to-mp3': {
           name: 'MP4 a MP3',
@@ -146,7 +146,7 @@ export const es = {
       },
     },
     document: {
-      label: 'Herramientas de Documentos',
+      label: 'Documentos',
       items: {
         'pdf-compress': {
           name: 'Comprimir PDF',

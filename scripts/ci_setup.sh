@@ -4,7 +4,7 @@ curl https://mise.run | sh
 echo 'eval "$(~/.local/bin/mise activate bash)"' >> ~/.bashrc
 source ~/.bashrc
 
-mise install
+MISE_IGNORED_CONFIG_PATHS="~/.config/mise/config.toml" mise install
 source ~/.bashrc
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y

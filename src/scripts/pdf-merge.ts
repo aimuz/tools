@@ -125,18 +125,19 @@ export function initPdfMergePage(opts: PdfMergeOptions = {}) {
     }
   }
 
+  const fileKey = (f: File) => `${f.name}|${f.size}|${f.lastModified}`;
+
   function syncChrome() {
     if (files.length === 0) {
       options?.classList.add('hidden');
-      uploadZone?.classList.remove('hidden');
       minHint?.classList.add('hidden');
     } else {
       options?.classList.remove('hidden');
-      uploadZone?.classList.add('hidden');
       const enough = files.length >= 2;
       if (mergeBtn) mergeBtn.disabled = !enough;
       minHint?.classList.toggle('hidden', enough);
     }
+    uploadZone?.classList.remove('hidden');
     renderFileList();
   }
 
@@ -223,6 +224,7 @@ export function initPdfMergePage(opts: PdfMergeOptions = {}) {
   }
 
   function acceptFiles(incoming: File[]) {
+    const seen = new Set(files.map(fileKey));
     for (const f of incoming) {
       if (!isPdfFile(f)) {
         showError(interpolate(labels.notPdfTemplate, { name: f.name }));
@@ -237,6 +239,9 @@ export function initPdfMergePage(opts: PdfMergeOptions = {}) {
         );
         continue;
       }
+      const key = fileKey(f);
+      if (seen.has(key)) continue;
+      seen.add(key);
       files.push(f);
     }
     syncChrome();

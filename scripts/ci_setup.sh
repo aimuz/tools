@@ -8,6 +8,4 @@ MISE_IGNORED_CONFIG_PATHS="~/.config/mise/config.toml" mise install
 source ~/.bashrc
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-source ~/.bashrc
-
-cargo install wasm-pack
+bash -l -c "cargo install wasm-pack"

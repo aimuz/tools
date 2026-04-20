@@ -1,3 +1,6 @@
 [submodule "zig-wasm/webp/vendor/libwebp"]
 	path = zig-wasm/webp/vendor/libwebp
 	url = https://github.com/webmproject/libwebp.git
+[submodule "zig-wasm/jpeg/vendor/mozjpeg"]
+	path = zig-wasm/jpeg/vendor/mozjpeg
+	url = git@github.com:mozilla/mozjpeg.git

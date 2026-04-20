@@ -12,5 +12,6 @@ src/wasm/rust
 src/wasm/rust-image-converter.js
 src/wasm/zig
 zig-wasm/webp/vendor
+zig-wasm/jpeg/vendor
 
 public

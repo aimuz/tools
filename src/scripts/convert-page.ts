@@ -84,6 +84,20 @@ function readPresetFromMeta(): string | undefined {
   return el?.content || undefined;
 }
 
+/** The paired meta for the source format on /{from}-to-{to} pages. */
+function readPresetSourceFromMeta(): string | undefined {
+  const el = document.querySelector<HTMLMetaElement>(
+    'meta[name="x-preset-from"]',
+  );
+  return el?.content || undefined;
+}
+
+/** JPG decoded into RGBA is continuous-tone noise to a lossless codec; any
+ *  WebP lossless re-encoding of a JPG explodes in size. Lossy is the only
+ *  sane default when the source is already lossy. */
+const isLossySource = (fmt: string | null): boolean =>
+  fmt === 'jpg' || fmt === 'jpeg';
+
 const MIME: Record<string, string> = {
   png: 'image/png',
   jpg: 'image/jpeg',
@@ -133,13 +147,16 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
 
   // Resolve preset: explicit opt > <meta> on page > URL param (if enabled) > default.
   const presetTo = opts.presetTo ?? readPresetFromMeta();
+  const presetFrom = readPresetSourceFromMeta() ?? null;
 
   let files: { file: File; id: string; originalUrl: string }[] = [];
   let imageConverter: any = null;
   let targetFormat = presetTo ?? opts.defaultTo ?? 'jpg';
-  // For WebP target, `lossless=true` means ignore `quality` and use libwebp's
-  // lossless path (the page's default, matches the "smaller than PNG" promise).
-  // For JPG, lossless is never applicable and stays false.
+  // Source format is tracked so the WebP encoder can rewrite a "Lossless"
+  // click into lossy q=100 for JPG inputs — true lossless on already-lossy
+  // pixels blows the output up 3-4×. Preset <meta> wins until the user
+  // uploads, at which point magic-byte sniffing takes over.
+  let sourceFormat: string | null = presetFrom;
   let quality = 90;
   let lossless = targetFormat === 'webp';
 
@@ -175,6 +192,8 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
       .forEach((b) => b.classList.toggle('hidden', fmt !== 'webp'));
 
     // Default selection per target: WebP → Lossless, JPG → High (90).
+    // The Lossless button's meaning is rewritten at encode time when the
+    // source is already lossy (see the WebP encode site).
     if (fmt === 'webp') {
       lossless = true;
       setActiveQualityBtn((b) => b.dataset.quality === 'lossless');
@@ -237,20 +256,25 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
   async function handleFiles(newFiles: File[]) {
     files.forEach((f) => URL.revokeObjectURL(f.originalUrl));
     const imgs = newFiles.filter((f) => f.type.startsWith('image/'));
-    if (imgs.length > 0 && detectedFormatSpan) {
+    if (imgs.length > 0) {
       try {
         const buf = new Uint8Array(await imgs[0].arrayBuffer());
         // WebP input never reaches the Rust `getImageInfo` path — we dropped
         // the webp decoder to save wasm weight. Sniff magic bytes in JS and
         // only fall back to Rust for the formats it still decodes.
         const sniffed = sniffImageFormat(buf);
+        let detected: string | null = sniffed;
         if (sniffed === 'webp') {
-          detectedFormatSpan.textContent = 'WEBP';
+          if (detectedFormatSpan) detectedFormatSpan.textContent = 'WEBP';
         } else if (imageConverter) {
           const info = await imageConverter.getImageInfo(buf);
-          if (info.format)
-            detectedFormatSpan.textContent = info.format.toUpperCase();
+          if (info.format) {
+            detected = String(info.format).toLowerCase();
+            if (detectedFormatSpan)
+              detectedFormatSpan.textContent = detected.toUpperCase();
+          }
         }
+        if (detected) sourceFormat = detected;
       } catch (e) {
         console.error('Failed to detect format:', e);
       }
@@ -321,8 +345,17 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
           // libwebp via the zig-built wasm. Browser decodes the input
           // (PNG/JPG/BMP/GIF/WebP) natively into RGBA; only the encode step
           // is ours. See src/wasm/webp-bridge.ts for the rationale.
+          //
+          // For JPG sources, "Lossless" means lossy q=100 — true lossless on
+          // JPG-decoded pixels blows the file up 3-4× (the pixels are already
+          // continuous-tone noise from the JPG compression), and q=100 is
+          // functionally identical to what the JPG preserved anyway.
           const { rgba, width, height } = await decodeToRgba(buf);
-          out = await encodeWebp(rgba, width, height, { lossless, quality });
+          const losslessOnJpg = lossless && isLossySource(sourceFormat);
+          out = await encodeWebp(rgba, width, height, {
+            lossless: lossless && !losslessOnJpg,
+            quality: losslessOnJpg ? 100 : quality,
+          });
         } else {
           // Rust's image crate no longer carries a WebP decoder — bridge the
           // input through Canvas → PNG so `convertImage` still sees a format

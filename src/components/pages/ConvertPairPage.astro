@@ -111,6 +111,7 @@ const moreHref = localizedPath(locale, '/convert');
 ---
 
 <Layout title={title} description={description} locale={locale}>
+  <meta name="x-preset-from" content={from} slot="head" />
   <meta name="x-preset-to" content={to} slot="head" />
   <script
     type="application/ld+json"

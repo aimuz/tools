@@ -1,0 +1,192 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../layout/Header.astro';
+import Footer from '../layout/Footer.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/config';
+import { absoluteUrl } from '../../i18n/seo';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const c = t.pages.pdfCompress;
+const pageUrl = absoluteUrl(locale, '/pdf-compress');
+
+const labels = {
+  startBtn: c.options.start,
+  preparing: c.progress.preparing,
+  processingTemplate: c.progress.processingTemplate,
+  done: c.progress.done,
+  ready: c.result.ready,
+  downloadBtn: c.result.downloadBtn,
+  sizeTemplate: c.result.sizeTemplate,
+  reductionTemplate: c.result.reductionTemplate,
+  noReduction: c.result.noReduction,
+  tooLargeTemplate: c.errors.tooLargeTemplate,
+  notPdfTemplate: c.errors.notPdfTemplate,
+  loadFailedTemplate: c.errors.loadFailedTemplate,
+  encryptedPdf: c.errors.encryptedPdf,
+  stripMetadataLabel: c.options.stripMetadataLabel,
+};
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: c.schema.name,
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Any',
+  browserRequirements: c.schema.browserReq,
+  description: c.schema.description,
+  inLanguage: locale,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: pageUrl,
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: c.faq.items.map((it) => ({
+    '@type': 'Question',
+    name: it.q,
+    acceptedAnswer: { '@type': 'Answer', text: it.a },
+  })),
+};
+---
+
+<Layout title={c.title} description={c.description} locale={locale}>
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+    slot="head"
+  />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(faqSchema)}
+    slot="head"
+  />
+  <Header locale={locale} />
+
+  <main class="flex-1 py-12">
+    <div class="max-w-[720px] mx-auto px-6">
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-semibold text-[#171717] mb-2">{c.h1}</h1>
+        <p class="text-gray-500">{c.subheading}</p>
+      </div>
+
+      <div
+        id="upload-zone"
+        class="relative w-full min-h-[240px] rounded-xl border-2 border-dashed border-gray-300 hover:border-[#171717] transition-colors bg-white flex flex-col items-center justify-center gap-3 cursor-pointer mb-6"
+      >
+        <svg
+          class="w-12 h-12 text-gray-300"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          ></path>
+        </svg>
+        <div class="text-center">
+          <p class="text-base text-[#171717]">{c.upload.drag}</p>
+          <p class="text-sm text-gray-400 mt-1">{c.upload.orClick}</p>
+          <p class="text-xs text-gray-400 mt-1">{c.upload.pasteHint}</p>
+        </div>
+        <p class="text-xs text-gray-400">{c.upload.sizeHint}</p>
+        <input
+          type="file"
+          id="file-input"
+          class="hidden"
+          accept="application/pdf,.pdf"
+          multiple
+        />
+      </div>
+
+      <div id="file-list" class="mb-6 space-y-2"></div>
+
+      <div id="options" class="mb-6 hidden">
+        <label
+          class="flex items-center justify-between gap-3 p-3 bg-white border border-gray-200 rounded-lg mb-3 cursor-pointer"
+        >
+          <div class="min-w-0">
+            <p class="text-sm text-[#171717]">{c.options.stripMetadataLabel}</p>
+            <p class="text-xs text-gray-400 mt-0.5">
+              {c.options.stripMetadataHint}
+            </p>
+          </div>
+          <input
+            type="checkbox"
+            id="strip-metadata"
+            class="h-4 w-4 accent-[#171717]"
+            checked
+          />
+        </label>
+        <p class="text-xs text-gray-400 mb-4 leading-relaxed">
+          {c.options.objectStreamNote}
+        </p>
+
+        <button
+          id="compress-btn"
+          class="w-full py-3 bg-[#171717] text-white rounded-lg font-medium hover:bg-gray-800 transition-colors"
+        >
+          {c.options.start}
+        </button>
+      </div>
+
+      <div id="progress" class="hidden mb-6">
+        <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+          <div
+            class="progress-fill h-full bg-[#171717] transition-all"
+            style="width: 0%"
+          >
+          </div>
+        </div>
+        <p id="progress-label" class="text-xs text-gray-500 mt-2"></p>
+      </div>
+
+      <div id="results" class="space-y-3 hidden"></div>
+
+      <section class="mt-12">
+        <h2 class="text-xl font-semibold text-[#171717] mb-4">
+          {c.faq.heading}
+        </h2>
+        <div class="space-y-4">
+          {
+            c.faq.items.map((item) => (
+              <details class="border border-gray-200 rounded-lg p-4">
+                <summary class="cursor-pointer text-sm font-medium text-[#171717]">
+                  {item.q}
+                </summary>
+                <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+                  {item.a}
+                </p>
+              </details>
+            ))
+          }
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script
+  type="application/json"
+  id="pdf-compress-labels"
+  set:html={JSON.stringify(labels)}
+/>
+<script>
+  import { initPdfCompressPage } from '../../scripts/pdf-compress';
+  const labelsEl = document.getElementById('pdf-compress-labels');
+  const labels = labelsEl
+    ? JSON.parse(labelsEl.textContent ?? '{}')
+    : undefined;
+  initPdfCompressPage({ labels });
+</script>

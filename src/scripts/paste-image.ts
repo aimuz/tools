@@ -36,13 +36,15 @@ function isTypingTarget(el: EventTarget | null): boolean {
 }
 
 /**
- * Install a document-level paste listener that extracts image files from the
+ * Install a document-level paste listener that extracts files from the
  * clipboard and forwards them to `onFiles`. Returns a disposer. Silently
- * no-ops on pastes that don't contain image files or target an editable
- * element (so search boxes / future text inputs still work).
+ * no-ops on pastes that don't match `filter` or target an editable element
+ * (so search boxes / text inputs still work). Defaults to image/*.
  */
 export function installPasteHandler(
   onFiles: (files: File[]) => void,
+  filter: (item: DataTransferItem) => boolean = (it) =>
+    it.type.startsWith('image/'),
 ): () => void {
   const listener = (ev: ClipboardEvent) => {
     if (isTypingTarget(ev.target)) return;
@@ -50,10 +52,10 @@ export function installPasteHandler(
     if (!items) return;
     const files: File[] = [];
     for (const it of Array.from(items)) {
-      if (it.kind === 'file' && it.type.startsWith('image/')) {
-        const f = it.getAsFile();
-        if (f) files.push(renameIfGeneric(f));
-      }
+      if (it.kind !== 'file' || !filter(it)) continue;
+      const f = it.getAsFile();
+      if (!f) continue;
+      files.push(it.type.startsWith('image/') ? renameIfGeneric(f) : f);
     }
     if (files.length === 0) return;
     ev.preventDefault();

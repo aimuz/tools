@@ -181,51 +181,58 @@ pub fn compress_image_batch(
         .collect()
 }
 
-/// PNG encoder: lossy palette quantization (imagequant + lodepng) below quality 95,
-/// lossless RGBA otherwise.
+/// PNG encoder: lossy palette quantization (imagequant + lodepng) below
+/// quality 95, lossless RGBA otherwise. If quantization can't hit the target
+/// (e.g. `QualityTooLow` on photographic PNGs with too many distinct colours
+/// to fit 256 palette entries), we degrade to lossless rather than fail —
+/// `compress_image`'s safety net then keeps the result from exceeding the
+/// input size, so the user never sees either an error or a larger file.
 fn encode_png_quantized(img: &DynamicImage, quality: u8) -> Result<Vec<u8>, JsValue> {
     if quality >= 95 {
         return encode_png_lossless(img).map_err(js_err);
     }
+    match encode_png_quantized_inner(img, quality) {
+        Ok(bytes) => Ok(bytes),
+        Err(_) => encode_png_lossless(img).map_err(js_err),
+    }
+}
 
+fn encode_png_quantized_inner(img: &DynamicImage, quality: u8) -> Result<Vec<u8>, String> {
     let rgba = img.to_rgba8();
     let (w, h) = (rgba.width(), rgba.height());
     if w == 0 || h == 0 {
-        return Err(JsValue::from_str("PNG dimensions are zero"));
+        return Err("PNG dimensions are zero".to_string());
     }
     let pixels: &[lodepng::RGBA] = lodepng::bytemuck::cast_slice(rgba.as_raw());
 
     let mut liq = imagequant::new();
-    let (min_q, target_q) = map_quality_to_imagequant(quality);
-    liq.set_quality(min_q, target_q)
-        .map_err(|e| JsValue::from_str(&format!("imagequant set_quality: {:?}", e)))?;
+    // `set_quality(min, target)` treats `min` as a hard floor — if the 256-colour
+    // palette can't reach it, `quantize()` returns `QualityTooLow`. pngquant's
+    // CLI default is `min=0` for exactly that reason: compress tools should
+    // always produce *something*. The outer `encode_png_quantized` falls back
+    // to lossless if this path still fails for any other reason.
+    let target = quality.clamp(1, 100);
+    liq.set_quality(0, target)
+        .map_err(|e| format!("imagequant set_quality: {:?}", e))?;
 
     let mut liq_img = liq
         .new_image_borrowed(pixels, w as usize, h as usize, 0.0)
-        .map_err(|e| JsValue::from_str(&format!("imagequant new_image: {:?}", e)))?;
+        .map_err(|e| format!("imagequant new_image: {:?}", e))?;
     let mut res = liq
         .quantize(&mut liq_img)
-        .map_err(|e| JsValue::from_str(&format!("imagequant quantize: {:?}", e)))?;
+        .map_err(|e| format!("imagequant quantize: {:?}", e))?;
     // Floyd–Steinberg dithering strength. 1.0 = full. Lower = less noise but more banding.
     let _ = res.set_dithering_level(1.0);
 
     let (palette, indexed) = res
         .remapped(&mut liq_img)
-        .map_err(|e| JsValue::from_str(&format!("imagequant remap: {:?}", e)))?;
+        .map_err(|e| format!("imagequant remap: {:?}", e))?;
 
     let mut enc = lodepng::Encoder::new();
     enc.set_palette(&palette)
-        .map_err(|e| JsValue::from_str(&format!("lodepng set_palette: {:?}", e)))?;
+        .map_err(|e| format!("lodepng set_palette: {:?}", e))?;
     enc.encode(&indexed, w as usize, h as usize)
-        .map_err(|e| JsValue::from_str(&format!("lodepng encode: {:?}", e)))
-}
-
-/// User quality 1..100 -> (imagequant min, target). Target tracks user quality;
-/// min floors a bit lower so pathological images can still fit 256 colours.
-fn map_quality_to_imagequant(quality: u8) -> (u8, u8) {
-    let target = quality.clamp(1, 100);
-    let min = target.saturating_sub(20).max(10);
-    (min, target)
+        .map_err(|e| format!("lodepng encode: {:?}", e))
 }
 
 fn js_err(e: String) -> JsValue {

@@ -123,9 +123,46 @@ const moreHref = localizedPath(locale, '/convert');
   <main class="flex-1 py-12">
     <div class="max-w-[720px] mx-auto px-6">
       <!-- Hero -->
-      <div class="text-center mb-8">
+      <div class="text-center mb-6">
         <h1 class="text-3xl font-semibold text-[#171717] mb-2">{h1}</h1>
         <p class="text-gray-500">{hint || fallbackHint}</p>
+      </div>
+
+      <!-- Format selector: jump to another pair page without going home.
+           Localized via data-locale-prefix so the client-side nav keeps
+           the current locale prefix. -->
+      <div
+        id="pair-selector"
+        class="flex items-center justify-center gap-3 mb-8"
+        data-locale-prefix={locale === 'zh-CN' ? '' : `/${locale}`}
+      >
+        <label class="sr-only" for="pair-from-select">From</label>
+        <select
+          id="pair-from-select"
+          class="px-4 py-2 rounded-lg border border-gray-200 bg-white text-sm font-medium text-[#171717] hover:border-[#171717] focus:outline-none focus:ring-2 focus:ring-[#171717]/20 cursor-pointer"
+        >
+          {
+            FORMATS.map((f) => (
+              <option value={f} selected={f === from} disabled={f === to}>
+                {LABEL[f]}
+              </option>
+            ))
+          }
+        </select>
+        <span aria-hidden="true" class="text-gray-400">→</span>
+        <label class="sr-only" for="pair-to-select">To</label>
+        <select
+          id="pair-to-select"
+          class="px-4 py-2 rounded-lg border border-gray-200 bg-white text-sm font-medium text-[#171717] hover:border-[#171717] focus:outline-none focus:ring-2 focus:ring-[#171717]/20 cursor-pointer"
+        >
+          {
+            FORMATS.map((f) => (
+              <option value={f} selected={f === to} disabled={f === from}>
+                {LABEL[f]}
+              </option>
+            ))
+          }
+        </select>
       </div>
 
       <!-- Upload zone -->
@@ -255,4 +292,40 @@ const moreHref = localizedPath(locale, '/convert');
     ? JSON.parse(labelsEl.textContent ?? '{}')
     : undefined;
   initConvertPage({ labels });
+
+  // Pair-jump selector. All 20 from×to combos exist as static pages, so a
+  // naive navigate to `/{from}-to-{to}` always resolves. The only invariant
+  // we enforce here is `from !== to` — the server-rendered `disabled`
+  // attribute blocks the initial clash, and we re-sync after each change
+  // so subsequent clicks can't produce a self-pair either.
+  {
+    const wrap = document.getElementById('pair-selector');
+    const fromSel = document.getElementById(
+      'pair-from-select',
+    ) as HTMLSelectElement | null;
+    const toSel = document.getElementById(
+      'pair-to-select',
+    ) as HTMLSelectElement | null;
+    if (wrap && fromSel && toSel) {
+      const prefix = wrap.dataset.localePrefix ?? '';
+      const syncDisabled = () => {
+        for (const o of Array.from(fromSel.options))
+          o.disabled = o.value === toSel.value;
+        for (const o of Array.from(toSel.options))
+          o.disabled = o.value === fromSel.value;
+      };
+      const navigate = () => {
+        if (fromSel.value === toSel.value) return;
+        location.href = `${prefix}/${fromSel.value}-to-${toSel.value}`;
+      };
+      fromSel.addEventListener('change', () => {
+        syncDisabled();
+        navigate();
+      });
+      toSel.addEventListener('change', () => {
+        syncDisabled();
+        navigate();
+      });
+    }
+  }
 </script>

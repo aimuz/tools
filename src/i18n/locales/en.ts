@@ -469,6 +469,7 @@ export const en = {
       upload: {
         dragTemplate: 'Drop {label} images here',
         orClick: 'or click to upload (other formats accepted too)',
+        pasteHint: 'or press ⌘V / Ctrl+V to paste',
         sizeHint: 'Up to 100MB · batch supported',
       },
       options: {
@@ -536,6 +537,7 @@ export const en = {
       upload: {
         dragTemplate: 'Drop {fromLabel} images here',
         orClick: 'or click to upload (other image formats accepted too)',
+        pasteHint: 'or press ⌘V / Ctrl+V to paste',
         sizeHint: 'Up to 100MB · batch supported',
       },
       options: {
@@ -572,6 +574,7 @@ export const en = {
       upload: {
         drag: 'Drop images here',
         orClick: 'or click to upload',
+        pasteHint: 'or press ⌘V / Ctrl+V to paste',
         sizeHint: 'JPG, PNG, WebP, GIF supported · up to 100MB',
       },
       options: {
@@ -596,6 +599,7 @@ export const en = {
       upload: {
         drag: 'Drop images here',
         orClick: 'or click to upload',
+        pasteHint: 'or press ⌘V / Ctrl+V to paste',
         sizeHint: 'Up to 100MB',
       },
       options: {

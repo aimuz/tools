@@ -505,6 +505,7 @@ export const es = {
       upload: {
         dragTemplate: 'Arrastra imágenes {label} aquí',
         orClick: 'o haz clic para subir (otros formatos también válidos)',
+        pasteHint: 'o pega con ⌘V / Ctrl+V',
         sizeHint: 'Hasta 100MB · procesamiento por lotes',
       },
       options: {
@@ -571,6 +572,7 @@ export const es = {
         dragTemplate: 'Arrastra imágenes {fromLabel} aquí',
         orClick:
           'o haz clic para subir (otros formatos de imagen también válidos)',
+        pasteHint: 'o pega con ⌘V / Ctrl+V',
         sizeHint: 'Hasta 100MB · procesamiento por lotes',
       },
       options: {
@@ -606,6 +608,7 @@ export const es = {
       upload: {
         drag: 'Arrastra imágenes aquí',
         orClick: 'o haz clic para subir',
+        pasteHint: 'o pega con ⌘V / Ctrl+V',
         sizeHint: 'JPG, PNG, WebP, GIF · hasta 100MB',
       },
       options: {
@@ -630,6 +633,7 @@ export const es = {
       upload: {
         drag: 'Arrastra imágenes aquí',
         orClick: 'o haz clic para subir',
+        pasteHint: 'o pega con ⌘V / Ctrl+V',
         sizeHint: 'Hasta 100MB',
       },
       options: {

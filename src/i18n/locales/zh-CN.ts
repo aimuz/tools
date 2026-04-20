@@ -415,6 +415,7 @@ export const zhCN = {
       upload: {
         dragTemplate: '拖放 {label} 图片到此处',
         orClick: '或点击上传（其他格式也接受）',
+        pasteHint: '或按 ⌘V / Ctrl+V 粘贴',
         sizeHint: '最大 100MB · 支持批量',
       },
       options: {
@@ -479,6 +480,7 @@ export const zhCN = {
       upload: {
         dragTemplate: '拖放 {fromLabel} 图片到此处',
         orClick: '或点击上传（也接受其他图片格式）',
+        pasteHint: '或按 ⌘V / Ctrl+V 粘贴',
         sizeHint: '最大 100MB · 支持批量',
       },
       options: {
@@ -514,6 +516,7 @@ export const zhCN = {
       upload: {
         drag: '拖放图片到此处',
         orClick: '或点击上传',
+        pasteHint: '或按 ⌘V / Ctrl+V 粘贴',
         sizeHint: '支持 JPG、PNG、WebP、GIF · 最大 100MB',
       },
       options: {
@@ -537,6 +540,7 @@ export const zhCN = {
       upload: {
         drag: '拖放图片到此处',
         orClick: '或点击上传',
+        pasteHint: '或按 ⌘V / Ctrl+V 粘贴',
         sizeHint: '最大 100MB',
       },
       options: {

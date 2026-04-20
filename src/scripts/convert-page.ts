@@ -14,6 +14,7 @@ import {
 } from '../wasm/webp-bridge';
 import { bindCopyButton, setClipboardLabels } from './clipboard';
 import { openCompare, setCompareLabels, thumbPairHtml } from './image-compare';
+import { installPasteHandler } from './paste-image';
 
 export interface ConvertLabels {
   loading: string;
@@ -252,6 +253,8 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
   fileInput?.addEventListener('change', () => {
     if (fileInput.files) handleFiles(Array.from(fileInput.files));
   });
+
+  installPasteHandler((pasted) => handleFiles(pasted));
 
   async function handleFiles(newFiles: File[]) {
     files.forEach((f) => URL.revokeObjectURL(f.originalUrl));

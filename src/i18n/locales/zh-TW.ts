@@ -427,6 +427,7 @@ export const zhTW = {
       upload: {
         dragTemplate: '拖放 {label} 圖片到此處',
         orClick: '或點擊上傳（其他格式也接受）',
+        pasteHint: '或按 ⌘V / Ctrl+V 貼上',
         sizeHint: '最大 100MB · 支援批次',
       },
       options: {
@@ -490,6 +491,7 @@ export const zhTW = {
       upload: {
         dragTemplate: '拖放 {fromLabel} 圖片到此處',
         orClick: '或點擊上傳（也接受其他圖片格式）',
+        pasteHint: '或按 ⌘V / Ctrl+V 貼上',
         sizeHint: '最大 100MB · 支援批次',
       },
       options: {
@@ -525,6 +527,7 @@ export const zhTW = {
       upload: {
         drag: '拖放圖片到此處',
         orClick: '或點擊上傳',
+        pasteHint: '或按 ⌘V / Ctrl+V 貼上',
         sizeHint: '支援 JPG、PNG、WebP、GIF · 最大 100MB',
       },
       options: {
@@ -548,6 +551,7 @@ export const zhTW = {
       upload: {
         drag: '拖放圖片到此處',
         orClick: '或點擊上傳',
+        pasteHint: '或按 ⌘V / Ctrl+V 貼上',
         sizeHint: '最大 100MB',
       },
       options: {

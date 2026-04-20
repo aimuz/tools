@@ -7,6 +7,7 @@ import { getImageConverter } from '../wasm/rust-image-converter.js';
 import { decodeToRgba, encodeWebp } from '../wasm/webp-bridge';
 import { bindCopyButton, setClipboardLabels } from './clipboard';
 import { openCompare, setCompareLabels, thumbPairHtml } from './image-compare';
+import { installPasteHandler } from './paste-image';
 
 type Mode = 'smart' | 'light' | 'strong';
 
@@ -150,6 +151,8 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
   fileInput?.addEventListener('change', () => {
     if (fileInput.files) handleFiles(Array.from(fileInput.files));
   });
+
+  installPasteHandler((pasted) => handleFiles(pasted));
 
   function handleFiles(newFiles: File[]) {
     files.forEach((f) => URL.revokeObjectURL(f.originalUrl));

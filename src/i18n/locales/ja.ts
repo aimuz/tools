@@ -471,6 +471,7 @@ export const ja = {
       upload: {
         dragTemplate: '{label} 画像をここにドロップ',
         orClick: 'またはクリックしてアップロード（他の形式も可）',
+        pasteHint: 'または ⌘V / Ctrl+V で貼り付け',
         sizeHint: '最大 100MB · バッチ対応',
       },
       options: {
@@ -528,6 +529,7 @@ export const ja = {
       upload: {
         dragTemplate: '{fromLabel} 画像をここにドロップ',
         orClick: 'またはクリックしてアップロード（他の画像形式も可）',
+        pasteHint: 'または ⌘V / Ctrl+V で貼り付け',
         sizeHint: '最大 100MB · バッチ対応',
       },
       options: {
@@ -564,6 +566,7 @@ export const ja = {
       upload: {
         drag: '画像をここにドロップ',
         orClick: 'またはクリックしてアップロード',
+        pasteHint: 'または ⌘V / Ctrl+V で貼り付け',
         sizeHint: 'JPG・PNG・WebP・GIF 対応 · 最大 100MB',
       },
       options: {
@@ -589,6 +592,7 @@ export const ja = {
       upload: {
         drag: '画像をここにドロップ',
         orClick: 'またはクリックしてアップロード',
+        pasteHint: 'または ⌘V / Ctrl+V で貼り付け',
         sizeHint: '最大 100MB',
       },
       options: {

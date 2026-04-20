@@ -186,6 +186,9 @@ const moreHref = localizedPath(locale, '/convert');
         <div class="text-center">
           <p class="text-base text-[#171717]">{dragText}</p>
           <p class="text-sm text-gray-400 mt-1">{cp.upload.orClick}</p>
+          <p class="hidden md:block text-xs text-gray-400 mt-1">
+            {cp.upload.pasteHint}
+          </p>
         </div>
         <p class="text-xs text-gray-400">{cp.upload.sizeHint}</p>
         <input

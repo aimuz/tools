@@ -455,6 +455,7 @@ export const ko = {
       upload: {
         dragTemplate: '{label} 이미지를 여기에 드롭',
         orClick: '또는 클릭하여 업로드 (다른 형식도 가능)',
+        pasteHint: '또는 ⌘V / Ctrl+V로 붙여넣기',
         sizeHint: '최대 100MB · 일괄 지원',
       },
       options: {
@@ -511,6 +512,7 @@ export const ko = {
       upload: {
         dragTemplate: '{fromLabel} 이미지를 여기에 드롭',
         orClick: '또는 클릭하여 업로드 (다른 이미지 형식도 가능)',
+        pasteHint: '또는 ⌘V / Ctrl+V로 붙여넣기',
         sizeHint: '최대 100MB · 일괄 지원',
       },
       options: {
@@ -547,6 +549,7 @@ export const ko = {
       upload: {
         drag: '이미지를 여기에 드롭',
         orClick: '또는 클릭하여 업로드',
+        pasteHint: '또는 ⌘V / Ctrl+V로 붙여넣기',
         sizeHint: 'JPG, PNG, WebP, GIF 지원 · 최대 100MB',
       },
       options: {
@@ -572,6 +575,7 @@ export const ko = {
       upload: {
         drag: '이미지를 여기에 드롭',
         orClick: '또는 클릭하여 업로드',
+        pasteHint: '또는 ⌘V / Ctrl+V로 붙여넣기',
         sizeHint: '최대 100MB',
       },
       options: {

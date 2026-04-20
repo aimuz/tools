@@ -207,6 +207,7 @@ export type Translations = {
       upload: {
         dragTemplate: string;
         orClick: string;
+        pasteHint: string;
         sizeHint: string;
       };
       options: {
@@ -238,6 +239,7 @@ export type Translations = {
       upload: {
         dragTemplate: string;
         orClick: string;
+        pasteHint: string;
         sizeHint: string;
       };
       options: {
@@ -263,7 +265,12 @@ export type Translations = {
       h1: string;
       subheading: string;
       schema: { name: string; description: string; browserReq: string };
-      upload: { drag: string; orClick: string; sizeHint: string };
+      upload: {
+        drag: string;
+        orClick: string;
+        pasteHint: string;
+        sizeHint: string;
+      };
       options: {
         strength: string;
         smart: string;
@@ -278,7 +285,12 @@ export type Translations = {
       h1: string;
       subheading: string;
       schema: { name: string; description: string };
-      upload: { drag: string; orClick: string; sizeHint: string };
+      upload: {
+        drag: string;
+        orClick: string;
+        pasteHint: string;
+        sizeHint: string;
+      };
       options: {
         fromLabel: string;
         autoDetect: string;

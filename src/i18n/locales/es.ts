@@ -145,6 +145,19 @@ export const es = {
         },
       },
     },
+    document: {
+      label: 'Herramientas de Documentos',
+      items: {
+        'pdf-compress': {
+          name: 'Comprimir PDF',
+          desc: 'Reducir el tamaño de archivos PDF',
+        },
+        'pdf-merge': {
+          name: 'Unir PDF',
+          desc: 'Combinar varios PDF en uno solo',
+        },
+      },
+    },
   },
   quickActions: {
     'png-compress': {
@@ -342,6 +355,30 @@ export const es = {
         'mp3 bitrate',
       ],
     },
+    'pdf-compress': {
+      name: 'Comprimir PDF',
+      description: 'Reduce el tamaño de archivos PDF · procesamiento local',
+      tags: [
+        'comprimir pdf',
+        'reducir pdf',
+        'compresor pdf',
+        'pdf compressor',
+        'shrink pdf',
+        'reduce pdf size',
+      ],
+    },
+    'pdf-merge': {
+      name: 'Unir PDF',
+      description: 'Combina varios PDF en uno · reordenable',
+      tags: [
+        'unir pdf',
+        'combinar pdf',
+        'fusionar pdf',
+        'juntar pdf',
+        'merge pdf',
+        'combine pdf',
+      ],
+    },
     hash: {
       name: 'Generador de Hash',
       description: 'Genera SHA-1 / SHA-256 / SHA-384 / SHA-512 con un clic',
@@ -444,6 +481,20 @@ export const es = {
         'compress-mp3': {
           name: 'Comprimir MP3',
           description: 'Reduce el tamaño de archivos MP3',
+        },
+      },
+    },
+    document: {
+      name: 'Herramientas de documentos',
+      description: 'Procesamiento de PDF',
+      tools: {
+        'pdf-compress': {
+          name: 'Comprimir PDF',
+          description: 'Reducir el tamaño de archivos PDF',
+        },
+        'pdf-merge': {
+          name: 'Unir PDF',
+          description: 'Combinar varios PDF en un solo archivo',
         },
       },
     },
@@ -1598,6 +1649,157 @@ export const es = {
       info: {
         heading: 'Consejos de seguridad para contraseñas',
         body: 'Las contraseñas más largas son más seguras. Recomendamos al menos 12 caracteres con una combinación de mayúsculas, minúsculas, números y símbolos. Nunca reutilices contraseñas en múltiples sitios. Considera usar un administrador de contraseñas para guardar tus contraseñas generadas.',
+      },
+    },
+    pdfCompress: {
+      title: 'Comprimir PDF - Reducir tamaño PDF en línea | WizGo',
+      description:
+        'Compresor de PDF gratis en línea. Reescribe flujos de objetos y elimina metadatos para reducir el tamaño. Se ejecuta en tu navegador — sin subidas.',
+      h1: 'Comprimir PDF',
+      subheading:
+        'Reduce el tamaño de archivos PDF · procesamiento local · sin subidas',
+      schema: {
+        name: 'Comprimir PDF',
+        description:
+          'Herramienta gratis para comprimir archivos PDF reescribiendo flujos de objetos y eliminando metadatos. Todo ocurre en el navegador.',
+        browserReq: 'Navegador moderno con soporte de File API',
+      },
+      upload: {
+        drag: 'Suelta archivos PDF aquí',
+        orClick: 'o haz clic para subir',
+        pasteHint: 'o pulsa ⌘V / Ctrl+V para pegar',
+        sizeHint: 'Hasta 200MB por archivo · procesamiento por lotes',
+      },
+      options: {
+        stripMetadataLabel: 'Eliminar metadatos',
+        stripMetadataHint: 'Borra título, autor, palabras clave y productor',
+        objectStreamNote:
+          'La compresión de flujos de objetos está siempre activa. Esta versión no recodifica imágenes: reducción esperada de 5-15%.',
+        start: 'Comprimir',
+      },
+      progress: {
+        preparing: 'Preparando...',
+        processingTemplate: 'Procesando · {cur}/{total}',
+        done: 'Hecho',
+      },
+      result: {
+        ready: 'Compresión completada',
+        downloadBtn: 'Descargar',
+        sizeTemplate: 'Tamaño: {size}',
+        reductionTemplate: 'Ahorrado {pct}% · {before} → {after}',
+        noReduction: 'No se pudo reducir más — se devuelve el original',
+      },
+      errors: {
+        tooLargeTemplate:
+          '{name} es demasiado grande — máximo 200MB (actual {size})',
+        notPdfTemplate: '{name} no es un archivo PDF',
+        loadFailedTemplate: 'No se pudo leer el PDF: {name}',
+        encryptedPdf:
+          'Los PDF cifrados o protegidos con contraseña no están admitidos',
+      },
+      faq: {
+        heading: 'Preguntas frecuentes',
+        items: [
+          {
+            q: '¿Cuánto se reduce mi PDF?',
+            a: 'Normalmente entre 5% y 15%, según el archivo. Los PDF ya optimizados tienen menos margen. Los PDF con muchas imágenes se beneficiarán mucho más cuando la recodificación de imágenes llegue en V2 (previsto 50-80%).',
+          },
+          {
+            q: '¿Se pierde calidad?',
+            a: 'No. V1 solo reescribe flujos de objetos y elimina metadatos: imágenes, fuentes y texto conservan los mismos píxeles.',
+          },
+          {
+            q: '¿Se sube mi archivo?',
+            a: 'No. Todo se ejecuta en tu navegador con pdf-lib — el archivo nunca abandona tu dispositivo.',
+          },
+          {
+            q: '¿Se admiten PDF cifrados?',
+            a: 'No en V1. Los PDF con contraseña generan un error — quita la protección antes.',
+          },
+          {
+            q: '¿Por qué a veces el archivo crece un poco?',
+            a: 'Con originales ya muy optimizados, reescribirlos puede añadir unos KB. En ese caso se muestra "no se pudo reducir más" y puedes descargar el original.',
+          },
+        ],
+      },
+    },
+    pdfMerge: {
+      title: 'Unir PDF - Combina varios PDF en uno en línea | WizGo',
+      description:
+        'Une varios PDF en uno solo con reordenación. Funciona en tu navegador — sin subidas. Gratis e inmediato.',
+      h1: 'Unir PDF',
+      subheading:
+        'Combina varios PDF en uno · reordenable · procesamiento local',
+      schema: {
+        name: 'Unir PDF',
+        description:
+          'Herramienta gratis para combinar varios PDF en un solo documento, con ordenación. Todo ocurre en el navegador.',
+        browserReq: 'Navegador moderno con soporte de File API',
+      },
+      upload: {
+        drag: 'Suelta archivos PDF aquí',
+        orClick: 'o haz clic para subir (varios admitidos)',
+        pasteHint: 'o pulsa ⌘V / Ctrl+V para pegar',
+        sizeHint: 'Hasta 200MB por archivo',
+        multipleHint: 'Sube al menos 2 PDF para unir',
+      },
+      list: {
+        emptyHint: 'Sube al menos 2 PDF para empezar',
+        moveUpAria: 'Mover arriba',
+        moveDownAria: 'Mover abajo',
+        removeAria: 'Quitar',
+        positionTemplate: '{i}/{total}',
+      },
+      options: {
+        mergeBtn: 'Unir PDF',
+        clearAllBtn: 'Vaciar',
+        minFilesHint: 'Se necesitan al menos 2 archivos',
+      },
+      progress: {
+        preparing: 'Preparando...',
+        loadingTemplate: 'Cargando · {cur}/{total}',
+        writing: 'Escribiendo...',
+        done: 'Hecho',
+      },
+      result: {
+        ready: 'Unión completada',
+        downloadBtn: 'Descargar',
+        sizeTemplate: 'Tamaño: {size}',
+        pageCountTemplate: '{pages} páginas en total',
+      },
+      errors: {
+        tooLargeTemplate:
+          '{name} es demasiado grande — máximo 200MB (actual {size})',
+        notPdfTemplate: '{name} no es un archivo PDF',
+        loadFailedTemplate: 'No se pudo leer el PDF: {name}',
+        encryptedPdf:
+          'Los PDF cifrados o protegidos con contraseña no están admitidos',
+        needTwoFiles: 'Se necesitan al menos 2 PDF',
+      },
+      faq: {
+        heading: 'Preguntas frecuentes',
+        items: [
+          {
+            q: '¿Se sube mi archivo?',
+            a: 'No. Todo ocurre en tu navegador con pdf-lib — los archivos nunca salen de tu dispositivo.',
+          },
+          {
+            q: '¿Hay límite de archivos?',
+            a: 'Sin límite duro, pero unir más de 20 archivos grandes puede ralentizar el navegador (sobre todo en móvil).',
+          },
+          {
+            q: '¿Puedo reordenar los archivos?',
+            a: 'Sí. Usa los botones ▲ / ▼ junto a cada archivo. Las páginas del PDF final siguen el orden de la lista.',
+          },
+          {
+            q: '¿Se admiten PDF cifrados?',
+            a: 'No en V1. Los PDF con contraseña generan un error — quita la protección antes.',
+          },
+          {
+            q: '¿Se conservan marcadores y enlaces?',
+            a: 'V1 solo mantiene el contenido de las páginas: marcadores, formularios y anotaciones de enlace a nivel de documento pueden perderse.',
+          },
+        ],
       },
     },
   },

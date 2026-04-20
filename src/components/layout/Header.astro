@@ -34,6 +34,8 @@ const NAV_HREFS: Record<NavItemKey, string> = {
   password: '/password',
   'mp4-to-mp3': '/mp4-to-mp3',
   'compress-mp3': '/compress-mp3',
+  'pdf-compress': '/pdf-compress',
+  'pdf-merge': '/pdf-merge',
 };
 
 const IMAGE_ORDER: NavItemKey[] = [
@@ -63,6 +65,8 @@ const DEV_ORDER: NavItemKey[] = [
 
 const MEDIA_ORDER: NavItemKey[] = ['mp4-to-mp3', 'compress-mp3'];
 
+const DOC_ORDER: NavItemKey[] = ['pdf-compress', 'pdf-merge'];
+
 type RenderedItem = {
   key: NavItemKey;
   name: string;
@@ -71,7 +75,11 @@ type RenderedItem = {
 };
 
 function buildItems(
-  group: typeof t.nav.image | typeof t.nav.dev | typeof t.nav.media,
+  group:
+    | typeof t.nav.image
+    | typeof t.nav.dev
+    | typeof t.nav.media
+    | typeof t.nav.document,
   order: NavItemKey[],
 ): RenderedItem[] {
   return order
@@ -103,6 +111,11 @@ const menu = [
     id: 'media',
     label: t.nav.media.label,
     items: buildItems(t.nav.media, MEDIA_ORDER),
+  },
+  {
+    id: 'document',
+    label: t.nav.document.label,
+    items: buildItems(t.nav.document, DOC_ORDER),
   },
 ];
 

@@ -116,6 +116,19 @@ export const ja = {
         },
       },
     },
+    document: {
+      label: 'ドキュメントツール',
+      items: {
+        'pdf-compress': {
+          name: 'PDF 圧縮',
+          desc: 'PDF ファイルサイズを縮小',
+        },
+        'pdf-merge': {
+          name: 'PDF 結合',
+          desc: '複数の PDF を 1 つにまとめる',
+        },
+      },
+    },
   },
   quickActions: {
     'png-compress': {
@@ -311,6 +324,30 @@ export const ja = {
         'MP3 ビットレート',
       ],
     },
+    'pdf-compress': {
+      name: 'PDF 圧縮',
+      description: 'PDF ファイルサイズを縮小 · ローカル処理',
+      tags: [
+        'PDF 圧縮',
+        '圧縮 PDF',
+        'PDF サイズ削減',
+        'PDF ダイエット',
+        'pdf compress',
+        'shrink pdf',
+      ],
+    },
+    'pdf-merge': {
+      name: 'PDF 結合',
+      description: '複数の PDF を 1 つにまとめる · 並び替え可能',
+      tags: [
+        'PDF 結合',
+        'PDF マージ',
+        'PDF 連結',
+        'PDF 合体',
+        'merge pdf',
+        'combine pdf',
+      ],
+    },
     hash: {
       name: 'ハッシュ値生成',
       description: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 をワンクリックで生成',
@@ -410,6 +447,20 @@ export const ja = {
         'compress-mp3': {
           name: 'MP3 圧縮',
           description: 'MP3 ファイルサイズを削減',
+        },
+      },
+    },
+    document: {
+      name: 'ドキュメントツール',
+      description: 'PDF 処理',
+      tools: {
+        'pdf-compress': {
+          name: 'PDF 圧縮',
+          description: 'PDF ファイルサイズを縮小',
+        },
+        'pdf-merge': {
+          name: 'PDF 結合',
+          description: '複数の PDF を 1 つにまとめる',
         },
       },
     },
@@ -1539,6 +1590,154 @@ export const ja = {
       info: {
         heading: 'パスワードのセキュリティヒント',
         body: 'パスワードは長いほど安全です。少なくとも 12 文字以上で、大文字・小文字・数字・記号の組み合わせを推奨します。複数のサイトで同じパスワードを使い回さないでください。生成したパスワードはパスワード管理ツールで保存することを検討してください。',
+      },
+    },
+    pdfCompress: {
+      title: 'PDF 圧縮 - オンラインで PDF サイズを縮小 | WizGo',
+      description:
+        '無料オンライン PDF 圧縮ツール。オブジェクトストリームの書き換えとメタデータ除去でファイルサイズを縮小。ブラウザ内ローカル処理、アップロードなし。',
+      h1: 'PDF 圧縮',
+      subheading: 'PDF ファイルサイズを縮小 · ローカル処理 · アップロードなし',
+      schema: {
+        name: 'PDF 圧縮',
+        description:
+          '無料オンラインで PDF を圧縮し、メタデータを除去してオブジェクトストリームを書き換えます。ブラウザ内で処理。',
+        browserReq: 'File API をサポートする最新ブラウザ',
+      },
+      upload: {
+        drag: 'PDF をここにドロップ',
+        orClick: 'またはクリックしてアップロード',
+        pasteHint: 'または ⌘V / Ctrl+V で貼り付け',
+        sizeHint: '1 ファイル最大 200MB · 一括処理対応',
+      },
+      options: {
+        stripMetadataLabel: 'メタデータを削除',
+        stripMetadataHint: 'タイトル・著者・キーワード・作成者情報を削除',
+        objectStreamNote:
+          'オブジェクトストリーム圧縮は常にオン。埋め込み画像の再エンコードは本版では未対応で、削減量は 5〜15% が目安です。',
+        start: '圧縮開始',
+      },
+      progress: {
+        preparing: '準備中...',
+        processingTemplate: '処理中 · {cur}/{total}',
+        done: '完了',
+      },
+      result: {
+        ready: '圧縮完了',
+        downloadBtn: 'ダウンロード',
+        sizeTemplate: 'サイズ：{size}',
+        reductionTemplate: '{pct}% 削減 · {before} → {after}',
+        noReduction: 'これ以上縮小できません — 元ファイルを返します',
+      },
+      errors: {
+        tooLargeTemplate: '{name} が大きすぎます — 最大 200MB（現在 {size}）',
+        notPdfTemplate: '{name} は PDF ファイルではありません',
+        loadFailedTemplate: 'PDF を読み込めません：{name}',
+        encryptedPdf:
+          '暗号化またはパスワード保護された PDF はサポートされていません',
+      },
+      faq: {
+        heading: 'よくある質問',
+        items: [
+          {
+            q: 'PDF はどれくらい小さくなりますか？',
+            a: '元ファイル次第で通常 5〜15%。すでに最適化された PDF では削減余地が少なめです。画像を多く含む PDF は画像再エンコード機能を追加する V2 で 50〜80% の削減が見込めます。',
+          },
+          {
+            q: '画質は落ちますか？',
+            a: '落ちません。V1 ではオブジェクトストリームの書き換えとメタデータ削除のみを行い、画像・フォント・テキストのピクセルはそのままです。',
+          },
+          {
+            q: 'ファイルはアップロードされますか？',
+            a: 'いいえ。pdf-lib を使ってブラウザ内で処理されるので、ファイルはあなたの端末から出ません。',
+          },
+          {
+            q: '暗号化 PDF には対応していますか？',
+            a: 'V1 では未対応です。パスワード付き PDF はエラーになります — 先に保護を解除してください。',
+          },
+          {
+            q: 'まれに大きくなるのはなぜですか？',
+            a: '非常に最適化された原本では再書き込みで数 KB 増えることがあります。その場合は「これ以上縮小できません」と表示し、元のファイルをダウンロードできます。',
+          },
+        ],
+      },
+    },
+    pdfMerge: {
+      title: 'PDF 結合 - 複数の PDF を 1 つにまとめる | WizGo',
+      description:
+        '無料オンライン PDF 結合ツール。複数の PDF を 1 つに連結し、順序も調整可能。ブラウザ内ローカル処理、アップロードなし。',
+      h1: 'PDF 結合',
+      subheading:
+        '複数の PDF を 1 つにまとめる · 順序を調整可能 · ローカル処理',
+      schema: {
+        name: 'PDF 結合',
+        description:
+          '無料オンラインで複数の PDF を 1 つにまとめ、順序調整も可能。ブラウザ内で処理。',
+        browserReq: 'File API をサポートする最新ブラウザ',
+      },
+      upload: {
+        drag: 'PDF をここにドロップ',
+        orClick: 'またはクリックしてアップロード（複数可）',
+        pasteHint: 'または ⌘V / Ctrl+V で貼り付け',
+        sizeHint: '1 ファイル最大 200MB',
+        multipleHint: '結合するには PDF が 2 つ以上必要です',
+      },
+      list: {
+        emptyHint: '2 つ以上の PDF をアップロードしてください',
+        moveUpAria: '上へ移動',
+        moveDownAria: '下へ移動',
+        removeAria: '削除',
+        positionTemplate: '{i}/{total}',
+      },
+      options: {
+        mergeBtn: 'PDF を結合',
+        clearAllBtn: 'すべてクリア',
+        minFilesHint: '結合には 2 つ以上のファイルが必要です',
+      },
+      progress: {
+        preparing: '準備中...',
+        loadingTemplate: '読み込み中 · {cur}/{total}',
+        writing: '書き出し中...',
+        done: '完了',
+      },
+      result: {
+        ready: '結合完了',
+        downloadBtn: 'ダウンロード',
+        sizeTemplate: 'サイズ：{size}',
+        pageCountTemplate: '全 {pages} ページ',
+      },
+      errors: {
+        tooLargeTemplate: '{name} が大きすぎます — 最大 200MB（現在 {size}）',
+        notPdfTemplate: '{name} は PDF ファイルではありません',
+        loadFailedTemplate: 'PDF を読み込めません：{name}',
+        encryptedPdf:
+          '暗号化またはパスワード保護された PDF はサポートされていません',
+        needTwoFiles: '2 つ以上の PDF が必要です',
+      },
+      faq: {
+        heading: 'よくある質問',
+        items: [
+          {
+            q: 'ファイルはアップロードされますか？',
+            a: 'いいえ。pdf-lib を使ってブラウザ内で処理されるので、ファイルはあなたの端末から出ません。',
+          },
+          {
+            q: 'ファイル数の上限はありますか？',
+            a: '明確な上限はありませんが、大きなファイルを 20 以上結合するとブラウザが重くなる場合があります（特にスマートフォン）。',
+          },
+          {
+            q: '順序は変えられますか？',
+            a: 'はい。各ファイル横の ▲ / ▼ ボタンで順序を入れ替えられます。リストの順序どおりに結合されます。',
+          },
+          {
+            q: '暗号化 PDF には対応していますか？',
+            a: 'V1 では未対応です。パスワード付き PDF はエラーになります — 先に保護を解除してください。',
+          },
+          {
+            q: 'しおりや目次は保持されますか？',
+            a: 'V1 ではページ内容のみを保持します。ドキュメントレベルのしおり、フォーム、リンク注釈は失われる場合があります。',
+          },
+        ],
       },
     },
   },

@@ -109,6 +109,13 @@ export const ko = {
         },
       },
     },
+    document: {
+      label: '문서 도구',
+      items: {
+        'pdf-compress': { name: 'PDF 압축', desc: 'PDF 파일 크기 줄이기' },
+        'pdf-merge': { name: 'PDF 병합', desc: '여러 PDF를 하나로 합치기' },
+      },
+    },
   },
   quickActions: {
     'png-compress': {
@@ -301,6 +308,30 @@ export const ko = {
         'MP3 비트레이트',
       ],
     },
+    'pdf-compress': {
+      name: 'PDF 압축',
+      description: 'PDF 파일 크기 줄이기 · 로컬 처리',
+      tags: [
+        'PDF 압축',
+        'PDF 용량 줄이기',
+        'PDF 다이어트',
+        '압축 PDF',
+        'pdf compress',
+        'shrink pdf',
+      ],
+    },
+    'pdf-merge': {
+      name: 'PDF 병합',
+      description: '여러 PDF를 하나로 합치기 · 순서 변경 가능',
+      tags: [
+        'PDF 병합',
+        'PDF 합치기',
+        'PDF 결합',
+        'PDF 연결',
+        'merge pdf',
+        'combine pdf',
+      ],
+    },
     hash: {
       name: '해시 생성기',
       description: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 한 번에 생성',
@@ -395,6 +426,20 @@ export const ko = {
           description: '비디오 파일에서 오디오 추출',
         },
         'compress-mp3': { name: 'MP3 압축', description: 'MP3 파일 크기 감소' },
+      },
+    },
+    document: {
+      name: '문서 도구',
+      description: 'PDF 처리',
+      tools: {
+        'pdf-compress': {
+          name: 'PDF 압축',
+          description: 'PDF 파일 크기 줄이기',
+        },
+        'pdf-merge': {
+          name: 'PDF 병합',
+          description: '여러 PDF를 하나의 파일로',
+        },
       },
     },
   },
@@ -1513,6 +1558,151 @@ export const ko = {
       info: {
         heading: '비밀번호 보안 팁',
         body: '비밀번호는 길수록 더 안전합니다. 최소 12자 이상의 대문자, 소문자, 숫자 및 기호 조합을 권장합니다. 여러 사이트에서 동일한 비밀번호를 재사용하지 마세요. 생성된 비밀번호는 비밀번호 관리자에 저장하는 것을 고려하세요.',
+      },
+    },
+    pdfCompress: {
+      title: 'PDF 압축 - 온라인에서 PDF 크기 줄이기 | WizGo',
+      description:
+        '무료 온라인 PDF 압축 도구. 오브젝트 스트림 재작성 및 메타데이터 제거로 파일 크기를 줄입니다. 브라우저에서 로컬로 처리, 업로드 없음.',
+      h1: 'PDF 압축',
+      subheading: 'PDF 파일 크기 줄이기 · 로컬 처리 · 업로드 없음',
+      schema: {
+        name: 'PDF 압축',
+        description:
+          '오브젝트 스트림 재작성 및 메타데이터 제거로 PDF 파일을 압축하는 무료 온라인 도구. 브라우저에서 실행.',
+        browserReq: 'File API를 지원하는 최신 브라우저',
+      },
+      upload: {
+        drag: 'PDF를 여기에 놓으세요',
+        orClick: '또는 클릭하여 업로드',
+        pasteHint: '또는 ⌘V / Ctrl+V로 붙여넣기',
+        sizeHint: '파일당 최대 200MB · 일괄 처리 가능',
+      },
+      options: {
+        stripMetadataLabel: '메타데이터 제거',
+        stripMetadataHint: '제목, 작성자, 키워드, 생성자 정보 삭제',
+        objectStreamNote:
+          '오브젝트 스트림 압축은 항상 활성화되어 있습니다. 본 버전은 이미지를 재인코딩하지 않으며, 5~15%의 용량 감소가 예상됩니다.',
+        start: '압축 시작',
+      },
+      progress: {
+        preparing: '준비 중...',
+        processingTemplate: '처리 중 · {cur}/{total}',
+        done: '완료',
+      },
+      result: {
+        ready: '압축 완료',
+        downloadBtn: '다운로드',
+        sizeTemplate: '크기: {size}',
+        reductionTemplate: '{pct}% 감소 · {before} → {after}',
+        noReduction: '더 이상 줄일 수 없어 원본을 반환합니다',
+      },
+      errors: {
+        tooLargeTemplate: '{name}이(가) 너무 큽니다 — 최대 200MB (현재 {size})',
+        notPdfTemplate: '{name}은(는) PDF 파일이 아닙니다',
+        loadFailedTemplate: 'PDF를 읽을 수 없습니다: {name}',
+        encryptedPdf: '암호화되거나 비밀번호로 보호된 PDF는 지원하지 않습니다',
+      },
+      faq: {
+        heading: '자주 묻는 질문',
+        items: [
+          {
+            q: 'PDF가 얼마나 작아지나요?',
+            a: '원본에 따라 보통 5~15% 감소합니다. 이미 최적화된 PDF는 감소 폭이 적습니다. 이미지가 많은 PDF는 V2의 이미지 재인코딩 기능을 통해 50~80%까지 감소할 전망입니다.',
+          },
+          {
+            q: '품질이 떨어지나요?',
+            a: '아니요. V1은 오브젝트 스트림 재작성과 메타데이터 제거만 수행하며, 이미지·폰트·텍스트의 픽셀은 그대로 유지됩니다.',
+          },
+          {
+            q: '파일이 업로드되나요?',
+            a: '아니요. pdf-lib로 브라우저에서 처리되어 파일은 기기 밖으로 나가지 않습니다.',
+          },
+          {
+            q: '암호화된 PDF를 지원하나요?',
+            a: 'V1에서는 지원하지 않습니다. 비밀번호 PDF는 오류가 발생하므로 먼저 보호를 해제해야 합니다.',
+          },
+          {
+            q: '가끔 오히려 용량이 커지는 이유는?',
+            a: '이미 고도로 최적화된 파일은 재작성 후 몇 KB가 늘어날 수 있습니다. 이 경우 "더 이상 줄일 수 없음"이 표시되며 원본을 다운로드할 수 있습니다.',
+          },
+        ],
+      },
+    },
+    pdfMerge: {
+      title: 'PDF 병합 - 여러 PDF를 하나로 | WizGo',
+      description:
+        '무료 온라인 PDF 병합 도구. 여러 PDF를 하나로 합치고 순서를 조정하세요. 브라우저에서 로컬로 처리, 업로드 없음.',
+      h1: 'PDF 병합',
+      subheading: '여러 PDF를 하나로 합치기 · 순서 조정 가능 · 업로드 없음',
+      schema: {
+        name: 'PDF 병합',
+        description:
+          '여러 PDF를 하나의 문서로 병합하며, 순서 변경도 지원합니다. 브라우저에서 실행되는 무료 온라인 도구.',
+        browserReq: 'File API를 지원하는 최신 브라우저',
+      },
+      upload: {
+        drag: 'PDF를 여기에 놓으세요',
+        orClick: '또는 클릭하여 업로드 (다중 선택 가능)',
+        pasteHint: '또는 ⌘V / Ctrl+V로 붙여넣기',
+        sizeHint: '파일당 최대 200MB',
+        multipleHint: '병합하려면 PDF 2개 이상이 필요합니다',
+      },
+      list: {
+        emptyHint: '먼저 PDF를 2개 이상 업로드하세요',
+        moveUpAria: '위로 이동',
+        moveDownAria: '아래로 이동',
+        removeAria: '제거',
+        positionTemplate: '{i}/{total}',
+      },
+      options: {
+        mergeBtn: 'PDF 병합',
+        clearAllBtn: '모두 지우기',
+        minFilesHint: '병합하려면 파일이 2개 이상 필요합니다',
+      },
+      progress: {
+        preparing: '준비 중...',
+        loadingTemplate: '로드 중 · {cur}/{total}',
+        writing: '쓰는 중...',
+        done: '완료',
+      },
+      result: {
+        ready: '병합 완료',
+        downloadBtn: '다운로드',
+        sizeTemplate: '크기: {size}',
+        pageCountTemplate: '총 {pages} 페이지',
+      },
+      errors: {
+        tooLargeTemplate: '{name}이(가) 너무 큽니다 — 최대 200MB (현재 {size})',
+        notPdfTemplate: '{name}은(는) PDF 파일이 아닙니다',
+        loadFailedTemplate: 'PDF를 읽을 수 없습니다: {name}',
+        encryptedPdf: '암호화되거나 비밀번호로 보호된 PDF는 지원하지 않습니다',
+        needTwoFiles: 'PDF가 2개 이상 필요합니다',
+      },
+      faq: {
+        heading: '자주 묻는 질문',
+        items: [
+          {
+            q: '파일이 업로드되나요?',
+            a: '아니요. pdf-lib로 브라우저에서 처리되어 파일은 기기 밖으로 나가지 않습니다.',
+          },
+          {
+            q: '파일 개수 제한이 있나요?',
+            a: '엄격한 제한은 없지만 큰 파일 20개 이상을 병합하면 브라우저가 느려질 수 있습니다(특히 모바일).',
+          },
+          {
+            q: '순서를 바꿀 수 있나요?',
+            a: '네. 각 파일 옆의 ▲ / ▼ 버튼으로 순서를 조정할 수 있으며, 목록 순서대로 병합됩니다.',
+          },
+          {
+            q: '암호화된 PDF를 지원하나요?',
+            a: 'V1에서는 지원하지 않습니다. 비밀번호 PDF는 오류가 발생하므로 먼저 보호를 해제해야 합니다.',
+          },
+          {
+            q: '북마크와 목차는 유지되나요?',
+            a: 'V1은 페이지 내용만 유지하며 문서 수준의 북마크, 폼 필드, 링크 주석은 제거될 수 있습니다.',
+          },
+        ],
       },
     },
   },

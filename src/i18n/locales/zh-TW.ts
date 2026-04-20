@@ -94,6 +94,13 @@ export const zhTW = {
         },
       },
     },
+    document: {
+      label: '文件工具',
+      items: {
+        'pdf-compress': { name: 'PDF 壓縮', desc: '減小 PDF 檔案體積' },
+        'pdf-merge': { name: 'PDF 合併', desc: '多個 PDF 合併為一個' },
+      },
+    },
   },
   quickActions: {
     'png-compress': {
@@ -288,6 +295,32 @@ export const zhTW = {
         'MP3 位元率',
       ],
     },
+    'pdf-compress': {
+      name: 'PDF 壓縮',
+      description: '減小 PDF 檔案體積 · 本機處理',
+      tags: [
+        'PDF 壓縮',
+        '壓縮 PDF',
+        'PDF 減肥',
+        '減小 PDF 體積',
+        'PDF compress',
+        'shrink pdf',
+        'reduce pdf size',
+      ],
+    },
+    'pdf-merge': {
+      name: 'PDF 合併',
+      description: '多個 PDF 合併為一個 · 可排序',
+      tags: [
+        'PDF 合併',
+        '合併 PDF',
+        'PDF 串接',
+        'PDF 組合',
+        'merge PDF',
+        'combine PDF',
+        'PDF join',
+      ],
+    },
     hash: {
       name: '雜湊值產生器',
       description: '一鍵產生 SHA-1 / SHA-256 / SHA-384 / SHA-512',
@@ -368,6 +401,20 @@ export const zhTW = {
       tools: {
         'mp4-to-mp3': { name: 'MP4 轉 MP3', description: '從影片檔案擷取音訊' },
         'compress-mp3': { name: 'MP3 壓縮', description: '減小 MP3 檔案體積' },
+      },
+    },
+    document: {
+      name: '文件工具',
+      description: 'PDF 處理',
+      tools: {
+        'pdf-compress': {
+          name: 'PDF 壓縮',
+          description: '減小 PDF 檔案體積',
+        },
+        'pdf-merge': {
+          name: 'PDF 合併',
+          description: '多個 PDF 合併為一個檔案',
+        },
       },
     },
   },
@@ -1463,6 +1510,151 @@ export const zhTW = {
       info: {
         heading: '密碼安全提示',
         body: '密碼越長越安全。建議密碼長度至少 12 位，包含大小寫字母、數字和特殊符號的組合。不要多個網站使用相同密碼，推薦使用密碼管理員儲存產生的密碼。',
+      },
+    },
+    pdfCompress: {
+      title: 'PDF 壓縮 - 線上減小 PDF 體積 | WizGo',
+      description:
+        '免費線上 PDF 壓縮工具，透過物件流重寫與清除中繼資料減小檔案體積。純瀏覽器本機處理不上傳，支援批次。',
+      h1: 'PDF 壓縮',
+      subheading: '減小 PDF 檔案體積 · 本機處理 · 檔案不上傳',
+      schema: {
+        name: 'PDF 壓縮',
+        description:
+          '免費線上壓縮 PDF 檔案，去除中繼資料並重寫物件流以減小體積，瀏覽器本機處理',
+        browserReq: '需要支援 File API 的現代瀏覽器',
+      },
+      upload: {
+        drag: '拖放 PDF 到此處',
+        orClick: '或點擊上傳',
+        pasteHint: '或按 ⌘V / Ctrl+V 貼上',
+        sizeHint: '單個檔案最大 200MB · 支援批次',
+      },
+      options: {
+        stripMetadataLabel: '清除中繼資料',
+        stripMetadataHint: '移除標題、作者、關鍵字等資訊',
+        objectStreamNote:
+          '物件流壓縮始終開啟；本工具暫不重新編碼嵌入圖片，預計體積減小 5-15%',
+        start: '開始壓縮',
+      },
+      progress: {
+        preparing: '準備中...',
+        processingTemplate: '處理中 · {cur}/{total}',
+        done: '完成',
+      },
+      result: {
+        ready: '壓縮完成',
+        downloadBtn: '下載',
+        sizeTemplate: '大小：{size}',
+        reductionTemplate: '節省 {pct}% · {before} → {after}',
+        noReduction: '原檔案已經足夠小，返回原檔案',
+      },
+      errors: {
+        tooLargeTemplate: '{name} 過大，最大 200MB（目前 {size}）',
+        notPdfTemplate: '{name} 不是 PDF 檔案',
+        loadFailedTemplate: '無法讀取 PDF：{name}',
+        encryptedPdf: '不支援加密或受密碼保護的 PDF',
+      },
+      faq: {
+        heading: '常見問題',
+        items: [
+          {
+            q: 'PDF 可以壓縮多少？',
+            a: '通常 5-15%，取決於原檔案。已經高度最佳化過的 PDF 壓縮空間較小。對於包含大量圖片的 PDF，目前不會重新編碼；V2 會加入此功能，預計可節省 50-80%。',
+          },
+          {
+            q: '會損失畫質嗎？',
+            a: '不會。V1 只做物件流重寫與中繼資料清除，圖像、字型與文字的像素保持完全一致，純粹是格式層面的最佳化。',
+          },
+          {
+            q: '檔案會上傳嗎？',
+            a: '不會。全部在瀏覽器本機用 pdf-lib 處理，檔案不離開你的裝置。',
+          },
+          {
+            q: '支援加密 PDF 嗎？',
+            a: '不支援。帶密碼或加密的 PDF 會報錯，請先解除保護再壓縮。',
+          },
+          {
+            q: '為什麼有時反而變大了？',
+            a: '極少數情況下（原檔案已高度最佳化），重寫後可能增大幾 KB。遇到此情況工具會提示「無法進一步壓縮」並讓你下載原檔案。',
+          },
+        ],
+      },
+    },
+    pdfMerge: {
+      title: 'PDF 合併 - 線上多個 PDF 合併為一個 | WizGo',
+      description:
+        '免費線上 PDF 合併工具，多個 PDF 拼接成一個檔案，支援調整順序。純瀏覽器本機處理不上傳。',
+      h1: 'PDF 合併',
+      subheading: '多個 PDF 合併為一個 · 可調整順序 · 本機處理不上傳',
+      schema: {
+        name: 'PDF 合併',
+        description:
+          '免費線上合併多個 PDF 為一個檔案，支援調整順序，瀏覽器本機處理',
+        browserReq: '需要支援 File API 的現代瀏覽器',
+      },
+      upload: {
+        drag: '拖放 PDF 到此處',
+        orClick: '或點擊上傳（可多選）',
+        pasteHint: '或按 ⌘V / Ctrl+V 貼上',
+        sizeHint: '單個檔案最大 200MB',
+        multipleHint: '至少需要 2 個 PDF 才能合併',
+      },
+      list: {
+        emptyHint: '先上傳至少 2 個 PDF',
+        moveUpAria: '上移',
+        moveDownAria: '下移',
+        removeAria: '移除',
+        positionTemplate: '{i}/{total}',
+      },
+      options: {
+        mergeBtn: '合併 PDF',
+        clearAllBtn: '清空',
+        minFilesHint: '至少 2 個檔案才能合併',
+      },
+      progress: {
+        preparing: '準備中...',
+        loadingTemplate: '正在讀取 · {cur}/{total}',
+        writing: '寫入中...',
+        done: '完成',
+      },
+      result: {
+        ready: '合併完成',
+        downloadBtn: '下載',
+        sizeTemplate: '大小：{size}',
+        pageCountTemplate: '共 {pages} 頁',
+      },
+      errors: {
+        tooLargeTemplate: '{name} 過大，最大 200MB（目前 {size}）',
+        notPdfTemplate: '{name} 不是 PDF 檔案',
+        loadFailedTemplate: '無法讀取 PDF：{name}',
+        encryptedPdf: '不支援加密或受密碼保護的 PDF',
+        needTwoFiles: '至少需要 2 個 PDF',
+      },
+      faq: {
+        heading: '常見問題',
+        items: [
+          {
+            q: '檔案會上傳嗎？',
+            a: '不會。全部在瀏覽器本機用 pdf-lib 處理，檔案不離開你的裝置。',
+          },
+          {
+            q: '有檔案數量限制嗎？',
+            a: '沒有硬限制，但合併 20 個以上大檔案可能會讓瀏覽器變慢，尤其是在手機上。',
+          },
+          {
+            q: '可以調整順序嗎？',
+            a: '可以。用每個檔案旁的 ▲ / ▼ 按鈕調整順序，合併後的頁面順序與清單一致。',
+          },
+          {
+            q: '支援加密 PDF 嗎？',
+            a: '不支援。帶密碼或加密的 PDF 會報錯，請先解除保護再合併。',
+          },
+          {
+            q: '會保留書籤與目錄嗎？',
+            a: '當前版本只保留頁面內容，文件層級的書籤、表單欄位、連結註釋可能會遺失。',
+          },
+        ],
       },
     },
   },

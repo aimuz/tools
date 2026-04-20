@@ -34,6 +34,8 @@ const DEV_TOOL_IDS: QuickActionKey[] = [
 
 const MEDIA_TOOL_IDS: QuickActionKey[] = ['mp4-to-mp3'];
 
+const DOC_TOOL_IDS: QuickActionKey[] = ['pdf-compress', 'pdf-merge'];
+
 export function buildLlmsTxt(locale: Locale): string {
   const t = useTranslations(locale);
   const actions = getQuickActions(locale);
@@ -49,6 +51,7 @@ export function buildLlmsTxt(locale: Locale): string {
   const imageItems = IMAGE_TOOL_IDS.map(renderItem).filter(Boolean).join('\n');
   const devItems = DEV_TOOL_IDS.map(renderItem).filter(Boolean).join('\n');
   const mediaItems = MEDIA_TOOL_IDS.map(renderItem).filter(Boolean).join('\n');
+  const docItems = DOC_TOOL_IDS.map(renderItem).filter(Boolean).join('\n');
 
   return `# ${t.common.siteName}
 
@@ -62,6 +65,9 @@ ${devItems}
 
 ## ${t.toolCategories.media.name}
 ${mediaItems}
+
+## ${t.toolCategories.document.name}
+${docItems}
 
 ## ${t.pages.about.privacy.heading}
 ${t.pages.about.privacy.intro}
@@ -105,9 +111,18 @@ export function buildLlmsFullTxt(locale: Locale): string {
       'Adds visible "for X use only" text watermark. Tile / center / corner layouts. Used for ID cards, contracts, ICP filings.',
     'mp4-to-mp3':
       'Extracts audio from MP4/MOV/M4A/WebM and re-encodes as MP3 at 128/192/256/320 kbps. Decoding via Web Audio, encoding via JS lamejs — runs entirely in the browser, no uploads, single file up to 500 MB.',
+    'pdf-compress':
+      'Shrinks PDF file size by rewriting object streams and stripping metadata via pdf-lib. Typical savings 5–15% on already-optimized PDFs; image re-encoding is planned for V2 (projected 50–80%). Runs entirely in the browser — no uploads. Up to 200 MB per file.',
+    'pdf-merge':
+      'Combines multiple PDFs into a single document with up/down reordering. Uses pdf-lib in the browser — no uploads. Up to 200 MB per file; works best with fewer than 20 large files.',
   };
 
-  const allIds = [...IMAGE_TOOL_IDS, ...DEV_TOOL_IDS, ...MEDIA_TOOL_IDS];
+  const allIds = [
+    ...IMAGE_TOOL_IDS,
+    ...DEV_TOOL_IDS,
+    ...MEDIA_TOOL_IDS,
+    ...DOC_TOOL_IDS,
+  ];
   const blocks = allIds
     .map((id) => renderToolBlock(id, formatNotes[id]))
     .join('');

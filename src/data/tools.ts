@@ -65,6 +65,8 @@ const QUICK_ACTION_ORDER: QuickActionMeta[] = [
   { id: 'text-watermark', href: '/text-watermark', isNew: true },
   { id: 'mp4-to-mp3', href: '/mp4-to-mp3', isNew: true },
   { id: 'compress-mp3', href: '/compress-mp3', isNew: true },
+  { id: 'pdf-compress', href: '/pdf-compress', isNew: true },
+  { id: 'pdf-merge', href: '/pdf-merge', isNew: true },
 ];
 
 type CategoryToolMeta = {
@@ -104,6 +106,13 @@ const CATEGORY_ORDER: { id: CategoryKey; tools: CategoryToolMeta[] }[] = [
     tools: [
       { id: 'mp4-to-mp3', href: '/mp4-to-mp3', isNew: true },
       { id: 'compress-mp3', href: '/compress-mp3', isNew: true },
+    ],
+  },
+  {
+    id: 'document',
+    tools: [
+      { id: 'pdf-compress', href: '/pdf-compress', isNew: true },
+      { id: 'pdf-merge', href: '/pdf-merge', isNew: true },
     ],
   },
 ];

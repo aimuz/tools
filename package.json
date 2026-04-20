@@ -21,6 +21,7 @@
     "@fontsource/geist-mono": "^5.0.3",
     "@fontsource/geist-sans": "^5.0.3",
     "astro": "^4.5.0",
+    "pdf-lib": "^1.17.0",
     "prettier": "^3.8.3",
     "qrcode": "^1.5.4",
     "sql-formatter": "^15.7.3",

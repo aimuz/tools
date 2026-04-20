@@ -94,6 +94,13 @@ export const zhCN = {
         },
       },
     },
+    document: {
+      label: '文档工具',
+      items: {
+        'pdf-compress': { name: 'PDF 压缩', desc: '减小 PDF 文件体积' },
+        'pdf-merge': { name: 'PDF 合并', desc: '多个 PDF 合并为一个' },
+      },
+    },
   },
   quickActions: {
     'png-compress': {
@@ -282,6 +289,32 @@ export const zhCN = {
         'MP3 比特率',
       ],
     },
+    'pdf-compress': {
+      name: 'PDF 压缩',
+      description: '减小 PDF 文件体积 · 本地处理',
+      tags: [
+        'PDF 压缩',
+        '压缩 PDF',
+        'PDF 瘦身',
+        '减小 PDF 体积',
+        'PDF compress',
+        'shrink pdf',
+        'reduce pdf size',
+      ],
+    },
+    'pdf-merge': {
+      name: 'PDF 合并',
+      description: '多个 PDF 合并为一个 · 可排序',
+      tags: [
+        'PDF 合并',
+        '合并 PDF',
+        'PDF 拼接',
+        'PDF 组合',
+        'merge PDF',
+        'combine PDF',
+        'PDF join',
+      ],
+    },
     hash: {
       name: '哈希值生成',
       description: '一键生成 SHA-1 / SHA-256 / SHA-384 / SHA-512',
@@ -356,6 +389,20 @@ export const zhCN = {
       tools: {
         'mp4-to-mp3': { name: 'MP4 转 MP3', description: '从视频文件提取音频' },
         'compress-mp3': { name: 'MP3 压缩', description: '减小 MP3 文件体积' },
+      },
+    },
+    document: {
+      name: '文档工具',
+      description: 'PDF 处理',
+      tools: {
+        'pdf-compress': {
+          name: 'PDF 压缩',
+          description: '减小 PDF 文件体积',
+        },
+        'pdf-merge': {
+          name: 'PDF 合并',
+          description: '多个 PDF 合并为一个文件',
+        },
       },
     },
   },
@@ -1455,6 +1502,151 @@ export const zhCN = {
       info: {
         heading: '密码安全提示',
         body: '密码越长越安全。建议密码长度至少 12 位，包含大小写字母、数字和特殊符号的组合。不要在多个网站使用相同密码，推荐使用密码管理器保存生成的密码。',
+      },
+    },
+    pdfCompress: {
+      title: 'PDF 压缩 - 在线减小 PDF 体积 | WizGo',
+      description:
+        '免费在线 PDF 压缩工具，通过对象流重写和清除元数据减小文件体积。纯浏览器本地处理不上传，支持批量。',
+      h1: 'PDF 压缩',
+      subheading: '减小 PDF 文件体积 · 本地处理 · 文件不上传',
+      schema: {
+        name: 'PDF 压缩',
+        description:
+          '免费在线压缩 PDF 文件，去除元数据并重写对象流以减小体积，浏览器本地处理',
+        browserReq: '需要支持 File API 的现代浏览器',
+      },
+      upload: {
+        drag: '拖放 PDF 到此处',
+        orClick: '或点击上传',
+        pasteHint: '或按 ⌘V / Ctrl+V 粘贴',
+        sizeHint: '单个文件最大 200MB · 支持批量',
+      },
+      options: {
+        stripMetadataLabel: '清除元数据',
+        stripMetadataHint: '删除标题、作者、关键字等信息',
+        objectStreamNote:
+          '对象流压缩始终开启；本工具暂不重新编码嵌入图片，预期体积减小 5-15%',
+        start: '开始压缩',
+      },
+      progress: {
+        preparing: '准备中...',
+        processingTemplate: '处理中 · {cur}/{total}',
+        done: '完成',
+      },
+      result: {
+        ready: '压缩完成',
+        downloadBtn: '下载',
+        sizeTemplate: '大小：{size}',
+        reductionTemplate: '节省 {pct}% · {before} → {after}',
+        noReduction: '原文件已经足够小，返回原文件',
+      },
+      errors: {
+        tooLargeTemplate: '{name} 过大，最大 200MB（当前 {size}）',
+        notPdfTemplate: '{name} 不是 PDF 文件',
+        loadFailedTemplate: '无法读取 PDF：{name}',
+        encryptedPdf: '不支持加密或受密码保护的 PDF',
+      },
+      faq: {
+        heading: '常见问题',
+        items: [
+          {
+            q: 'PDF 能压缩多少？',
+            a: '通常 5-15%，取决于原文件。已经高度优化过的 PDF 压缩空间较小。对于包含大量图片的 PDF，目前不会重新编码图片；V2 会加入此功能，预计能节省 50-80%。',
+          },
+          {
+            q: '会损失画质吗？',
+            a: '不会。V1 只做对象流重写和元数据清除，图像、字体和文本的像素保持完全一致，纯粹是格式层面的优化。',
+          },
+          {
+            q: '文件会被上传吗？',
+            a: '不会。全部在浏览器本地用 pdf-lib 处理，文件不离开你的设备。',
+          },
+          {
+            q: '支持加密 PDF 吗？',
+            a: '不支持。带密码或加密的 PDF 会报错，请先解除保护再压缩。',
+          },
+          {
+            q: '为什么有时候反而变大了？',
+            a: '极少数情况下（原文件已高度优化），重写后可能增大几 KB。遇到此情况工具会提示"无法进一步压缩"并让你下载原文件。',
+          },
+        ],
+      },
+    },
+    pdfMerge: {
+      title: 'PDF 合并 - 在线多个 PDF 合并为一个 | WizGo',
+      description:
+        '免费在线 PDF 合并工具，多个 PDF 拼接成一个文件，支持调整顺序。纯浏览器本地处理不上传。',
+      h1: 'PDF 合并',
+      subheading: '多个 PDF 合并为一个 · 可调整顺序 · 本地处理不上传',
+      schema: {
+        name: 'PDF 合并',
+        description:
+          '免费在线合并多个 PDF 为一个文件，支持调整顺序，浏览器本地处理',
+        browserReq: '需要支持 File API 的现代浏览器',
+      },
+      upload: {
+        drag: '拖放 PDF 到此处',
+        orClick: '或点击上传（可多选）',
+        pasteHint: '或按 ⌘V / Ctrl+V 粘贴',
+        sizeHint: '单个文件最大 200MB',
+        multipleHint: '至少需要 2 个 PDF 才能合并',
+      },
+      list: {
+        emptyHint: '先上传至少 2 个 PDF',
+        moveUpAria: '上移',
+        moveDownAria: '下移',
+        removeAria: '移除',
+        positionTemplate: '{i}/{total}',
+      },
+      options: {
+        mergeBtn: '合并 PDF',
+        clearAllBtn: '清空',
+        minFilesHint: '至少 2 个文件才能合并',
+      },
+      progress: {
+        preparing: '准备中...',
+        loadingTemplate: '正在读取 · {cur}/{total}',
+        writing: '写入中...',
+        done: '完成',
+      },
+      result: {
+        ready: '合并完成',
+        downloadBtn: '下载',
+        sizeTemplate: '大小：{size}',
+        pageCountTemplate: '共 {pages} 页',
+      },
+      errors: {
+        tooLargeTemplate: '{name} 过大，最大 200MB（当前 {size}）',
+        notPdfTemplate: '{name} 不是 PDF 文件',
+        loadFailedTemplate: '无法读取 PDF：{name}',
+        encryptedPdf: '不支持加密或受密码保护的 PDF',
+        needTwoFiles: '至少需要 2 个 PDF',
+      },
+      faq: {
+        heading: '常见问题',
+        items: [
+          {
+            q: '文件会被上传吗？',
+            a: '不会。全部在浏览器本地用 pdf-lib 处理，文件不离开你的设备。',
+          },
+          {
+            q: '有文件数量限制吗？',
+            a: '没有硬限制，但合并 20 个以上大文件可能会让浏览器变卡，尤其是在手机上。',
+          },
+          {
+            q: '可以调整顺序吗？',
+            a: '可以。用每个文件旁的 ▲ / ▼ 按钮调整顺序，合并后的页面顺序与列表一致。',
+          },
+          {
+            q: '支持加密 PDF 吗？',
+            a: '不支持。带密码或加密的 PDF 会报错，请先解除保护再合并。',
+          },
+          {
+            q: '会保留书签和目录吗？',
+            a: '当前版本只保留页面内容，文档级的书签、表单字段、链接注解可能会丢失。',
+          },
+        ],
       },
     },
   },

@@ -32,7 +32,9 @@ export type QuickActionKey =
   | 'watermark'
   | 'text-watermark'
   | 'mp4-to-mp3'
-  | 'compress-mp3';
+  | 'compress-mp3'
+  | 'pdf-compress'
+  | 'pdf-merge';
 
 export type CategoryToolKey =
   | 'compress'
@@ -51,9 +53,11 @@ export type CategoryToolKey =
   | 'hash'
   | 'password'
   | 'mp4-to-mp3'
-  | 'compress-mp3';
+  | 'compress-mp3'
+  | 'pdf-compress'
+  | 'pdf-merge';
 
-export type CategoryKey = 'image' | 'code' | 'media';
+export type CategoryKey = 'image' | 'code' | 'media' | 'document';
 
 export type NavItemKey =
   | 'compress'
@@ -76,7 +80,9 @@ export type NavItemKey =
   | 'hash'
   | 'password'
   | 'mp4-to-mp3'
-  | 'compress-mp3';
+  | 'compress-mp3'
+  | 'pdf-compress'
+  | 'pdf-merge';
 
 export type CompressFormat = 'png' | 'jpg' | 'webp';
 
@@ -162,6 +168,10 @@ export type Translations = {
       items: Partial<Record<NavItemKey, { name: string; desc: string }>>;
     };
     media: {
+      label: string;
+      items: Partial<Record<NavItemKey, { name: string; desc: string }>>;
+    };
+    document: {
       label: string;
       items: Partial<Record<NavItemKey, { name: string; desc: string }>>;
     };
@@ -853,6 +863,96 @@ export type Translations = {
         downloadBtn: string;
         sizeTemplate: string;
         reductionTemplate: string;
+      };
+      faq: {
+        heading: string;
+        items: { q: string; a: string }[];
+      };
+    };
+    pdfCompress: {
+      title: string;
+      description: string;
+      h1: string;
+      subheading: string;
+      schema: { name: string; description: string; browserReq: string };
+      upload: {
+        drag: string;
+        orClick: string;
+        pasteHint: string;
+        sizeHint: string;
+      };
+      options: {
+        stripMetadataLabel: string;
+        stripMetadataHint: string;
+        objectStreamNote: string;
+        start: string;
+      };
+      progress: {
+        preparing: string;
+        processingTemplate: string;
+        done: string;
+      };
+      result: {
+        ready: string;
+        downloadBtn: string;
+        sizeTemplate: string;
+        reductionTemplate: string;
+        noReduction: string;
+      };
+      errors: {
+        tooLargeTemplate: string;
+        notPdfTemplate: string;
+        loadFailedTemplate: string;
+        encryptedPdf: string;
+      };
+      faq: {
+        heading: string;
+        items: { q: string; a: string }[];
+      };
+    };
+    pdfMerge: {
+      title: string;
+      description: string;
+      h1: string;
+      subheading: string;
+      schema: { name: string; description: string; browserReq: string };
+      upload: {
+        drag: string;
+        orClick: string;
+        pasteHint: string;
+        sizeHint: string;
+        multipleHint: string;
+      };
+      list: {
+        emptyHint: string;
+        moveUpAria: string;
+        moveDownAria: string;
+        removeAria: string;
+        positionTemplate: string;
+      };
+      options: {
+        mergeBtn: string;
+        clearAllBtn: string;
+        minFilesHint: string;
+      };
+      progress: {
+        preparing: string;
+        loadingTemplate: string;
+        writing: string;
+        done: string;
+      };
+      result: {
+        ready: string;
+        downloadBtn: string;
+        sizeTemplate: string;
+        pageCountTemplate: string;
+      };
+      errors: {
+        tooLargeTemplate: string;
+        notPdfTemplate: string;
+        loadFailedTemplate: string;
+        encryptedPdf: string;
+        needTwoFiles: string;
       };
       faq: {
         heading: string;

@@ -132,6 +132,19 @@ export const en = {
         },
       },
     },
+    document: {
+      label: 'Document Tools',
+      items: {
+        'pdf-compress': {
+          name: 'PDF Compress',
+          desc: 'Shrink PDF file size',
+        },
+        'pdf-merge': {
+          name: 'PDF Merge',
+          desc: 'Combine multiple PDFs into one',
+        },
+      },
+    },
   },
   quickActions: {
     'png-compress': {
@@ -306,6 +319,30 @@ export const en = {
         'mp3 bitrate',
       ],
     },
+    'pdf-compress': {
+      name: 'PDF Compress',
+      description: 'Shrink PDF file size · runs locally',
+      tags: [
+        'pdf compress',
+        'compress pdf',
+        'shrink pdf',
+        'reduce pdf size',
+        'pdf compressor',
+        'pdf optimizer',
+      ],
+    },
+    'pdf-merge': {
+      name: 'PDF Merge',
+      description: 'Combine multiple PDFs into one · reorder pages',
+      tags: [
+        'pdf merge',
+        'merge pdf',
+        'combine pdf',
+        'pdf combine',
+        'pdf join',
+        'join pdf',
+      ],
+    },
     hash: {
       name: 'Hash Generator',
       description: 'SHA-1 / SHA-256 / SHA-384 / SHA-512 in one click',
@@ -408,6 +445,20 @@ export const en = {
         'compress-mp3': {
           name: 'MP3 Compress',
           description: 'Reduce MP3 file size',
+        },
+      },
+    },
+    document: {
+      name: 'Document Tools',
+      description: 'PDF processing',
+      tools: {
+        'pdf-compress': {
+          name: 'PDF Compress',
+          description: 'Shrink PDF file size',
+        },
+        'pdf-merge': {
+          name: 'PDF Merge',
+          description: 'Combine multiple PDFs into one',
         },
       },
     },
@@ -1556,6 +1607,152 @@ export const en = {
       info: {
         heading: 'Password security tips',
         body: 'Longer passwords are more secure. We recommend at least 12 characters with a mix of uppercase, lowercase, numbers, and symbols. Never reuse passwords across multiple sites. Consider using a password manager to store your generated passwords.',
+      },
+    },
+    pdfCompress: {
+      title: 'PDF Compress: Shrink PDF File Size Online | WizGo',
+      description:
+        'Free online PDF compressor. Shrinks file size by rewriting object streams and stripping metadata. Runs entirely in your browser — nothing uploaded.',
+      h1: 'PDF Compress',
+      subheading: 'Shrink PDF file size · runs locally · nothing uploaded',
+      schema: {
+        name: 'PDF Compress',
+        description:
+          'Free online tool to compress PDF files by rewriting object streams and stripping metadata. Runs entirely in the browser.',
+        browserReq: 'Modern browser with File API support',
+      },
+      upload: {
+        drag: 'Drop PDF files here',
+        orClick: 'or click to upload',
+        pasteHint: 'or press ⌘V / Ctrl+V to paste',
+        sizeHint: 'Up to 200MB per file · batch supported',
+      },
+      options: {
+        stripMetadataLabel: 'Strip metadata',
+        stripMetadataHint: 'Remove title, author, keywords and producer info',
+        objectStreamNote:
+          'Object-stream compression is always on. Embedded images are not re-encoded in this version — expect 5–15% savings.',
+        start: 'Compress',
+      },
+      progress: {
+        preparing: 'Preparing...',
+        processingTemplate: 'Processing · {cur}/{total}',
+        done: 'Done',
+      },
+      result: {
+        ready: 'Compressed',
+        downloadBtn: 'Download',
+        sizeTemplate: 'Size: {size}',
+        reductionTemplate: 'Saved {pct}% · {before} → {after}',
+        noReduction: 'No further reduction possible — original returned',
+      },
+      errors: {
+        tooLargeTemplate: '{name} is too large — max 200MB (current {size})',
+        notPdfTemplate: '{name} is not a PDF file',
+        loadFailedTemplate: 'Could not read PDF: {name}',
+        encryptedPdf: 'Encrypted or password-protected PDFs are not supported',
+      },
+      faq: {
+        heading: 'FAQ',
+        items: [
+          {
+            q: 'How much smaller will my PDF get?',
+            a: 'Typically 5–15%, depending on the source. Already-optimized PDFs have less room to shrink. Image-heavy PDFs will benefit far more once image re-encoding ships in V2 (projected 50–80%).',
+          },
+          {
+            q: 'Will quality drop?',
+            a: 'No. V1 only rewrites object streams and strips metadata — images, fonts and text keep identical pixels. The savings are purely structural.',
+          },
+          {
+            q: 'Is my file uploaded?',
+            a: 'No. Everything runs in your browser with pdf-lib — the file never leaves your device.',
+          },
+          {
+            q: 'Are encrypted PDFs supported?',
+            a: 'Not in V1. Password-protected PDFs raise an error — remove protection first.',
+          },
+          {
+            q: 'Why does the output sometimes grow?',
+            a: 'For highly optimized originals, the rewrite can add a few KB. When that happens, the tool shows "no further reduction" and lets you download the original.',
+          },
+        ],
+      },
+    },
+    pdfMerge: {
+      title: 'PDF Merge: Combine Multiple PDFs Online | WizGo',
+      description:
+        'Free online PDF merger. Combine multiple PDFs into one, reorder with up/down buttons. Runs in your browser — nothing uploaded.',
+      h1: 'PDF Merge',
+      subheading:
+        'Combine multiple PDFs into one · reorder before merging · runs locally',
+      schema: {
+        name: 'PDF Merge',
+        description:
+          'Free online tool to merge multiple PDFs into a single document, with ordering controls. Runs entirely in the browser.',
+        browserReq: 'Modern browser with File API support',
+      },
+      upload: {
+        drag: 'Drop PDF files here',
+        orClick: 'or click to upload (multiple supported)',
+        pasteHint: 'or press ⌘V / Ctrl+V to paste',
+        sizeHint: 'Up to 200MB per file',
+        multipleHint: 'Upload at least 2 PDFs to merge',
+      },
+      list: {
+        emptyHint: 'Upload at least 2 PDFs to start',
+        moveUpAria: 'Move up',
+        moveDownAria: 'Move down',
+        removeAria: 'Remove',
+        positionTemplate: '{i}/{total}',
+      },
+      options: {
+        mergeBtn: 'Merge PDFs',
+        clearAllBtn: 'Clear all',
+        minFilesHint: 'At least 2 files are required to merge',
+      },
+      progress: {
+        preparing: 'Preparing...',
+        loadingTemplate: 'Loading · {cur}/{total}',
+        writing: 'Writing...',
+        done: 'Done',
+      },
+      result: {
+        ready: 'Merged',
+        downloadBtn: 'Download',
+        sizeTemplate: 'Size: {size}',
+        pageCountTemplate: '{pages} pages total',
+      },
+      errors: {
+        tooLargeTemplate: '{name} is too large — max 200MB (current {size})',
+        notPdfTemplate: '{name} is not a PDF file',
+        loadFailedTemplate: 'Could not read PDF: {name}',
+        encryptedPdf: 'Encrypted or password-protected PDFs are not supported',
+        needTwoFiles: 'At least 2 PDFs are required',
+      },
+      faq: {
+        heading: 'FAQ',
+        items: [
+          {
+            q: 'Is my file uploaded?',
+            a: 'No. Everything runs in your browser with pdf-lib — files never leave your device.',
+          },
+          {
+            q: 'Is there a file count limit?',
+            a: 'No hard cap, but merging 20+ large files may slow the browser — especially on mobile.',
+          },
+          {
+            q: 'Can I reorder files?',
+            a: 'Yes. Use the ▲ / ▼ buttons next to each file. The merged PDF pages follow the list order.',
+          },
+          {
+            q: 'Are encrypted PDFs supported?',
+            a: 'Not in V1. Password-protected PDFs raise an error — remove protection first.',
+          },
+          {
+            q: 'Do bookmarks and links survive the merge?',
+            a: 'V1 preserves only page content — document-level bookmarks, form fields and link annotations may be dropped.',
+          },
+        ],
       },
     },
   },

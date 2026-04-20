@@ -1158,25 +1158,25 @@ export const en = {
       },
     },
     textWatermark: {
-      title: 'ID Card Watermark: Anti-Theft Image Tool | WizGo',
+      title: 'Passport & ID Watermark: Anti-Fraud Image Tool | WizGo',
       description:
-        'Add "for X use only" watermark to ID cards, contracts, ICP filings — anti-fraud, copyright protection. Tile/center/corner layouts. Browser-only.',
+        'Add "for X use only" watermark to passports, driver\'s licenses and contracts before sending to banks, landlords or KYC — anti-fraud, copyright protection. Runs locally.',
       h1: 'Image Text Watermark',
       subheading:
-        'Add "for filing only" style text watermarks to images · anti-theft, traceable · runs locally',
+        'Stamp "for X use only" on passport and ID scans before sharing · anti-fraud, traceable · runs locally',
       schema: {
         name: 'Image Text Watermark',
         alternateNames: [
-          'ID card watermark',
-          'document watermark',
-          'filing watermark tool',
+          'passport watermark',
+          'driver license watermark',
+          'KYC document watermark',
           'image text watermark',
         ],
         description:
-          'Add visible text watermarks to images for use cases like anti-fraud ID protection, document scans, ICP filings and copyright defense. Supports tile / center / corner layouts. Pure in-browser processing.',
+          "Add visible text watermarks to sensitive images — passport scans, driver's license copies, contracts and signed forms — so a recipient cannot repurpose them. Supports tile / center / corner layouts. Pure in-browser processing.",
         featureList: [
-          'ID card / business license document watermarks',
-          'For filing / for account-opening dedicated watermarks',
+          "Passport / driver's license / ID scan watermarking",
+          '"For [purpose] use only" dedicated marks',
           'Tile / center / corner layouts',
           'Color, size, opacity and rotation are adjustable',
           'In-browser processing — images never uploaded',
@@ -1184,9 +1184,9 @@ export const en = {
         ],
       },
       howToSchema: {
-        name: 'How to add a text watermark to an image (ID card / document)',
+        name: 'How to watermark an ID or document image before sharing',
         description:
-          'Add a "for X use only" text watermark to an image in three steps to prevent document misuse',
+          'Stamp a "for X use only" text watermark on an image in three steps to prevent document misuse',
         toolName: 'Browser (Chrome / Safari / Edge)',
         steps: [
           {
@@ -1195,7 +1195,7 @@ export const en = {
           },
           {
             name: 'Type watermark text',
-            text: 'For example "For X bank mortgage application use only" or "For example.com ICP filing only". State the specific use case and recipient.',
+            text: 'For example "For Acme Bank mortgage application only" or "For Globex rental application 2026". State the specific use case and recipient.',
           },
           {
             name: 'Adjust style and download',
@@ -1206,14 +1206,14 @@ export const en = {
       faqSchema: {
         items: [
           {
-            question: 'Is it legal to add a watermark to an ID card?',
+            question: 'Is it legal to watermark my own passport or ID?',
             answer:
-              'Yes, and widely recommended. Adding a "for X use only" text watermark to an ID card photocopy or scan is an effective way to prevent the document being misused, and many regulators have published similar guidance.',
+              'Yes — you own the copy. Stamping a "for X use only" watermark on a passport or driver\'s license scan before emailing it to a landlord, bank or employer is a widely recommended anti-fraud practice and does not invalidate the document.',
           },
           {
             question: 'What text should the watermark contain?',
             answer:
-              'Include three elements: purpose + recipient + date. For example "For X Bank 2026 mortgage application only". The more specific, the harder to misuse.',
+              'Include three elements: purpose + recipient + date. For example "For Acme Bank 2026 mortgage application only". The more specific, the harder to misuse.',
           },
           {
             question: 'Where is the safest place to put the watermark?',
@@ -1228,7 +1228,7 @@ export const en = {
           {
             question: 'Can the watermark be removed in Photoshop?',
             answer:
-              'Text watermarks are visible pixel changes; a skilled user can erase them in Photoshop, but it takes time and leaves traces. For everyday misuse (chat-app forwarding, hot-linking), text watermarks are deterrent enough. For removal-resistant invisible signatures, use our hidden watermark tool.',
+              'Text watermarks are visible pixel changes; a skilled user can erase them in Photoshop, but it takes time and leaves traces. For everyday misuse (forwarding, scraping, hot-linking), a text watermark is deterrent enough. For removal-resistant invisible signatures, use our hidden watermark tool.',
           },
           {
             question: 'Is the watermarked image saved as JPG or PNG?',
@@ -1242,13 +1242,13 @@ export const en = {
       formats: 'PNG · JPG · WebP',
       replaceImage: 'Replace image',
       textLabel: 'Watermark text',
-      textDefault: 'For website filing only',
-      textPlaceholder: 'e.g. For website filing only',
+      textDefault: 'For Acme Bank use only',
+      textPlaceholder: 'e.g. For Acme Bank mortgage application only',
       sizeLabel: 'Size',
       colorLabel: 'Color',
       boldLabel: 'Bold',
       swatches: {
-        red: 'Filing red',
+        red: 'Red',
         white: 'White',
         lightGray: 'Light gray',
         midGray: 'Medium gray',
@@ -1268,24 +1268,24 @@ export const en = {
         heading: 'Common use cases',
         items: [
           {
-            title: 'ID card watermark · anti-fraud',
+            title: "Passport / driver's license · anti-fraud",
             bodyHtml:
-              'When applying for banking, renting or onboarding, you often submit ID card copies. Adding a watermark like "For X Bank 2026 mortgage only" prevents the ID being repurposed for loans, account opening, etc. Use <strong>tile mode</strong> with 30–50% opacity.',
+              'Rental applications, bank onboarding, KYC at crypto exchanges and new-employer I-9 checks all ask you to email a scan of a government ID. Stamping "For Acme Bank 2026 mortgage only" prevents that scan being reused for loan fraud or unauthorized account openings elsewhere. Use <strong>tile mode</strong> at 30–50% opacity.',
           },
           {
-            title: 'Business license / contract / document watermark',
+            title: 'Contracts, NDAs and signed forms',
             bodyHtml:
-              'When sending business licenses, account-opening permits or contract scans to partners, a "for X purpose only" watermark restricts reuse. Same applies to electronic copies of diplomas, driver\'s licenses and passports.',
+              'When emailing a signed contract, NDA, W-9 or lease to a counterparty, a "for [recipient + purpose] only" watermark restricts later reuse or forwarding. Same applies to utility bills and bank statements used as proof of address.',
           },
           {
-            title: 'Website ICP filing watermark',
+            title: 'Proof of address / income to a landlord or CPA',
             bodyHtml:
-              'In ICP filing materials, ID documents and authorization letters need watermarks. Common format: "For example.com website ICP filing only". Red tile is the recommended style across major Chinese cloud providers.',
+              'Utility bills, pay stubs and tax returns routinely leak into recruiter spreadsheets and landlord databases. A watermark like "For 123 Main St rental application only" makes reuse obviously suspicious.',
           },
           {
-            title: 'Anti-theft / copyright protection',
+            title: 'Copyright protection for photos and artwork',
             bodyHtml:
-              'Adding author signature or domain to photos, product shots and illustrations before posting on social platforms substantially reduces direct theft. Use <strong>corner</strong> for subtle copyright marks; <strong>tile</strong> for strong anti-theft coverage.',
+              'Adding a byline or domain to photos, product shots and illustrations before posting on social platforms substantially reduces direct theft. Use <strong>corner</strong> for subtle copyright marks; <strong>tile</strong> for strong anti-theft coverage.',
           },
         ],
       },
@@ -1293,28 +1293,28 @@ export const en = {
         heading: 'How to use',
         itemsHtml: [
           '<strong>Upload the image</strong> — click the upload area or drag the file in. Supports PNG / JPG / WebP. Images are processed locally and never uploaded.',
-          '<strong>Type the watermark text</strong> — state the purpose and recipient explicitly, e.g. "For X Bank mortgage application only" or "For example.com ICP filing only". The more specific, the harder to misuse.',
-          '<strong>Adjust style</strong> — pick a layout (tile is most crop-resistant), color (red/gray for filings), size, opacity and rotation. Preview updates live.',
-          '<strong>Download PNG</strong> — click the download button to save locally, or use "Copy image" to paste straight into chat or email.',
+          '<strong>Type the watermark text</strong> — state the purpose and recipient explicitly, e.g. "For Acme Bank mortgage application only" or "For 123 Main St rental application 2026". The more specific, the harder to misuse.',
+          '<strong>Adjust style</strong> — pick a layout (tile is most crop-resistant), color (red for strong emphasis, gray for a subtler mark), size, opacity and rotation. Preview updates live.',
+          '<strong>Download PNG</strong> — click the download button to save locally, or use "Copy image" to paste straight into email or chat.',
         ],
       },
       faq: {
         heading: 'FAQ',
         items: [
           {
-            q: 'Is it legal to add a watermark to an ID card?',
+            q: 'Is it legal to watermark my own passport or ID?',
             aHtml:
-              'Yes, and widely recommended. Adding a "for X use only" text watermark to an ID card photocopy or scan is an effective way to prevent the document being misused, and many regulators have published similar guidance.',
+              'Yes — you own the copy. Stamping a "for X use only" watermark on a passport or driver\'s license scan before emailing it to a landlord, bank or employer is a widely recommended anti-fraud practice and does not invalidate the document.',
           },
           {
             q: 'What text should the watermark contain?',
             aHtml:
-              'Include three elements: purpose + recipient + date. For example "For X Bank 2026 mortgage only". The more specific, the harder to misuse. For website filings, use "For yourdomain.com ICP filing only".',
+              'Include three elements: purpose + recipient + date. For example "For Acme Bank 2026 mortgage only" or "For 123 Main St rental application — April 2026". The more specific, the harder to misuse.',
           },
           {
             q: 'Where is the safest place to put the watermark?',
             aHtml:
-              'Tile mode is safest — text is laid diagonally across the whole image and cannot be cropped out. Corner watermarks are easily cropped away. For ID cards or bank cards, use tile + semi-transparent gray for both safety and legibility.',
+              'Tile mode is safest — text is laid diagonally across the whole image and cannot be cropped out. Corner watermarks are easily cropped away. For ID documents or bank cards, use tile + semi-transparent gray for both safety and legibility.',
           },
           {
             q: 'Will my image be uploaded to a server?',
@@ -1324,7 +1324,7 @@ export const en = {
           {
             q: 'Can the watermark be removed in Photoshop?',
             aHtml:
-              'Text watermarks are visible pixel changes; a skilled user can erase them in Photoshop, but it takes time and leaves traces. For everyday misuse (chat-app forwarding, hot-linking), text watermarks are deterrent enough. For removal-resistant invisible signatures, use our <a href="/en/watermark" class="text-[#0072f5] hover:underline">Hidden Watermark</a> tool.',
+              'Text watermarks are visible pixel changes; a skilled user can erase them in Photoshop, but it takes time and leaves traces. For everyday misuse (forwarding, scraping, hot-linking), a text watermark is deterrent enough. For removal-resistant invisible signatures, use our <a href="/en/watermark" class="text-[#0072f5] hover:underline">Hidden Watermark</a> tool.',
           },
           {
             q: 'What if the watermarked image is too large?',

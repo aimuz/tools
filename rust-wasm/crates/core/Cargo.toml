@@ -4,7 +4,7 @@ version.workspace = true
 edition.workspace = true
 
 [dependencies]
-image = { workspace = true, features = ["png", "jpeg", "webp"] }
+image = { workspace = true, features = ["png", "jpeg"] }
 jpeg-encoder = "0.6"
 lodepng = { version = "3.10", default-features = false }
 console_error_panic_hook = { workspace = true, optional = true }

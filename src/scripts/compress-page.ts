@@ -4,6 +4,7 @@
 // and buttons matching `.mode-btn[data-mode="smart|light|strong"]`.
 
 import { getImageConverter } from '../wasm/rust-image-converter.js';
+import { decodeToRgba, encodeWebp } from '../wasm/webp-bridge';
 import { bindCopyButton, setClipboardLabels } from './clipboard';
 import { openCompare, setCompareLabels, thumbPairHtml } from './image-compare';
 
@@ -214,8 +215,32 @@ export function initCompressPage(opts: CompressPageOptions = {}) {
       try {
         const buf = new Uint8Array(await file.arrayBuffer());
         const originalSize = buf.length;
+        const isWebp = file.type === 'image/webp';
         let r: any;
-        if (mode === 'smart') {
+        if (isWebp) {
+          // WebP → WebP goes through libwebp (zig-wasm/webp), not image-rs.
+          // Canvas decodes the input to RGBA; libwebp re-encodes. `smart` and
+          // `light` use lossy q=85 (visually lossless on most inputs); `strong`
+          // drops to q=60.
+          const quality = mode === 'strong' ? 60 : 85;
+          const { rgba, width, height } = await decodeToRgba(buf);
+          const out = await encodeWebp(rgba, width, height, {
+            lossless: false,
+            quality,
+          });
+          // Safety net mirrors what Rust's compress_image did: never hand back
+          // a larger file than the user uploaded.
+          const data = out.length > originalSize ? buf : out;
+          r = {
+            data,
+            originalSize,
+            compressedSize: data.length,
+            compressionRatio: +(
+              ((originalSize - data.length) / originalSize) *
+              100
+            ).toFixed(1),
+          };
+        } else if (mode === 'smart') {
           r = await imageConverter.smartCompress(buf);
         } else {
           const quality = mode === 'light' ? 85 : 60;

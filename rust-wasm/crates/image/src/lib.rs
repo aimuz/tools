@@ -1,8 +1,7 @@
 use image::{imageops::FilterType, DynamicImage, ImageFormat};
 use wasm_bindgen::prelude::*;
 use wizgo_core::{
-    calculate_dimensions, encode_jpeg, encode_png_lossless, encode_via_image_crate, encode_webp,
-    set_panic_hook,
+    calculate_dimensions, encode_jpeg, encode_png_lossless, encode_via_image_crate, set_panic_hook,
 };
 
 // ---------- shared info helpers ----------
@@ -66,12 +65,15 @@ pub fn convert_image(input: &[u8], output_format: &str, quality: u8) -> Result<V
     let img = image::load_from_memory(input)
         .map_err(|e| JsValue::from_str(&format!("Failed to load image: {}", e)))?;
 
+    // WebP encoding is handled browser-side via libwebp (zig-wasm/webp) — the
+    // pure-Rust image-webp encoder produces 2-3× larger output than libwebp
+    // on transparency-heavy PNG content, which is why we carved it out.
+    // `convert-page.ts` routes `webp` targets directly to the zig worker.
     match output_format.to_lowercase().as_str() {
         "jpeg" | "jpg" => encode_jpeg(&img, quality).map_err(js_err),
         "png" => encode_png_lossless(&img).map_err(js_err),
         "bmp" => encode_via_image_crate(&img, ImageFormat::Bmp).map_err(js_err),
         "gif" => encode_via_image_crate(&img, ImageFormat::Gif).map_err(js_err),
-        "webp" => encode_webp(&img).map_err(js_err),
         other => Err(JsValue::from_str(&format!("Unsupported format: {}", other))),
     }
 }
@@ -136,10 +138,12 @@ pub fn compress_image(input: &[u8], options: CompressOptions) -> Result<Vec<u8>,
         img
     };
 
+    // WebP inputs are routed to the zig/libwebp encoder from JS (see
+    // compress-page.ts); they never reach this function. If one slips through
+    // we fall back to JPEG just to return something, same as any unknown format.
     let result = match original_format {
         ImageFormat::Jpeg => encode_jpeg(&img, options.quality).map_err(js_err)?,
         ImageFormat::Png => encode_png_quantized(&img, options.quality)?,
-        ImageFormat::WebP => encode_webp(&img).map_err(js_err)?,
         _ => encode_jpeg(&img, options.quality).map_err(js_err)?,
     };
 
@@ -147,7 +151,7 @@ pub fn compress_image(input: &[u8], options: CompressOptions) -> Result<Vec<u8>,
     // so users never see growth. Only applies to formats where "original" is meaningful.
     if result.len() > input.len() && new_width == img.width() && new_height == img.height() {
         match original_format {
-            ImageFormat::Jpeg | ImageFormat::Png | ImageFormat::WebP => {
+            ImageFormat::Jpeg | ImageFormat::Png => {
                 return Ok(input.to_vec());
             }
             _ => {}

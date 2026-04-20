@@ -71,11 +71,6 @@ pub fn encode_png_lossless(img: &DynamicImage) -> Result<Vec<u8>, String> {
         .map_err(|e| format!("lodepng encode: {}", e))
 }
 
-/// WebP encode via the pure-Rust `image-webp` encoder (lossless only).
-pub fn encode_webp(img: &DynamicImage) -> Result<Vec<u8>, String> {
-    encode_via_image_crate(img, ImageFormat::WebP)
-}
-
 pub fn encode_via_image_crate(img: &DynamicImage, format: ImageFormat) -> Result<Vec<u8>, String> {
     let mut out = Cursor::new(Vec::new());
     img.write_to(&mut out, format)

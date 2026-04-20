@@ -13,7 +13,7 @@ crate-type = ["cdylib"]
 [dependencies]
 wasm-bindgen.workspace = true
 js-sys.workspace = true
-image = { workspace = true, features = ["png", "jpeg", "bmp", "gif", "webp"] }
+image = { workspace = true, features = ["png", "jpeg", "bmp", "gif"] }
 imagequant = { version = "4.3", default-features = false }
 lodepng = { version = "3.10", default-features = false }
 jpeg-encoder = "0.6"

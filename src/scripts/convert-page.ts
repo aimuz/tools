@@ -6,7 +6,12 @@
 // `#quality-option` wrapper, and `#detected-format` span for showing the detected input format.
 
 import { getImageConverter } from '../wasm/rust-image-converter.js';
-import { decodeToRgba, encodeWebp } from '../wasm/webp-bridge';
+import {
+  decodeToRgba,
+  encodeWebp,
+  sniffImageFormat,
+  transcodeToPng,
+} from '../wasm/webp-bridge';
 import { bindCopyButton, setClipboardLabels } from './clipboard';
 import { openCompare, setCompareLabels, thumbPairHtml } from './image-compare';
 
@@ -232,12 +237,20 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
   async function handleFiles(newFiles: File[]) {
     files.forEach((f) => URL.revokeObjectURL(f.originalUrl));
     const imgs = newFiles.filter((f) => f.type.startsWith('image/'));
-    if (imgs.length > 0 && imageConverter && detectedFormatSpan) {
+    if (imgs.length > 0 && detectedFormatSpan) {
       try {
         const buf = new Uint8Array(await imgs[0].arrayBuffer());
-        const info = await imageConverter.getImageInfo(buf);
-        if (info.format)
-          detectedFormatSpan.textContent = info.format.toUpperCase();
+        // WebP input never reaches the Rust `getImageInfo` path — we dropped
+        // the webp decoder to save wasm weight. Sniff magic bytes in JS and
+        // only fall back to Rust for the formats it still decodes.
+        const sniffed = sniffImageFormat(buf);
+        if (sniffed === 'webp') {
+          detectedFormatSpan.textContent = 'WEBP';
+        } else if (imageConverter) {
+          const info = await imageConverter.getImageInfo(buf);
+          if (info.format)
+            detectedFormatSpan.textContent = info.format.toUpperCase();
+        }
       } catch (e) {
         console.error('Failed to detect format:', e);
       }
@@ -311,7 +324,12 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
           const { rgba, width, height } = await decodeToRgba(buf);
           out = await encodeWebp(rgba, width, height, { lossless, quality });
         } else {
-          out = await imageConverter.convertImage(buf, targetFormat, quality);
+          // Rust's image crate no longer carries a WebP decoder — bridge the
+          // input through Canvas → PNG so `convertImage` still sees a format
+          // it knows. Other inputs go straight into Rust.
+          const input =
+            file.type === 'image/webp' ? await transcodeToPng(buf) : buf;
+          out = await imageConverter.convertImage(input, targetFormat, quality);
         }
         const mime = MIME[targetFormat] || 'image/png';
         const blob = new Blob([out as BlobPart], { type: mime });

@@ -483,6 +483,7 @@ export const zhCN = {
       },
       options: {
         quality: '画质：',
+        qualityLossless: '无损',
         qualityHigh: '高',
         qualityMid: '中',
         qualityLow: '低',
@@ -543,6 +544,7 @@ export const zhCN = {
         autoDetect: '自动检测',
         toLabel: '转换为：',
         qualityLabel: '画质：',
+        qualityLossless: '无损',
         qualityHigh: '高',
         qualityMid: '中',
         qualityLow: '低',

@@ -242,6 +242,7 @@ export type Translations = {
       };
       options: {
         quality: string;
+        qualityLossless: string;
         qualityHigh: string;
         qualityMid: string;
         qualityLow: string;
@@ -283,6 +284,7 @@ export type Translations = {
         autoDetect: string;
         toLabel: string;
         qualityLabel: string;
+        qualityLossless: string;
         qualityHigh: string;
         qualityMid: string;
         qualityLow: string;

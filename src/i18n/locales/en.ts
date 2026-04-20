@@ -540,6 +540,7 @@ export const en = {
       },
       options: {
         quality: 'Quality:',
+        qualityLossless: 'Lossless',
         qualityHigh: 'High',
         qualityMid: 'Medium',
         qualityLow: 'Low',
@@ -602,6 +603,7 @@ export const en = {
         autoDetect: 'Auto-detected',
         toLabel: 'Convert to:',
         qualityLabel: 'Quality:',
+        qualityLossless: 'Lossless',
         qualityHigh: 'High',
         qualityMid: 'Medium',
         qualityLow: 'Low',

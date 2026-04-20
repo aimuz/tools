@@ -494,6 +494,7 @@ export const zhTW = {
       },
       options: {
         quality: '畫質：',
+        qualityLossless: '無損',
         qualityHigh: '高',
         qualityMid: '中',
         qualityLow: '低',
@@ -554,6 +555,7 @@ export const zhTW = {
         autoDetect: '自動偵測',
         toLabel: '轉換為：',
         qualityLabel: '畫質：',
+        qualityLossless: '無損',
         qualityHigh: '高',
         qualityMid: '中',
         qualityLow: '低',

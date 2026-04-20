@@ -1,5 +1,7 @@
 node_modules
 rust-wasm/target
 rust-wasm/pkg
+zig-wasm/**/zig-out
+zig-wasm/**/.zig-cache
 dist/
 .wrangler

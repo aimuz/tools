@@ -10,5 +10,7 @@ rust-wasm/target
 rust-wasm/pkg
 src/wasm/rust
 src/wasm/rust-image-converter.js
+src/wasm/zig
+zig-wasm/webp/vendor
 
 public

@@ -515,6 +515,7 @@ export const ko = {
       },
       options: {
         quality: '화질:',
+        qualityLossless: '무손실',
         qualityHigh: '높음',
         qualityMid: '중간',
         qualityLow: '낮음',
@@ -578,6 +579,7 @@ export const ko = {
         autoDetect: '자동 감지',
         toLabel: '변환 대상:',
         qualityLabel: '화질:',
+        qualityLossless: '무손실',
         qualityHigh: '높음',
         qualityMid: '중간',
         qualityLow: '낮음',

@@ -532,6 +532,7 @@ export const ja = {
       },
       options: {
         quality: '画質：',
+        qualityLossless: '可逆',
         qualityHigh: '高',
         qualityMid: '中',
         qualityLow: '低',
@@ -595,6 +596,7 @@ export const ja = {
         autoDetect: '自動検出',
         toLabel: '変換先：',
         qualityLabel: '画質：',
+        qualityLossless: '可逆',
         qualityHigh: '高',
         qualityMid: '中',
         qualityLow: '低',

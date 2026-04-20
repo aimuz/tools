@@ -1,0 +1,3 @@
+[submodule "zig-wasm/webp/vendor/libwebp"]
+	path = zig-wasm/webp/vendor/libwebp
+	url = https://github.com/webmproject/libwebp.git

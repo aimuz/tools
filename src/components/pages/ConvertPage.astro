@@ -130,6 +130,10 @@ const schema = {
           <p class="text-sm text-gray-500 mb-2">{c.options.qualityLabel}</p>
           <div class="flex gap-2">
             <button
+              class="quality-btn quality-btn-lossless hidden px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:border-[#171717]"
+              data-quality="lossless">{c.options.qualityLossless}</button
+            >
+            <button
               class="quality-btn px-4 py-2 text-sm rounded-full border border-gray-200 bg-[#171717] text-white"
               data-quality="90">{c.options.qualityHigh}</button
             >

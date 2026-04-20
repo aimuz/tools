@@ -6,6 +6,7 @@
 // `#quality-option` wrapper, and `#detected-format` span for showing the detected input format.
 
 import { getImageConverter } from '../wasm/rust-image-converter.js';
+import { decodeToRgba, encodeWebp } from '../wasm/webp-bridge';
 import { bindCopyButton, setClipboardLabels } from './clipboard';
 import { openCompare, setCompareLabels, thumbPairHtml } from './image-compare';
 
@@ -131,9 +132,24 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
   let files: { file: File; id: string; originalUrl: string }[] = [];
   let imageConverter: any = null;
   let targetFormat = presetTo ?? opts.defaultTo ?? 'jpg';
+  // For WebP target, `lossless=true` means ignore `quality` and use libwebp's
+  // lossless path (the page's default, matches the "smaller than PNG" promise).
+  // For JPG, lossless is never applicable and stays false.
   let quality = 90;
+  let lossless = targetFormat === 'webp';
 
   getImageConverter().then((c) => (imageConverter = c));
+
+  const setActiveQualityBtn = (
+    predicate: (el: HTMLButtonElement) => boolean,
+  ) => {
+    qualityBtns.forEach((b) => {
+      const active = predicate(b);
+      b.classList.toggle('bg-[#171717]', active);
+      b.classList.toggle('text-white', active);
+      b.classList.toggle('text-gray-600', !active);
+    });
+  };
 
   const applyTargetFormat = (fmt: string) => {
     targetFormat = fmt;
@@ -143,13 +159,31 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
       b.classList.toggle('text-white', active);
       b.classList.toggle('text-gray-600', !active);
     });
-    qualityOption?.classList.toggle('hidden', fmt !== 'jpg');
+
+    const showQuality = fmt === 'jpg' || fmt === 'webp';
+    qualityOption?.classList.toggle('hidden', !showQuality);
+
+    // The Lossless button only makes sense for WebP. Toggle its visibility
+    // so the JPG target sees exactly the three quality presets it had before.
+    qualityOption
+      ?.querySelectorAll<HTMLButtonElement>('.quality-btn-lossless')
+      .forEach((b) => b.classList.toggle('hidden', fmt !== 'webp'));
+
+    // Default selection per target: WebP → Lossless, JPG → High (90).
+    if (fmt === 'webp') {
+      lossless = true;
+      setActiveQualityBtn((b) => b.dataset.quality === 'lossless');
+    } else if (fmt === 'jpg') {
+      lossless = false;
+      quality = 90;
+      setActiveQualityBtn((b) => b.dataset.quality === '90');
+    }
   };
 
   if (presetTo) {
-    // Preset mode (either explicit opt or <meta>): no interactive picker, just
-    // honor quality-option visibility for JPG.
-    qualityOption?.classList.toggle('hidden', presetTo !== 'jpg');
+    // Preset mode: no format picker, but honor quality-option visibility
+    // (and default) as if the user had just clicked that target.
+    applyTargetFormat(presetTo);
   } else {
     formatBtns.forEach((btn) => {
       btn.addEventListener('click', () =>
@@ -167,13 +201,14 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
 
   qualityBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-      qualityBtns.forEach((b) => {
-        b.classList.remove('bg-[#171717]', 'text-white');
-        b.classList.add('text-gray-600');
-      });
-      btn.classList.add('bg-[#171717]', 'text-white');
-      btn.classList.remove('text-gray-600');
-      quality = parseInt(btn.dataset.quality!);
+      setActiveQualityBtn((b) => b === btn);
+      const q = btn.dataset.quality!;
+      if (q === 'lossless') {
+        lossless = true;
+      } else {
+        lossless = false;
+        quality = parseInt(q);
+      }
     });
   });
 
@@ -268,13 +303,18 @@ export function initConvertPage(opts: ConvertPageOptions = {}) {
     for (const { file, originalUrl } of files) {
       try {
         const buf = new Uint8Array(await file.arrayBuffer());
-        const out = await imageConverter.convertImage(
-          buf,
-          targetFormat,
-          quality,
-        );
+        let out: Uint8Array;
+        if (targetFormat === 'webp') {
+          // libwebp via the zig-built wasm. Browser decodes the input
+          // (PNG/JPG/BMP/GIF/WebP) natively into RGBA; only the encode step
+          // is ours. See src/wasm/webp-bridge.ts for the rationale.
+          const { rgba, width, height } = await decodeToRgba(buf);
+          out = await encodeWebp(rgba, width, height, { lossless, quality });
+        } else {
+          out = await imageConverter.convertImage(buf, targetFormat, quality);
+        }
         const mime = MIME[targetFormat] || 'image/png';
-        const blob = new Blob([out], { type: mime });
+        const blob = new Blob([out as BlobPart], { type: mime });
         const newName = file.name.replace(/\.[^/.]+$/, '') + '.' + targetFormat;
         resultsList.push({
           newName,

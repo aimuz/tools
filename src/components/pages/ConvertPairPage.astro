@@ -161,11 +161,18 @@ const moreHref = localizedPath(locale, '/convert');
 
       <!-- Options (only when files picked) -->
       <div id="options" class="mb-6 hidden">
-        <div id="quality-option" class={to === 'jpg' ? 'mb-6' : 'mb-6 hidden'}>
+        <div
+          id="quality-option"
+          class={to === 'jpg' || to === 'webp' ? 'mb-6' : 'mb-6 hidden'}
+        >
           <p class="text-sm text-gray-500 mb-2">{cp.options.quality}</p>
           <div class="flex gap-2">
             <button
-              class="quality-btn px-4 py-2 text-sm rounded-full border border-gray-200 bg-[#171717] text-white"
+              class={`quality-btn quality-btn-lossless px-4 py-2 text-sm rounded-full border border-gray-200 ${to === 'webp' ? 'bg-[#171717] text-white' : 'hidden text-gray-600 hover:border-[#171717]'}`}
+              data-quality="lossless">{cp.options.qualityLossless}</button
+            >
+            <button
+              class={`quality-btn px-4 py-2 text-sm rounded-full border border-gray-200 ${to === 'jpg' ? 'bg-[#171717] text-white' : 'text-gray-600 hover:border-[#171717]'}`}
               data-quality="90">{cp.options.qualityHigh}</button
             >
             <button

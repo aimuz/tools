@@ -575,6 +575,7 @@ export const es = {
       },
       options: {
         quality: 'Calidad:',
+        qualityLossless: 'Sin pérdida',
         qualityHigh: 'Alta',
         qualityMid: 'Media',
         qualityLow: 'Baja',
@@ -636,6 +637,7 @@ export const es = {
         autoDetect: 'Detectado automáticamente',
         toLabel: 'Convertir a:',
         qualityLabel: 'Calidad:',
+        qualityLossless: 'Sin pérdida',
         qualityHigh: 'Alta',
         qualityMid: 'Media',
         qualityLow: 'Baja',

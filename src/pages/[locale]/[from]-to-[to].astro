@@ -13,7 +13,7 @@ const FORMATS: readonly ConvertFormat[] = [
 
 export const getStaticPaths = () => {
   const formats: ConvertFormat[] = ['png', 'jpg', 'webp', 'gif', 'bmp'];
-  const locales: Locale[] = ['en', 'zh-TW', 'ja', 'ko', 'es'];
+  const locales: Locale[] = ['en', 'zh-TW', 'ja', 'ko', 'es', 'fr'];
   const paths: {
     params: { locale: Locale; from: ConvertFormat; to: ConvertFormat };
   }[] = [];

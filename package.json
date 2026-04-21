@@ -13,7 +13,8 @@
     "astro": "astro",
     "deploy": "bun run build && wrangler deploy",
     "format": "prettier --write . && cd rust-wasm && cargo fmt",
-    "format:check": "prettier --check . && cd rust-wasm && cargo fmt --check"
+    "format:check": "prettier --check . && cd rust-wasm && cargo fmt --check",
+    "check:i18n": "bun scripts/check-i18n-placeholders.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.2.1",

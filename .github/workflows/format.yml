@@ -32,3 +32,7 @@ jobs:
 
       - name: Run format:check
         run: bun run format:check
+
+      - name: Check i18n placeholder consistency
+        if: always()
+        run: bun run check:i18n

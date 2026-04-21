@@ -11,7 +11,7 @@ export const fr: Translations = {
     scripts: {
       loading: 'Chargement, veuillez réessayer sous peu',
       processing: 'Traitement...',
-      processingFailedTemplate: 'Échec : {nom}',
+      processingFailedTemplate: 'Échec : {name}',
       convertFailedTemplate: 'Échec de la conversion : {name}',
       savedPercentTemplate: '· économisé {pct} %',
       optimized: '· déjà optimisé',
@@ -29,7 +29,7 @@ export const fr: Translations = {
       needText: 'Veuillez saisir le texte à intégrer',
       noWatermark: 'Aucun filigrane détecté',
       capacityHintTemplate:
-        'Capacité {octets} octets · ~{caractères} caractères',
+        'Capacité {bytes} octets · ~{caractères} caractères',
       capacityErrorTemplate:
         "Capacité d'image dépassée – max {cap} octets (texte actuel {len} octets)",
       imageTooSmallDct:
@@ -1003,7 +1003,7 @@ export const fr: Translations = {
       downloadPng: 'Télécharger PNG',
       downloadSvg: 'Télécharger SVG',
       infoTemplate:
-        'Longueur : {cars} caractères / {bytes} octets · Taille : {size}x{size}px',
+        'Longueur : {chars} caractères / {bytes} octets · Taille : {size}x{size}px',
       examples: {
         heading: 'Exemples',
         url: 'URL :',
@@ -1189,9 +1189,9 @@ export const fr: Translations = {
         fileReadFail: 'Échec de la lecture du fichier',
         decodeFail: 'Échec du décodage : chaîne Base64 non valide',
         fileTooLargeTemplate:
-          'Fichier trop volumineux. 5 Mo maximum, {taille} actuelle',
+          'Fichier trop volumineux. 5 Mo maximum, {size} actuelle',
       },
-      binaryFileTemplate: '[fichier binaire - {taille}]',
+      binaryFileTemplate: '[fichier binaire - {size}]',
       tips: {
         heading: 'Comment utiliser',
         items: [
@@ -1565,7 +1565,7 @@ export const fr: Translations = {
       result: {
         ready: 'Votre MP3 est prêt – prévisualisez ou téléchargez ci-dessous',
         downloadBtn: 'Télécharger',
-        sizeTemplate: 'Taille : {taille}',
+        sizeTemplate: 'Taille : {size}',
       },
       faq: {
         heading: 'Questions courantes',
@@ -1635,8 +1635,8 @@ export const fr: Translations = {
       result: {
         ready: 'Votre MP3 compressé est prêt',
         downloadBtn: 'Télécharger',
-        sizeTemplate: 'Taille : {taille}',
-        reductionTemplate: "{pct} % d'économie · {avant} → {après}",
+        sizeTemplate: 'Taille : {size}',
+        reductionTemplate: "{pct} % d'économie · {before} → {after}",
       },
       faq: {
         heading: 'Questions courantes',
@@ -1760,14 +1760,14 @@ export const fr: Translations = {
       result: {
         ready: 'Comprimé',
         downloadBtn: 'Télécharger',
-        sizeTemplate: 'Taille : {taille}',
-        reductionTemplate: "{pct} % d'économie · {avant} → {après}",
+        sizeTemplate: 'Taille : {size}',
+        reductionTemplate: "{pct} % d'économie · {before} → {after}",
         noReduction:
           'Aucune réduction supplémentaire possible — original retourné',
       },
       errors: {
         tooLargeTemplate:
-          '{name} est trop volumineux : maximum 200 Mo ({taille} actuelle)',
+          '{name} est trop volumineux : maximum 200 Mo ({size} actuelle)',
         notPdfTemplate: "{name} n'est pas un fichier PDF",
         loadFailedTemplate: 'Impossible de lire le PDF : {name}',
         encryptedPdf:
@@ -1841,12 +1841,12 @@ export const fr: Translations = {
       result: {
         ready: 'Fusionné',
         downloadBtn: 'Télécharger',
-        sizeTemplate: 'Taille : {taille}',
+        sizeTemplate: 'Taille : {size}',
         pageCountTemplate: '{pages} pages au total',
       },
       errors: {
         tooLargeTemplate:
-          '{name} est trop volumineux : maximum 200 Mo ({taille} actuelle)',
+          '{name} est trop volumineux : maximum 200 Mo ({size} actuelle)',
         notPdfTemplate: "{name} n'est pas un fichier PDF",
         loadFailedTemplate: 'Impossible de lire le PDF : {name}',
         encryptedPdf:

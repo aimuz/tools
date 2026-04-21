@@ -547,7 +547,7 @@ export const fr: Translations = {
         '{label} Compress : outil gratuit en ligne sans perte | WizGo',
       descriptionTemplate:
         "Compresser {label} en ligne – {seoBenefit} S'exécute dans votre navigateur, aucun téléchargement.",
-      h1Template: "{étiquette} Compression d'image",
+      h1Template: "{label} Compression d'image",
       formats: {
         png: {
           headline:
@@ -587,8 +587,8 @@ export const fr: Translations = {
       aboutTemplate: 'À propos de la compression {label}',
       related: {
         label: "Compression d'autres formats",
-        compressTemplate: '{étiquette} Compresser',
-        toJpgTemplate: '{étiquette} en JPG',
+        compressTemplate: '{label} Compresser',
+        toJpgTemplate: '{label} en JPG',
         toWebpTemplate: '{label} vers WebP',
         all: "Toutes les compressions d'images",
       },

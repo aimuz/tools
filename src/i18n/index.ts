@@ -8,7 +8,7 @@ import { ko } from './locales/ko';
 import { es } from './locales/es';
 import { fr } from './locales/fr';
 
-const TABLES: Record<Locale, Translations> = {
+export const TABLES: Record<Locale, Translations> = {
   'zh-CN': zhCN,
   'zh-TW': zhTW,
   en,

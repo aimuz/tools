@@ -49,7 +49,7 @@ export const fr: Translations = {
   },
   nav: {
     image: {
-      label: "Outils d'images",
+      label: 'Images',
       items: {
         compress: {
           name: "Compresser l'image",
@@ -86,7 +86,7 @@ export const fr: Translations = {
       },
     },
     dev: {
-      label: 'Outils de développement',
+      label: 'Développeurs',
       items: {
         jwt: {
           name: 'Décoder/vérifier JWT',
@@ -118,7 +118,7 @@ export const fr: Translations = {
         },
         color: {
           name: 'Convertisseur de couleurs',
-          desc: 'Conversions HEX, RVB, HSL',
+          desc: 'Conversions HEX, RGB, HSL',
         },
         qrcode: {
           name: 'Générateur de codes QR',
@@ -135,7 +135,7 @@ export const fr: Translations = {
       },
     },
     media: {
-      label: 'Outils multimédias',
+      label: 'Médias',
       items: {
         'mp4-to-mp3': {
           name: 'MP4 en MP3',
@@ -148,7 +148,7 @@ export const fr: Translations = {
       },
     },
     document: {
-      label: 'Outils de documentation',
+      label: 'Documents',
       items: {
         'pdf-compress': {
           name: 'Compresser un PDF',
@@ -274,13 +274,13 @@ export const fr: Translations = {
     },
     color: {
       name: 'Convertisseur de couleurs',
-      description: 'Conversion de valeur de couleur HEX, RVB, HSL',
+      description: 'Conversion de valeur de couleur HEX, RGB, HSL',
       tags: [
         'couleur',
         'convertisseur de couleurs',
-        'RVB',
-        'HEXAMEN',
-        'LGV',
+        'RGB',
+        'HEX',
+        'HSL',
         'sélecteur de couleurs',
       ],
     },
@@ -408,7 +408,7 @@ export const fr: Translations = {
   },
   toolCategories: {
     image: {
-      name: "Outils d'images",
+      name: 'Images',
       description: "Compression d'images et conversion de format",
       tools: {
         compress: {
@@ -430,7 +430,7 @@ export const fr: Translations = {
       },
     },
     code: {
-      name: 'Outils de développement',
+      name: 'Développeurs',
       description: 'Outils pour les développeurs',
       tools: {
         'code-image': {
@@ -463,7 +463,7 @@ export const fr: Translations = {
         },
         color: {
           name: 'Convertisseur de couleurs',
-          description: 'Conversions HEX, RVB, HSL',
+          description: 'Conversions HEX, RGB, HSL',
         },
         qrcode: {
           name: 'Générateur de codes QR',
@@ -481,7 +481,7 @@ export const fr: Translations = {
       },
     },
     media: {
-      name: 'Outils multimédias',
+      name: 'Médias',
       description: 'Conversion audio et vidéo',
       tools: {
         'mp4-to-mp3': {
@@ -495,7 +495,7 @@ export const fr: Translations = {
       },
     },
     document: {
-      name: 'Outils de documentation',
+      name: 'Documents',
       description: 'Traitement PDF',
       tools: {
         'pdf-compress': {
@@ -1077,23 +1077,23 @@ export const fr: Translations = {
         'Époque Unix : 1970-01-01 00:00:00 UTC · Seconde à 10 chiffres · Milliseconde à 13 chiffres',
     },
     color: {
-      title: 'Convertisseur de couleurs : HEX/RVB/HSL en ligne | WizGo',
+      title: 'Convertisseur de couleurs : HEX/RGB/HSL en ligne | WizGo',
       description:
-        'Convertisseur de couleurs HEX, RVB, HSL gratuit en ligne — aperçu en direct, copie en un clic. Conçu pour les concepteurs et les développeurs. Fonctionne localement.',
+        'Convertisseur de couleurs HEX, RGB, HSL gratuit en ligne — aperçu en direct, copie en un clic. Conçu pour les concepteurs et les développeurs. Fonctionne localement.',
       h1: 'Convertisseur de couleurs',
       subheading:
-        "Conversion des valeurs de couleur HEX, RVB et HSL · aperçu en direct · s'exécute localement",
+        "Conversion des valeurs de couleur HEX, RGB et HSL · aperçu en direct · s'exécute localement",
       schema: {
         name: 'Convertisseur de couleurs',
         description:
-          'Convertisseur de valeur de couleur HEX, RVB et HSL avec aperçu en direct',
+          'Convertisseur de valeur de couleur HEX, RGB et HSL avec aperçu en direct',
       },
       pickerHint: 'Choisissez une couleur',
       hex: {
         label: 'Valeur hexadécimale',
       },
       rgb: {
-        label: 'Valeurs RVB',
+        label: 'Valeurs RGB',
         r: 'R (rouge)',
         g: 'G (vert)',
         b: 'B (bleu)',

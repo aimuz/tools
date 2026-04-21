@@ -7,7 +7,7 @@ import { ja } from './locales/ja';
 import { ko } from './locales/ko';
 import { es } from './locales/es';
 
-const TABLES: Record<Locale, Translations> = {
+export const TABLES: Record<Locale, Translations> = {
   'zh-CN': zhCN,
   'zh-TW': zhTW,
   en,

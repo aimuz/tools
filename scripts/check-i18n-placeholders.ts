@@ -1,17 +1,16 @@
 #!/usr/bin/env bun
-// Verify {placeholder} tokens inside i18n strings against the zh-CN baseline.
-// See CLAUDE.md 硬约束 #11 — placeholders are replaced literally at runtime via
-// interpolate(), so translating {size} → {taille} renders the raw braces to
-// the user. Rule: other-locale placeholders must be a SUBSET of baseline.
-// Omitting a placeholder is a legitimate per-locale style choice (the extra
-// value passed to interpolate is harmless); introducing a new token is always
-// a bug (interpolate has no value for it).
-import { zhCN } from '../src/i18n/locales/zh-CN';
-import { zhTW } from '../src/i18n/locales/zh-TW';
-import { en } from '../src/i18n/locales/en';
-import { ja } from '../src/i18n/locales/ja';
-import { ko } from '../src/i18n/locales/ko';
-import { es } from '../src/i18n/locales/es';
+// Verify {placeholder} tokens inside i18n strings against the default-locale
+// baseline. See CLAUDE.md 硬约束 #11 — placeholders are replaced literally at
+// runtime via interpolate(), so translating {size} → {taille} renders the raw
+// braces to the user. Rule: other-locale placeholders must be a SUBSET of the
+// baseline. Omitting a placeholder is a legitimate per-locale style choice
+// (the extra value passed to interpolate is harmless); introducing a new
+// token is always a bug (interpolate has no value for it).
+//
+// Locales are discovered via src/i18n/index.ts's TABLES map — the same single
+// source of truth that useTranslations() reads — so adding a new locale there
+// automatically extends this check.
+import { TABLES, DEFAULT_LOCALE } from '../src/i18n';
 
 const PLACEHOLDER_RE = /\{[a-zA-Z_][a-zA-Z0-9_]*\}/g;
 
@@ -39,16 +38,6 @@ function collect(root: unknown): Leaves {
   return m;
 }
 
-const BASELINE_NAME = 'zh-CN';
-const BASELINE = collect(zhCN);
-const OTHERS: Array<[string, Leaves]> = [
-  ['zh-TW', collect(zhTW)],
-  ['en', collect(en)],
-  ['ja', collect(ja)],
-  ['ko', collect(ko)],
-  ['es', collect(es)],
-];
-
 function diff(other: Set<string>, baseline: Set<string>): string[] {
   const extras: string[] = [];
   for (const x of other) if (!baseline.has(x)) extras.push(x);
@@ -59,6 +48,11 @@ function fmt(s: Set<string>): string {
   return s.size ? [...s].sort().join(' ') : '(none)';
 }
 
+const BASELINE = collect(TABLES[DEFAULT_LOCALE]);
+const OTHERS = Object.entries(TABLES)
+  .filter(([locale]) => locale !== DEFAULT_LOCALE)
+  .map(([locale, table]) => [locale, collect(table)] as const);
+
 let errors = 0;
 for (const [name, leaves] of OTHERS) {
   for (const [path, baselinePh] of BASELINE) {
@@ -68,7 +62,7 @@ for (const [name, leaves] of OTHERS) {
     if (extras.length === 0) continue;
     errors++;
     console.error(
-      `[${name}] ${path}\n  ${BASELINE_NAME}: ${fmt(baselinePh)}\n  ${name.padEnd(5)}: ${fmt(otherPh)}\n  unknown: ${extras.join(' ')}\n`,
+      `[${name}] ${path}\n  ${DEFAULT_LOCALE}: ${fmt(baselinePh)}\n  ${name.padEnd(DEFAULT_LOCALE.length)}: ${fmt(otherPh)}\n  unknown: ${extras.join(' ')}\n`,
     );
   }
 }
@@ -80,5 +74,5 @@ if (errors > 0) {
   process.exit(1);
 }
 console.log(
-  `OK — placeholders consistent across all 6 locales (${BASELINE.size} string leaves checked).`,
+  `OK — placeholders consistent across ${Object.keys(TABLES).length} locales (${BASELINE.size} string leaves checked, baseline=${DEFAULT_LOCALE}).`,
 );

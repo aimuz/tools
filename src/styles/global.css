@@ -18,9 +18,27 @@
     font-feature-settings: 'liga' 1;
   }
 
+  @keyframes page-enter {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   body {
     @apply font-sans bg-vercel-white text-vercel-black;
     @apply min-h-screen;
+    animation: page-enter 0.18s ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body {
+      animation: none;
+    }
   }
 
   h1,

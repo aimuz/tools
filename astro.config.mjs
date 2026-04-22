@@ -5,6 +5,10 @@ import AstroPWA from '@vite-pwa/astro';
 
 export default defineConfig({
   site: 'https://wizgo.xyz',
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'hover',
+  },
   i18n: {
     defaultLocale: 'zh-CN',
     locales: ['zh-CN', 'zh-TW', 'en', 'ja', 'ko', 'es'],
@@ -37,7 +41,9 @@ export default defineConfig({
         theme_color: '#171717',
         background_color: '#ffffff',
         display: 'standalone',
+        display_override: ['standalone', 'browser'],
         start_url: '/',
+        id: '/',
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,wasm}'],

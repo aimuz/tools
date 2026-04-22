@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
+import tailwindcss from '@tailwindcss/vite';
 import AstroPWA from '@vite-pwa/astro';
 
 export default defineConfig({
@@ -17,7 +17,6 @@ export default defineConfig({
     },
   },
   integrations: [
-    tailwind(),
     sitemap({
       i18n: {
         defaultLocale: 'zh-CN',
@@ -53,6 +52,7 @@ export default defineConfig({
   ],
   output: 'static',
   vite: {
+    plugins: [tailwindcss()],
     // Rollup can't bundle IIFE workers that dynamic-import the WASM glue chunk.
     worker: { format: 'es' },
   },

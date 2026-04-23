@@ -7,7 +7,7 @@ export default defineConfig({
   site: 'https://wizgo.xyz',
   prefetch: {
     prefetchAll: true,
-    defaultStrategy: 'hover',
+    defaultStrategy: 'viewport',
   },
   i18n: {
     defaultLocale: 'zh-CN',

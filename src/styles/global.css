@@ -1,7 +1,4 @@
 @import 'tailwindcss';
-@import '@fontsource/geist-sans/400.css';
-@import '@fontsource/geist-sans/500.css';
-@import '@fontsource/geist-sans/600.css';
 @import '@fontsource/geist-mono/400.css';
 @import '@fontsource/geist-mono/500.css';
 
@@ -26,7 +23,7 @@
   --color-gray-600: #4d4d4d;
   --color-gray-900: #171717;
 
-  --font-sans: 'Geist Sans', system-ui, sans-serif;
+  --font-sans: system-ui, -apple-system, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, monospace;
 
   --radius-micro: 2px;
@@ -70,20 +67,8 @@
   }
 
   html {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: 'liga' 1;
-  }
-
-  @keyframes page-enter {
-    from {
-      opacity: 0;
-      transform: translateY(6px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
   }
 
   body {
@@ -91,13 +76,6 @@
     background-color: var(--color-vercel-white);
     color: var(--color-vercel-black);
     min-height: 100vh;
-    animation: page-enter 0.18s ease-out;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    body {
-      animation: none;
-    }
   }
 
   h1,

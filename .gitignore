@@ -5,3 +5,4 @@ zig-wasm/**/zig-out
 zig-wasm/**/.zig-cache
 dist/
 .wrangler
+/.astro/

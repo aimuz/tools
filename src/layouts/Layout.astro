@@ -98,4 +98,16 @@ const manifestHref =
   <body class="min-h-screen flex flex-col">
     <slot />
   </body>
+
+  <!-- PWA controllerchange: safe reload when a new SW takes control -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      let reloaded = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (reloaded) return;
+        reloaded = true;
+        window.location.reload();
+      });
+    }
+  </script>
 </html>

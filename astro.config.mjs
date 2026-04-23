@@ -6,8 +6,8 @@ import AstroPWA from '@vite-pwa/astro';
 export default defineConfig({
   site: 'https://wizgo.xyz',
   prefetch: {
-    prefetchAll: true,
-    defaultStrategy: 'viewport',
+    prefetchAll: false,
+    defaultStrategy: 'hover',
   },
   i18n: {
     defaultLocale: 'zh-CN',
@@ -45,6 +45,8 @@ export default defineConfig({
         id: '/',
       },
       workbox: {
+        skipWaiting: true,
+        clientsClaim: true,
         globPatterns: ['**/*.{js,css,html,ico,png,svg,wasm}'],
         maximumFileSizeToCacheInBytes: 50 * 1024 * 1024,
       },

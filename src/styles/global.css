@@ -1,26 +1,81 @@
-@import '@fontsource/geist-sans/400.css';
-@import '@fontsource/geist-sans/500.css';
-@import '@fontsource/geist-sans/600.css';
+@import 'tailwindcss';
 @import '@fontsource/geist-mono/400.css';
 @import '@fontsource/geist-mono/500.css';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@theme {
+  --color-vercel-black: #171717;
+  --color-vercel-white: #ffffff;
+  --color-ship-red: #ff5b4f;
+  --color-preview-pink: #de1d8d;
+  --color-develop-blue: #0a72ef;
+  --color-console-blue: #0070f3;
+  --color-console-purple: #7928ca;
+  --color-link-blue: #0072f5;
+  --color-focus-blue: hsla(212, 100%, 48%, 1);
+  --color-badge-blue-bg: #ebf5ff;
+  --color-badge-blue-text: #0068d6;
+
+  --color-gray-50: #fafafa;
+  --color-gray-100: #ebebeb;
+  --color-gray-200: #e5e5e5;
+  --color-gray-400: #808080;
+  --color-gray-500: #666666;
+  --color-gray-600: #4d4d4d;
+  --color-gray-900: #171717;
+
+  --font-sans: system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+
+  --radius-micro: 2px;
+  --radius-subtle: 4px;
+  --radius-standard: 6px;
+  --radius-comfortable: 8px;
+  --radius-image: 12px;
+  --radius-pill: 9999px;
+
+  --shadow-border: 0px 0px 0px 1px rgba(0, 0, 0, 0.08);
+  --shadow-border-light: rgb(235, 235, 235) 0px 0px 0px 1px;
+  --shadow-subtle: rgba(0, 0, 0, 0.04) 0px 2px 2px;
+  --shadow-card:
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px, rgba(0, 0, 0, 0.04) 0px 2px 2px,
+    rgba(0, 0, 0, 0.04) 0px 8px 8px -8px, #fafafa 0px 0px 0px 1px;
+  --shadow-focus: 0 0 0 2px hsla(212, 100%, 48%, 1);
+
+  --leading-tight: 1;
+  --leading-snug: 1.17;
+  --leading-display: 1.2;
+  --leading-heading: 1.25;
+  --leading-card: 1.33;
+  --leading-body-relaxed: 1.8;
+  --leading-body: 1.56;
+  --leading-ui: 1.5;
+
+  --animate-fade-in: fadeIn 0.2s ease-out;
+  --animate-slide-up: slideUp 0.3s ease-out;
+  --animate-pulse-subtle: pulseSubtle 2s ease-in-out infinite;
+
+  --tracking-tight-288: -2.88px;
+  --tracking-tight-24: -2.4px;
+  --tracking-tight-128: -1.28px;
+  --tracking-tight-096: -0.96px;
+  --tracking-tight-032: -0.32px;
+}
 
 @layer base {
   * {
-    @apply box-border;
+    box-sizing: border-box;
   }
 
   html {
-    @apply antialiased;
-    font-feature-settings: 'liga' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    @apply font-sans bg-vercel-white text-vercel-black;
-    @apply min-h-screen;
+    font-family: var(--font-sans);
+    background-color: var(--color-vercel-white);
+    color: var(--color-vercel-black);
+    min-height: 100vh;
   }
 
   h1,
@@ -29,7 +84,7 @@
   h4,
   h5,
   h6 {
-    @apply font-semibold;
+    font-weight: 600;
   }
 
   ::selection {
@@ -39,11 +94,18 @@
 
 @layer components {
   .focus-ring {
-    @apply focus:outline-none focus:ring-2 focus:ring-focus-blue;
+    outline: none;
+  }
+
+  .focus-ring:focus {
+    outline: none;
+    --tw-ring-shadow: var(--shadow-focus);
+    box-shadow: var(--tw-ring-shadow);
   }
 
   .vercel-card {
-    @apply bg-vercel-white rounded-comfortable;
+    background-color: var(--color-vercel-white);
+    border-radius: var(--radius-comfortable);
     box-shadow:
       rgba(0, 0, 0, 0.08) 0px 0px 0px 1px,
       rgba(0, 0, 0, 0.04) 0px 2px 2px,
@@ -52,7 +114,8 @@
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    color: transparent;
     background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   }
 }
@@ -61,7 +124,41 @@
   .animation-delay-200 {
     animation-delay: 200ms;
   }
+
   .animation-delay-400 {
     animation-delay: 400ms;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseSubtle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
   }
 }

@@ -69,6 +69,24 @@
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  :where(button, a[href], [role='button'], summary) {
+    transition:
+      transform 0.05s ease-out,
+      opacity 0.05s ease-out;
+  }
+
+  :where(
+    button:active,
+    a[href]:active,
+    [role='button']:active,
+    summary:active
+  ) {
+    opacity: 0.85;
+    transform: scale(0.97);
   }
 
   body {

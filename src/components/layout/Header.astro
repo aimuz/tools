@@ -130,7 +130,11 @@ const aboutHref = localizedPath(locale, '/about');
     class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between"
   >
     <!-- Logo -->
-    <a href={homeHref} class="flex items-center gap-2 group">
+    <a
+      href={homeHref}
+      data-astro-prefetch="hover"
+      class="flex items-center gap-2 group"
+    >
       <span class="text-xl font-semibold text-[#171717] tracking-tight"
         >{t.common.siteName}</span
       >
@@ -172,6 +176,7 @@ const aboutHref = localizedPath(locale, '/about');
               {group.items.map((item) => (
                 <a
                   href={item.href}
+                  data-astro-prefetch="hover"
                   role="menuitem"
                   class="block px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors group"
                 >
@@ -185,6 +190,7 @@ const aboutHref = localizedPath(locale, '/about');
       }
       <a
         href={aboutHref}
+        data-astro-prefetch="hover"
         class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#171717] hover:bg-gray-50 rounded-md transition-colors"
       >
         {t.common.aboutLink}
@@ -244,6 +250,7 @@ const aboutHref = localizedPath(locale, '/about');
               {group.items.map((item) => (
                 <a
                   href={item.href}
+                  data-astro-prefetch="hover"
                   class="block px-3 py-2.5 rounded hover:bg-gray-50"
                 >
                   <p class="text-sm font-medium text-[#171717]">{item.name}</p>
@@ -256,6 +263,7 @@ const aboutHref = localizedPath(locale, '/about');
       }
       <a
         href={aboutHref}
+        data-astro-prefetch="hover"
         class="block px-4 py-3 text-sm font-medium text-[#171717] border border-gray-100 rounded-lg hover:bg-gray-50"
       >
         {t.common.aboutLink}

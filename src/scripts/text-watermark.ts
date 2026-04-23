@@ -155,6 +155,7 @@ export function initTextWatermarkPage(
   let bitmap: ImageBitmap | null = null;
   let displayBitmap: ImageBitmap | null = null;
   let previewScale = 1; // displayBitmap.width / bitmap.width
+  let originalFilename = ''; // base name without extension
   let pattern: Pattern = 'tile';
   let rafId: number | undefined;
 
@@ -228,6 +229,7 @@ export function initTextWatermarkPage(
         previewScale = 1;
       }
       filenameEl.textContent = file.name;
+      originalFilename = file.name.replace(/\.[^/.]+$/, '');
       setZoneFilled(dropzone);
       // Auto-size font: ~1/28 of the smaller edge keeps the watermark readable
       // across phone screenshots (small) and DSLR shots (big).
@@ -322,7 +324,10 @@ export function initTextWatermarkPage(
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'watermarked.png';
+    const downloadName = originalFilename
+      ? `${originalFilename}-watermarked.png`
+      : 'watermarked.png';
+    a.download = downloadName;
     a.click();
     setTimeout(() => URL.revokeObjectURL(url), 2000);
   });

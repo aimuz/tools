@@ -144,6 +144,7 @@ export function initWatermarkPage(opts: WatermarkInitOptions = {}): void {
   let embedImg: ImageData | null = null;
   let extractImg: ImageData | null = null;
   let embedBlobUrl: string | null = null;
+  let originalFilename = ''; // base name without extension
 
   const showErr = (msg: string) => {
     errBox.textContent = msg;
@@ -209,6 +210,7 @@ export function initWatermarkPage(opts: WatermarkInitOptions = {}): void {
     embedFile,
     loadInto(embedDropzone, embedPreview, embedFilename, (img, file) => {
       embedImg = img;
+      originalFilename = file.name.replace(/\.[^/.]+$/, '');
       refreshCapacity();
       embedJpgWarn.classList.toggle('hidden', !isJpeg(file));
     }),
@@ -244,6 +246,10 @@ export function initWatermarkPage(opts: WatermarkInitOptions = {}): void {
       if (embedBlobUrl) URL.revokeObjectURL(embedBlobUrl);
       embedBlobUrl = URL.createObjectURL(blob);
       embedDownload.href = embedBlobUrl;
+      const downloadName = originalFilename
+        ? `${originalFilename}-watermark.png`
+        : 'watermark.png';
+      embedDownload.download = downloadName;
       embedResult.classList.remove('hidden');
     } catch (e) {
       const raw = e instanceof Error ? e.message : String(e);

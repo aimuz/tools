@@ -94,6 +94,20 @@ const manifestHref =
 
     <title>{title}</title>
     <slot name="head" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://event.wizgo.xyz/gtag/js?id=G-52X2B6FZJD"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-52X2B6FZJD', {
+        transport_url: 'https://event.wizgo.xyz',
+      });
+    </script>
   </head>
   <body class="min-h-screen flex flex-col">
     <slot />

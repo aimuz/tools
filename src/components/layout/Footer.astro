@@ -1,9 +1,116 @@
 ---
+import { useTranslations } from '../../i18n';
+import { DEFAULT_LOCALE, type Locale } from '../../i18n/config';
+import { localizedPath } from '../../i18n/seo';
+import type { NavItemKey } from '../../i18n/schema';
 
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = DEFAULT_LOCALE } = Astro.props;
+const t = useTranslations(locale);
+
+const NAV_HREFS: Record<NavItemKey, string> = {
+  compress: '/compress',
+  convert: '/convert',
+  'png-to-jpg': '/png-to-jpg',
+  'jpg-to-png': '/jpg-to-png',
+  'png-to-webp': '/png-to-webp',
+  'jpg-to-webp': '/jpg-to-webp',
+  watermark: '/watermark',
+  'text-watermark': '/text-watermark',
+  jwt: '/jwt',
+  timestamp: '/timestamp',
+  json: '/json',
+  'code-image': '/code-image',
+  base64: '/base64',
+  uuid: '/uuid',
+  'url-encode': '/url-encode',
+  color: '/color',
+  qrcode: '/qrcode',
+  hash: '/hash',
+  password: '/password',
+  'mp4-to-mp3': '/mp4-to-mp3',
+  'compress-mp3': '/compress-mp3',
+  'pdf-compress': '/pdf-compress',
+  'pdf-merge': '/pdf-merge',
+};
+
+const groups = [
+  {
+    label: t.nav.image.label,
+    keys: [
+      'compress',
+      'convert',
+      'png-to-jpg',
+      'jpg-to-png',
+      'png-to-webp',
+      'jpg-to-webp',
+      'watermark',
+      'text-watermark',
+    ] as NavItemKey[],
+    nav: t.nav.image,
+  },
+  {
+    label: t.nav.dev.label,
+    keys: [
+      'jwt',
+      'timestamp',
+      'json',
+      'code-image',
+      'base64',
+      'uuid',
+      'url-encode',
+      'color',
+      'qrcode',
+      'hash',
+      'password',
+    ] as NavItemKey[],
+    nav: t.nav.dev,
+  },
+  {
+    label: t.nav.media.label,
+    keys: ['mp4-to-mp3', 'compress-mp3'] as NavItemKey[],
+    nav: t.nav.media,
+  },
+  {
+    label: t.nav.document.label,
+    keys: ['pdf-compress', 'pdf-merge'] as NavItemKey[],
+    nav: t.nav.document,
+  },
+];
 ---
 
-<footer class="border-t border-gray-100 py-8">
-  <div class="max-w-[1200px] mx-auto px-6 text-center">
-    <p class="text-sm text-gray-500">© 2026 WizGo</p>
+<footer class="border-t border-gray-100">
+  <div class="max-w-[1200px] mx-auto px-6 py-10">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+      {
+        groups.map((g) => (
+          <div>
+            <h3 class="text-sm font-semibold text-[#171717] mb-3">{g.label}</h3>
+            <ul class="space-y-2">
+              {g.keys.map((key) => {
+                const item = g.nav.items[key];
+                if (!item) return null;
+                return (
+                  <li>
+                    <a
+                      href={localizedPath(locale, NAV_HREFS[key])}
+                      class="text-sm text-gray-500 hover:text-[#171717] transition-colors"
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+    <div class="border-t border-gray-100 pt-6 text-center">
+      <p class="text-sm text-gray-500">© 2026 WizGo</p>
+    </div>
   </div>
 </footer>

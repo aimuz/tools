@@ -131,27 +131,47 @@ export const zhTW = {
     'png-to-webp': {
       name: 'PNG 轉 WebP',
       description: '保留透明 · 體積更小',
-      tags: ['PNG轉WebP', 'png to webp'],
+      tags: [
+        'PNG轉WebP',
+        'png to webp',
+        '轉為 WebP',
+        'WebP 最佳化',
+        '網站圖片加速',
+      ],
     },
     'jpg-to-webp': {
       name: 'JPG 轉 WebP',
       description: '同等畫質更小體積',
-      tags: ['JPG轉WebP', 'JPEG轉WebP', 'jpg to webp'],
+      tags: [
+        'JPG轉WebP',
+        'JPEG轉WebP',
+        'jpg to webp',
+        '轉為 WebP',
+        'WebP 最佳化',
+      ],
     },
     'webp-to-png': {
       name: 'WebP 轉 PNG',
       description: 'WebP 相容性備援',
-      tags: ['WebP轉PNG', 'webp to png'],
+      tags: ['WebP轉PNG', 'webp to png', 'WebP 相容', 'webp 打開'],
     },
     'webp-to-jpg': {
       name: 'WebP 轉 JPG',
       description: '相容舊平台',
-      tags: ['WebP轉JPG', 'webp to jpg'],
+      tags: ['WebP轉JPG', 'webp to jpg', 'webp 轉 jpeg', 'WebP 舊平台'],
     },
     'code-image': {
       name: '程式碼轉圖片',
       description: '程式碼產生分享圖',
-      tags: ['程式碼', '圖片', '分享'],
+      tags: [
+        '程式碼',
+        '圖片',
+        '分享',
+        '程式碼截圖',
+        '程式碼分享圖',
+        'Carbon 替代',
+        '程式碼高亮圖片',
+      ],
     },
     jwt: {
       name: 'JWT 解碼',
@@ -230,15 +250,25 @@ export const zhTW = {
         'PNG轉JPG',
         'JPG轉PNG',
         'WebP',
-        'HEIC',
         'BMP',
         'GIF',
+        '線上圖片轉換',
+        '格式互轉',
       ],
     },
     'any-compress': {
       name: '圖片壓縮',
       description: '任意圖片壓縮',
-      tags: ['壓縮', '通用'],
+      tags: [
+        '圖片壓縮',
+        '線上壓縮',
+        '照片壓縮',
+        '圖片瘦身',
+        '批次壓縮',
+        '圖片最佳化',
+        'image compress',
+        'compress image',
+      ],
     },
     watermark: {
       name: '圖片隱藏浮水印',
@@ -498,9 +528,10 @@ export const zhTW = {
       },
     },
     convertPair: {
-      titleTemplate: '{fromLabel} 轉 {toLabel}：免費線上工具 | WizGo',
+      titleTemplate:
+        '{fromLabel} 轉 {toLabel} - 免費線上圖片格式轉換工具 | WizGo',
       descriptionTemplate:
-        '{fromLabel} 轉 {toLabel} 線上工具。{hintWithSpace}純瀏覽器本機處理不上傳。',
+        '免費線上 {fromLabel} 轉 {toLabel} 圖片格式轉換工具。{hintWithSpace}純瀏覽器本機處理，無需安裝，檔案不上傳。',
       h1Template: '{fromLabel} 轉 {toLabel}',
       fallbackHintTemplate:
         '把 {fromFull} 圖片線上轉換為 {toFull} 格式 · 本機處理不上傳',
@@ -586,7 +617,7 @@ export const zhTW = {
       },
     },
     convert: {
-      title: '圖片格式轉換 - PNG JPG WebP HEIC 線上互轉 | WizGo',
+      title: '圖片格式轉換 - PNG JPG WebP GIF BMP 線上互轉 | WizGo',
       description:
         '免費線上圖片格式轉換工具，支援 PNG、JPG、JPEG、WebP、GIF、BMP 等常見格式互轉。純瀏覽器本機處理不上傳，安全快速無需安裝。',
       h1: '圖片格式轉換',
@@ -697,9 +728,9 @@ export const zhTW = {
       },
     },
     watermark: {
-      title: '圖片隱藏浮水印 - 嵌入 / 提取隱寫文字 | WizGo',
+      title: '圖片隱藏浮水印 - LSB/DCT 隱寫術嵌入提取工具 | WizGo',
       description:
-        '免費線上圖片隱藏浮水印工具。在圖片像素裡嵌入隱藏文字或從圖片提取浮水印，支援 LSB 和 DCT 兩種演算法，LSB 容量大、DCT 可承受 JPG 重壓。純瀏覽器本機處理不上傳。',
+        '免費線上圖片隱藏浮水印工具，使用 LSB 和 DCT 隱寫術在圖片像素中嵌入隱藏文字或提取浮水印。LSB 容量大、DCT 可承受 JPG 重壓縮。適合圖片溯源、隱形簽章。瀏覽器本機處理不上傳。',
       h1: '圖片隱藏浮水印',
       subheading: '把文字隱藏進圖片像素，或從圖片中提取 · 本機處理不上傳',
       schema: {
@@ -870,9 +901,10 @@ export const zhTW = {
       },
     },
     timestamp: {
-      title: 'Unix 時間戳記轉換 - 時間戳記轉日期/日期轉時間戳記 | WizGo',
+      title:
+        'Unix 時間戳記轉換 - 時間戳記轉日期/日期轉時間戳記線上工具 | WizGo',
       description:
-        '免費線上 Unix 時間戳記轉換工具，支援秒/毫秒、UTC 和本地時區、ISO 8601 格式互轉，即時顯示目前時間戳記，一鍵複製。瀏覽器本機處理不上傳。',
+        '免費線上 Unix 時間戳記轉換工具，支援秒/毫秒自動偵測、UTC 和本地時區、ISO 8601 格式互轉，即時顯示目前時間戳記，一鍵複製。適合開發者偵錯日誌與 API 時間欄位。瀏覽器本機處理不上傳。',
       h1: '時間戳記轉換',
       subheading: 'Unix 時間戳記和日期互轉 · 支援秒 / 毫秒 / ISO 8601',
       schema: {
@@ -954,9 +986,9 @@ export const zhTW = {
       randomBtn: '隨機顏色',
     },
     codeImage: {
-      title: '程式碼轉圖片 - 精美程式碼分享圖產生器 | WizGo',
+      title: '程式碼轉圖片 - 精美程式碼分享圖產生器 · Carbon 替代 | WizGo',
       description:
-        '線上把程式碼片段轉成精美分享圖，支援 JavaScript、TypeScript、Python、Go、Rust 等多種語言，多種主題可選，一鍵下載 PNG。',
+        '線上把程式碼片段轉成精美分享圖，支援 JavaScript、TypeScript、Python、Go、Rust 等多種語言高亮，多種主題可選，一鍵下載 PNG。適合技術部落格、社群媒體分享程式碼。',
       h1: '程式碼轉圖片',
       subheading: '把程式碼片段產生精美分享圖 · 多語言 · 多主題',
       schema: {
@@ -1251,9 +1283,9 @@ export const zhTW = {
       },
     },
     json: {
-      title: 'JSON 格式化 - 線上美化、壓縮、校驗工具 | WizGo',
+      title: 'JSON 格式化 - 線上美化、壓縮、校驗解析器 · 一鍵複製 | WizGo',
       description:
-        '免費線上 JSON 格式化工具，支援 JSON 美化、壓縮、語法校驗，一鍵複製。純瀏覽器本機處理，貼上的資料不會上傳到任何伺服器。',
+        '免費線上 JSON 格式化工具，支援 JSON 美化、壓縮、語法校驗與解析，一鍵複製結果。適合開發者偵錯 API 回應、格式化設定檔。純瀏覽器本機處理，貼上的資料不會上傳到任何伺服器。',
       h1: 'JSON 格式化',
       subheading: 'JSON 美化、壓縮、語法校驗 · 本機處理不上傳',
       schema: {
@@ -1272,9 +1304,9 @@ export const zhTW = {
       formatError: 'JSON 格式錯誤，請檢查輸入',
     },
     hash: {
-      title: '雜湊值產生器：SHA-256、SHA-512 線上計算 | WizGo',
+      title: '雜湊值產生器 - SHA-256/SHA-512 檔案校驗線上計算 | WizGo',
       description:
-        '在瀏覽器中為文字和檔案產生 SHA-1、SHA-256、SHA-384、SHA-512 雜湊值。校驗下載完整性，資料全程本機處理，不上傳。',
+        '免費線上雜湊值產生工具，為文字和檔案計算 SHA-1、SHA-256、SHA-384、SHA-512 雜湊值。校驗下載檔案完整性、驗證資料一致性。資料全程本機處理，不上傳。',
       h1: '雜湊值產生器',
       subheading:
         '校驗檔案完整性或對任意文字計算雜湊 · SHA-1 / SHA-256 / SHA-384 / SHA-512 · 純瀏覽器本機運算',
@@ -1326,9 +1358,9 @@ export const zhTW = {
       },
     },
     mp4ToMp3: {
-      title: 'MP4 轉 MP3：免費線上擷取影片音訊 | WizGo',
+      title: 'MP4 轉 MP3 - 免費線上影片提取音訊轉換器 | WizGo',
       description:
-        '把影片裡的聲音擷取出來，存成 MP3。免費、即時、在瀏覽器中完成，不用上傳、不用註冊、不用安裝。',
+        '免費線上 MP4 轉 MP3 轉換器，從影片檔案中提取音訊並儲存為高品質 MP3。支援 MP4、MOV、M4A、WebM 等常見影片格式，提供 128-320 kbps 多檔位元率選擇。純瀏覽器本機處理，影片不上傳、無需註冊、無需安裝任何軟體。',
       h1: '影片轉 MP3',
       subheading: '把影片裡的聲音擷取出來 · 在你的電腦上完成 · 檔案不會上傳',
       schema: {
@@ -1390,9 +1422,9 @@ export const zhTW = {
       },
     },
     compressMp3: {
-      title: '線上壓縮 MP3 - 減小音訊檔案體積 | WizGo',
+      title: 'MP3 壓縮 - 免費線上減小音訊檔案體積 | WizGo',
       description:
-        '降低位元率壓縮 MP3 檔案 · 免費、即時、瀏覽器內完成。不需上傳、不需註冊。',
+        '免費線上 MP3 壓縮工具，透過降低位元率來減小音訊檔案體積。支援 MP3、M4A、WAV、FLAC、OGG 等格式輸入，64-192 kbps 目標位元率可選。純瀏覽器本機 WebAssembly 處理，無需上傳、無需註冊。',
       h1: 'MP3 體積壓縮',
       subheading: '降低位元率壓縮 MP3 · 本地處理 · 檔案不離開你的裝置',
       schema: {
@@ -1458,9 +1490,9 @@ export const zhTW = {
       },
     },
     password: {
-      title: '密碼產生器 - 線上產生高強度隨機密碼 | WizGo',
+      title: '密碼產生器 - 高強度隨機密碼與短語密碼生成工具 | WizGo',
       description:
-        '免費線上密碼產生器，產生高強度隨機密碼。支援自訂長度、字元類型（大小寫字母、數字、符號），排除相似字元和歧義符號。瀏覽器本地產生，不上傳。',
+        '免費線上密碼產生器，支援高強度隨機密碼與易記短語密碼（passphrase）兩種模式。可自訂長度、字元類型、分隔符，排除相似字元和歧義符號。瀏覽器本機產生，不上傳。',
       h1: '密碼產生器',
       subheading: '產生高強度隨機密碼 · 自訂長度和字元類型 · 本地產生不上傳',
       schema: {
@@ -1513,9 +1545,9 @@ export const zhTW = {
       },
     },
     pdfCompress: {
-      title: 'PDF 壓縮 - 線上減小 PDF 體積 | WizGo',
+      title: 'PDF 壓縮 - 免費線上減小 PDF 檔案體積工具 | WizGo',
       description:
-        '免費線上 PDF 壓縮工具，透過物件流重寫與清除中繼資料減小檔案體積。純瀏覽器本機處理不上傳，支援批次。',
+        '免費線上 PDF 壓縮工具，透過物件流重寫和清除中繼資料來減小 PDF 檔案體積。支援批次處理，5-15% 體積優化，不損失畫質。純瀏覽器本機處理，檔案不上傳、無需註冊。',
       h1: 'PDF 壓縮',
       subheading: '減小 PDF 檔案體積 · 本機處理 · 檔案不上傳',
       schema: {
@@ -1582,9 +1614,9 @@ export const zhTW = {
       },
     },
     pdfMerge: {
-      title: 'PDF 合併 - 線上多個 PDF 合併為一個 | WizGo',
+      title: 'PDF 合併 - 免費線上多個 PDF 合併為一個檔案 | WizGo',
       description:
-        '免費線上 PDF 合併工具，多個 PDF 拼接成一個檔案，支援調整順序。純瀏覽器本機處理不上傳。',
+        '免費線上 PDF 合併工具，將多個 PDF 檔案合併為一個，支援拖曳調整頁面順序。無需註冊或安裝軟體，純瀏覽器本機處理，檔案不上傳，保護隱私。',
       h1: 'PDF 合併',
       subheading: '多個 PDF 合併為一個 · 可調整順序 · 本機處理不上傳',
       schema: {

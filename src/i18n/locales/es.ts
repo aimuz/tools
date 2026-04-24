@@ -198,27 +198,59 @@ export const es = {
     'png-to-webp': {
       name: 'PNG a WebP',
       description: 'Conserva transparencia · archivos más ligeros',
-      tags: ['png a webp', 'convertir a webp'],
+      tags: [
+        'png a webp',
+        'convertir a webp',
+        'convertir a WebP',
+        'optimización WebP',
+        'velocidad imágenes web',
+      ],
     },
     'jpg-to-webp': {
       name: 'JPG a WebP',
       description: 'Misma calidad, menor tamaño',
-      tags: ['jpg a webp', 'jpeg a webp', 'convertir a webp'],
+      tags: [
+        'jpg a webp',
+        'jpeg a webp',
+        'convertir a webp',
+        'convertir a WebP',
+        'optimización WebP',
+      ],
     },
     'webp-to-png': {
       name: 'WebP a PNG',
       description: 'Compatibilidad WebP',
-      tags: ['webp a png', 'convertir webp'],
+      tags: [
+        'webp a png',
+        'convertir webp',
+        'compatibilidad WebP',
+        'abrir webp',
+      ],
     },
     'webp-to-jpg': {
       name: 'WebP a JPG',
       description: 'Compatible con plataformas antiguas',
-      tags: ['webp a jpg', 'convertir webp'],
+      tags: [
+        'webp a jpg',
+        'convertir webp',
+        'webp a jpeg',
+        'WebP plataforma antigua',
+      ],
     },
     'code-image': {
       name: 'Código a Imagen',
       description: 'Genera imágenes para compartir desde código',
-      tags: ['código', 'imagen', 'compartir', 'carbon', 'snippet'],
+      tags: [
+        'código',
+        'imagen',
+        'compartir',
+        'carbon',
+        'snippet',
+        'captura de código',
+        'imagen compartir código',
+        'alternativa a Carbon',
+        'imagen resaltado sintaxis',
+      ],
     },
     jwt: {
       name: 'JWT Decodificar',
@@ -296,15 +328,24 @@ export const es = {
         'png a jpg',
         'jpg a png',
         'WebP',
-        'HEIC',
         'BMP',
         'GIF',
+        'conversor de imágenes',
+        'cambiar formato imagen',
       ],
     },
     'any-compress': {
       name: 'Comprimir Imagen',
       description: 'Comprime cualquier imagen',
-      tags: ['comprimir', 'general'],
+      tags: [
+        'compresión de imágenes',
+        'comprimir imagen online',
+        'comprimir foto',
+        'reducir imagen',
+        'compresión por lotes',
+        'optimizador de imágenes',
+        'image compress',
+      ],
     },
     watermark: {
       name: 'Marca de agua oculta',
@@ -580,9 +621,10 @@ export const es = {
       },
     },
     convertPair: {
-      titleTemplate: '{fromLabel} a {toLabel}: Conversor Online Gratis | WizGo',
+      titleTemplate:
+        '{fromLabel} a {toLabel}: Convertidor de formato de imagen online gratis | WizGo',
       descriptionTemplate:
-        'Convierte {fromLabel} a {toLabel} online. {hintWithSpace}Se ejecuta localmente, sin subidas.',
+        'Convierte {fromLabel} a {toLabel} con nuestro convertidor de imágenes gratuito en línea. {hintWithSpace}Se ejecuta localmente, sin subidas ni instalación.',
       h1Template: '{fromLabel} a {toLabel}',
       fallbackHintTemplate:
         'Convierte imágenes {fromFull} a {toFull} online · procesamiento local, sin subidas',
@@ -671,7 +713,7 @@ export const es = {
       },
     },
     convert: {
-      title: 'Conversor de Imágenes: PNG/JPG/WebP/HEIC | WizGo',
+      title: 'Conversor de Imágenes: PNG/JPG/WebP | WizGo',
       description:
         'Convierte PNG, JPG, JPEG, WebP, GIF, BMP online — en tu navegador, sin subidas ni instalación.',
       h1: 'Conversor de formato de imagen',
@@ -786,7 +828,8 @@ export const es = {
       },
     },
     watermark: {
-      title: 'Marca de Agua Oculta en Imagen: Insertar/Extraer | WizGo',
+      title:
+        'Marca de Agua Oculta en Imagen: Esteganografía LSB/DCT — Insertar/Extraer | WizGo',
       description:
         'Inserta texto oculto en los píxeles de una imagen o extrae la marca — esteganografía LSB y DCT. Procesamiento en navegador, sin subidas.',
       h1: 'Marca de agua oculta en imagen',
@@ -974,9 +1017,10 @@ export const es = {
       },
     },
     timestamp: {
-      title: 'Conversor Timestamp Unix — Timestamp ↔ Fecha | WizGo',
+      title:
+        'Conversor de Timestamp Unix Online — Convierte entre Fecha y Timestamp | WizGo',
       description:
-        'Conversor Unix timestamp ↔ fecha gratis — seg/ms, UTC/local, ISO 8601. Timestamp en vivo, copia en un clic. Procesamiento local.',
+        'Conversor Unix timestamp ↔ fecha gratis — detecta automáticamente segundos y milisegundos, UTC/local, ISO 8601. Timestamp en vivo con copia en un clic. Procesamiento local en tu navegador.',
       h1: 'Conversor de Timestamp',
       subheading: 'Unix timestamp ↔ fecha · segundos / milisegundos / ISO 8601',
       schema: {
@@ -1074,9 +1118,10 @@ export const es = {
       randomBtn: 'Color aleatorio',
     },
     codeImage: {
-      title: 'Código a Imagen - Generar Imágenes Bonitas | WizGo',
+      title:
+        'Código a Imagen: Genera imágenes bonitas de código - Alternativa a Carbon | WizGo',
       description:
-        'Convierte snippets de código en imágenes bonitas para compartir. JavaScript, TypeScript, Python, Go, Rust y más. Elige tema, descarga PNG.',
+        'Convierte snippets de código en imágenes bonitas para compartir con resaltado de sintaxis. JavaScript, TypeScript, Python, Go, Rust y más. Elige tema y descarga PNG.',
       h1: 'Código a Imagen',
       subheading:
         'Imágenes para compartir desde código · multi-lenguaje · multi-tema',
@@ -1377,9 +1422,10 @@ export const es = {
       },
     },
     json: {
-      title: 'Formateador JSON: Embellecer, Minificar, Validar | WizGo',
+      title:
+        'Formateador JSON Online - Embellece, Minifica, Valida y Depura JSON | WizGo',
       description:
-        'Formateador JSON gratis online — embellece, minifica, valida con copia en un clic. En tu navegador, los datos pegados nunca se suben.',
+        'Formateador JSON gratis online: embellece, minifica, valida y depura respuestas de API. Todo en tu navegador — los datos pegados nunca se suben.',
       h1: 'Formateador JSON',
       subheading: 'Embellecer, minificar, validar JSON · procesamiento local',
       schema: {
@@ -1399,9 +1445,10 @@ export const es = {
       formatError: 'JSON inválido — revisa tu entrada',
     },
     hash: {
-      title: 'Generador de Hash: SHA-256, SHA-512 Online | WizGo',
+      title:
+        'Generador de Hash y Checksum de Archivos: SHA-256, SHA-512 Online | WizGo',
       description:
-        'Genera hashes SHA-1, SHA-256, SHA-384 y SHA-512 para texto y archivos en tu navegador. Verifica la integridad de descargas — nada sale de tu dispositivo.',
+        'Genera hashes y checksums SHA-1, SHA-256, SHA-384 y SHA-512 para texto y archivos directamente en tu navegador. Verifica la integridad de descargas y comprueba que los archivos no estén corruptos — nada sale de tu dispositivo.',
       h1: 'Generador de Hash',
       subheading:
         'Verifica la integridad de archivos o calcula el hash de cualquier texto · SHA-1 / SHA-256 / SHA-384 / SHA-512 · todo en tu navegador',
@@ -1455,9 +1502,9 @@ export const es = {
       },
     },
     mp4ToMp3: {
-      title: 'MP4 a MP3: extrae audio de vídeos gratis | WizGo',
+      title: 'MP4 a MP3: Extrae audio de vídeo a MP3 online gratis | WizGo',
       description:
-        'Saca el audio de un vídeo y guárdalo como MP3. Gratis, al instante, en tu navegador. Sin subidas, sin registro, sin instalar nada.',
+        'Extrae el audio de vídeos MP4 y guárdalo como MP3 con nuestro convertidor online gratuito. Extracción de audio desde video directamente en tu navegador, sin subidas ni registro.',
       h1: 'Vídeo a MP3',
       subheading:
         'Extrae el sonido de cualquier vídeo · en tu dispositivo · nada se sube a internet',
@@ -1525,9 +1572,10 @@ export const es = {
       },
     },
     compressMp3: {
-      title: 'Comprimir MP3 Online - Reduce el tamaño del audio | WizGo',
+      title:
+        'Compresor de MP3 online gratis: reduce el tamaño de tus archivos de audio | WizGo',
       description:
-        'Reduce el tamaño de archivos MP3 re-codificando a menor bitrate · gratis, instantáneo, en tu navegador. Sin subidas, sin registro.',
+        'Reduce el tamaño de archivos MP3 re-codificándolos a menor bitrate con nuestro compresor de audio online gratuito. Comprime canciones, podcasts y grabaciones directamente en tu navegador, sin subidas ni registro.',
       h1: 'Compresor de MP3',
       subheading:
         'Reduce el tamaño de MP3 bajando el bitrate · se ejecuta en tu dispositivo · nada se sube',
@@ -1595,9 +1643,10 @@ export const es = {
       },
     },
     password: {
-      title: 'Generador de Contraseñas - Crea contraseñas seguras | WizGo',
+      title:
+        'Generador de Contraseñas - Crea contraseñas seguras y frases de paso | WizGo',
       description:
-        'Generador de contraseñas en línea gratuito. Crea contraseñas aleatorias seguras con longitud y tipos de caracteres personalizables (mayúsculas, minúsculas, números, símbolos). Excluye caracteres similares y símbolos ambiguos. Se ejecuta localmente en tu navegador.',
+        'Generador de contraseñas y frases de paso en línea gratuito. Crea contraseñas aleatorias seguras o passphrases memorables con longitud y tipos de caracteres personalizables. Excluye caracteres similares y símbolos ambiguos. Se ejecuta localmente en tu navegador.',
       h1: 'Generador de Contraseñas',
       subheading:
         'Genera contraseñas aleatorias seguras · personaliza longitud y tipos de caracteres · se ejecuta localmente',
@@ -1652,9 +1701,10 @@ export const es = {
       },
     },
     pdfCompress: {
-      title: 'Comprimir PDF - Reducir tamaño PDF en línea | WizGo',
+      title:
+        'Comprimir PDF Online - Reduce el tamaño de archivos PDF gratis y rápido | WizGo',
       description:
-        'Compresor de PDF gratis en línea. Reescribe flujos de objetos y elimina metadatos para reducir el tamaño. Se ejecuta en tu navegador — sin subidas.',
+        'Compresor de PDF gratuito en línea que reescribe flujos de objetos y elimina metadatos para reducir el tamaño de tus documentos. Optimiza facturas, contratos y escaneados directamente en tu navegador, sin subidas ni registro.',
       h1: 'Comprimir PDF',
       subheading:
         'Reduce el tamaño de archivos PDF · procesamiento local · sin subidas',
@@ -1724,9 +1774,10 @@ export const es = {
       },
     },
     pdfMerge: {
-      title: 'Unir PDF - Combina varios PDF en uno en línea | WizGo',
+      title:
+        'Unir PDF Online - Combina varios archivos PDF en uno solo con reordenación | WizGo',
       description:
-        'Une varios PDF en uno solo con reordenación. Funciona en tu navegador — sin subidas. Gratis e inmediato.',
+        'Une varios archivos PDF en un solo documento con reordenación por arrastrar y soltar. Combina facturas, contratos y escaneados con total privacidad en tu navegador, sin subidas ni registro.',
       h1: 'Unir PDF',
       subheading:
         'Combina varios PDF en uno · reordenable · procesamiento local',

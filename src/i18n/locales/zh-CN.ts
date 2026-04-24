@@ -131,27 +131,54 @@ export const zhCN = {
     'png-to-webp': {
       name: 'PNG 转 WebP',
       description: '保留透明 · 体积更小',
-      tags: ['PNG转WebP', 'png to webp'],
+      tags: [
+        'PNG转WebP',
+        'png to webp',
+        '转为 WebP',
+        'WebP 优化',
+        '网站图片加速',
+      ],
     },
     'jpg-to-webp': {
       name: 'JPG 转 WebP',
       description: '同等画质更小体积',
-      tags: ['JPG转WebP', 'JPEG转WebP', 'jpg to webp'],
+      tags: [
+        'JPG转WebP',
+        'JPEG转WebP',
+        'jpg to webp',
+        '转为 WebP',
+        'WebP 优化',
+      ],
     },
     'webp-to-png': {
       name: 'WebP 转 PNG',
       description: 'WebP 兼容性兜底',
-      tags: ['WebP转PNG', 'webp to png'],
+      tags: [
+        'WebP转PNG',
+        'webp to png',
+        'WebP 兼容',
+        'webp 打不开',
+        '转换 webp',
+      ],
     },
     'webp-to-jpg': {
       name: 'WebP 转 JPG',
       description: '兼容老旧平台',
-      tags: ['WebP转JPG', 'webp to jpg'],
+      tags: ['WebP转JPG', 'webp to jpg', 'webp 转 jpeg', 'WebP 老平台'],
     },
     'code-image': {
       name: '代码转图片',
       description: '代码生成分享图',
-      tags: ['代码', '图片', '分享'],
+      tags: [
+        '代码',
+        '图片',
+        '分享',
+        '代码截图',
+        '代码分享图',
+        'Carbon 替代',
+        'code snippet',
+        '代码高亮图片',
+      ],
     },
     jwt: {
       name: 'JWT 解码',
@@ -224,15 +251,25 @@ export const zhCN = {
         'PNG转JPG',
         'JPG转PNG',
         'WebP',
-        'HEIC',
         'BMP',
         'GIF',
+        '在线图片转换',
+        '格式互转',
       ],
     },
     'any-compress': {
       name: '图片压缩',
       description: '任意图片压缩',
-      tags: ['压缩', '通用'],
+      tags: [
+        '图片压缩',
+        '在线压缩',
+        '照片压缩',
+        '图片瘦身',
+        '批量压缩',
+        '图片优化',
+        'image compress',
+        'compress image',
+      ],
     },
     watermark: {
       name: '图片隐藏水印',
@@ -486,9 +523,10 @@ export const zhCN = {
       },
     },
     convertPair: {
-      titleTemplate: '{fromLabel} 转 {toLabel}：免费在线工具 | WizGo',
+      titleTemplate:
+        '{fromLabel} 转 {toLabel} - 免费在线图片格式转换工具 | WizGo',
       descriptionTemplate:
-        '{fromLabel} 转 {toLabel} 在线工具。{hintWithSpace}纯浏览器本地处理不上传。',
+        '免费在线 {fromLabel} 转 {toLabel} 图片格式转换工具。{hintWithSpace}纯浏览器本地处理，无需安装，文件不上传。',
       h1Template: '{fromLabel} 转 {toLabel}',
       fallbackHintTemplate:
         '把 {fromFull} 图片在线转换为 {toFull} 格式 · 本地处理不上传',
@@ -575,7 +613,7 @@ export const zhCN = {
       },
     },
     convert: {
-      title: '图片格式转换 - PNG JPG WebP HEIC 在线互转 | WizGo',
+      title: '图片格式转换 - PNG JPG WebP GIF BMP 在线互转 | WizGo',
       description:
         '免费在线图片格式转换工具，支持 PNG、JPG、JPEG、WebP、GIF、BMP 等常见格式互转。纯浏览器本地处理不上传，安全快速无需安装。',
       h1: '图片格式转换',
@@ -686,9 +724,9 @@ export const zhCN = {
       },
     },
     watermark: {
-      title: '图片隐藏水印 - 嵌入 / 提取隐写文本 | WizGo',
+      title: '图片隐藏水印 - LSB/DCT 隐写术嵌入提取工具 | WizGo',
       description:
-        '免费在线图片隐藏水印工具。在图片像素里嵌入隐藏文字或从图片提取水印，支持 LSB 和 DCT 两种算法，LSB 容量大、DCT 可经受 JPG 重压。纯浏览器本地处理不上传。',
+        '免费在线图片隐藏水印工具，使用 LSB 和 DCT 隐写术在图片像素中嵌入隐藏文字或提取水印。LSB 容量大、DCT 可经受 JPG 重压缩。适合图片溯源、隐形签名。浏览器本地处理不上传。',
       h1: '图片隐藏水印',
       subheading: '把文字隐藏进图片像素，或从图片中提取 · 本地处理不上传',
       schema: {
@@ -859,9 +897,9 @@ export const zhCN = {
       },
     },
     timestamp: {
-      title: 'Unix 时间戳转换 - 时间戳转日期/日期转时间戳 | WizGo',
+      title: 'Unix 时间戳转换 - 时间戳转日期/日期转时间戳在线工具 | WizGo',
       description:
-        '免费在线 Unix 时间戳转换工具，支持秒/毫秒、UTC 和本地时区、ISO 8601 格式互转，实时显示当前时间戳，一键复制。浏览器本地处理不上传。',
+        '免费在线 Unix 时间戳转换工具，支持秒/毫秒自动识别、UTC 和本地时区、ISO 8601 格式互转，实时显示当前时间戳，一键复制。适合开发者调试日志与 API 时间字段。浏览器本地处理不上传。',
       h1: '时间戳转换',
       subheading: 'Unix 时间戳和日期互转 · 支持秒 / 毫秒 / ISO 8601',
       schema: {
@@ -946,9 +984,9 @@ export const zhCN = {
       randomBtn: '随机颜色',
     },
     codeImage: {
-      title: '代码转图片 - 精美代码分享图生成器 | WizGo',
+      title: '代码转图片 - 精美代码分享图生成器 · Carbon 替代 | WizGo',
       description:
-        '在线把代码片段转成精美分享图，支持 JavaScript、TypeScript、Python、Go、Rust 等多种语言，多种主题可选，一键下载 PNG。',
+        '在线把代码片段转成精美分享图，支持 JavaScript、TypeScript、Python、Go、Rust 等多种语言高亮，多种主题可选，一键下载 PNG。适合技术博客、社交媒体分享代码。',
       h1: '代码转图片',
       subheading: '把代码片段生成精美分享图 · 多语言 · 多主题',
       schema: {
@@ -1243,9 +1281,9 @@ export const zhCN = {
       },
     },
     json: {
-      title: 'JSON 格式化 - 在线美化、压缩、校验工具 | WizGo',
+      title: 'JSON 格式化 - 在线美化、压缩、校验解析器 · 一键复制 | WizGo',
       description:
-        '免费在线 JSON 格式化工具，支持 JSON 美化、压缩、语法校验，一键复制。纯浏览器本地处理，粘贴的数据不会上传到任何服务器。',
+        '免费在线 JSON 格式化工具，支持 JSON 美化、压缩、语法校验与解析，一键复制结果。适合开发者调试 API 响应、格式化配置文件。纯浏览器本地处理，粘贴的数据不会上传到任何服务器。',
       h1: 'JSON 格式化',
       subheading: 'JSON 美化、压缩、语法校验 · 本地处理不上传',
       schema: {
@@ -1264,9 +1302,9 @@ export const zhCN = {
       formatError: 'JSON 格式错误，请检查输入',
     },
     hash: {
-      title: '哈希值生成器：SHA-256、SHA-512 在线计算 | WizGo',
+      title: '哈希值生成器 - SHA-256/SHA-512 文件校验在线计算 | WizGo',
       description:
-        '在浏览器中为文本和文件生成 SHA-1、SHA-256、SHA-384、SHA-512 哈希值。校验下载完整性，数据全程本地处理，不上传。',
+        '免费在线哈希值生成工具，为文本和文件计算 SHA-1、SHA-256、SHA-384、SHA-512 哈希值。校验下载文件完整性、验证数据一致性。数据全程本地处理，不上传。',
       h1: '哈希值生成器',
       subheading:
         '校验文件完整性或对任意文本计算哈希 · SHA-1 / SHA-256 / SHA-384 / SHA-512 · 纯浏览器本地运算',
@@ -1318,9 +1356,9 @@ export const zhCN = {
       },
     },
     mp4ToMp3: {
-      title: 'MP4 转 MP3：免费在线提取视频音频 | WizGo',
+      title: 'MP4 转 MP3 - 免费在线视频提取音频转换器 | WizGo',
       description:
-        '把视频里的声音提取出来，保存成 MP3。免费、即时、在浏览器里完成，不用上传、不用注册、不用安装。',
+        '免费在线 MP4 转 MP3 工具，从视频中提取音频并保存为 MP3 格式。支持 MP4、MOV、M4A、WebM 等视频格式，128-320 kbps 音质可选。纯浏览器本地处理，文件不上传、无需注册、无需安装。',
       h1: '视频转 MP3',
       subheading: '把视频里的声音提取出来 · 在你的电脑上完成 · 文件不上传',
       schema: {
@@ -1382,9 +1420,9 @@ export const zhCN = {
       },
     },
     compressMp3: {
-      title: '在线压缩 MP3 - 减小音频文件体积 | WizGo',
+      title: 'MP3 压缩 - 免费在线减小音频文件体积 | WizGo',
       description:
-        '降低比特率压缩 MP3 文件 · 免费、即时、浏览器内完成。无需上传、无需注册。',
+        '免费在线 MP3 压缩工具，通过降低比特率来减小音频文件体积。支持 MP3、M4A、WAV、FLAC、OGG 等格式输入，64-192 kbps 目标比特率可选。纯浏览器本地 WebAssembly 处理，无需上传、无需注册。',
       h1: 'MP3 体积压缩',
       subheading: '降低比特率压缩 MP3 · 本地处理 · 文件不离开你的设备',
       schema: {
@@ -1450,9 +1488,9 @@ export const zhCN = {
       },
     },
     password: {
-      title: '密码生成器 - 在线生成高强度随机密码 | WizGo',
+      title: '密码生成器 - 高强度随机密码与短语密码生成工具 | WizGo',
       description:
-        '免费在线密码生成器，生成高强度随机密码。支持自定义长度、字符类型（大小写字母、数字、符号），排除相似字符和歧义符号。浏览器本地生成，不上传。',
+        '免费在线密码生成器，支持高强度随机密码与易记短语密码（passphrase）两种模式。可自定义长度、字符类型、分隔符，排除相似字符和歧义符号。浏览器本地生成，不上传。',
       h1: '密码生成器',
       subheading: '生成高强度随机密码 · 自定义长度和字符类型 · 本地生成不上传',
       schema: {
@@ -1505,9 +1543,9 @@ export const zhCN = {
       },
     },
     pdfCompress: {
-      title: 'PDF 压缩 - 在线减小 PDF 体积 | WizGo',
+      title: 'PDF 压缩 - 免费在线减小 PDF 文件体积工具 | WizGo',
       description:
-        '免费在线 PDF 压缩工具，通过对象流重写和清除元数据减小文件体积。纯浏览器本地处理不上传，支持批量。',
+        '免费在线 PDF 压缩工具，通过对象流重写和清除元数据来减小 PDF 文件体积。支持批量处理，5-15% 体积优化，不损失画质。纯浏览器本地处理，文件不上传、无需注册。',
       h1: 'PDF 压缩',
       subheading: '减小 PDF 文件体积 · 本地处理 · 文件不上传',
       schema: {
@@ -1574,9 +1612,9 @@ export const zhCN = {
       },
     },
     pdfMerge: {
-      title: 'PDF 合并 - 在线多个 PDF 合并为一个 | WizGo',
+      title: 'PDF 合并 - 免费在线多个 PDF 合并为一个文件 | WizGo',
       description:
-        '免费在线 PDF 合并工具，多个 PDF 拼接成一个文件，支持调整顺序。纯浏览器本地处理不上传。',
+        '免费在线 PDF 合并工具，将多个 PDF 文件合并为一个，支持拖拽调整页面顺序。无需注册或安装软件，纯浏览器本地处理，文件不上传，保护隐私。',
       h1: 'PDF 合并',
       subheading: '多个 PDF 合并为一个 · 可调整顺序 · 本地处理不上传',
       schema: {

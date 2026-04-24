@@ -159,27 +159,53 @@ export const ja = {
     'png-to-webp': {
       name: 'PNG → WebP',
       description: '透明保持 · より小さく',
-      tags: ['PNG to WebP', 'png to webp'],
+      tags: [
+        'PNG to WebP',
+        'png to webp',
+        'WebP 変換',
+        'WebP 最適化',
+        'サイト画像高速化',
+      ],
     },
     'jpg-to-webp': {
       name: 'JPG → WebP',
       description: '同画質でより小さく',
-      tags: ['JPG to WebP', 'JPEG to WebP', 'jpg to webp'],
+      tags: [
+        'JPG to WebP',
+        'JPEG to WebP',
+        'jpg to webp',
+        'WebP 変換',
+        'WebP 最適化',
+      ],
     },
     'webp-to-png': {
       name: 'WebP → PNG',
       description: 'WebP 互換性のフォールバック',
-      tags: ['WebP to PNG', 'webp to png'],
+      tags: ['WebP to PNG', 'webp to png', 'WebP 互換', 'webp 開く'],
     },
     'webp-to-jpg': {
       name: 'WebP → JPG',
       description: '古いプラットフォームと互換',
-      tags: ['WebP to JPG', 'webp to jpg'],
+      tags: [
+        'WebP to JPG',
+        'webp to jpg',
+        'webp 変換 jpeg',
+        'WebP 古いプラットフォーム',
+      ],
     },
     'code-image': {
       name: 'コード画像化',
       description: 'コードからシェア画像を生成',
-      tags: ['コード', '画像', 'シェア', 'snippet'],
+      tags: [
+        'コード',
+        '画像',
+        'シェア',
+        'snippet',
+        'コードスクリーンショット',
+        'コード共有画像',
+        'Carbon 代替',
+        'シンタックスハイライト',
+      ],
     },
     jwt: {
       name: 'JWT デコード',
@@ -260,15 +286,22 @@ export const ja = {
         'PNG to JPG',
         'JPG to PNG',
         'WebP',
-        'HEIC',
         'BMP',
         'GIF',
+        'オンライン変換',
       ],
     },
     'any-compress': {
       name: '画像圧縮',
       description: '任意の画像を圧縮',
-      tags: ['圧縮', '汎用'],
+      tags: [
+        '画像圧縮',
+        'オンライン圧縮',
+        '写真圧縮',
+        '画像軽量化',
+        'バッチ圧縮',
+        'image compress',
+      ],
     },
     watermark: {
       name: '画像隠し透かし',
@@ -546,9 +579,10 @@ export const ja = {
       },
     },
     convertPair: {
-      titleTemplate: '{fromLabel} → {toLabel}：無料オンライン変換 | WizGo',
+      titleTemplate:
+        '{fromLabel} → {toLabel}：無料オンライン画像フォーマット変換ツール | WizGo',
       descriptionTemplate:
-        '{fromLabel} → {toLabel} をブラウザ内で変換。{hintWithSpace}アップロード不要。',
+        '無料オンラインで {fromLabel} → {toLabel} をブラウザ内で変換。{hintWithSpace}アップロード不要、インストール不要。',
       h1Template: '{fromLabel} → {toLabel}',
       fallbackHintTemplate:
         '{fromFull} 画像をオンラインで {toFull} 形式に変換 · ブラウザ内処理',
@@ -629,7 +663,7 @@ export const ja = {
       },
     },
     convert: {
-      title: '画像形式変換 - PNG JPG WebP HEIC オンライン相互変換 | WizGo',
+      title: '画像形式変換 - PNG JPG WebP オンライン相互変換 | WizGo',
       description:
         '無料オンライン画像形式変換ツール。PNG、JPG、JPEG、WebP、GIF、BMP などの一般的な形式の相互変換に対応。すべてブラウザ内処理、安全・高速・インストール不要。',
       h1: '画像形式変換',
@@ -745,9 +779,10 @@ export const ja = {
       },
     },
     watermark: {
-      title: '画像隠し透かし：埋め込み・抽出 | WizGo',
+      title:
+        '画像隠し透かし（ステガノグラフィ）：LSB/DCT 埋め込み・抽出 | WizGo',
       description:
-        '画像のピクセルにテキストを埋め込み、または画像から透かしを抽出。LSB と DCT の 2 アルゴリズム対応。すべてブラウザ内処理。',
+        '画像に LSB と DCT の 2 種類のステガノグラフィーで不可視のテキスト透かしを埋め込み、または画像から透かしを抽出できる無料オンラインツール。画像の出所追跡や著作権の不可視署名に最適。人目では判別できないレベルで情報を隠せます。すべてブラウザ内処理。',
       h1: '画像隠し透かし',
       subheading:
         'テキストを画像のピクセルに隠す、または画像から抽出 · ブラウザ内処理',
@@ -927,9 +962,10 @@ export const ja = {
       },
     },
     timestamp: {
-      title: 'Unix タイムスタンプ変換 - タイムスタンプ⇄日付 | WizGo',
+      title:
+        'Unix タイムスタンプ変換ツール - 秒/ミリ秒自動判定・日付相互変換 | WizGo',
       description:
-        '無料 Unix タイムスタンプ ⇄ 日付変換。秒/ミリ秒、UTC/ローカル、ISO 8601 対応。現在のタイムスタンプをリアルタイム表示、ワンクリックコピー。',
+        '無料 Unix タイムスタンプ ⇄ 日付変換ツール。秒とミリ秒を自動判定、UTC/ローカルタイムゾーン、ISO 8601 形式に対応。API デバッグやログ解析に便利で、現在のタイムスタンプをリアルタイム表示、変換結果のワンクリックコピーに対応。すべてブラウザ内処理。',
       h1: 'タイムスタンプ変換',
       subheading:
         'Unix タイムスタンプと日付の相互変換 · 秒 / ミリ秒 / ISO 8601 対応',
@@ -1018,9 +1054,10 @@ export const ja = {
       randomBtn: 'ランダムカラー',
     },
     codeImage: {
-      title: 'コード画像化 - 美しいコードシェア画像ジェネレーター | WizGo',
+      title:
+        'コード画像化ツール - Carbon 代替・シンタックスハイライト付きコードシェア画像 | WizGo',
       description:
-        'コードスニペットをオンラインで美しいシェア画像に変換。JavaScript、TypeScript、Python、Go、Rust など多言語に対応、複数のテーマから選択、ワンクリックで PNG ダウンロード。',
+        'コードスニペットをシンタックスハイライト付きの美しいシェア画像に変換できる無料オンラインツール。JavaScript、TypeScript、Python、Go、Rust など多言語対応、複数のテーマから選択。SNS やブログ、技術記事でのコード共有に最適、ワンクリックで PNG ダウンロード。',
       h1: 'コード画像化',
       subheading: 'コードスニペットを美しいシェア画像に · 多言語 · 多テーマ',
       schema: {
@@ -1321,9 +1358,10 @@ export const ja = {
       },
     },
     json: {
-      title: 'JSON フォーマッタ - オンライン整形・圧縮・検証ツール | WizGo',
+      title:
+        'JSON フォーマッタ・パーサー - オンライン整形・圧縮・検証・一括コピー | WizGo',
       description:
-        '無料オンライン JSON フォーマッタ。JSON 整形、圧縮、構文検証、ワンクリックコピーに対応。すべてブラウザ内処理、貼り付けたデータはサーバーにアップロードされません。',
+        '無料オンライン JSON フォーマッタ・パーサー。JSON データの整形、圧縮、構文検証、一括コピーに対応。API レスポンスの確認やデバッグ、設定ファイルの整形に最適。すべてブラウザ内処理、貼り付けたデータはサーバーにアップロードされません。',
       h1: 'JSON フォーマッタ',
       subheading: 'JSON 整形、圧縮、構文検証 · ブラウザ内処理',
       schema: {
@@ -1342,9 +1380,10 @@ export const ja = {
       formatError: 'JSON 形式エラー、入力を確認してください',
     },
     hash: {
-      title: 'ハッシュ値生成：SHA-256、SHA-512 オンライン | WizGo',
+      title:
+        'ハッシュ値・ファイルチェックサム生成：SHA-256、SHA-512 オンライン | WizGo',
       description:
-        'テキストやファイルの SHA-1、SHA-256、SHA-384、SHA-512 ハッシュをブラウザで生成。ダウンロードの整合性チェックに。データはあなたのデバイスから出ません。',
+        'テキストやファイルの SHA-1、SHA-256、SHA-384、SHA-512 ハッシュ値をブラウザ内で生成する無料オンラインツール。ダウンロードファイルの整合性検証や改ざんチェックに最適。データはあなたのデバイスから出ず、アップロード不要で安全にチェックサムを計算できます。',
       h1: 'ハッシュ値生成',
       subheading:
         'ファイルの整合性チェックやテキストのハッシュ化 · SHA-1 / SHA-256 / SHA-384 / SHA-512 · ブラウザ内で完結',
@@ -1398,9 +1437,10 @@ export const ja = {
       },
     },
     mp4ToMp3: {
-      title: 'MP4 を MP3 に：無料オンライン動画→音声 | WizGo',
+      title:
+        'MP4 動画を MP3 音声に変換：無料オンライン動画→音声抽出ツール | WizGo',
       description:
-        '動画から音声だけ取り出して MP3 で保存。無料、すぐ使える、ブラウザで完結。アップロード・登録・インストールは不要です。',
+        'MP4 や MOV、WebM などの動画ファイルから音声を抽出し、MP3 として保存できる無料オンラインツール。ビデオの音声トラックのみを高品質で変換·ダウンロード。アップロード不要、登録不要、インストール不要、ブラウザ内で完結、128-320 kbps の音質選択に対応。',
       h1: '動画を MP3 に',
       subheading:
         '動画の音声だけ取り出します · あなたのデバイスで完結 · ファイルは送信されません',
@@ -1468,9 +1508,10 @@ export const ja = {
       },
     },
     compressMp3: {
-      title: 'オンライン MP3 圧縮 - 音声ファイルサイズを削減 | WizGo',
+      title:
+        'MP3 圧縮ツール - オンラインで音声ファイルサイズを軽量化・ビットレート変更 | WizGo',
       description:
-        'ビットレートを下げて MP3 ファイルを圧縮 · 無料・即時・ブラウザ内完結。アップロード不要・登録不要。',
+        'ビットレートを変更して MP3・WAV・FLAC・M4A などの音声ファイルサイズを軽量化できる無料オンラインツール。アップロード不要、登録不要、インストール不要でブラウザ内で即時処理。音質を調整しながらファイルを小さくし、ストレージ節約やメール添付・SNS アップロードに最適です。',
       h1: 'MP3 圧縮',
       subheading:
         'ビットレートを下げて MP3 を圧縮 · ローカル処理 · ファイルはデバイスから出ない',
@@ -1538,9 +1579,9 @@ export const ja = {
     },
     password: {
       title:
-        'パスワード生成 - 強力なランダムパスワードをオンラインで生成 | WizGo',
+        'パスワード・パスフレーズ生成 - 強力なランダムパスワードをオンラインで生成 | WizGo',
       description:
-        '無料のオンラインパスワード生成ツール。長さと文字タイプ（大文字、小文字、数字、記号）をカスタマイズして強力なランダムパスワードを生成。類似文字とあいまいな記号を除外可能。ブラウザ内でローカル生成、アップロードなし。',
+        '無料のオンラインパスワード生成ツール。ランダムパスワードと覚えやすいパスフレーズの両方に対応。長さと文字タイプ（大文字、小文字、数字、記号）をカスタマイズして強力なパスワードを生成。類似文字とあいまいな記号を除外可能。ブラウザ内でローカル生成、アップロードなし。',
       h1: 'パスワード生成',
       subheading:
         '強力なランダムパスワードを生成 · 長さと文字タイプをカスタマイズ · ローカル生成',
@@ -1594,9 +1635,10 @@ export const ja = {
       },
     },
     pdfCompress: {
-      title: 'PDF 圧縮 - オンラインで PDF サイズを縮小 | WizGo',
+      title:
+        'PDF 圧縮ツール - オンラインで PDF ファイルサイズを縮小・最適化 | WizGo',
       description:
-        '無料オンライン PDF 圧縮ツール。オブジェクトストリームの書き換えとメタデータ除去でファイルサイズを縮小。ブラウザ内ローカル処理、アップロードなし。',
+        'PDF ファイルサイズを縮小できる無料オンラインツール。オブジェクトストリームの書き換えと不要なメタデータの除去により、ドキュメントを最適化。印刷やメール送信前のファイル軽量化に。ブラウザ内でローカル処理、アップロード不要、登録不要、インストール不要で安全に利用できます。',
       h1: 'PDF 圧縮',
       subheading: 'PDF ファイルサイズを縮小 · ローカル処理 · アップロードなし',
       schema: {
@@ -1664,9 +1706,10 @@ export const ja = {
       },
     },
     pdfMerge: {
-      title: 'PDF 結合 - 複数の PDF を 1 つにまとめる | WizGo',
+      title:
+        'PDF 結合ツール - 複数の PDF をドラッグ＆ドロップで並べ替え・1 つに統合 | WizGo',
       description:
-        '無料オンライン PDF 結合ツール。複数の PDF を 1 つに連結し、順序も調整可能。ブラウザ内ローカル処理、アップロードなし。',
+        '複数の PDF ファイルを 1 つに統合できる無料オンラインツール。ドラッグ＆ドロップで簡単にアップロードし、結合順序を自由に調整可能。個人情報を守るブラウザ内ローカル処理で、アップロード不要、登録不要、インストール不要で安全に PDF を結合できます。',
       h1: 'PDF 結合',
       subheading:
         '複数の PDF を 1 つにまとめる · 順序を調整可能 · ローカル処理',

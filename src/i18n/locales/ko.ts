@@ -146,27 +146,53 @@ export const ko = {
     'png-to-webp': {
       name: 'PNG → WebP',
       description: '투명 유지 · 더 작은 용량',
-      tags: ['PNG to WebP', 'png to webp'],
+      tags: [
+        'PNG to WebP',
+        'png to webp',
+        'WebP 변환',
+        'WebP 최적화',
+        '사이트 이미지 속도',
+      ],
     },
     'jpg-to-webp': {
       name: 'JPG → WebP',
       description: '같은 화질로 더 작게',
-      tags: ['JPG to WebP', 'JPEG to WebP', 'jpg to webp'],
+      tags: [
+        'JPG to WebP',
+        'JPEG to WebP',
+        'jpg to webp',
+        'WebP 변환',
+        'WebP 최적화',
+      ],
     },
     'webp-to-png': {
       name: 'WebP → PNG',
       description: 'WebP 호환성 폴백',
-      tags: ['WebP to PNG', 'webp to png'],
+      tags: ['WebP to PNG', 'webp to png', 'WebP 호환', 'webp 열기'],
     },
     'webp-to-jpg': {
       name: 'WebP → JPG',
       description: '구형 플랫폼 호환',
-      tags: ['WebP to JPG', 'webp to jpg'],
+      tags: [
+        'WebP to JPG',
+        'webp to jpg',
+        'webp jpeg 변환',
+        'WebP 구형 플랫폼',
+      ],
     },
     'code-image': {
       name: '코드 이미지화',
       description: '코드로 공유 이미지 생성',
-      tags: ['코드', '이미지', '공유', 'snippet'],
+      tags: [
+        '코드',
+        '이미지',
+        '공유',
+        'snippet',
+        '코드 스크린샷',
+        '코드 공유 이미지',
+        'Carbon 대안',
+        '구문 강조 이미지',
+      ],
     },
     jwt: {
       name: 'JWT 디코드',
@@ -245,15 +271,22 @@ export const ko = {
         'PNG to JPG',
         'JPG to PNG',
         'WebP',
-        'HEIC',
         'BMP',
         'GIF',
+        '온라인 변환',
       ],
     },
     'any-compress': {
       name: '이미지 압축',
       description: '모든 이미지 압축',
-      tags: ['압축', '범용'],
+      tags: [
+        '이미지 압축',
+        '온라인 압축',
+        '사진 압축',
+        '이미지 경량화',
+        '일괄 압축',
+        'image compress',
+      ],
     },
     watermark: {
       name: '이미지 숨김 워터마크',
@@ -524,9 +557,10 @@ export const ko = {
       },
     },
     convertPair: {
-      titleTemplate: '{fromLabel} → {toLabel}: 무료 온라인 변환 | WizGo',
+      titleTemplate:
+        '{fromLabel} → {toLabel}: 무료 온라인 이미지 포맷 변환 도구 | WizGo',
       descriptionTemplate:
-        '{fromLabel} → {toLabel} 브라우저에서 변환. {hintWithSpace}업로드 없음.',
+        '무료 온라인 {fromLabel} → {toLabel} 브라우저에서 변환. {hintWithSpace}업로드 없음, 설치 불필요.',
       h1Template: '{fromLabel} → {toLabel}',
       fallbackHintTemplate:
         '{fromFull} 이미지를 온라인에서 {toFull} 형식으로 변환 · 브라우저에서 처리',
@@ -606,7 +640,7 @@ export const ko = {
       },
     },
     convert: {
-      title: '이미지 형식 변환: PNG/JPG/WebP/HEIC 온라인 | WizGo',
+      title: '이미지 형식 변환: PNG/JPG/WebP 온라인 | WizGo',
       description:
         '무료 온라인 이미지 형식 변환 도구. PNG, JPG, JPEG, WebP, GIF, BMP 등 일반 형식 상호 변환 지원. 모두 브라우저에서 처리, 안전, 빠르고 설치 불필요.',
       h1: '이미지 형식 변환',
@@ -722,9 +756,10 @@ export const ko = {
       },
     },
     watermark: {
-      title: '이미지 숨김 워터마크: 삽입·추출 | WizGo',
+      title:
+        '이미지 숨김 워터마크: LSB·DCT 스테가노그래피 삽입·추출 도구 | WizGo',
       description:
-        '이미지 픽셀에 숨김 텍스트를 삽입하거나 추출. LSB와 DCT 두 알고리즘 지원. 모두 브라우저에서 처리.',
+        'LSB와 DCT 스테가노그래피 알고리즘을 이용해 이미지 픽셀에 숨김 텍스트를 삽입하거나 추출하는 무료 온라인 도구입니다. 보이지 않는 디지털 워터마크로 이미지 출처 추적과 저작권 보호에 활용할 수 있으며, 모든 처리는 브라우저에서 로컬로 완료되어 데이터 유출 걱정이 없습니다.',
       h1: '이미지 숨김 워터마크',
       subheading:
         '텍스트를 이미지 픽셀에 숨기거나 이미지에서 추출 · 브라우저에서 처리',
@@ -898,9 +933,10 @@ export const ko = {
       },
     },
     timestamp: {
-      title: 'Unix 타임스탬프 변환 - 타임스탬프 ↔ 날짜 | WizGo',
+      title:
+        'Unix 타임스탬프 변환 도구 - 초·밀리초 자동 감지·날짜 ↔ 타임스탬프 | WizGo',
       description:
-        '무료 온라인 Unix 타임스탬프 변환 도구. 초/밀리초, UTC 와 로컬 시간대, ISO 8601 형식 상호 변환 지원, 현재 타임스탬프 실시간 표시, 원클릭 복사. 브라우저에서 처리.',
+        '무료 온라인 Unix 타임스탬프 변환 도구입니다. 초와 밀리초를 자동으로 감지하여 UTC 및 로컬 시간대로 변환하고, ISO 8601 형식과 상대 시간도 함께 제공합니다. 실시간 현재 타임스탬프 표시와 원클릭 복사 기능으로 API 개발 및 데이터 분석 시 편리하게 사용할 수 있습니다.',
       h1: '타임스탬프 변환',
       subheading: 'Unix 타임스탬프 ↔ 날짜 · 초 / 밀리초 / ISO 8601 지원',
       schema: {
@@ -987,9 +1023,10 @@ export const ko = {
       randomBtn: '랜덤 색상',
     },
     codeImage: {
-      title: '코드 이미지화 - 아름다운 코드 공유 이미지 생성기 | WizGo',
+      title:
+        '코드 이미지화: 무료 Carbon 대안·구문 강조 코드 공유 이미지 생성기 | WizGo',
       description:
-        '코드 스니펫을 온라인으로 아름다운 공유 이미지로 변환. JavaScript, TypeScript, Python, Go, Rust 등 다양한 언어 지원, 다양한 테마 선택, 원클릭 PNG 다운로드.',
+        '코드 스니펫을 구문 강조된 아름다운 공유 이미지로 변환하는 무료 온라인 도구입니다. JavaScript, TypeScript, Python, Go, Rust 등 다양한 프로그래밍 언어를 지원하며 여러 테마 중 선택할 수 있습니다. Carbon 대안으로 원클릭 PNG 다운로드와 클립보드 복사가 가능합니다.',
       h1: '코드 이미지화',
       subheading: '코드 스니펫을 아름다운 공유 이미지로 · 다국어 · 다양한 테마',
       schema: {
@@ -1290,9 +1327,10 @@ export const ko = {
       },
     },
     json: {
-      title: 'JSON 포매터 - 온라인 미화, 압축, 검증 도구 | WizGo',
+      title:
+        'JSON 포매터 - 온라인 미화·압축·검증·API 디버깅용 무료 도구 | WizGo',
       description:
-        '무료 온라인 JSON 포매터. JSON 미화, 압축, 구문 검증, 원클릭 복사 지원. 모두 브라우저에서 처리, 붙여넣은 데이터는 어떤 서버에도 업로드되지 않습니다.',
+        '무료 온라인 JSON 포매터 도구입니다. 지저분한 JSON 데이터를 보기 좋게 미화하거나 한 줄로 압축하고, 구문 오류를 실시간으로 검증할 수 있습니다. API 응답 디버깅이나 설정 파일 편집에 유용하며, 입력한 데이터는 브라우저에서 처리되어 어떤 서버에도 업로드되지 않습니다.',
       h1: 'JSON 포매터',
       subheading: 'JSON 미화, 압축, 구문 검증 · 브라우저에서 처리',
       schema: {
@@ -1311,9 +1349,10 @@ export const ko = {
       formatError: 'JSON 형식 오류, 입력을 확인하세요',
     },
     hash: {
-      title: '해시 생성기: SHA-256, SHA-512 온라인 계산 | WizGo',
+      title:
+        '해시 생성기 - 텍스트·파일 체크섬·SHA-256 SHA-512 온라인 계산 도구 | WizGo',
       description:
-        '브라우저에서 텍스트와 파일의 SHA-1, SHA-256, SHA-384, SHA-512 해시를 생성합니다. 다운로드 무결성을 확인하세요. 모든 처리는 로컬에서 이루어집니다.',
+        '텍스트와 파일의 SHA-1, SHA-256, SHA-384, SHA-512 해시를 브라우저에서 생성하는 무료 온라인 체크섬 계산 도구입니다. 소프트웨어 다운로드 후 무결성 검증이나 파일 위변조 확인에 사용할 수 있으며, 모든 처리는 로컬에서 이루어져 데이터가 외부로 유출되지 않습니다.',
       h1: '해시 생성기',
       subheading:
         '파일 무결성 검증 또는 텍스트 해시 계산 · SHA-1 / SHA-256 / SHA-384 / SHA-512 · 브라우저에서 실행',
@@ -1367,9 +1406,10 @@ export const ko = {
       },
     },
     mp4ToMp3: {
-      title: 'MP4를 MP3로: 무료 온라인 영상→오디오 | WizGo',
+      title:
+        'MP4를 MP3로 변환: 무료 온라인 영상에서 오디오 추출·음성 저장 도구 | WizGo',
       description:
-        '영상에서 소리만 뽑아 MP3로 저장하세요. 무료, 즉시, 브라우저에서 처리. 업로드, 가입, 설치 모두 필요 없습니다.',
+        '동영상 파일에서 오디오 트랙을 추출해 MP3로 저장하는 무료 온라인 변환 도구입니다. MP4, MOV, M4A, WebM 등 다양한 영상 형식을 지원하며, 브라우저에서 직접 처리되어 파일 업로드나 별도 소프트웨어 설치 없이 즉시 사용할 수 있습니다.',
       h1: '영상에서 MP3 추출',
       subheading:
         '영상의 소리를 뽑아냅니다 · 내 기기에서 처리 · 파일은 어디에도 올라가지 않습니다',
@@ -1437,9 +1477,10 @@ export const ko = {
       },
     },
     compressMp3: {
-      title: '온라인 MP3 압축 - 오디오 파일 크기 감소 | WizGo',
+      title:
+        'MP3 압축기: 무료 온라인 오디오 파일 크기 줄이기·비트레이트 조절 | WizGo',
       description:
-        '비트레이트를 낮춰 MP3 파일 압축 · 무료, 즉시, 브라우저에서 완료. 업로드 불필요, 가입 불필요.',
+        'MP3 파일의 비트레이트를 조절하여 용량을 줄이는 무료 온라인 압축 도구입니다. 64k에서 320k까지 원하는 품질로 변환 가능하며, WAV, FLAC, M4A, OGG 등 다양한 오디오 형식도 MP3로 압축할 수 있습니다. 브라우저에서 직접 처리되며 파일이 외부로 업로드되지 않습니다.',
       h1: 'MP3 압축',
       subheading:
         '비트레이트를 낮춰 MP3 압축 · 로컬 처리 · 파일이 기기를 떠나지 않음',
@@ -1506,9 +1547,10 @@ export const ko = {
       },
     },
     password: {
-      title: '비밀번호 생성기 - 강력한 무작위 비밀번호 온라인 생성 | WizGo',
+      title:
+        '비밀번호 생성기 - 강력한 무작위 비밀번호·암호 문구 온라인 생성 도구 | WizGo',
       description:
-        '무료 온라인 비밀번호 생성기. 길이와 문자 유형(대문자, 소문자, 숫자, 기호)을 사용자 정의하여 강력한 무작위 비밀번호를 생성합니다. 유사 문자와 모호한 기호를 제외할 수 있습니다. 브라우저에서 로컬 생성, 업로드 없음.',
+        '무료 온라인 비밀번호 생성기입니다. 문자 유형과 길이를 사용자 정의하여 강력한 무작위 비밀번호를 생성하거나, 기억하기 쉬운 암호 문구(passphrase) 모드를 사용할 수 있습니다. 대문자, 소문자, 숫자, 기호 조합과 유사 문자 제외 기능을 지원하며 모든 생성 과정은 브라우저에서 로컬로 처리됩니다.',
       h1: '비밀번호 생성기',
       subheading:
         '강력한 무작위 비밀번호 생성 · 길이와 문자 유형 사용자 정의 · 로컬 생성',
@@ -1562,9 +1604,10 @@ export const ko = {
       },
     },
     pdfCompress: {
-      title: 'PDF 압축 - 온라인에서 PDF 크기 줄이기 | WizGo',
+      title:
+        'PDF 압축기: 무료 온라인 PDF 파일 크기 줄이기·용량 감소 도구 | WizGo',
       description:
-        '무료 온라인 PDF 압축 도구. 오브젝트 스트림 재작성 및 메타데이터 제거로 파일 크기를 줄입니다. 브라우저에서 로컬로 처리, 업로드 없음.',
+        'PDF 파일의 오브젝트 스트림을 재작성하고 메타데이터를 제거하여 용량을 줄이는 무료 온라인 PDF 압축 도구입니다. 브라우저에서 로컬로 처리되며 파일이 서버에 업로드되지 않아 개인정보가 안전하게 보호됩니다. 이미지 품질은 그대로 유지하면서 파일 크기를 효과적으로 최적화할 수 있습니다.',
       h1: 'PDF 압축',
       subheading: 'PDF 파일 크기 줄이기 · 로컬 처리 · 업로드 없음',
       schema: {
@@ -1631,9 +1674,10 @@ export const ko = {
       },
     },
     pdfMerge: {
-      title: 'PDF 병합 - 여러 PDF를 하나로 | WizGo',
+      title:
+        'PDF 병합기: 무료 온라인 여러 PDF 합치기·순서 변경·드래그 앤 드롭 | WizGo',
       description:
-        '무료 온라인 PDF 병합 도구. 여러 PDF를 하나로 합치고 순서를 조정하세요. 브라우저에서 로컬로 처리, 업로드 없음.',
+        '여러 개의 PDF 파일을 하나로 합치는 무료 온라인 병합 도구입니다. 드래그 앤 드롭으로 파일 순서를 자유롭게 변경할 수 있으며, 브라우저에서 로컬로 처리되어 문서가 서버에 업로드되지 않습니다. 개인정보 보호가 중요한 업무 문서도 안심하고 병합할 수 있습니다.',
       h1: 'PDF 병합',
       subheading: '여러 PDF를 하나로 합치기 · 순서 조정 가능 · 업로드 없음',
       schema: {

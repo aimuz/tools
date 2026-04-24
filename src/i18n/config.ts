@@ -1,4 +1,12 @@
-export const LOCALES = ['zh-CN', 'zh-TW', 'en', 'ja', 'ko', 'es'] as const;
+export const LOCALES = [
+  'zh-CN',
+  'zh-TW',
+  'en',
+  'ja',
+  'ko',
+  'es',
+  'fr',
+] as const;
 
 export type Locale = (typeof LOCALES)[number];
 
@@ -11,6 +19,7 @@ export const LOCALE_LABELS: Record<Locale, string> = {
   ja: '日本語',
   ko: '한국어',
   es: 'Español',
+  fr: 'Français',
 };
 
 export const OG_LOCALES: Record<Locale, string> = {
@@ -20,6 +29,7 @@ export const OG_LOCALES: Record<Locale, string> = {
   ja: 'ja_JP',
   ko: 'ko_KR',
   es: 'es_ES',
+  fr: 'fr_FR',
 };
 
 export function isLocale(value: string): value is Locale {
